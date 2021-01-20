@@ -5,8 +5,10 @@ import { HomeComponent } from './main/home.component';
 const routes: Routes = [{ path: '', component:  HomeComponent}];
 
 
-NgModule({
+@NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
+
+
 export class HomeRoutingModule { }
