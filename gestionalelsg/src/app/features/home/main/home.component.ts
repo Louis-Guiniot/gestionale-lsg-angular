@@ -15,10 +15,15 @@ export class HomeComponent implements OnInit {
 
   elements=[];
   prod: Product;
-  constructor(private store: Store, private homeService: HomeService) { }
+  constructor(private store: Store, private homeService: HomeService) {
+    console.log("siamo nel costruttore")
+    console.log(this.homeService.retrieveAllProducts());
+   }
 
   ngOnInit(): void {
-    this.homeService.retrieveAllProducts();
+    console.log("ng on init");
+    
+
     this.store.pipe(select(selectProducts)).subscribe((products) => { 
       for (let prod of products) {
           this.elements.push(prod); 
