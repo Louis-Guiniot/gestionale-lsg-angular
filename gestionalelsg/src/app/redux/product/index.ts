@@ -4,7 +4,7 @@ import { AppState } from '..';
 import { selectRouteParams } from '../router';
 
 
-import { ProductState } from './home.reducers';
+import { ProductState } from './product.reducers';
 
 export const selectProductState = (state: AppState) => state.productsState;
 

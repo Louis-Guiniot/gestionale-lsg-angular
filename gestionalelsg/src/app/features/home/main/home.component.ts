@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { Product } from 'src/app/core/model/Product.interface';
-import { selectProducts } from 'src/app/redux/home';
+import { selectProducts } from 'src/app/redux/product';
 import { HomeService } from '../services/home.service';
 
 @Component({
@@ -14,11 +14,18 @@ import { HomeService } from '../services/home.service';
 export class HomeComponent implements OnInit {
 
   elements=[];
-
+  prod: Product;
   constructor(private store: Store, private homeService: HomeService) { }
 
   ngOnInit(): void {
     this.homeService.retrieveAllProducts();
+    this.store.pipe(select(selectProducts)).subscribe((products) => { 
+      for (let prod of products) {
+          this.elements.push(prod); 
+          console.log(prod);
+      }
+      return this.elements
+    })
   }
 
   get products(): Observable<Product[]> {
