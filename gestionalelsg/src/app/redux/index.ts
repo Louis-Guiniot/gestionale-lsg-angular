@@ -1,6 +1,6 @@
 import { ActionReducerMap } from '@ngrx/store';
 import { routerReducer, RouterReducerState } from '@ngrx/router-store';
-import { productsReducer, ProductState } from './home/home.reducers';
+import { productsReducer, ProductState } from './product/product.reducers';
 
 export interface AppState{
     router: RouterReducerState<any>;

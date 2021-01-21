@@ -4,7 +4,7 @@ import { AppState } from '..';
 import { selectRouteParams } from '../router';
 
 
-import { ProductState } from './home.reducers';
+import { ProductState } from './product.reducers';
 
 export const selectProductState = (state: AppState) => state.productsState;
 
@@ -13,7 +13,7 @@ export const selectProducts = createSelector(
     (state: ProductState) => state.products
 );
 
-export const getCurrentNavigatedQuestion = createSelector(
+export const getCurrentProduct = createSelector(
     selectProductState,
     selectRouteParams,
     (state: ProductState, params: Params) => state.products.find(item => item.id === Number(params['id']))

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { retrieveAllProducts } from 'src/app/redux/home/home.actions';
+import { retrieveAllProducts } from 'src/app/redux/product/product.actions';
 
 @Injectable({
   providedIn: 'root'

@@ -4,6 +4,9 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { StoreModule } from '@ngrx/store';
+import { reducers } from './redux';
+import { EffectsModule } from '@ngrx/effects';
+import { ProductsEffects } from "./redux/product/product.effects";
 
 
 @NgModule({
@@ -14,7 +17,10 @@ import { StoreModule } from '@ngrx/store';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    StoreModule.forRoot({}, {}),
+    StoreModule.forRoot(reducers),
+    // EffectsModule.forRoot({
+    //    ProductsEffects
+    // }),
   ],
   providers: [],
   bootstrap: [AppComponent]
