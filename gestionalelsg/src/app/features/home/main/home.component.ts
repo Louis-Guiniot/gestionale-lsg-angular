@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { select, Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
+import { Product } from 'src/app/core/model/Product.interface';
+import { selectProducts } from 'src/app/redux/home';
+import { HomeService } from '../services/home.service';
 
 @Component({
   selector: 'app-home',
@@ -8,9 +13,13 @@ import { Component, OnInit } from '@angular/core';
 
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  constructor(private store: Store, private homeService: HomeService) { }
 
   ngOnInit(): void {
+  }
+
+  get skills(): Observable<Product[]> {
+    return this.store.pipe(select(selectProducts));
   }
 
 }
