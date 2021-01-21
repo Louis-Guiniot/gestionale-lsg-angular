@@ -19,7 +19,7 @@ export class HomeComponent implements OnInit {
     this.homeService.retrieveAllProducts();
   }
 
-  get skills(): Observable<Product[]> {
+  get products(): Observable<Product[]> {
     return this.store.pipe(select(selectProducts));
   }
 
