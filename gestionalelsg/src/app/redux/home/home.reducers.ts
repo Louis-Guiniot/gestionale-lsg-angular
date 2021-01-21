@@ -4,6 +4,7 @@ import { initProducts } from './home.actions';
 
 export interface ProductState {
     products: Product[];
+   
 }
 
 export const initialState: ProductState = {
@@ -12,6 +13,10 @@ export const initialState: ProductState = {
 
 export const productsReducer = createReducer(
     initialState,
-    on(initProducts, (state, { response }) => ({ /*...state,*/ products: response.result })),
+    on(initProducts, (state, { response }) => ({ ...state, products: response.result })),
     
 );
+//----//
+export function reducer(state: ProductState, action: Action) {
+    return productsReducer(state, action);
+}

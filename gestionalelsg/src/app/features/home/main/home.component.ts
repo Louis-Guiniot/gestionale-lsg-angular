@@ -16,6 +16,7 @@ export class HomeComponent implements OnInit {
   constructor(private store: Store, private homeService: HomeService) { }
 
   ngOnInit(): void {
+    this.homeService.retrieveAllProducts();
   }
 
   get skills(): Observable<Product[]> {
