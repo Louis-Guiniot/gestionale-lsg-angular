@@ -18,9 +18,10 @@ import { ProductsEffects } from "./redux/product/product.effects";
     BrowserModule,
     AppRoutingModule,
     StoreModule.forRoot(reducers),
-    // EffectsModule.forRoot({
-    //    ProductsEffects
-    // }),
+     EffectsModule.forRoot([
+       ProductsEffects
+     ]
+     ),
   ],
   providers: [],
   bootstrap: [AppComponent]
