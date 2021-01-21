@@ -13,7 +13,7 @@ export const initialState: ProductState = {
 
 export const productsReducer = createReducer(
     initialState,
-   // on(initProducts, (state, { response }) => ({ ...state, products: response.result })),
+    on(initProducts, (state, { response }) => ({ ...state, products: response.result })),
     
 );
 //----//
