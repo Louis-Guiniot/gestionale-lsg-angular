@@ -6,6 +6,7 @@ import { Observable } from "rxjs";
 import { switchMap, map } from 'rxjs/operators';
 import { HttpCommunicationsService } from "src/app/core/HttpCommunications/http-communications.service";
 import { initProducts, retrieveAllProducts } from "./home.actions";
+import { Response } from '../../core/model/Response.interface';
 
 @Injectable()
 export class ProductsEffects {

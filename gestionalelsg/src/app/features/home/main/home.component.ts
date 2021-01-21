@@ -13,6 +13,8 @@ import { HomeService } from '../services/home.service';
 
 export class HomeComponent implements OnInit {
 
+  elements=[];
+
   constructor(private store: Store, private homeService: HomeService) { }
 
   ngOnInit(): void {
