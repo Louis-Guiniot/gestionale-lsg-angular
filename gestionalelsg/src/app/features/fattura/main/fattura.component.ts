@@ -13,7 +13,7 @@ import { FatturaService } from '../services/fattura.service';
   styleUrls: ['./fattura.component.scss']
 })
 export class FatturaComponent implements OnInit {
-  elements=[];
+  fatture=[];
 
   constructor(private store: Store, private fatturaService: FatturaService) { 
     //this.fatturaService.retrieveAllInvoices();
@@ -25,11 +25,11 @@ export class FatturaComponent implements OnInit {
     this.store.pipe(select(selectInvoices)).subscribe((invoice) => { 
       for (let inv of Object.keys(invoice)) {
         console.log("diciannove??", invoice[inv]);
-        if(invoice[inv]==19)
-        this.elements.push(invoice[inv]); 
+     
+        this.fatture.push(invoice[inv]); 
         
     }
-      return this.elements;
+      return this.fatture;
     })
     
   }
