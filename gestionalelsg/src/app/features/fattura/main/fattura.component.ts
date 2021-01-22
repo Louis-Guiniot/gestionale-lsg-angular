@@ -25,7 +25,7 @@ export class FatturaComponent implements OnInit {
     this.store.pipe(select(selectInvoices)).subscribe((invoice) => { 
       for (let inv of Object.keys(invoice)) {
         console.log("diciannove??", invoice[inv]);
-       
+        if(invoice[inv]==19)
         this.elements.push(invoice[inv]); 
         
     }
