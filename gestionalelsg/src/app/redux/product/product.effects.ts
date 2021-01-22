@@ -19,6 +19,9 @@ export class ProductsEffects {
     retreiveAllProduct(): Observable<Response> {
         return this.http.retrieveGetCall<Response>("product/findAll");
     }
+    retreiveAllinvoices(): Observable<Response> {
+        return this.http.retrieveGetCall<Response>("invoice/findAll");
+    }
 
     retreiveLastInvoice(): Observable<Response> {
         console.log("chiamata effettuata")
@@ -34,6 +37,13 @@ export class ProductsEffects {
     getAllProducts$: Observable<Action> = createEffect(() => this.actions$.pipe(
         ofType(retrieveAllProducts),
         switchMap(() => this.retreiveAllProduct().pipe(
+            map((response) => initProducts({ response }))
+        ))
+    ));
+
+    getAllInvoices$: Observable<Action> = createEffect(() => this.actions$.pipe(
+        ofType(retrieveAllInvoices),
+        switchMap(() => this.retreiveAllinvoices().pipe(
             map((response) => initProducts({ response }))
         ))
     ));

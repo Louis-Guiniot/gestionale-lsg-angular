@@ -1,28 +1,21 @@
 import { Action, createReducer, on } from '@ngrx/store';
 import { Invoice } from 'src/app/core/model/Invoice.interface';
-import { Product } from 'src/app/core/model/Product.interface';
 import { initInvoices } from './invoice.actions';
 
-export interface InvoiceState {
-   
+export interface InvoiceState { 
     invoices: Invoice[]
-
-   
 }
 
 
 
 
 export const initialState: InvoiceState = {
- 
-    invoices: [],
-    
+    invoices: []
 };
 
 export const invoiceReducer = createReducer(
     initialState,
     on(initInvoices, (state, { response }) => ({ ...state, invoices: response.result })),
-  
     
 );
 //----//
