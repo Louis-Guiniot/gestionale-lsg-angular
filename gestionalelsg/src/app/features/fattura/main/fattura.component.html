@@ -1,7 +1,7 @@
 
-<div class="elementi" *ngFor="let fat of fatture; index as i">
+<div class="elementi" *ngFor="let fat of fatture; index as i; first as isFirst; last as isLast">
        
-       
+        
                 id: {{fat.id}} <br>
                 codice: {{ fat.codeInvoice }} <br>
                 totalPrice: {{ fat.totalPrice }} <br>
@@ -12,7 +12,7 @@
                 iva: {{fat.iva}} <br>
                 ivaPrice: {{fat.ivaPrice}} <br>
                 totalToPay: {{fat.totalToPay}} <br>
-        
+   
        
     
    <br><br><br><br><br><br>

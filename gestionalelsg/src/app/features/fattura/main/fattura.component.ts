@@ -23,10 +23,10 @@ export class FatturaComponent implements OnInit {
   ngOnInit(): void {
 
     this.store.pipe(select(selectInvoices)).subscribe((invoice) => { 
-      for (let inv of Object.keys(invoice)) {
-        console.log("diciannove??", invoice[inv]);
+      for (let inv of invoice) {
+        console.log("fattura-->", invoice);
      
-        this.fatture.push(invoice[inv]); 
+        this.fatture.push(inv); 
         
     }
       return this.fatture;
