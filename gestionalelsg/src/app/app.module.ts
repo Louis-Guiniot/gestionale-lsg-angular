@@ -26,8 +26,9 @@ import { InvoicesEffects } from './redux/invoice/invoice.effects';
     HttpModule,
     StoreModule.forRoot(reducers),
      EffectsModule.forRoot([
-       ProductsEffects,
-       InvoicesEffects
+      InvoicesEffects, 
+      ProductsEffects,
+       
      ]
      ),
   ],

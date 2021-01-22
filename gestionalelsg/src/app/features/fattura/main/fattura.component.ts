@@ -16,19 +16,22 @@ export class FatturaComponent implements OnInit {
   elements=[];
 
   constructor(private store: Store, private fatturaService: FatturaService) { 
-    this.fatturaService.retrieveAllInvoices();
-    //this.fatturaService.retrieveLastInvoice();
+    //this.fatturaService.retrieveAllInvoices();
+    this.fatturaService.retrieveLastInvoice();
   }
 
   ngOnInit(): void {
 
     this.store.pipe(select(selectInvoices)).subscribe((invoice) => { 
-      for (let prod of invoice) {
-        this.elements.push(prod); 
-        console.log(prod);
+      for (let inv of Object.keys(invoice)) {
+        console.log("diciannove??", invoice[inv]);
+       
+        this.elements.push(invoice[inv]); 
+        
     }
       return this.elements;
     })
+    
   }
 
   get invoices(): Observable<Invoice[]> {
