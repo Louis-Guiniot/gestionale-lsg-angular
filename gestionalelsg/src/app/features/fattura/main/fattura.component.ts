@@ -13,7 +13,7 @@ import { FatturaService } from '../services/fattura.service';
   styleUrls: ['./fattura.component.scss']
 })
 export class FatturaComponent implements OnInit {
-  fatture=[];
+  fatture:any;
 
   constructor(private store: Store, private fatturaService: FatturaService) { 
     //this.fatturaService.retrieveAllInvoices();
@@ -23,19 +23,17 @@ export class FatturaComponent implements OnInit {
   ngOnInit(): void {
 
     this.store.pipe(select(selectInvoices)).subscribe((invoice) => { 
-      for (let inv of invoice) {
-        console.log("fattura-->", invoice);
      
-        this.fatture.push(inv); 
+        this.fatture=invoice; 
         
     }
-      return this.fatture;
-    })
+    
+    )
     
   }
 
-  get invoices(): Observable<Invoice[]> {
-    return this.store.pipe(select(selectInvoices));
-  }
+  // get invoices(): Observable<Invoice[]> {
+  //   return this.store.pipe(select(selectInvoices));
+  // }
 
 }
