@@ -9,6 +9,8 @@ import { reducers } from './redux';
 import { EffectsModule } from '@ngrx/effects';
 import { ProductsEffects } from "./redux/product/product.effects";
 import { CoreModule } from './core/core.module';
+import { FatturaComponent } from './features/fattura/main/fattura.component';
+import { InvoicesEffects } from './redux/invoice/invoice.effects';
 
 
 @NgModule({
@@ -24,7 +26,8 @@ import { CoreModule } from './core/core.module';
     HttpModule,
     StoreModule.forRoot(reducers),
      EffectsModule.forRoot([
-       ProductsEffects
+       ProductsEffects,
+       InvoicesEffects
      ]
      ),
   ],

@@ -34,7 +34,8 @@ export class HomeComponent implements OnInit {
     
      this.prodottiForm=this.fb.group({
       id:['', Validators.required],
-      customerId:['', Validators.required]
+      customerId:['', Validators.required],
+      sconto: ['', Validators.required]
      })
 
 
@@ -63,10 +64,13 @@ export class HomeComponent implements OnInit {
     console.log("PRODOTTI LISTA", this.prodottiLista)
     console.log("prezzo finale", this.totalPrice)
     console.log("customer id", this.prodottiForm.value.customerId)
+    console.log("sconto: ",this.prodottiForm.value.sconto)
 
   
 
-    this.homeService.generateSubmit(this.prodottiLista, this.totalPrice, this.prodottiForm.value.customerId)
+    this.homeService.generateSubmit(this.prodottiLista, this.totalPrice, 
+                                    this.prodottiForm.value.customerId,
+                                    this.prodottiForm.value.sconto)
   }
 
   aggiungi(id: string, prezzo:string){

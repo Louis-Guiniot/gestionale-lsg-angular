@@ -5,19 +5,24 @@ import { initInvoices, initProducts } from './product.actions';
 
 export interface ProductState {
     products: Product[];
-    currentInvoice: Invoice;
+    invoices: Invoice[]
+
    
 }
 
+
+
+
 export const initialState: ProductState = {
     products: [],
-    currentInvoice: null
+    invoices: [],
+    
 };
 
 export const productsReducer = createReducer(
     initialState,
     on(initProducts, (state, { response }) => ({ ...state, products: response.result })),
-    on(initInvoices, (state, { response }) => ({ ...state, currentInvoice: response.result })),
+    on(initInvoices, (state, { response }) => ({ ...state, invoices: response.result })),
   
     
 );
