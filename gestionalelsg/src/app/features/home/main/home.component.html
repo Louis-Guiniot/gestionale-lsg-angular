@@ -1,8 +1,13 @@
-<div class="elementi" *ngFor="let element of elements">
-   
-        nome: {{ element.name }}
-        description: {{ element.description }}
-        prezzo: {{element.price}}
-    
-</div> 
-lmao
+<form [formGroup]="prodottiForm" (ngSubmit)="fattura()">
+        <div class="elementi" *ngFor="let element of elements; index as i">
+
+                id: {{element.id}} <br>
+                nome: {{ element.name }} <br>
+                description: {{ element.description }} <br>
+                prezzo: {{element.price}} <br>
+                <button type="button" (click)="aggiungi(element.id,element.price)">aggiungi</button> <br>
+
+        </div>
+        customer id: <input type="text" name="customerId" id="customerId" formControlName="customerId" placeholder="Customer ID"><br>
+        <button type="submit">submit invoice</button>
+</form>
