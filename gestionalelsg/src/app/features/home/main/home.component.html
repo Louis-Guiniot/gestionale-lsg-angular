@@ -1,8 +1,54 @@
-<div class="elementi" *ngFor="let element of elements">
-   
-        nome: {{ element.name }}
-        description: {{ element.description }}
-        prezzo: {{element.price}}
-    
-</div> 
-lmao
+<div class="container-cards">
+        <div class="box">
+                <div *ngFor="let element of elements ; let i = index">
+                        <div *ngIf="i%2==0" id="even" class="elementi"> 
+                                prova {{i}}
+                                <table class="card-table">
+                                        <tr>
+                                                <td><img src="../assets/gestionale-lsg-new.png" alt="prova" class="logo"></td>
+                                        </tr>
+                                        <tr>
+                                                <td>{{element.name}}</td>
+                                        </tr>
+                                        <tr>
+                                                <td>{{element.description}}</td>
+                                        </tr>
+                                        <tr>
+                                                <td>{{element.price}} $</td>
+                                        </tr>
+                                        <tr>
+                                                <td><button class="btn-buy">buy now!</button></td>
+                                        </tr>
+                                </table>
+                        </div>
+                        <div *ngIf="i%2!=0" id="odd" class="elementi">
+                                prova {{i}}
+                                <table class="card-table">
+                                        <tr>
+                                                <td><img src="../assets/gestionale-lsg-new.png" alt="prova" class="logo"></td>
+                                        </tr>
+                                        <tr>
+                                                <td>{{element.name}}</td>
+                                        </tr>
+                                        <tr>
+                                                <td>{{element.description}}</td>
+                                        </tr>
+                                        <tr>
+                                                <td>{{element.price}} $</td>
+                                        </tr>
+                                        <tr>
+                                                <td><button class="btn-buy">buy now!</button></td>
+                                        </tr>
+                                </table>
+                        </div>
+                                
+                                <!--
+                                <p>name: <span>{{ element.name }}</span></p> 
+                                <p>description: <span>{{ element.description }}</span></p>
+                                <p>prezzo: <span>{{element.price}}</span></p> 
+                                <button class="btn-buy">buy now!</button>
+                                -->   
+                </div>                 
+        </div>
+
+</div>
