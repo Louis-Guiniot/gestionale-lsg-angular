@@ -1,4 +1,12 @@
+
+<form [formGroup]="prodottiForm" (ngSubmit)="fattura()">
 <div class="container-cards">
+        
+        <div class="wrap-left">
+                customer id: <input type="text" name="customerId" id="customerId" formControlName="customerId" placeholder="Customer ID"><br>
+                sconto in percentuale: <input type="text" name="sconto" id="sconto" formControlName="sconto" placeholder="%sconto"><br>
+                <button type="submit">submit invoice</button>                
+        </div>
         <div class="box">
                 <div *ngFor="let element of elements ; let i = index">
                         <div *ngIf="i%2==0" id="even" class="elementi"> 
@@ -6,6 +14,9 @@
                                 <table class="card-table">
                                         <tr>
                                                 <td><img src="../assets/gestionale-lsg-new.png" alt="prova" class="logo"></td>
+                                        </tr>
+                                        <tr>
+                                                <td>{{element.id}}</td>
                                         </tr>
                                         <tr>
                                                 <td>{{element.name}}</td>
@@ -17,7 +28,7 @@
                                                 <td>{{element.price}} $</td>
                                         </tr>
                                         <tr>
-                                                <td><button class="btn-buy">buy now!</button></td>
+                                                <td><button type="button" class="btn-buy" (click)="aggiungi(element.id,element.price)">aggiungi</button></td>
                                         </tr>
                                 </table>
                         </div>
@@ -28,6 +39,9 @@
                                                 <td><img src="../assets/gestionale-lsg-new.png" alt="prova" class="logo"></td>
                                         </tr>
                                         <tr>
+                                                <td>{{element.id}}</td>
+                                        </tr>
+                                        <tr>
                                                 <td>{{element.name}}</td>
                                         </tr>
                                         <tr>
@@ -37,7 +51,7 @@
                                                 <td>{{element.price}} $</td>
                                         </tr>
                                         <tr>
-                                                <td><button class="btn-buy">buy now!</button></td>
+                                                <td><button type="button" class="btn-buy" (click)="aggiungi(element.id,element.price)">aggiungi</button></td>
                                         </tr>
                                 </table>
                         </div>
@@ -51,7 +65,11 @@
                 </div>                 
         </div>
 
-</div>
+</div>        
+</form>
+
+
+<!--
 <form [formGroup]="prodottiForm" (ngSubmit)="fattura()">
         <div class="elementi" *ngFor="let element of elements; index as i">
 
@@ -65,4 +83,7 @@
         customer id: <input type="text" name="customerId" id="customerId" formControlName="customerId" placeholder="Customer ID"><br>
         sconto in percentuale: <input type="text" name="sconto" id="sconto" formControlName="sconto" placeholder="%sconto"><br>
         <button type="submit">submit invoice</button>
-</form>
+
+</form>        
+-->
+
