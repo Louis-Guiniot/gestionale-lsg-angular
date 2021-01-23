@@ -25,7 +25,7 @@ export class FatturaComponent implements OnInit {
     this.store.pipe(select(selectInvoices)).subscribe((invoice) => { 
      
         this.fatture=invoice; 
-        
+        console.log("fattura finale: ", this.fatture)   
     }
     
     )
