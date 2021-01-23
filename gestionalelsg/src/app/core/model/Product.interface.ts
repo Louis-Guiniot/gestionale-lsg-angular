@@ -5,4 +5,5 @@ export interface Product{
     description:string;
     price:string;
     measureUnir:string;
+    img:string;
 }
