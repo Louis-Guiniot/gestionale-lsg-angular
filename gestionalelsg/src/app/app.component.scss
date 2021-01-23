@@ -1,0 +1,47 @@
+.main-container{
+}
+
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #012051;
+    border: 1px black solid;
+  }
+
+  li{
+      float: left;
+  }
+  
+  #right {
+    float: right;
+  }
+  
+  li a {
+    line-height: 2em;
+    margin: auto;
+    font-size: larger;
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    height: 42px;
+    width: 70px;
+    text-decoration: none;
+  }
+  
+  li a:hover:not(.active) {
+    background-color: rgb(4,47,139);
+  }
+  
+  .active {
+    background-color: rgba( #010f25, 0.8);
+  }
+
+  .logo{
+    display: block;
+      width: 90px;
+      height: 70px;
+  }
