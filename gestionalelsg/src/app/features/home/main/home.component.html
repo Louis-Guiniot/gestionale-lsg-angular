@@ -43,14 +43,12 @@ function myFunction() {
                         <table class="invoice-table">
                                 <tr>
                                         <td><input type="text" name="customerId" id="customerId" autocomplete="off"
-                                                        formControlName="customerId" placeholder="insert
-                                                        customer id">
+                                                        formControlName="customerId" placeholder="insert customer id">
                                         </td>
                                 </tr>
                                 <tr>
                                         <td><input type="text" name="sconto" id="sconto" autocomplete="off"
-                                                        formControlName="sconto" placeholder="insert
-                                                        sale"></td>
+                                                        formControlName="sconto" placeholder="insert sale"></td>
                                 </tr>
                                 <tr>
                                         <td><button type="submit" class="btn" id="btn-invoice">submit
@@ -59,7 +57,9 @@ function myFunction() {
                                 </tr>
                         </table>
                         <!--DONE METTERE STORICO-->
-                        <div class="history"></div>
+                        <div class="history" *ngFor="let prev of preview">
+                                {{prev}}
+                        </div>
                 </div>
         </div>
 

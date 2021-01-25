@@ -17,6 +17,7 @@ import { HomeService } from '../services/home.service';
 export class HomeComponent implements OnInit {
 
   elements=[];
+  preview=[];
   prod: Product;
   prodottiForm: FormGroup;
   prodottiLista: string="";
@@ -79,6 +80,7 @@ export class HomeComponent implements OnInit {
     this.totalPrice=this.totalPrice+prezzo+";"
     console.log("lista",this.prodottiLista,"prodotto aggiunto")
     console.log("i limoni signoraaaaa i limonIIIIIIIIHHHHHHH",this.totalPrice)
+    this.preview.push("prodotto: "+id+" prezzo: "+prezzo);
     
   }
 
