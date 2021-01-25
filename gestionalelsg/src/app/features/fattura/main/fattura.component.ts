@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+
 import { select, Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
-import { Invoice } from 'src/app/core/model/Invoice.interface';
+
 import { selectInvoices } from 'src/app/redux/invoice';
+
 
 import { FatturaService } from '../services/fattura.service';
 
@@ -13,15 +13,18 @@ import { FatturaService } from '../services/fattura.service';
   styleUrls: ['./fattura.component.scss']
 })
 export class FatturaComponent implements OnInit {
+  [x: string]: any;
   fatture:any;
+ 
 
   constructor(private store: Store, private fatturaService: FatturaService) { 
     //this.fatturaService.retrieveAllInvoices();
     this.fatturaService.retrieveLastInvoice();
+ 
   }
 
   ngOnInit(): void {
-
+    
     this.store.pipe(select(selectInvoices)).subscribe((invoice) => { 
      
         this.fatture=invoice; 

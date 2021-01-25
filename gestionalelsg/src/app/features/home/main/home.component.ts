@@ -18,6 +18,8 @@ export class HomeComponent implements OnInit {
 
   elements = [];
   preview = [];
+  previewId=[]; //id preview per cancellare prod singolo
+  previewPrice=[];//id price preview
   prod: Product;
   prodottiForm: FormGroup;
   prodottiLista: string = "";
@@ -56,13 +58,13 @@ export class HomeComponent implements OnInit {
   }
 
   fattura() {
-    // this.sender=this.fb.group({
-    //   prodottiLista: [this.prodottiLista, Validators.required],
-    //   totalPrice: [this.totalPrice, Validators.required]
 
-    // })
+    if (this.previewId.length > 0) {
 
-    if (this.prodottiLista.length > 0) {
+      for(let i=0; i<this.previewId.length; i++){
+        this.prodottiLista=this.prodottiLista+this.previewId[i]+";"
+        this.totalPrice=this.totalPrice+this.previewPrice[i]+";"
+      }
       console.log("invio fattura");
       console.log("PRODOTTI LISTA", this.prodottiLista)
       console.log("prezzo finale", this.totalPrice)
@@ -79,19 +81,23 @@ export class HomeComponent implements OnInit {
 
   aggiungi(id: string, prezzo: string) {
     console.log(id)
-    this.prodottiLista = this.prodottiLista + id + ";"
-    this.totalPrice = this.totalPrice + prezzo + ";"
-    console.log("lista", this.prodottiLista, "prodotto aggiunto")
-    console.log("i limoni signoraaaaa i limonIIIIIIIIHHHHHHH", this.totalPrice)
-    this.preview.push(id);
+    this.previewId.push(id)
+    this.previewPrice.push(prezzo)
+    console.log("preview id: "+ this.previewId)
+    this.preview.push("id prodotto: "+id+" prezzo: "+prezzo);
   }
 
   clearPreview() {
     this.preview.length = 0;
     this.prodottiLista = "";
+    this.totalPrice="";
   }
 
-  clearPreviewSelected(id: string){   
+  clearPreviewSelected(i: number){ 
+    this.previewId.splice(i, 1);
+    this.preview.splice(i, 1); 
+    this.previewPrice.splice(i,1) 
+    
   }
 
 }
