@@ -1,20 +1,45 @@
-
-<div class="elementi" >
-       
-        
-                id: {{fatture.id}} <br>
-                codice: {{ fatture.codeInvoice }} <br>
-                totalPrice: {{ fatture.totalPrice }} <br>
-                idCustomer: {{fatture.idCustomer}} <br>
-                productFields: {{fatture.productFields}} <br>
-                dateTime: {{fatture.dateTime}} <br>
-                sconto: {{fatture.sconto}} <br>
-                iva: {{fatture.iva}} <br>
-                ivaPrice: {{fatture.ivaPrice}} <br>
-                totalToPay: {{fatture.totalToPay}} <br>
-   
-       
-    
-   <br><br><br><br><br><br>
-    
+<div class="container-invoice">
+   <div class="header">YOUR INVOICE</div>
+   <table class="invoice-table">
+      <tr>
+         <td>id</td>
+         <td>{{fatture.id}}</td>
+      </tr>
+      <tr>
+         <td>id customer</td>
+         <td>{{fatture.idCustomer}}</td>
+      </tr>
+      <tr>
+         <td>code</td>
+         <td>{{ fatture.codeInvoice }}</td>
+      </tr>
+      <tr>
+         <td>date</td>
+         <td>{{fatture.dateTime}}</td>
+      </tr>
+      <tr>
+         <td>product fields</td>
+         <td>{{fatture.fields}} </td>
+      </tr>
+      <tr>
+         <td>total price</td>
+         <td>{{ fatture.totalPrice }}$</td>
+      </tr>
+      <tr>
+         <td>sale</td>
+         <td>{{fatture.sconto}}%</td>
+      </tr>
+      <tr>
+         <td>iva</td>
+         <td>{{fatture.iva}}%</td>
+      </tr>
+      <tr>
+         <td>total price + iva</td>
+         <td>{{fatture.ivaPrice}}$</td>
+      </tr>
+      <tr id="total">
+         <td>total pay</td>
+         <td>{{fatture.totalToPay}}$</td>
+      </tr>
+   </table>
 </div>
