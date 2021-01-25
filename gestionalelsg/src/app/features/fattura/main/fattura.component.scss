@@ -8,7 +8,6 @@
     background-color: rgba( #012051, 1);
     text-align: left;
     color: white;
-    font-size: x-large;
 }
 
 .invoice-table{
@@ -16,6 +15,7 @@
     margin: 0;
     padding: 3%;
     border-collapse: collapse;
+    font-size: 1.3em;
 }
 
 .invoice-table td{
@@ -36,7 +36,7 @@
 }
 
 #total:hover{
-    background-color: rgba( 40, 79, 255, 0.5);
+    background-color: rgba( 40, 79, 255, 1);
 }
 
 .header{
@@ -47,5 +47,5 @@
     border-top-right-radius: 5px;
     background-color: rgb(40, 79, 255);
     border-bottom: 2px black solid;
-    font-size: x-large;
+    font-size: 1.5em;
 }
