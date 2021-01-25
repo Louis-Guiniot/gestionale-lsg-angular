@@ -66,17 +66,19 @@
 </form>
 
 <div class="history-container">
+
         <div class="header">History</div>
-        <div class="history" *ngFor="let prev of preview">
+        <button (click)="clearPreview()">ELIMINA TUTTO</button>
+        <div class="history" *ngFor="let prev of preview; let i=index;">
                 <table class="history-table">
                         <tr>
                                 <td>{{prev}}</td>
 
                                 <!-- cancella tutto -->
-                                <td><button (click)="clearPreview()">x</button></td>
+                                <!-- <td><button (click)="clearPreview()">x</button></td> -->
 
-                                <!-- cancello singolo
-                                <td><button (click)="clearPreviewSelected()">x</button></td> -->
+                                 
+                                <td><button (click)="clearPreviewSelected(i)">x</button></td> 
                         </tr>
                 </table>
         </div>
