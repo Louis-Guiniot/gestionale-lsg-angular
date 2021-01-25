@@ -42,9 +42,7 @@
     font-size: 1.5em;
     border: 0;
 
-    border-left: 1px white solid;
     border-bottom: 1px white solid;
-    border-bottom-left-radius: 5px;
 
     color: white;
     background-color: transparent;
@@ -59,10 +57,14 @@
     padding: 1%;
 }
 
+#btn-invoice{
+    margin-top: 4%;
+}
+
 .history-container{
     float: left;
     width: 20%;
-    min-height: 100px;
+    min-height: 200px;
     margin-top: 1%;
     margin-left: 2%;
     border-radius: 5px;
@@ -129,7 +131,6 @@
     padding: 3%;
     border-radius: 5px;
     font-size: 1em;
-
 }
 
 .btn:hover{
@@ -161,7 +162,6 @@
 .card-table td{
     word-wrap: break-word;
 }
-
 
 .logo{
     width: 100%;
