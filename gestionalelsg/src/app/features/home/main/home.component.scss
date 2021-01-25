@@ -6,12 +6,6 @@
 
 }
 
-.addedd{
-    width: 100px;
-    border: 2px black solid;
-    height: 100px;
-}
-
 .container-invoice{
     float: left;
     width: 35%;
@@ -42,12 +36,6 @@
     font-size: 2em;
 }
 
-#header-invoice{
-    padding-left: 4%;
-    padding-top: 1%;
-    padding-bottom: 1%;
-}
-
 .invoice-table input{
     padding:2%;
     width: 95%;
@@ -69,6 +57,32 @@
 
 .invoice-table td{
     padding: 1%;
+}
+
+.history-container{
+    float: left;
+    width: 20%;
+    min-height: 100px;
+    margin-top: 1%;
+    margin-left: 2%;
+    border-radius: 5px;
+    border: 2px black solid;
+    background-color: #012051;
+    text-align: left;
+    color: white;
+    box-shadow: 10px 10px 5px rgba( #A9AABC, 1);
+}
+
+.history{
+    width: 100%;
+    margin: 0;
+}
+
+.history-table{
+    width: 100%;
+    margin: 0;
+    padding-top: 1%;
+    padding-left: 3%;
 }
 
 .container-cards{
