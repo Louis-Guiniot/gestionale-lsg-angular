@@ -30,12 +30,12 @@ ul {
     text-decoration: none;
   }
 
-  li a{
-    background-color: rgb(40, 79, 255);
+  .active{
+    background-color: rgba( #010f25, 0.8);
   }
   
   li a:hover:not(.active) {
-    background-color: rgba( #010f25, 0.8);
+    background-color: rgba(40, 79, 255,0.8);
   }
 
   .logo{

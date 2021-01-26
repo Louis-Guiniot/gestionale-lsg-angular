@@ -42,9 +42,7 @@
     font-size: 1.5em;
     border: 0;
 
-    border-left: 1px white solid;
     border-bottom: 1px white solid;
-    border-bottom-left-radius: 5px;
 
     color: white;
     background-color: transparent;
@@ -59,10 +57,14 @@
     padding: 1%;
 }
 
+#btn-invoice{
+    margin-top: 4%;
+}
+
 .history-container{
     float: left;
     width: 20%;
-    min-height: 100px;
+    min-height: 200px;
     margin-top: 1%;
     margin-left: 2%;
     border-radius: 5px;
@@ -73,6 +75,40 @@
     box-shadow: 10px 10px 5px rgba( #A9AABC, 1);
 }
 
+#header-history{
+    width: 100%;
+    padding-top: 2%;
+    padding-left: 4%;
+    padding-bottom: 2%;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    background-color: rgb(40, 79, 255);
+    border-bottom: 2px black solid;
+    font-size: 2em;
+}
+
+#btn-trash{
+    background-color: transparent;
+    border: none;
+    color: white;
+}
+
+#btn-trash:hover{
+    color: red;
+}
+
+#icon-trash{
+    font-size: 2em;
+}
+
+.td-trash{
+    text-align: right;
+}
+
+#highlight-row-remove:hover{
+    background-color: rgba(red,0.5);
+}
+
 .history{
     width: 100%;
     margin: 0;
@@ -80,9 +116,11 @@
 
 .history-table{
     width: 100%;
-    margin: 0;
-    padding-top: 1%;
-    padding-left: 3%;
+    padding: 2%;
+}
+
+.history-table tr{
+    padding-right: 2%;
 }
 
 .container-cards{
@@ -129,7 +167,6 @@
     padding: 3%;
     border-radius: 5px;
     font-size: 1em;
-
 }
 
 .btn:hover{
@@ -161,7 +198,6 @@
 .card-table td{
     word-wrap: break-word;
 }
-
 
 .logo{
     width: 100%;
