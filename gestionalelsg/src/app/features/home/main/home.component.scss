@@ -31,7 +31,7 @@
     padding: 4%;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
-    background-color: rgb(40, 79, 255);
+    background-color: rgb(88, 119, 255);
     border-bottom: 2px black solid;
     font-size: 2em;
 }
@@ -42,14 +42,13 @@
     font-size: 1.5em;
     border: 0;
 
-    border-bottom: 1px white solid;
-
-    color: white;
+    border-bottom: 1px rgba(white,0.2) solid;
+    color: white;   
     background-color: transparent;
     outline: 0;
 
     &::placeholder{
-        color:white;
+        color: rgba(white,0.2);
     }
 }
 
@@ -61,10 +60,9 @@
     margin-top: 4%;
 }
 
-.history-container{
+.cart-container{
     float: left;
     width: 20%;
-    min-height: 200px;
     margin-top: 1%;
     margin-left: 2%;
     border-radius: 5px;
@@ -75,14 +73,14 @@
     box-shadow: 10px 10px 5px rgba( #A9AABC, 1);
 }
 
-#header-history{
+#header-cart{
     width: 100%;
     padding-top: 2%;
     padding-left: 4%;
     padding-bottom: 2%;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
-    background-color: rgb(40, 79, 255);
+    background-color: rgb(88, 119, 255);
     border-bottom: 2px black solid;
     font-size: 2em;
 }
@@ -97,30 +95,39 @@
     color: red;
 }
 
+#btn-trash:focus{
+    outline: none;
+}
+
 #icon-trash{
     font-size: 2em;
 }
 
 .td-trash{
     text-align: right;
+    justify-content: center;
+}
+
+.cart-table tr{
+    border-bottom: 1px rgba(white,0.2) solid;
 }
 
 #highlight-row-remove:hover{
     background-color: rgba(red,0.5);
 }
 
-.history{
+.cart-data{
+    padding: 5%;
+}
+
+.cart{
     width: 100%;
     margin: 0;
 }
 
-.history-table{
+.cart-table{
     width: 100%;
-    padding: 2%;
-}
-
-.history-table tr{
-    padding-right: 2%;
+    border-collapse: collapse;
 }
 
 .container-cards{
@@ -145,7 +152,7 @@
     border: 2px black solid;
     background-color: #012051;
     text-align: left;
-    transition-duration: 1s;
+    transition-duration: 0.3s;
     box-shadow: 10px 10px 5px rgba( #A9AABC, 1);
 }
 
@@ -170,7 +177,7 @@
 }
 
 .btn:hover{
-    background-color: rgb(40, 79, 255);
+    background-color: rgb(88, 119, 255);
     cursor: pointer;
     transition:1s 0s;
     color: white;
