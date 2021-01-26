@@ -1,10 +1,3 @@
-<script type="text/javascript">
-function myFunction() {
-  document.getElementById("prova").innerHTML = "Paragraph changed!";
-  alert(prova);
-}
-</script>
-
 <form [formGroup]="prodottiForm" (ngSubmit)="fattura()">
         <div class="container">
                 <div class="container-cards">
@@ -18,7 +11,7 @@ function myFunction() {
                                         </tr>
                                         <tr>
                                                 <td>
-                                                        <img src="../assets/gestionale-lsg-new.png" alt="prova"
+                                                        <img src="../assets/lsg-products.png" alt="prova"
                                                                 class="logo">
                                                 </td>
                                         </tr>
@@ -38,19 +31,18 @@ function myFunction() {
                         </div>
                 </div>
 
+                <!-- fare controlli validità dati -->
                 <div class="container-invoice">
-                        <div class="header" id="header-invoice">Invoice</div>
+                        <div class="header">Invoice</div>
                         <table class="invoice-table">
                                 <tr>
                                         <td><input type="text" name="customerId" id="customerId" autocomplete="off"
-                                                        formControlName="customerId" placeholder="insert
-                                                        customer id">
+                                                        formControlName="customerId" placeholder="insert customer id">
                                         </td>
                                 </tr>
                                 <tr>
                                         <td><input type="text" name="sconto" id="sconto" autocomplete="off"
-                                                        formControlName="sconto" placeholder="insert
-                                                        sale"></td>
+                                                        formControlName="sconto" placeholder="insert sale"></td>
                                 </tr>
                                 <tr>
                                         <td><button type="submit" class="btn" id="btn-invoice">submit
@@ -58,83 +50,37 @@ function myFunction() {
                                         </td>
                                 </tr>
                         </table>
-                        <!--DONE METTERE STORICO-->
-                        <div class="history"></div>
                 </div>
         </div>
-
 </form>
-<!--
-        <div *ngFor="let element of elements ; let i = index">
-                        <div *ngIf="i==0" id="even" class="elementi"> 
-                                prova {{i}}
-                                <table class="card-table">
-                                        <tr>
-                                                <td>
-                                                        <img src="../assets/gestionale-lsg-new.png" alt="prova" class="logo">
-                                                </td>
-                                        </tr>
-                                        <tr>
-                                                <td>{{element.id}}</td>
-                                        </tr>
-                                        <tr>
-                                                <td>{{element.name}}</td>
-                                        </tr>
-                                        <tr>
-                                                <td>{{element.description}}</td>
-                                        </tr>
-                                        <tr>
-                                                <td>{{element.price}} $</td>
-                                        </tr>
-                                        <tr>
-                                                <td><button type="button" class="btn-buy" (click)="aggiungi(element.id,element.price)">aggiungi</button></td>
-                                        </tr>
-                                </table>
-                        </div>
-                        <div *ngIf="i==1" id="odd" class="elementi">
-                                prova {{i}}
-                                <table class="card-table">
-                                        <tr>
-                                                <td><img src="../assets/gestionale-lsg-new.png" alt="prova" class="logo"></td>
-                                        </tr>
-                                        <tr>
-                                                <td>{{element.id}}</td>
-                                        </tr>
-                                        <tr>
-                                                <td>{{element.name}}</td>
-                                        </tr>
-                                        <tr>
-                                                <td>{{element.description}}</td>
-                                        </tr>
-                                        <tr>
-                                                <td>{{element.price}} $</td>
-                                        </tr>
-                                        <tr>
-                                                <td><button type="button" class="btn-buy" (click)="aggiungi(element.id,element.price)">aggiungi</button></td>
-                                        </tr>
-                                </table>
-                        </div>  
-                        
-                                <p>name: <span>{{ element.name }}</span></p> 
-                                <p>description: <span>{{ element.description }}</span></p>
-                                <p>prezzo: <span>{{element.price}}</span></p> 
-                                <button class="btn-buy">buy now!</button>
-                </div>                             
-        -->
-<!--
-<form [formGroup]="prodottiForm" (ngSubmit)="fattura()">
-        <div class="elementi" *ngFor="let element of elements; index as i">
 
-                id: {{element.id}} <br>
-                nome: {{ element.name }} <br>
-                description: {{ element.description }} <br>
-                prezzo: {{element.price}} <br>
-                <button type="button" (click)="aggiungi(element.id,element.price)">aggiungi</button> <br>
+<div class="cart-container">
+        <table id="header-cart">
+                <tr>
+                        <td>Cart</td>
+                        <td class="td-trash"><button (click)="clearPreview()" id="btn-trash"><span
+                                                class="material-icons" id="icon-trash">
+                                                delete
+                                        </span></button></td>
+                </tr>
 
+        </table>
+
+        <div class="cart-data">
+                <!-- se array vuoto esce nothing, appena compro si cancella -->
+                <div *ngIf="!preview?.length">
+                        nothing
+                </div>
+                <div class="cart" *ngFor="let prev of preview; let i=index;">
+                        <table class="cart-table">
+                                <tr id="highlight-row-remove">
+                                        <td>{{prev}}</td>
+                                        <td class="td-trash"><button (click)="clearPreviewSelected(i)"
+                                                        id="btn-trash"><span class="material-icons" id="icon-remove">
+                                                                remove
+                                                        </span></button></td>
+                                </tr>
+                        </table>
+                </div>
         </div>
-        customer id: <input type="text" name="customerId" id="customerId" formControlName="customerId" placeholder="Customer ID"><br>
-        sconto in percentuale: <input type="text" name="sconto" id="sconto" formControlName="sconto" placeholder="%sconto"><br>
-        <button type="submit">submit invoice</button>
-</form>        
--->
-
+</div>

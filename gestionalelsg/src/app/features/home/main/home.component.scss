@@ -6,12 +6,6 @@
 
 }
 
-.addedd{
-    width: 100px;
-    border: 2px black solid;
-    height: 100px;
-}
-
 .container-invoice{
     float: left;
     width: 35%;
@@ -37,15 +31,9 @@
     padding: 4%;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
-    background-color: rgb(40, 79, 255);
+    background-color: rgb(88, 119, 255);
     border-bottom: 2px black solid;
     font-size: 2em;
-}
-
-#header-invoice{
-    padding-left: 4%;
-    padding-top: 1%;
-    padding-bottom: 1%;
 }
 
 .invoice-table input{
@@ -54,21 +42,92 @@
     font-size: 1.5em;
     border: 0;
 
-    border-left: 1px white solid;
-    border-bottom: 1px white solid;
-    border-bottom-left-radius: 5px;
-
-    color: white;
+    border-bottom: 1px rgba(white,0.2) solid;
+    color: white;   
     background-color: transparent;
     outline: 0;
 
     &::placeholder{
-        color:white;
+        color: rgba(white,0.2);
     }
 }
 
 .invoice-table td{
     padding: 1%;
+}
+
+#btn-invoice{
+    margin-top: 4%;
+}
+
+.cart-container{
+    float: left;
+    width: 20%;
+    margin-top: 1%;
+    margin-left: 2%;
+    border-radius: 5px;
+    border: 2px black solid;
+    background-color: #012051;
+    text-align: left;
+    color: white;
+    box-shadow: 10px 10px 5px rgba( #A9AABC, 1);
+}
+
+#header-cart{
+    width: 100%;
+    padding-top: 2%;
+    padding-left: 4%;
+    padding-bottom: 2%;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    background-color: rgb(88, 119, 255);
+    border-bottom: 2px black solid;
+    font-size: 2em;
+}
+
+#btn-trash{
+    background-color: transparent;
+    border: none;
+    color: white;
+}
+
+#btn-trash:hover{
+    color: red;
+}
+
+#btn-trash:focus{
+    outline: none;
+}
+
+#icon-trash{
+    font-size: 2em;
+}
+
+.td-trash{
+    text-align: right;
+    justify-content: center;
+}
+
+.cart-table tr{
+    border-bottom: 1px rgba(white,0.2) solid;
+}
+
+#highlight-row-remove:hover{
+    background-color: rgba(red,0.5);
+}
+
+.cart-data{
+    padding: 5%;
+}
+
+.cart{
+    width: 100%;
+    margin: 0;
+}
+
+.cart-table{
+    width: 100%;
+    border-collapse: collapse;
 }
 
 .container-cards{
@@ -93,7 +152,7 @@
     border: 2px black solid;
     background-color: #012051;
     text-align: left;
-    transition-duration: 1s;
+    transition-duration: 0.3s;
     box-shadow: 10px 10px 5px rgba( #A9AABC, 1);
 }
 
@@ -115,11 +174,10 @@
     padding: 3%;
     border-radius: 5px;
     font-size: 1em;
-
 }
 
 .btn:hover{
-    background-color: rgb(40, 79, 255);
+    background-color: rgb(88, 119, 255);
     cursor: pointer;
     transition:1s 0s;
     color: white;
@@ -147,7 +205,6 @@
 .card-table td{
     word-wrap: break-word;
 }
-
 
 .logo{
     width: 100%;

@@ -16,35 +16,38 @@ import { HomeService } from '../services/home.service';
 
 export class HomeComponent implements OnInit {
 
-  elements=[];
+  elements = [];
+  preview = [];
+  previewId=[]; //id preview per cancellare prod singolo
+  previewPrice=[];//id price preview
   prod: Product;
   prodottiForm: FormGroup;
-  prodottiLista: string="";
-  totalPrice: string="";
-  invoice:Invoice;
+  prodottiLista: string = "";
+  totalPrice: string = "";
+  invoice: Invoice;
   sender: FormGroup;
 
   constructor(private store: Store, private homeService: HomeService, private fb: FormBuilder) {
     console.log("siamo nel costruttore")
     console.log(this.homeService.retrieveAllProducts());
-   }
+  }
 
   ngOnInit(): void {
     console.log("ng on init");
-    
-     this.prodottiForm=this.fb.group({
-      id:['', Validators.required],
-      customerId:['', Validators.required],
+
+    this.prodottiForm = this.fb.group({
+      id: ['', Validators.required],
+      customerId: ['', Validators.required],
       sconto: ['', Validators.required]
-     })
+    })
 
 
     console.log(this.prodottiForm.value.id)
 
-    this.store.pipe(select(selectProducts)).subscribe((products) => { 
+    this.store.pipe(select(selectProducts)).subscribe((products) => {
       for (let prod of products) {
-          this.elements.push(prod); 
-          console.log(prod);
+        this.elements.push(prod);
+        console.log(prod);
       }
       return this.elements
     })
@@ -54,31 +57,46 @@ export class HomeComponent implements OnInit {
     return this.store.pipe(select(selectProducts));
   }
 
-  fattura(){
-    // this.sender=this.fb.group({
-    //   prodottiLista: [this.prodottiLista, Validators.required],
-    //   totalPrice: [this.totalPrice, Validators.required]
-     
-    // })
-    console.log("invio fattura");
-    console.log("PRODOTTI LISTA", this.prodottiLista)
-    console.log("prezzo finale", this.totalPrice)
-    console.log("customer id", this.prodottiForm.value.customerId)
-    console.log("sconto: ",this.prodottiForm.value.sconto)
+  fattura() {
 
-  
+    if (this.previewId.length > 0) {
 
-    this.homeService.generateSubmit(this.prodottiLista, this.totalPrice, 
-                                    this.prodottiForm.value.customerId,
-                                    this.prodottiForm.value.sconto)
+      for(let i=0; i<this.previewId.length; i++){
+        this.prodottiLista=this.prodottiLista+this.previewId[i]+";"
+        this.totalPrice=this.totalPrice+this.previewPrice[i]+";"
+      }
+      console.log("invio fattura");
+      console.log("PRODOTTI LISTA", this.prodottiLista)
+      console.log("prezzo finale", this.totalPrice)
+      console.log("customer id", this.prodottiForm.value.customerId)
+      console.log("sconto: ", this.prodottiForm.value.sconto)
+
+      this.homeService.generateSubmit(this.prodottiLista, this.totalPrice,
+      this.prodottiForm.value.customerId,
+      this.prodottiForm.value.sconto)
+    } else {
+      console.log("nessun prodotto in lista");
+    }
   }
 
-  aggiungi(id: string, prezzo:string){
+  aggiungi(id: string, prezzo: string) {
     console.log(id)
-    this.prodottiLista=this.prodottiLista+id+";"
-    this.totalPrice=this.totalPrice+prezzo+";"
-    console.log("lista",this.prodottiLista,"prodotto aggiunto")
-    console.log("i limoni signoraaaaa i limonIIIIIIIIHHHHHHH",this.totalPrice)
+    this.previewId.push(id)
+    this.previewPrice.push(prezzo)
+    console.log("preview id: "+ this.previewId)
+    this.preview.push("id prodotto: "+id+" prezzo: "+prezzo);
+  }
+
+  clearPreview() {
+    this.preview.length = 0;
+    this.prodottiLista = "";
+    this.totalPrice="";
+  }
+
+  clearPreviewSelected(i: number){ 
+    this.previewId.splice(i, 1);
+    this.preview.splice(i, 1); 
+    this.previewPrice.splice(i,1) 
     
   }
 
