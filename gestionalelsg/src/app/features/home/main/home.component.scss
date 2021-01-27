@@ -50,6 +50,11 @@
     &::placeholder{
         color: rgba(white,0.2);
     }
+
+
+    &:focus{
+        border-bottom: 1px rgba(white,0.5) solid;
+    }
 }
 
 .invoice-table td{
@@ -146,7 +151,7 @@
     grid-template-columns: repeat(3, 1fr);
     gap: 2%;
     grid-auto-rows: auto;
-}
+}  
 
 .elementi{
     width: 100%;
