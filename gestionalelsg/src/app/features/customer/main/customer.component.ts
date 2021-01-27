@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Store } from '@ngrx/store';
+import { select, Store } from '@ngrx/store';
+import { selectCustomers } from 'src/app/redux/customer';
 import { CustomerService } from '../services/customer.service';
 
 @Component({
@@ -10,26 +11,36 @@ import { CustomerService } from '../services/customer.service';
 })
 export class CustomerComponent implements OnInit {
 
+  elements = [];
   customerForm: FormGroup;
 
-  constructor(private store: Store, private customerService: CustomerService, private fb: FormBuilder) { }
+  constructor(private store: Store, private customerService: CustomerService, private fb: FormBuilder) {
+    console.log(this.customerService.retreiveAllCustomers());
+  }
 
   ngOnInit(): void {
     this.customerForm = this.fb.group({
       email: ['', Validators.required],
       name: ['', Validators.required],
-      surname: ['', Validators.required]
+      surname: ['', Validators.required],
     })
 
-  }
+      this.store.pipe(select(selectCustomers)).subscribe((customers) => {
+      for (let cust of customers) {
+        this.elements.push(cust);
+        console.log(cust);
+      }
+      return this.elements
+    })
+}
 
-  insert(){
+insert(){
 
-  } 
-  invio(){
-    console.log(this.customerForm.value)
-    this.customerService.createCustomer(this.customerForm.value.email, this.customerForm.value.name, this.customerForm.value.surname)
-  }
+}
+invio(){
+  console.log(this.customerForm.value)
+  this.customerService.createCustomer(this.customerForm.value.email, this.customerForm.value.name, this.customerForm.value.surname)
+}
 
 
 

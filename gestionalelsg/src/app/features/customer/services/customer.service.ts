@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Invoice } from 'src/app/core/model/Invoice.interface';
-import { createCustomer } from 'src/app/redux/customer/customer.actions';
+import { createCustomer, retreiveAllCustomers } from 'src/app/redux/customer/customer.actions';
 import { retrieveAllInvoices, retrieveLastInvoice } from 'src/app/redux/invoice/invoice.actions';
 
 
@@ -10,6 +10,7 @@ import { retrieveAllInvoices, retrieveLastInvoice } from 'src/app/redux/invoice/
   providedIn: 'root'
 })
 export class CustomerService {
+  [x: string]: any;
 
   constructor(private store: Store) { }
 
@@ -17,10 +18,9 @@ export class CustomerService {
     this.store.dispatch(createCustomer({email, name, surname}))
   }
 
-
-  // retrieveLastInvoice(){
-  //   this.store.dispatch(retrieveLastInvoice())
-  // }
+  retreiveAllCustomers(){
+    this.store.dispatch(retreiveAllCustomers())
+  }
 
  
 }
