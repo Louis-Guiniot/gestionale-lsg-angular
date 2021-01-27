@@ -24,11 +24,11 @@ export class CustomerComponent implements OnInit {
   }
 
   insert(){
-
+    console.log("invio")
+    this.customerService.createCustomer(this.customerForm.value.email, this.customerForm.value.name, this.customerForm.value.surname)
   } 
   invio(){
-    console.log(this.customerForm.value)
-    this.customerService.createCustomer(this.customerForm.value.email, this.customerForm.value.name, this.customerForm.value.surname)
+   
   }
 
 
