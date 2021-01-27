@@ -14,23 +14,25 @@ ul {
 
   li{
       float: left;
-      line-height: 2em;
+      padding: 1%;
       text-align: center;
+      width: fit-content;
+      width: 25%;
   }
   
   #right {
     float: right;
   }
   
-  li a {
+  a li {
+    line-height: 2em;
     display: table-cell;
     vertical-align: middle;
-    margin: auto;
+    margin: 0;
     font-size: 1.5em;
     color: white;
     text-align: center;
     height: 8vh;
-    width: 8vw;
     text-decoration: none;
   }
 
@@ -38,12 +40,10 @@ ul {
     background-color: rgba( #010f25, 0.8);
   }
   
-  li a:hover:not(.active) {
+  li:hover:not(.active) {
     background-color: rgb(88, 119, 255);
   }
 
   .logo{
     display: block;
-      width: 5vw;
-      height: 8vh;
   }
