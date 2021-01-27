@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { select, Store } from '@ngrx/store';
 import { selectCustomers } from 'src/app/redux/customer';
 import { CustomerService } from '../services/customer.service';
@@ -14,7 +15,7 @@ export class CustomerComponent implements OnInit {
   elements = [];
   customerForm: FormGroup;
 
-  constructor(private store: Store, private customerService: CustomerService, private fb: FormBuilder) {
+  constructor(private store: Store, private route: Router, private customerService: CustomerService, private fb: FormBuilder) {
     console.log(this.customerService.retreiveAllCustomers());
   }
 
@@ -43,7 +44,17 @@ export class CustomerComponent implements OnInit {
   delete(id: string){
    this.customerService.deleteCustomer(id)
   }
-
+  update(id:string){
+    console.log(id)
+    this.route.navigate(["customer/update"], {
+      queryParams: {
+        id: id
+      },
+      queryParamsHandling: 'merge',
+    });
+  }
+  
+ 
 
 
 }

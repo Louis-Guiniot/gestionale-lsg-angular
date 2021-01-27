@@ -1,4 +1,4 @@
-import {Action, createReducer, on } from "@ngrx/store";
+import {Action, ActionReducer, createReducer, on } from "@ngrx/store";
 import { Customer } from "src/app/core/model/Customer.interface";
 import { initCustomers } from "./customer.actions";
 
@@ -22,3 +22,4 @@ export const customersReducer = createReducer(
 export function reducer(state: CustomerState, action: Action) {
     return customersReducer(state, action);
 }
+
