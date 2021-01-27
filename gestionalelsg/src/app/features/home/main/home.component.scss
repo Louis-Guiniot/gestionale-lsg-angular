@@ -54,7 +54,8 @@
 // ANCHOR INVOICE
     .container-invoice{
         width: auto;
-        border-radius: 5px;
+        border-top-left-radius: 5px;
+        border-top-left-radius: 5px;
         border: 2px black solid;
         background-color: #012051;
         text-align: left;
@@ -170,7 +171,8 @@
         width: auto;
         height: fit-content;
         color: white;
-        border-radius: 5px;
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
         border: 2px black solid;
         background-color: #012051;
         text-align: left;

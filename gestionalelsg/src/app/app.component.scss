@@ -2,15 +2,20 @@
 
 ul {
     list-style-type: none;
+    width: 100%;
     margin: 0;
     padding: 0;
     overflow: hidden;
     background-color: #012051;
     border: 2px black solid;
+    display: table;
+    
   }
 
   li{
       float: left;
+      line-height: 2em;
+      text-align: center;
   }
   
   #right {
@@ -18,15 +23,14 @@ ul {
   }
   
   li a {
-    line-height: 2em;
+    display: table-cell;
+    vertical-align: middle;
     margin: auto;
-    font-size: larger;
-    display: block;
+    font-size: 1.5em;
     color: white;
     text-align: center;
-    padding: 14px 16px;
-    height: 42px;
-    width: 70px;
+    height: 8vh;
+    width: 8vw;
     text-decoration: none;
   }
 
@@ -40,6 +44,6 @@ ul {
 
   .logo{
     display: block;
-      width: 90px;
-      height: 70px;
+      width: 5vw;
+      height: 8vh;
   }

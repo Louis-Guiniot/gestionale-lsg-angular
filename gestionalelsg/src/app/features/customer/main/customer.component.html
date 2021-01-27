@@ -1,16 +1,53 @@
 <form [formGroup]="customerForm" (ngSubmit)="insert()">
+    <div class="container">
+        <div class="container-customer-form">
+            <div class="header">Create customer</div>
+            <table class="customer-form-table">
+                <tr>
+                    <td><input type="text" formControlName="name" placeholder="name" id="name" autocomplete="off"></td>
+                </tr>
+                <tr>
+                    <td><input type="text" formControlName="surname" placeholder="surname" id="surname"
+                            autocomplete="off"></td>
+                </tr>
+                <tr>
+                    <td><input type="text" formControlName="email" placeholder="email" id="email" autocomplete="off">
+                    </td>
+                </tr>
+                <tr>
+                    <td><button type="submit" class="btn" id="btn-invoice">
+                            create customer</button>
+                    </td>
+                </tr>
+            </table>
+        </div>
 
-    email: <input type="text" formControlName="email" placeholder="email" id="email">
-    name: <input type="text" formControlName="name" placeholder="name" id="name">
-    surname: <input type="text" formControlName="surname" placeholder="surname" id="surname">
 
-    <button type="submit">invio</button>
+        <div class="container-customers">
+            <!--PRODOTTI-->
+            <!-- <div class="header">{{element.name}}</div> -->
+            <table class="customers-table">
+                <tr>
+                    <th>NAME</th>
+                    <th>SURNAME</th>
+                    <th>EMAIL</th>
+                    <th colspan="2">insert</th>
+                </tr>
+                <tr *ngFor="let element of elements ; let i= index" id="highlight-row-customer">
+                    <td>{{element.name}}</td>
+                    <td>{{element.surname}}</td>
+                    <td>{{element.email}}</td>
+                    <td style="display: none;">{{element.id}}</td>
+                    <td id="td-btn"><a (click)="aggiungi(element.id,element.price);" class="link" id="edit"><span
+                                class="material-icons">
+                                create
+                            </span></a></td>
+                    <td id="td-btn"><a (click)="aggiungi(element.id,element.price);" class="link" id="delete"><span
+                                class="material-icons">
+                                delete
+                            </span></a></td>
+                </tr>
+            </table>
+        </div>
+    </div>
 </form>
-
-
-<div *ngFor="let element of elements;">
-    {{element.name}}
-    {{element.surname}}
-    {{element.email}}
-</div>
-
