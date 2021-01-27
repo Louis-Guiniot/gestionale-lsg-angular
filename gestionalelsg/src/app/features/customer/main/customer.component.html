@@ -1,0 +1,9 @@
+<form [formGroup]="customerForm" (ngSubmit)="insert()">
+
+    email: <input type="text" formControlName="email" placeholder="email" id="email">
+    name: <input type="text" formControlName="name" placeholder="name" id="name">
+    surname: <input type="text" formControlName="surname" placeholder="surname" id="surname">
+
+    <button type="submit">invio</button>
+</form>
+
