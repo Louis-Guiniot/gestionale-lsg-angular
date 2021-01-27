@@ -15,7 +15,7 @@
     .header{
         margin: 0;
         width: auto;
-        padding: 4%;
+        padding: 5%;
         border-top-left-radius: 5px;
         border-top-right-radius: 5px;
         background-color: rgb(88, 119, 255);
@@ -89,27 +89,30 @@
     }
     
     #btn-invoice{
-        width: 30%;
+        width: 35%;
         margin-top: 4%;
         font-size: 1em;
     }
 
 // ANCHOR CART
     .cart-container{
-        height: fit-content;
+        height: 30vh;
+        margin-bottom: 2%;
         border-radius: 5px;
         border: 2px black solid;
         background-color: #012051;
         text-align: left;
         color: white;
         box-shadow: 10px 10px 5px rgba( #A9AABC, 1);
+        margin-bottom: 100px;
+        overflow:auto;
     }
 
-    #header-cart{
-        width: 100%;
-        padding-top: 2%;
-        padding-left: 4%;
-        padding-bottom: 2%;
+    .header-cart{
+        display: grid;
+        grid-template-columns: 60% 40%;
+        grid-template-rows: auto;
+        padding: 5%;
         border-top-left-radius: 5px;
         border-top-right-radius: 5px;
         background-color: rgb(88, 119, 255);
@@ -117,9 +120,13 @@
         font-size: 2em;
     }
 
+    .deleteall-div{
+        text-align: right;
+    }
+
     #btn-trash{
-        background-color: transparent;
         border: none;
+        background-color: transparent;
         color: white;
     }
 
@@ -132,19 +139,6 @@
         outline: none;
     }
 
-    #icon-trash{
-        font-size: 2em;
-    }
-
-    .td-trash{
-        text-align: right;
-        justify-content: center;
-    }
-
-    .td-trash:hover{
-        cursor: pointer;
-    }
-
     .cart-table tr{
         border-bottom: 1px rgba(white,0.2) solid;
     }
@@ -155,6 +149,7 @@
 
     .cart-data{
         padding: 5%;
+        font-size: 1.3em;
     }
 
     .cart{
@@ -190,19 +185,18 @@
 
     .products-table th{
         font-weight: bold;
-        padding: 1%;
+        padding: 2%;
         background-color: rgb(88, 119, 255);
     }
 
     #highlight-row-product td{
-        padding: 1% 0 1% 1%;
+        padding: 1% 0 1% 2%;
     }
 
     #highlight-row-product{
         &:hover{
                 background-color: rgba( #A9AABC, 0.5);
         }
-
     }
 
     .products-table td{
@@ -211,10 +205,27 @@
 
     .link{
         text-decoration: none;
-        &:hover{
-            color: red;
-            cursor: pointer;
+        & :focus{
+            outline: none;
         }
+    }
+
+    #edit:hover{
+        color: rgb(88, 119, 255);
+        cursor: pointer;
+        text-decoration: underline;
+    }
+
+    #create:hover{
+        color: green;
+        cursor: pointer;
+        text-decoration: underline;
+    }
+
+    #delete:hover{
+        color: red;
+        cursor: pointer;
+        text-decoration: underline;
     }
 
 

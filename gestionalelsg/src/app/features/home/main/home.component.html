@@ -15,8 +15,8 @@
                                                         formControlName="sconto" placeholder="insert sale"></td>
                                 </tr>
                                 <tr>
-                                        <td><button type="submit" class="btn" id="btn-invoice">submit
-                                                        invoice</button>
+                                        <td><button type="submit" class="btn" id="btn-invoice">
+                                                        create invoice</button>
                                         </td>
                                 </tr>
                         </table>
@@ -24,45 +24,52 @@
 
                 <div class="container-products">
                         <!--PRODOTTI-->
-                                <!-- <div class="header">{{element.name}}</div> -->
-                                <table class="products-table">
-                                        <tr>
-                                                <th>CODE</th>
-                                                <th>NAME</th>
-                                                <th>DESCRIPTION</th>
-                                                <th>PRICE</th>
-                                                <th>&nbsp;</th>
-                                                <th>&nbsp;</th>
-                                        </tr>
-                                        <tr *ngFor="let element of elements ; let i= index" id="highlight-row-product">
-                                                <td>{{element.codeProduct}}</td>
-                                                <td>{{element.name}}</td>
-                                                <td>{{element.description}}</td>
-                                                <td>{{element.price}}$</td>
-                                                <td style="display: none;">{{element.id}}</td>
-                                                <td id="td-btn"><a (click)="aggiungi(element.id,element.price);" class="link">edit</a></td>
-                                                <td id="td-btn"><a (click)="aggiungi(element.id,element.price);" class="link">add</a></td>
-                                        </tr>
-                                </table>
+                        <!-- <div class="header">{{element.name}}</div> -->
+                        <table class="products-table">
+                                <tr>
+                                        <th>CODE</th>
+                                        <th>NAME</th>
+                                        <th>DESCRIPTION</th>
+                                        <th>MEASURE UNIT</th>
+                                        <th>PRICE</th>
+
+                                        <th>&nbsp;</th>
+                                        <th>&nbsp;</th>
+                                        <th>&nbsp;</th>
+                                </tr>
+                                <tr *ngFor="let element of elements ; let i= index" id="highlight-row-product">
+                                        <td>{{element.codeProduct}}</td>
+                                        <td>{{element.name}}</td>
+                                        <td>{{element.description}}</td>
+                                        <td>{{element.measureUnit}}</td>
+                                        <td>{{element.price}}$</td>
+                                        <td style="display: none;">{{element.id}}</td>
+                                        <td id="td-btn"><a (click)="aggiungi(element.id,element.price);" class="link"
+                                                        id="edit"><span class="material-icons">
+                                                                create
+                                                        </span></a></td>
+                                        <td id="td-btn"><a (click)="aggiungi(element.id,element.price);" class="link"
+                                                        id="create"><span class="material-icons">
+                                                                add_shopping_cart
+                                                        </span></a></td>
+                                        <td id="td-btn"><a (click)="aggiungi(element.id,element.price);" class="link"
+                                                        id="delete"><span class="material-icons">
+                                                                delete
+                                                        </span></a></td>
+                                </tr>
+                        </table>
                 </div>
 
-                <div class="cart-container">
-                        <table id="header-cart">
-                                <tr>
-                                        <td>Cart</td>
-                                        <td class="td-trash">
-                                                <button type="button" (click)="clearPreview()" id="btn-trash">
-                                                        <span class="material-icons" id="icon-trash">
-                                                                delete
-                                                        </span>
-                                                </button>
-                                        </td>
-                                </tr>
-                
-                        </table>
-                
+                <!-- <div class="cart-container">
+                        <div class="header-cart">
+                                <div>Cart</div>
+                                <div (click)="clearPreview()" id="btn-trash" class="deleteall-div" *ngIf="preview?.length">                                 
+                                        delete all
+                                </div>
+                        </div>
+
                         <div class="cart-data">
-                                <!-- se array vuoto esce nothing, appena compro si cancella -->
+                                se array vuoto esce nothing, appena compro si cancella
                                 <div *ngIf="!preview?.length">
                                         nothing in the cart
                                 </div>
@@ -70,7 +77,7 @@
                                         <table class="cart-table">
                                                 <tr id="highlight-row-remove">
                                                         <td>{{prev}}</td>
-                                                        <td class="td-trash"><button (click)="clearPreviewSelected(i)"
+                                                        <td class="td-trash"><button type="button" (click)="clearPreviewSelected(i)"
                                                                         id="btn-trash"><span class="material-icons" id="icon-remove">
                                                                                 remove
                                                                         </span></button></td>
@@ -78,8 +85,7 @@
                                         </table>
                                 </div>
                         </div>
-                </div>
+                </div> -->
 
         </div>
 </form>
-
