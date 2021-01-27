@@ -1,11 +1,11 @@
 .container-invoice{
-    width: 60%;
-    margin-top: 1%;
+    width: 80%;
+    margin-top: 2%;
     margin-left: auto;
     margin-right: auto;
     border-radius: 5px;
     border: 2px black solid;
-    background-color: rgba( #012051, 1);
+    background-color: #012051;
     text-align: left;
     color: white;
 }
@@ -15,7 +15,7 @@
     margin: 0;
     padding: 3%;
     border-collapse: collapse;
-    font-size: 1.3em;
+    font-size: 2em;
 }
 
 .invoice-table td{
@@ -36,16 +36,16 @@
 }
 
 #total:hover{
-    background-color: rgba( 40, 79, 255, 1);
+    background-color: rgb(88, 119, 255);
 }
 
 .header{
     margin: 0;
     width: auto;
-    padding: 1%;
+    padding: 2%;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
-    background-color: rgb(40, 79, 255);
+    background-color: rgb(88, 119, 255);
     border-bottom: 2px black solid;
-    font-size: 1.5em;
+    font-size: 2.5em;
 }

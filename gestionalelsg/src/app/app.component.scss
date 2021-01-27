@@ -2,31 +2,37 @@
 
 ul {
     list-style-type: none;
+    width: 100%;
     margin: 0;
     padding: 0;
     overflow: hidden;
     background-color: #012051;
     border: 2px black solid;
+    display: table;
+    
   }
 
   li{
       float: left;
+      padding: 1%;
+      text-align: center;
+      width: fit-content;
+      width: 25%;
   }
   
   #right {
     float: right;
   }
   
-  li a {
+  a li {
     line-height: 2em;
-    margin: auto;
-    font-size: larger;
-    display: block;
+    display: table-cell;
+    vertical-align: middle;
+    margin: 0;
+    font-size: 1.5em;
     color: white;
     text-align: center;
-    padding: 14px 16px;
-    height: 42px;
-    width: 70px;
+    height: 8vh;
     text-decoration: none;
   }
 
@@ -34,12 +40,10 @@ ul {
     background-color: rgba( #010f25, 0.8);
   }
   
-  li a:hover:not(.active) {
-    background-color: rgba(40, 79, 255,0.8);
+  li:hover:not(.active) {
+    background-color: rgb(88, 119, 255);
   }
 
   .logo{
     display: block;
-      width: 90px;
-      height: 70px;
   }

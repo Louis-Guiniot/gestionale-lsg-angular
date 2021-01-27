@@ -1,207 +1,234 @@
 .container{
-    display: flexbox;
-    width: auto;
-    padding: 1%;
-    height: 100%;
-
-}
-
-.container-invoice{
-    float: left;
-    width: 35%;
-    margin-top: 1%;
-    margin-left: 1%;
-    border-radius: 5px;
-    border: 2px black solid;
-    background-color: #012051;
-    text-align: left;
-    color: white;
-    box-shadow: 10px 10px 5px rgba( #A9AABC, 1);
-}
-
-.invoice-table{
-    width: 100%;
-    margin: 0;
-    padding: 3%;
-}
-
-.header{
-    margin: 0;
-    width: auto;
-    padding: 4%;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
-    background-color: rgb(40, 79, 255);
-    border-bottom: 2px black solid;
-    font-size: 2em;
-}
-
-.invoice-table input{
-    padding:2%;
-    width: 95%;
-    font-size: 1.5em;
-    border: 0;
-
-    border-bottom: 1px white solid;
-
-    color: white;
-    background-color: transparent;
-    outline: 0;
-
-    &::placeholder{
-        color:white;
-    }
-}
-
-.invoice-table td{
-    padding: 1%;
-}
-
-#btn-invoice{
-    margin-top: 4%;
-}
-
-.history-container{
-    float: left;
-    width: 20%;
-    min-height: 200px;
-    margin-top: 1%;
-    margin-left: 2%;
-    border-radius: 5px;
-    border: 2px black solid;
-    background-color: #012051;
-    text-align: left;
-    color: white;
-    box-shadow: 10px 10px 5px rgba( #A9AABC, 1);
-}
-
-#header-history{
-    width: 100%;
-    padding-top: 2%;
-    padding-left: 4%;
-    padding-bottom: 2%;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
-    background-color: rgb(40, 79, 255);
-    border-bottom: 2px black solid;
-    font-size: 2em;
-}
-
-#btn-trash{
-    background-color: transparent;
-    border: none;
-    color: white;
-}
-
-#btn-trash:hover{
-    color: red;
-}
-
-#icon-trash{
-    font-size: 2em;
-}
-
-.td-trash{
-    text-align: right;
-}
-
-#highlight-row-remove:hover{
-    background-color: rgba(red,0.5);
-}
-
-.history{
-    width: 100%;
-    margin: 0;
-}
-
-.history-table{
-    width: 100%;
-    padding: 2%;
-}
-
-.history-table tr{
-    padding-right: 2%;
-}
-
-.container-cards{
-    float: right;
-    width: 60%;
-    height: auto;
-    margin-top: 1%;
-    margin-right: 1%;
-    color: white;
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2%;
-    grid-auto-rows: auto;
+    height: 100vh;
+    grid-template-columns: 1fr 2fr;
+    grid-template-rows: auto 1fr;
+    padding: 1% 1% 0 1%;
+    margin-left: auto;
+    margin-right: auto;
+    column-gap: 2%;
+    row-gap: 4%;
 }
 
-.elementi{
-    width: 100%;
-    height: 100%;
-    align-self: center;
-    justify-self: center;
-    border-radius: 5px;
-    border: 2px black solid;
-    background-color: #012051;
-    text-align: left;
-    transition-duration: 1s;
-    box-shadow: 10px 10px 5px rgba( #A9AABC, 1);
-}
+// ANCHOR GRID COMPONENTS
+// ANCHOR SHARED
+    .header{
+        margin: 0;
+        width: auto;
+        padding: 5%;
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+        background-color: rgb(88, 119, 255);
+        border-bottom: 2px black solid;
+        font-size: 2em;
+    }
 
-.elementi:hover #btn-buy{
-    width: 100%;
-    transition-duration: width 1s;
-}
+    .btn{
+        border: 1px black solid;
+        text-align: center;
+        transition: width 1s;
+        width: 50%;
+        padding: 3%;
+        border-radius: 5px;
+        font-size: 1em;
+    }
 
-.elementi:hover{
-    box-shadow: none;
-    transform: scale(1.05)
-}
+    .btn:hover{
+        background-color: rgb(88, 119, 255);
+        cursor: pointer;
+        transition:1s 0s;
+        color: white;
+    }
 
-.btn{
-    border: 1px black solid;
-    text-align: center;
-    transition: width 1s;
-    width: 50%;
-    padding: 3%;
-    border-radius: 5px;
-    font-size: 1em;
-}
+    .btn:active{
+        background-color: rgba( #A9AABC, 1);
+        color: black;
+        animation-duration: 2s;
+    }
 
-.btn:hover{
-    background-color: rgb(40, 79, 255);
-    cursor: pointer;
-    transition:1s 0s;
-    color: white;
-}
+    .btn:focus{
+        outline: none;
+        box-shadow: none;
+    }
 
-.btn:active{
-    background-color: rgba( #A9AABC, 1);
-    color: black;
-    animation-duration: 2s;
-}
+// ANCHOR INVOICE
+    .container-invoice{
+        width: auto;
+        border-top-left-radius: 5px;
+        border-top-left-radius: 5px;
+        border: 2px black solid;
+        background-color: #012051;
+        text-align: left;
+        color: white;
+        box-shadow: 10px 10px 5px rgba( #A9AABC, 1);
+    }
 
-.btn:focus{
-    outline: none;
-    box-shadow: none;
-}
+    .invoice-table{
+        width: 100%;
+        margin: 0;
+        padding: 3%;
+    }
 
-.card-table{  
-    height: 40vh;
-    width: 100%; 
-    padding: 3%;
-    font-size: 1.3em;
-    table-layout: fixed;
-}
+    .invoice-table input{
+        padding:2%;
+        width: 95%;
+        font-size: 1.5em;
+        border: 0;
+    
+        border-bottom: 1px rgba(white,0.2) solid;
+        color: white;   
+        background-color: transparent;
+        outline: 0;
+    
+        &::placeholder{
+            color: rgba(white,0.2);
+        }
+    }
+    
+    .invoice-table td{
+        padding: 1%;
+    }
+    
+    #btn-invoice{
+        width: 35%;
+        margin-top: 4%;
+        font-size: 1em;
+    }
 
-.card-table td{
-    word-wrap: break-word;
-}
+// ANCHOR CART
+    .cart-container{
+        height: 30vh;
+        margin-bottom: 2%;
+        border-radius: 5px;
+        border: 2px black solid;
+        background-color: #012051;
+        text-align: left;
+        color: white;
+        box-shadow: 10px 10px 5px rgba( #A9AABC, 1);
+        margin-bottom: 100px;
+        overflow:auto;
+    }
 
-.logo{
-    width: 100%;
-    height: 80px;
-}
+    .header-cart{
+        display: grid;
+        grid-template-columns: 60% 40%;
+        grid-template-rows: auto;
+        padding: 5%;
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+        background-color: rgb(88, 119, 255);
+        border-bottom: 2px black solid;
+        font-size: 2em;
+    }
+
+    .deleteall-div{
+        text-align: right;
+    }
+
+    #btn-trash{
+        border: none;
+        background-color: transparent;
+        color: white;
+    }
+
+    #btn-trash:hover{
+        color: red;
+        cursor: pointer;
+    }
+
+    #btn-trash:focus{
+        outline: none;
+    }
+
+    .cart-table tr{
+        border-bottom: 1px rgba(white,0.2) solid;
+    }
+
+    #highlight-row-remove:hover{
+        background-color: rgba(red,0.5);
+    }
+
+    .cart-data{
+        padding: 5%;
+        font-size: 1.3em;
+    }
+
+    .cart{
+        width: 100%;
+        margin: 0;
+    }
+
+    .cart-table{
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+// ANCHOR PRODUCTS
+    .container-products{
+        grid-column-start: 2;
+        grid-row-start: 1;
+        grid-row-end: 3;
+        width: auto;
+        height: fit-content;
+        color: white;
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+        border: 2px black solid;
+        background-color: #012051;
+        text-align: left;
+        box-shadow: 10px 10px 5px rgba( #A9AABC, 1);
+    }
+
+    .products-table{  
+        width: 100%;
+        font-size: 1.3em;
+        border-collapse: collapse;
+    }
+
+    .products-table th{
+        font-weight: bold;
+        padding: 2%;
+        background-color: rgb(88, 119, 255);
+    }
+
+    #highlight-row-product td{
+        padding: 1% 0 1% 2%;
+    }
+
+    #highlight-row-product{
+        &:hover{
+                background-color: rgba( #A9AABC, 0.5);
+        }
+    }
+
+    .products-table td{
+        word-wrap: break-word;
+    }
+
+    .link{
+        text-decoration: none;
+        & :focus{
+            outline: none;
+        }
+    }
+
+    #edit:hover{
+        color: rgb(88, 119, 255);
+        cursor: pointer;
+        text-decoration: underline;
+    }
+
+    #create:hover{
+        color: green;
+        cursor: pointer;
+        text-decoration: underline;
+    }
+
+    #delete:hover{
+        color: red;
+        cursor: pointer;
+        text-decoration: underline;
+    }
+
 
 

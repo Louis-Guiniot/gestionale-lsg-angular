@@ -1,167 +1,89 @@
 <form [formGroup]="prodottiForm" (ngSubmit)="fattura()">
         <div class="container">
-                <div class="container-cards">
-                        <!--PRODOTTI-->
-                        <div class="elementi" *ngFor="let element of elements ;
-                                let i= index">
-                                <div class="header">{{element.name}}</div>
-                                <table class="card-table">
-                                        <tr style="display: none;">
-                                                <td>{{element.id}}</td>
-                                        </tr>
-                                        <tr>
-                                                <td>
-                                                        <img
-                                                                src="../assets/gestionale-lsg-new.png"
-                                                                alt="prova"
-                                                                class="logo">
-                                                </td>
-                                        </tr>
-                                        <tr>
-                                                <td>{{element.description}}</td>
-                                        </tr>
-                                        <tr>
-                                                <td>{{element.price}} $</td>
-                                        </tr>
-                                        <tr>
-                                                <td>
-                                                        <button type="button"
-                                                                class="btn"
-                                                                id="btn-buy"
-                                                                (click)="aggiungi(element.id,element.price);">buy</button>
-                                                </td>
-                                        </tr>
-                                </table>
-                        </div>
-                </div>
 
+                <!-- fare controlli validità dati -->
                 <div class="container-invoice">
                         <div class="header">Invoice</div>
                         <table class="invoice-table">
                                 <tr>
-                                        <td><input type="text" name="customerId"
-                                                        id="customerId"
-                                                        autocomplete="off"
-                                                        formControlName="customerId"
-                                                        placeholder="insert customer id">
+                                        <td><input type="text" name="customerId" id="customerId" autocomplete="off"
+                                                        formControlName="customerId" placeholder="insert customer id">
                                         </td>
                                 </tr>
                                 <tr>
-                                        <td><input type="text" name="sconto"
-                                                        id="sconto"
-                                                        autocomplete="off"
-                                                        formControlName="sconto"
-                                                        placeholder="insert sale"></td>
+                                        <td><input type="text" name="sconto" id="sconto" autocomplete="off"
+                                                        formControlName="sconto" placeholder="insert sale"></td>
                                 </tr>
                                 <tr>
-                                        <td><button type="submit" class="btn"
-                                                        id="btn-invoice">submit
-                                                        invoice</button>
+                                        <td><button type="submit" class="btn" id="btn-invoice">
+                                                        create invoice</button>
                                         </td>
                                 </tr>
                         </table>
-                        <!--DONE METTERE STORICO-->
                 </div>
+
+                <div class="container-products">
+                        <!--PRODOTTI-->
+                        <!-- <div class="header">{{element.name}}</div> -->
+                        <table class="products-table">
+                                <tr>
+                                        <th>CODE</th>
+                                        <th>NAME</th>
+                                        <th>DESCRIPTION</th>
+                                        <th>MEASURE UNIT</th>
+                                        <th>PRICE</th>
+
+                                        <th colspan="3">insert</th>
+                                </tr>
+                                <tr *ngFor="let element of elements ; let i= index" id="highlight-row-product">
+                                        <td>{{element.codeProduct}}</td>
+                                        <td>{{element.name}}</td>
+                                        <td>{{element.description}}</td>
+                                        <td>{{element.measureUnit}}</td>
+                                        <td>{{element.price}}$</td>
+                                        <td style="display: none;">{{element.id}}</td>
+                                        <td id="td-btn"><a (click)="aggiungi(element.id,element.price);" class="link"
+                                                        id="edit"><span class="material-icons">
+                                                                create
+                                                        </span></a></td>
+                                        <td id="td-btn"><a (click)="aggiungi(element.id,element.price);" class="link"
+                                                        id="create"><span class="material-icons">
+                                                                add_shopping_cart
+                                                        </span></a></td>
+                                        <td id="td-btn"><a (click)="aggiungi(element.id,element.price);" class="link"
+                                                        id="delete"><span class="material-icons">
+                                                                delete
+                                                        </span></a></td>
+                                </tr>
+                        </table>
+                </div>
+
+                <!-- <div class="cart-container">
+                        <div class="header-cart">
+                                <div>Cart</div>
+                                <div (click)="clearPreview()" id="btn-trash" class="deleteall-div" *ngIf="preview?.length">                                 
+                                        delete all
+                                </div>
+                        </div>
+
+                        <div class="cart-data">
+                                se array vuoto esce nothing, appena compro si cancella
+                                <div *ngIf="!preview?.length">
+                                        nothing in the cart
+                                </div>
+                                <div class="cart" *ngFor="let prev of preview; let i=index;">
+                                        <table class="cart-table">
+                                                <tr id="highlight-row-remove">
+                                                        <td>{{prev}}</td>
+                                                        <td class="td-trash"><button type="button" (click)="clearPreviewSelected(i)"
+                                                                        id="btn-trash"><span class="material-icons" id="icon-remove">
+                                                                                remove
+                                                                        </span></button></td>
+                                                </tr>
+                                        </table>
+                                </div>
+                        </div>
+                </div> -->
+
         </div>
 </form>
-
-<div class="history-container">
-        <table id="header-history">
-                <tr>
-                        <td>History</td>
-                        <td class="td-trash"><button (click)="clearPreview()" id="btn-trash"><span class="material-icons" id="icon-trash">
-                                delete
-                                </span></button></td>
-                </tr>
-                
-        </table>
-        <div class="history" *ngFor="let prev of preview; let i=index;">
-                <table class="history-table">
-                        <tr id="highlight-row-remove">
-                                <td>{{prev}}</td>
-
-                                <!-- cancella tutto -->
-                                <!-- <td><button (click)="clearPreview()">x</button></td> -->
-
-                                 
-                                <td class="td-trash"><button (click)="clearPreviewSelected(i)" id="btn-trash"><span class="material-icons" id="icon-remove">
-                                        remove
-                                        </span></button></td> 
-                        </tr>
-                </table>
-        </div>
-</div>
-<!--
-        <div *ngFor="let element of elements ; let i = index">
-                        <div *ngIf="i==0" id="even" class="elementi"> 
-                                prova {{i}}
-                                <table class="card-table">
-                                        <tr>
-                                                <td>
-                                                        <img src="../assets/gestionale-lsg-new.png" alt="prova" class="logo">
-                                                </td>
-                                        </tr>
-                                        <tr>
-                                                <td>{{element.id}}</td>
-                                        </tr>
-                                        <tr>
-                                                <td>{{element.name}}</td>
-                                        </tr>
-                                        <tr>
-                                                <td>{{element.description}}</td>
-                                        </tr>
-                                        <tr>
-                                                <td>{{element.price}} $</td>
-                                        </tr>
-                                        <tr>
-                                                <td><button type="button" class="btn-buy" (click)="aggiungi(element.id,element.price)">aggiungi</button></td>
-                                        </tr>
-                                </table>
-                        </div>
-                        <div *ngIf="i==1" id="odd" class="elementi">
-                                prova {{i}}
-                                <table class="card-table">
-                                        <tr>
-                                                <td><img src="../assets/gestionale-lsg-new.png" alt="prova" class="logo"></td>
-                                        </tr>
-                                        <tr>
-                                                <td>{{element.id}}</td>
-                                        </tr>
-                                        <tr>
-                                                <td>{{element.name}}</td>
-                                        </tr>
-                                        <tr>
-                                                <td>{{element.description}}</td>
-                                        </tr>
-                                        <tr>
-                                                <td>{{element.price}} $</td>
-                                        </tr>
-                                        <tr>
-                                                <td><button type="button" class="btn-buy" (click)="aggiungi(element.id,element.price)">aggiungi</button></td>
-                                        </tr>
-                                </table>
-                        </div>  
-                        
-                                <p>name: <span>{{ element.name }}</span></p> 
-                                <p>description: <span>{{ element.description }}</span></p>
-                                <p>prezzo: <span>{{element.price}}</span></p> 
-                                <button class="btn-buy">buy now!</button>
-                </div>                             
-        -->
-<!--
-<form [formGroup]="prodottiForm" (ngSubmit)="fattura()">
-        <div class="elementi" *ngFor="let element of elements; index as i">
-
-                id: {{element.id}} <br>
-                nome: {{ element.name }} <br>
-                description: {{ element.description }} <br>
-                prezzo: {{element.price}} <br>
-                <button type="button" (click)="aggiungi(element.id,element.price)">aggiungi</button> <br>
-
-        </div>
-        customer id: <input type="text" name="customerId" id="customerId" formControlName="customerId" placeholder="Customer ID"><br>
-        sconto in percentuale: <input type="text" name="sconto" id="sconto" formControlName="sconto" placeholder="%sconto"><br>
-        <button type="submit">submit invoice</button>
-
-</form>        
--->
