@@ -4,7 +4,7 @@ import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { Observable } from "rxjs";
 import { switchMap, map, tap } from "rxjs/operators";
 import { HttpCommunicationsService } from "src/app/core/HttpCommunications/http-communications.service";
-import { createCustomer, initCustomers, retreiveAllCustomers } from "./customer.actions";
+import { createCustomer, deleteCustomer, initCustomers, retreiveAllCustomers } from "./customer.actions";
 import { Response } from '../../core/model/Response.interface';
 import { Action } from "@ngrx/store";
 
@@ -17,10 +17,23 @@ export class CustomerEffects {
         return this.http.retrieveGetCall<Response>("customer/findAll");
     }
 
-    //sbagliato metterlo qua ma 2 much sbatti
+    
     createCustomer(email: string, name: string, surname:string): Observable<Response>{
         return this.http.retrievePostCall<Response>('customer/create',{email,name,surname});
     }
+
+    deleteCustomer(id: string): Observable<Response>{
+        return this.http.retrievePostCall<Response>('customer/delete',{id});
+    }
+
+    deleteCustomer$: Observable<Action> = createEffect(() => this.actions$.pipe(
+        ofType(deleteCustomer),
+        switchMap((action) => this.deleteCustomer(
+            action.id).pipe(
+            map((response) => initCustomers({ response }))
+            ,tap(()=>this.router.navigateByUrl('/home'))
+        ))
+    ));
 
     getAllCustomers$: Observable<Action> = createEffect(() => this.actions$.pipe(
         ofType(retreiveAllCustomers),
@@ -35,8 +48,8 @@ export class CustomerEffects {
             action.email,
             action.name,
             action.surname).pipe(
-            map((response) => initCustomers({ response })),
-            tap(()=>this.router.navigateByUrl('/customer'))
+            map((response) => initCustomers({ response }))
+            ,tap(()=>this.router.navigateByUrl('/home'))
         ))
     ));
 }

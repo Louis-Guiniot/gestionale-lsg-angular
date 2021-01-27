@@ -2,6 +2,7 @@ import {Action, createReducer, on } from "@ngrx/store";
 import { Customer } from "src/app/core/model/Customer.interface";
 import { initCustomers } from "./customer.actions";
 
+
 export interface CustomerState {
     customers: Customer[];
 }
