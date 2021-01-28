@@ -1,4 +1,6 @@
+import { Route } from '@angular/compiler/src/core';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { select, Store } from '@ngrx/store';
 import { selectProducts } from 'src/app/redux/product';
 import { ProductsService } from '../service/products.service';
@@ -12,7 +14,7 @@ export class ProductsComponent implements OnInit {
 
   elements =[];
 
-  constructor(private pruductService: ProductsService, private store: Store) {
+  constructor(private pruductService: ProductsService, private store: Store, private route: Router) {
     this.pruductService.retrieveAllProducts();
    }
 
@@ -25,6 +27,16 @@ export class ProductsComponent implements OnInit {
       }
       return this.elements
     })
+  }
+
+  update(id:string){
+    console.log(id)
+    this.route.navigate(["products/update"], {
+      queryParams: {
+        id: id
+      },
+      queryParamsHandling: 'merge',
+    });
   }
 
 }

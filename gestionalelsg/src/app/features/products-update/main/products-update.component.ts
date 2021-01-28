@@ -29,7 +29,7 @@ export class ProductsUpdateComponent implements OnInit {
     });
 
     this.productsUpdateForm=this.fb.group({
-      code: ['', Validators.required],
+      codeProduct: ['', Validators.required],
       name: ['', Validators.required],
       description: ['', Validators.required],
       measureUnit:['', Validators.required],
@@ -42,7 +42,7 @@ export class ProductsUpdateComponent implements OnInit {
   
   }
   update(){
-    
+
   }
 
 }
