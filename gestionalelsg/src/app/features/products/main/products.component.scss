@@ -17,7 +17,7 @@
     grid-template-columns: 90% 10%;
     margin: 0;
     width: auto;
-    padding: 2%;
+    padding: 1%;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
     background-color: rgb(88, 119, 255);
@@ -25,14 +25,19 @@
     font-size: 2em;
     font-weight: bold;
     vertical-align: middle;
+    color: white;
+}
+
+.header-page span{
+    font-size: 2em;
+    height: 100%;
+    display: table;
+    vertical-align: middle;
 }
 
 .material-icons{
-    font-size: 2em;
-    height: 100%;
     text-align: right;
-    display: table;
-    vertical-align: middle;
+    margin: auto;
 }
 
 //ANCHOR SHARED
@@ -121,6 +126,7 @@
 
 .link{
     text-decoration: none;
+    color: white;
     & :focus{
         outline: none;
     }
