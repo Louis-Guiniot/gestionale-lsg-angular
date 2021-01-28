@@ -41,5 +41,8 @@ export class ProductsUpdateComponent implements OnInit {
     console.log("idN: "+this.idN)
   
   }
+  update(){
+    
+  }
 
 }
