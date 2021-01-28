@@ -1,0 +1,183 @@
+.container{
+    display: grid;
+    height: 100vh;
+    grid-template-columns: 1fr 2fr;
+    grid-template-rows:  0.3fr auto 1fr;
+    padding: 1% 1% 0 1%;
+    margin-left: auto;
+    margin-right: auto;
+    column-gap: 2%;
+    row-gap: 4%;
+}
+
+.header-page{
+    grid-column-start: 1;
+    grid-column-end: 3;
+    display: grid;
+    grid-template-columns: 90% 10%;
+    margin: 0;
+    width: auto;
+    padding: 2%;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    background-color: rgb(88, 119, 255);
+    border: 2px black solid;
+    font-size: 2em;
+    font-weight: bold;
+    vertical-align: middle;
+}
+
+.material-icons{
+    font-size: 2em;
+    height: 100%;
+    text-align: right;
+    display: table;
+    vertical-align: middle;
+}
+
+//ANCHOR SHARED
+.header{
+    margin: 0;
+    width: auto;
+    padding: 5%;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    background-color: rgb(88, 119, 255);
+    border-bottom: 2px black solid;
+    font-size: 2em;
+}
+
+.btn{
+    border: 1px black solid;
+    text-align: center;
+    transition: width 1s;
+    width: 50%;
+    padding: 3%;
+    border-radius: 5px;
+    font-size: 1em;
+}
+
+.btn:hover{
+    background-color: rgb(88, 119, 255);
+    cursor: pointer;
+    transition:1s 0s;
+    color: white;
+}
+
+.btn:active{
+    background-color: rgba( #A9AABC, 1);
+    color: black;
+    animation-duration: 2s;
+}
+
+.btn:focus{
+    outline: none;
+    box-shadow: none;
+}
+
+// ANCHOR productS TABLE
+.container-products{
+    grid-column-start: 2;
+    grid-row-start: 2;
+    grid-row-end: 4;
+    width: auto;
+    height: 70vh;
+    color: white;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border: 2px black solid;
+    background-color: #012051;
+    text-align: left;
+    box-shadow: 10px 10px 5px rgba( #A9AABC, 1);
+    overflow: auto;
+}
+
+.products-table{  
+    width: 100%;
+    font-size: 1.3em;
+    border-collapse: collapse;
+    overflow: auto;
+}
+
+.products-table th{
+    font-weight: bold;
+    padding: 2%;
+    background-color: rgb(88, 119, 255);
+}
+
+#highlight-row-product td{
+    padding: 1% 0 1% 2%;
+}
+
+#highlight-row-product{
+    &:hover{
+            background-color: rgba( #A9AABC, 0.5);
+    }
+}
+
+.products-table td{
+    word-wrap: break-word;
+}
+
+.link{
+    text-decoration: none;
+    & :focus{
+        outline: none;
+    }
+}
+
+#edit:hover{
+    color: rgb(88, 119, 255);
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+#delete:hover{
+    color: red;
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+//ANCHOR productS CREATE
+.container-product-form{
+    width: auto;
+    border-top-left-radius: 5px;
+    border-top-left-radius: 5px;
+    border: 2px black solid;
+    background-color: #012051;
+    text-align: left;
+    color: white;
+    box-shadow: 10px 10px 5px rgba( #A9AABC, 1);
+}
+
+.product-form-table{
+    width: 100%;
+    margin: 0;
+    padding: 3%;
+}
+
+.product-form-table input{
+    padding:2%;
+    width: 95%;
+    font-size: 1.5em;
+    border: 0;
+
+    border-bottom: 1px rgba(white,0.2) solid;
+    color: white;   
+    background-color: transparent;
+    outline: 0;
+
+    &::placeholder{
+        color: rgba(white,0.2);
+    }
+}
+
+.product-form-table td{
+    padding: 1%;
+}
+
+#btn-product{
+    width: 35%;
+    margin-top: 4%;
+    font-size: 1em;
+}

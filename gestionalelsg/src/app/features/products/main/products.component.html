@@ -1,9 +1,75 @@
-<div *ngFor="let element of elements">
-    id: {{element.id}}
-    code: {{element.code}}
-    name: {{element.name}}
-    description: {{element.description}}
-    measure unit: {{element.measureUnit}}
-    price: {{element.price}}
-    <br>
-</div>
+<form> <!-- inserire ngSubmit-->
+    <div class="container">
+        <div class="header-page">PRODUCTS PAGE<span class="material-icons">
+            home
+            </span></div>
+        <div class="container-product-form">
+            <div class="header">Create product</div>
+            <table class="product-form-table">
+                <tr>
+                    <td><input type="text" formControlName="code"
+                            placeholder="code" id="code" autocomplete="off"></td>
+                </tr>
+                <tr>
+                    <td><input type="text" formControlName="name"
+                            placeholder="name" id="name"
+                            autocomplete="off"></td>
+                </tr>
+                <tr>
+                    <td><input type="text" formControlName="description"
+                            placeholder="description" id="description" autocomplete="off">
+                    </td>
+                </tr>
+                <tr>
+                    <td><input type="text" formControlName="measureUnit"
+                            placeholder="measure unit" id="measureUnit" autocomplete="off">
+                    </td>
+                </tr>
+                <tr>
+                    <td><input type="text" formControlName="price"
+                            placeholder="price" id="price" autocomplete="off">
+                    </td>
+                </tr>
+                <tr>
+                    <td><button type="submit" class="btn" id="btn-invoice">
+                            create product</button>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="container-products">
+            <!--PRODOTTI-->
+            <!-- <div class="header">{{element.name}}</div> -->
+            <table class="products-table">
+                <tr>
+                    <th>CODE</th>
+                    <th>NAME</th>
+                    <th>DESCRIPTION</th>
+                    <th>MEASURE UNIT</th>
+                    <th>PRICE</th>
+                    <th colspan="2">&nbsp;</th>
+                </tr>
+                <tr *ngFor="let element of elements ; let i= index"
+                    id="highlight-row-product">
+                    <td style="display: none;">{{element.id}}</td>
+                    <td>{{element.codeProduct}}</td>
+                    <td>{{element.name}}</td>
+                    <td>{{element.description}}</td>
+                    <td>{{element.measureUnit}}</td>
+                    <td>{{element.price}}$</td>
+
+                    <!-- devi inserire metodi -->
+                    <td id="td-btn"><a class="link"
+                            id="edit"><span class="material-icons">
+                                create
+                            </span></a></td>
+                    <td id="td-btn"><a class="link" id="delete"><span
+                                class="material-icons">
+                                delete
+                            </span></a></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</form>
