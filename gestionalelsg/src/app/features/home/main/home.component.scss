@@ -44,9 +44,11 @@ a{
     opacity: 0.8;
 }
 
-// #one:hover + #two > #cust { border-bottom-left-radius: 25px; }
-// #two:hover ~ #one > #prod { background-color: red; }
-#three:hover + #two { border-bottom-right-radius: 25px; }
+// #one:hover ~ #two > #cust { border-bottom-left-radius: 25px; }
+
+// .one:hover + .two > #cust{ border-bottom-left-radius: 25px; }
+// .grid-part #invo:hover + .grid-part > #cust{ border-bottom-right-radius: 25px; }
+// #three:hover + #two > #cust { background-color: red; }
 
 #prod{
     width: auto;
