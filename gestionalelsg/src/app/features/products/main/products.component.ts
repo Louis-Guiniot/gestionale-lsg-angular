@@ -49,6 +49,8 @@ export class ProductsComponent implements OnInit {
 
   create(){
     console.log("eh volevi frocio")
+    this.pruductService.createProduct(this.createProductForm.value.codeProduct,this.createProductForm.value.description,this.createProductForm.value.measureUnit,this.createProductForm.value.name,this.createProductForm.value.price)
+    
   }
 
 }

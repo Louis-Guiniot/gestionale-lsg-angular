@@ -6,7 +6,7 @@ import { Action } from "@ngrx/store";
 import { Observable } from "rxjs";
 import { switchMap, map, tap } from 'rxjs/operators';
 import { HttpCommunicationsService } from "src/app/core/HttpCommunications/http-communications.service";
-import { createInvoice, initInvoices, initProducts, retrieveAllInvoices, retrieveAllProducts } from "./product.actions";
+import { createInvoice, createProduct, initInvoices, initProducts, retrieveAllInvoices, retrieveAllProducts } from "./product.actions";
 import { Response } from '../../core/model/Response.interface';
 import { Invoice } from "src/app/core/model/Invoice.interface";
 
@@ -27,6 +27,10 @@ export class ProductsEffects {
         console.log("chiamata effettuata")
         console.log(this.http.retrieveGetCall<Response>("invoice/findLast"))
         return this.http.retrieveGetCall<Response>("invoice/findLast");
+    }
+
+    createProduct(codeProduct:string, description:string, measureUnit:string, name:string, price:string): Observable<Response>{
+        return this.http.retrievePostCall<Response>('product/create',{codeProduct, description, measureUnit,name, price});
     }
 
     //sbagliato metterlo qua ma 2 much sbatti
@@ -58,6 +62,19 @@ export class ProductsEffects {
 
     //è sbagliato ma no sbatti di farne un altro
    
+    createProduct$: Observable<Action> = createEffect(() => this.actions$.pipe(
+        ofType(createProduct),
+        switchMap((action) => this.createProduct(
+            action.codeProduct,
+            action.description,
+            action.measureUnit,
+            action.name,
+            action.price).pipe(
+            map((response) => initInvoices({ response })),
+            tap(()=>this.router.navigateByUrl('/home'))
+        ))
+    ));
+
     createInvoice$: Observable<Action> = createEffect(() => this.actions$.pipe(
         ofType(createInvoice),
         switchMap((action) => this.createInvoice(
