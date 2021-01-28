@@ -1,17 +1,21 @@
 <form [formGroup]="customerForm" (ngSubmit)="insert()">
     <div class="container">
+        <div class="header-page">CUSTOMERS PAGE</div>
         <div class="container-customer-form">
             <div class="header">Create customer</div>
             <table class="customer-form-table">
                 <tr>
-                    <td><input type="text" formControlName="name" placeholder="name" id="name" autocomplete="off"></td>
+                    <td><input type="text" formControlName="name"
+                            placeholder="name" id="name" autocomplete="off"></td>
                 </tr>
                 <tr>
-                    <td><input type="text" formControlName="surname" placeholder="surname" id="surname"
+                    <td><input type="text" formControlName="surname"
+                            placeholder="surname" id="surname"
                             autocomplete="off"></td>
                 </tr>
                 <tr>
-                    <td><input type="text" formControlName="email" placeholder="email" id="email" autocomplete="off">
+                    <td><input type="text" formControlName="email"
+                            placeholder="email" id="email" autocomplete="off">
                     </td>
                 </tr>
                 <tr>
@@ -22,7 +26,6 @@
             </table>
         </div>
 
-
         <div class="container-customers">
             <!--PRODOTTI-->
             <!-- <div class="header">{{element.name}}</div> -->
@@ -31,18 +34,20 @@
                     <th>NAME</th>
                     <th>SURNAME</th>
                     <th>EMAIL</th>
-                    <th colspan="2">insert</th>
+                    <th colspan="2">&nbsp;</th>
                 </tr>
-                <tr *ngFor="let element of elements ; let i= index" id="highlight-row-customer">
+                <tr *ngFor="let element of elements ; let i= index"
+                    id="highlight-row-customer">
                     <td>{{element.name}}</td>
                     <td>{{element.surname}}</td>
                     <td>{{element.email}}</td>
                     <td style="display: none;">{{element.id}}</td>
-                    <td id="td-btn"><a (click)="update(element.id)" class="link" id="edit"><span
-                                class="material-icons">
+                    <td id="td-btn"><a (click)="update(element.id)" class="link"
+                            id="edit"><span class="material-icons">
                                 create
                             </span></a></td>
-                    <td id="td-btn"><a (click)="delete(element.id);" class="link" id="delete"><span
+                    <td id="td-btn"><a (click)="delete(element.id);"
+                            class="link" id="delete"><span
                                 class="material-icons">
                                 delete
                             </span></a></td>
