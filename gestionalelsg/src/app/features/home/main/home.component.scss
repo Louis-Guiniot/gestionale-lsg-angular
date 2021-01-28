@@ -44,7 +44,9 @@ a{
     opacity: 0.8;
 }
 
-
+// #one:hover + #two > #cust { border-bottom-left-radius: 25px; }
+// #two:hover ~ #one > #prod { background-color: red; }
+#three:hover + #two { border-bottom-right-radius: 25px; }
 
 #prod{
     width: auto;
