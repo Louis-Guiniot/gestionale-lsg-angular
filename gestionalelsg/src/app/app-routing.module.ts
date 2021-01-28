@@ -8,6 +8,7 @@ const routes: Routes = [
   { path: 'fattura', loadChildren: () => import('./features/fattura/fattura.module').then(m => m.FatturaModule)},
   //{ path: 'products', loadChildren: () => import('./features/prodotto/main/main.module').then(m => m.MainModule) },
   { path: 'customer', loadChildren: () => import('./features/customer/customer.module').then(m => m.CustomerModule) },
+  { path: 'customer/update', loadChildren: () => import('./features/customer-update/customer-update.module').then(m => m.CustomerUpdateModule) },
   
   
  

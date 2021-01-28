@@ -1,0 +1,11 @@
+<form  [formGroup]="customerUpdateForm" (ngSubmit)="update()">
+    
+    <div *ngFor="let element of elements">
+        <div *ngIf="element.id==idN">
+            name: <input type="text" placeholder="{{element.name}}" formControlName="name" id="name">
+            surnname: <input type="text" placeholder="{{element.surname}}" formControlName="surname" id="name">
+            email: <input type="text" placeholder="{{element.email}}" formControlName="email" id="name">
+        </div> 
+    </div>
+    <button type="submit">update</button>
+</form>

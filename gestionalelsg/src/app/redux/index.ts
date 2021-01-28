@@ -5,10 +5,10 @@ import { invoiceReducer, InvoiceState } from './invoice/invoice.reducers';
 import { customersReducer, CustomerState } from './customer/customer.reducers';
 
 export interface AppState{
-    customerState: CustomerState;
     router: RouterReducerState<any>;
     productsState: ProductState;
     invoiceState: InvoiceState;
+    customerState: CustomerState;
 }
 
 export const reducers: ActionReducerMap<AppState> = {
