@@ -84,7 +84,7 @@ export class HomeComponent implements OnInit {
     this.previewId.push(id)
     this.previewPrice.push(prezzo)
     console.log("preview id: "+ this.previewId)
-    this.preview.push("id prodotto: "+id+" prezzo: "+prezzo);
+    this.preview.push("id prodotto: "+id+" prezzo: "+prezzo+"$");
   }
 
   clearPreview() {

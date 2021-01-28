@@ -1,0 +1,234 @@
+.container{
+    display: grid;
+    height: 100vh;
+    grid-template-columns: 1fr 2fr;
+    grid-template-rows: auto 1fr;
+    padding: 1% 1% 0 1%;
+    margin-left: auto;
+    margin-right: auto;
+    column-gap: 2%;
+    row-gap: 4%;
+}
+
+// ANCHOR GRID COMPONENTS
+// ANCHOR SHARED
+    .header{
+        margin: 0;
+        width: auto;
+        padding: 5%;
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+        background-color: rgb(88, 119, 255);
+        border-bottom: 2px black solid;
+        font-size: 2em;
+    }
+
+    .btn{
+        border: 1px black solid;
+        text-align: center;
+        transition: width 1s;
+        width: 50%;
+        padding: 3%;
+        border-radius: 5px;
+        font-size: 1em;
+    }
+
+    .btn:hover{
+        background-color: rgb(88, 119, 255);
+        cursor: pointer;
+        transition:1s 0s;
+        color: white;
+    }
+
+    .btn:active{
+        background-color: rgba( #A9AABC, 1);
+        color: black;
+        animation-duration: 2s;
+    }
+
+    .btn:focus{
+        outline: none;
+        box-shadow: none;
+    }
+
+// ANCHOR INVOICE
+    .container-invoice{
+        width: auto;
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+        border: 2px black solid;
+        background-color: #012051;
+        text-align: left;
+        color: white;
+        box-shadow: 10px 10px 5px rgba( #A9AABC, 1);
+    }
+
+    .invoice-table{
+        width: 100%;
+        margin: 0;
+        padding: 3%;
+    }
+
+    .invoice-table input{
+        padding:2%;
+        width: 95%;
+        font-size: 1.5em;
+        border: 0;
+    
+        border-bottom: 1px rgba(white,0.2) solid;
+        color: white;   
+        background-color: transparent;
+        outline: 0;
+    
+        &::placeholder{
+            color: rgba(white,0.2);
+        }
+    }
+    
+    .invoice-table td{
+        padding: 1%;
+    }
+    
+    #btn-invoice{
+        width: 35%;
+        margin-top: 4%;
+        font-size: 1em;
+    }
+
+// ANCHOR CART
+    .cart-container{
+        height: 30vh;
+        margin-bottom: 2%;
+        border-radius: 5px;
+        border: 2px black solid;
+        background-color: #012051;
+        text-align: left;
+        color: white;
+        box-shadow: 10px 10px 5px rgba( #A9AABC, 1);
+        margin-bottom: 100px;
+        overflow:auto;
+    }
+
+    .header-cart{
+        display: grid;
+        grid-template-columns: 60% 40%;
+        grid-template-rows: auto;
+        padding: 5%;
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+        background-color: rgb(88, 119, 255);
+        border-bottom: 2px black solid;
+        font-size: 2em;
+    }
+
+    .deleteall-div{
+        text-align: right;
+    }
+
+    #btn-trash{
+        border: none;
+        background-color: transparent;
+        color: white;
+    }
+
+    #btn-trash:hover{
+        color: red;
+        cursor: pointer;
+    }
+
+    #btn-trash:focus{
+        outline: none;
+    }
+
+    .cart-table tr{
+        border-bottom: 1px rgba(white,0.2) solid;
+    }
+
+    #highlight-row-remove:hover{
+        background-color: rgba(red,0.5);
+    }
+
+    .cart-data{
+        padding: 5%;
+        font-size: 1.3em;
+    }
+
+    .cart{
+        width: 100%;
+        margin: 0;
+    }
+
+    .cart-table{
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+// ANCHOR PRODUCTS
+    .container-products{
+        grid-column-start: 2;
+        grid-row-start: 1;
+        grid-row-end: 3;
+        width: auto;
+        height: fit-content;
+        color: white;
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+        border: 2px black solid;
+        background-color: #012051;
+        text-align: left;
+        box-shadow: 10px 10px 5px rgba( #A9AABC, 1);
+    }
+
+    .products-table{  
+        width: 100%;
+        font-size: 1.3em;
+        border-collapse: collapse;
+    }
+
+    .products-table th{
+        font-weight: bold;
+        padding: 2%;
+        background-color: rgb(88, 119, 255);
+    }
+
+    #highlight-row-product td{
+        padding: 1% 0 1% 2%;
+    }
+
+    #highlight-row-product{
+        &:hover{
+                background-color: rgba( #A9AABC, 0.5);
+        }
+    }
+
+    .products-table td{
+        word-wrap: break-word;
+    }
+
+    .link{
+        text-decoration: none;
+        & :focus{
+            outline: none;
+        }
+    }
+
+    #edit:hover{
+        color: rgb(88, 119, 255);
+        cursor: pointer;
+        text-decoration: underline;
+    }
+
+    #create:hover{
+        color: green;
+        cursor: pointer;
+        text-decoration: underline;
+    }
+
+    #delete:hover{
+        color: red;
+        cursor: pointer;
+        text-decoration: underline;
+    }
+
+
+

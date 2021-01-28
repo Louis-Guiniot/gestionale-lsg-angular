@@ -22,10 +22,7 @@
          <td>{{fatture.fields}} </td>
       </tr>
      
-      <tr>
-         <td>total price</td>
-         <td>{{ fatture.totalPrice }}$</td>
-      </tr>
+
       <tr>
          <td>sale</td>
          <td>{{fatture.sconto}}%</td>
@@ -33,6 +30,10 @@
       <tr>
          <td>iva</td>
          <td>{{fatture.iva}}%</td>
+      </tr>
+      <tr>
+         <td>total price - iva</td>
+         <td>{{fatture.ivaPrice}}$</td>
       </tr>
       <tr id="total">
          <td>total pay</td>

@@ -1,0 +1,94 @@
+<form [formGroup]="createProduct" (ngSubmit)="prodotto()">
+        <input type="text" name="name" id="name" autocomplete="off"
+                formControlName="name" placeholder="insert name">
+        <input type="text" name="code" id="code" autocomplete="off"
+                formControlName="code" placeholder="insert code">
+        <input type="text" name="description" id="description" autocomplete="off"
+                formControlName="description" placeholder="insert description">
+        <input type="text" name="measureUnit" id="measureUnit" autocomplete="off"
+                formControlName="measureUnit" placeholder="insert measure unit" >
+        <input type="text" name="price" id="price" autocomplete="off"
+                formControlName="price" placeholder="insert price">
+        <button type="submit">create product</button>
+</form>
+
+<form [formGroup]="prodottiForm" (ngSubmit)="fattura()">
+        <div class="container">
+
+                <!-- ANCHOR invoice -->
+                <div class="container-invoice">
+                        <div class="header">Invoice</div>
+                        <table class="invoice-table">
+                                <tr>
+                                        <td><input type="text" name="customerId"
+                                                        id="customerId"
+                                                        autocomplete="off"
+                                                        formControlName="customerId"
+                                                        placeholder="insert
+                                                        customer id">
+                                        </td>
+                                </tr>
+                                <tr>
+                                        <td><input type="text" name="sconto"
+                                                        id="sconto"
+                                                        autocomplete="off"
+                                                        formControlName="sconto"
+                                                        placeholder="insert
+                                                        sale"></td>
+                                </tr>
+                                <tr>
+                                        <td><button type="submit" class="btn"
+                                                        id="btn-invoice">
+                                                        create invoice</button>
+                                        </td>
+                                </tr>
+                        </table>
+                </div>
+
+                <!-- ANCHOR products -->
+                <div class="container-products">
+                        <table class="products-table">
+                                <tr>
+                                        <th>Code</th>
+                                        <th>Name</th>
+                                        <th>Description</th>
+                                        <th>Measure unit</th>
+                                        <th>Price</th>
+
+                                        <th colspan="3"><a href="#">insert new
+                                                        product</a></th>
+                                </tr>
+                                <tr *ngFor="let element of elements ; let i=
+                                        index" id="highlight-row-product">
+                                        <td>{{element.codeProduct}}</td>
+                                        <td>{{element.name}}</td>
+                                        <td>{{element.description}}</td>
+                                        <td>{{element.measureUnit}}</td>
+                                        <td>{{element.price}}$</td>
+                                        <td style="display: none;">{{element.id}}</td>
+                                        <td id="td-btn"><a
+                                                        (click)="aggiungi(element.id,element.price);"
+                                                        class="link"
+                                                        id="edit"><span
+                                                                class="material-icons">
+                                                                create
+                                                        </span></a></td>
+                                        <td id="td-btn"><a
+                                                        (click)="aggiungi(element.id,element.price);"
+                                                        class="link"
+                                                        id="create"><span
+                                                                class="material-icons">
+                                                                add_shopping_cart
+                                                        </span></a></td>
+                                        <td id="td-btn"><a
+                                                        (click)="aggiungi(element.id,element.price);"
+                                                        class="link"
+                                                        id="delete"><span
+                                                                class="material-icons">
+                                                                delete
+                                                        </span></a></td>
+                                </tr>
+                        </table>
+                </div>
+        </div>
+</form>

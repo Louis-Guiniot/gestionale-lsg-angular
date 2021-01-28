@@ -11,6 +11,8 @@ import { ProductsEffects } from "./redux/product/product.effects";
 import { CoreModule } from './core/core.module';
 import { FatturaComponent } from './features/fattura/main/fattura.component';
 import { InvoicesEffects } from './redux/invoice/invoice.effects';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CustomerEffects } from './redux/customer/customer.effects';
 
 
 @NgModule({
@@ -28,6 +30,7 @@ import { InvoicesEffects } from './redux/invoice/invoice.effects';
      EffectsModule.forRoot([
       InvoicesEffects, 
       ProductsEffects,
+      CustomerEffects,
        
      ]
      ),
