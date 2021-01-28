@@ -23,10 +23,14 @@ ul {
   #right {
     float: right;
   }
+
+  a{
+    vertical-align:middle;
+  }
   
   a li {
+    font-weight: bold;
     line-height: 2em;
-    display: table-cell;
     vertical-align: middle;
     margin: 0;
     font-size: 1.5em;
