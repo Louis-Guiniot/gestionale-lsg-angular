@@ -1,5 +1,6 @@
 import { Route } from '@angular/compiler/src/core';
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { select, Store } from '@ngrx/store';
 import { selectProducts } from 'src/app/redux/product';
@@ -13,12 +14,19 @@ import { ProductsService } from '../service/products.service';
 export class ProductsComponent implements OnInit {
 
   elements =[];
-
-  constructor(private pruductService: ProductsService, private store: Store, private route: Router) {
+  createProductForm: FormGroup;
+  constructor(private pruductService: ProductsService, private store: Store, private route: Router, private fb:FormBuilder) {
     this.pruductService.retrieveAllProducts();
    }
 
   ngOnInit(): void {
+    this.createProductForm=this.fb.group({
+      codeProduct: ['', Validators.required],
+      name: ['', Validators.required],
+      description: ['', Validators.required],
+      measureUnit:['', Validators.required],
+      price:['', Validators.required]
+    })
 
     this.store.pipe(select(selectProducts)).subscribe((products) => {
       for (let prod of products) {
@@ -37,6 +45,10 @@ export class ProductsComponent implements OnInit {
       },
       queryParamsHandling: 'merge',
     });
+  }
+
+  create(){
+    console.log("eh volevi frocio")
   }
 
 }
