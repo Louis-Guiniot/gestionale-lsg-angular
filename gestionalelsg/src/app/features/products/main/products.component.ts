@@ -15,7 +15,7 @@ import { ProductsService } from '../service/products.service';
   templateUrl: './products.component.html',
   styleUrls: ['./products.component.scss']
 })
-export class ProductsComponent implements OnInit, OnDestroy {
+export class ProductsComponent implements OnInit {
 
   products =[];
   units=[];
@@ -79,12 +79,13 @@ export class ProductsComponent implements OnInit, OnDestroy {
   }
 
   create(){
-    console.log("eh volevi frocio")
+    
     this.pruductService.createProduct(this.createProductForm.value.codeProduct,this.createProductForm.value.description,this.createProductForm.value.measureUnit,this.createProductForm.value.name,this.createProductForm.value.price)
     
   }
-  ngOnDestroy() {
-    
+  delete(id:string){
+    this.pruductService.deleteProduct(id)
   }
+  
 
 }

@@ -6,7 +6,7 @@ import { Action } from "@ngrx/store";
 import { Observable } from "rxjs";
 import { switchMap, map, tap } from 'rxjs/operators';
 import { HttpCommunicationsService } from "src/app/core/HttpCommunications/http-communications.service";
-import {createProduct, initProducts, retrieveAllProducts, updateProduct } from "./product.actions";
+import {createProduct, deleteProduct, initProducts, retrieveAllProducts, updateProduct } from "./product.actions";
 import { Response } from '../../core/model/Response.interface';
 import { Invoice } from "src/app/core/model/Invoice.interface";
 
@@ -27,6 +27,18 @@ export class ProductsEffects {
     findUpdateProduct(id:string, description:string, measureUnit:string,name:string,price:string): Observable<Response>{
         return this.http.retrievePostCall<Response>('product/update',{id,description,measureUnit,name,price});
     }
+
+    deleteProduct(id:string){
+        return this.http.retrievePostCall<Response>('product/delete',{id});
+    }
+    deleteProduct$: Observable<Action> = createEffect(() => this.actions$.pipe(
+        ofType(deleteProduct),
+        switchMap((action) => this.deleteProduct(
+            action.id).pipe(
+            map((response) => initProducts({ response })),
+            tap(()=>this.router.navigateByUrl('/home'))
+        ))
+    ));
    
 
     retreiveLastInvoice(): Observable<Response> {
