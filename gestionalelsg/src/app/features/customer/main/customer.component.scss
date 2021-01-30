@@ -1,27 +1,40 @@
 .container{
     display: grid;
     height: 100vh;
-    grid-template-columns: 1fr 2fr;
-    grid-template-rows:  0.3fr auto 1fr;
+    grid-template-columns: 1.5fr 2fr;
+    grid-template-rows:  auto auto 1fr;
     padding: 1% 1% 0 1%;
     margin-left: auto;
     margin-right: auto;
-    column-gap: 2%;
-    row-gap: 4%;
+    column-gap: 1%;
+    row-gap: 2%;
 }
 
 .header-page{
     grid-column-start: 1;
     grid-column-end: 3;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
     margin: 0;
     width: auto;
-    padding: 2%;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
+    padding: 1.5%;
     background-color: rgb(88, 119, 255);
     border: 2px black solid;
     font-size: 2em;
     font-weight: bold;
+    vertical-align: middle;
+    color: white;
+}
+
+.header-page span{
+    font-size: 3vw;
+    height: 100%;
+    display: table;
+    vertical-align: middle;
+}
+
+#home-link{
+    text-align: right;
 }
 
 //ANCHOR SHARED
@@ -29,11 +42,10 @@
     margin: 0;
     width: auto;
     padding: 5%;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
     background-color: rgb(88, 119, 255);
     border-bottom: 2px black solid;
-    font-size: 2em;
+    font-size: 2vw;
+    font-weight: bold;
 }
 
 .btn{
@@ -43,7 +55,7 @@
     width: 50%;
     padding: 3%;
     border-radius: 5px;
-    font-size: 1em;
+    font-size: 1.3vw;
 }
 
 .btn:hover{
@@ -64,7 +76,7 @@
     box-shadow: none;
 }
 
-// ANCHOR CUSTOMERS TABLE
+// ANCHOR customerS TABLE
 .container-customers{
     grid-column-start: 2;
     grid-row-start: 2;
@@ -72,10 +84,8 @@
     width: auto;
     height: 70vh;
     color: white;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
     border: 2px black solid;
-    background-color: #012051;
+    background-color: rgba(#012051,0.9);
     text-align: left;
     box-shadow: 10px 10px 5px rgba( #A9AABC, 1);
     overflow: auto;
@@ -83,7 +93,7 @@
 
 .customers-table{  
     width: 100%;
-    font-size: 1.3em;
+    font-size: 1.5vw;
     border-collapse: collapse;
     overflow: auto;
 }
@@ -92,6 +102,10 @@
     font-weight: bold;
     padding: 2%;
     background-color: rgb(88, 119, 255);
+}
+
+thead{
+    border-bottom: 2px black solid;
 }
 
 #highlight-row-customer td{
@@ -110,6 +124,7 @@
 
 .link{
     text-decoration: none;
+    color: white;
     & :focus{
         outline: none;
     }
@@ -127,13 +142,11 @@
     text-decoration: underline;
 }
 
-//ANCHOR CUSTOMERS CREATE
+//ANCHOR customerS CREATE
 .container-customer-form{
     width: auto;
-    border-top-left-radius: 5px;
-    border-top-left-radius: 5px;
     border: 2px black solid;
-    background-color: #012051;
+    background-color: rgba(#012051,0.9);
     text-align: left;
     color: white;
     box-shadow: 10px 10px 5px rgba( #A9AABC, 1);
@@ -148,7 +161,7 @@
 .customer-form-table input{
     padding:2%;
     width: 95%;
-    font-size: 1.5em;
+    font-size: 2vw;
     border: 0;
 
     border-bottom: 1px rgba(white,0.2) solid;
@@ -162,11 +175,10 @@
 }
 
 .customer-form-table td{
-    padding: 1%;
+    padding: 2%;
 }
 
 #btn-customer{
     width: 35%;
-    margin-top: 4%;
-    font-size: 1em;
+    font-size: 1.5vw;
 }

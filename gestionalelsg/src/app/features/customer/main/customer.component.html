@@ -1,6 +1,9 @@
 <form [formGroup]="customerForm" (ngSubmit)="insert()">
     <div class="container">
-        <div class="header-page">CUSTOMERS PAGE</div>
+        <div class="header-page">
+            <span>Customers page</span>
+            <span id="home-link"><a href="/home" class="link">home</a></span>
+        </div>
         <div class="container-customer-form">
             <div class="header">Create customer</div>
             <table class="customer-form-table">
@@ -30,12 +33,12 @@
             <!--PRODOTTI-->
             <!-- <div class="header">{{element.name}}</div> -->
             <table class="customers-table">
-                <tr>
+                <thead>
                     <th>NAME</th>
                     <th>SURNAME</th>
                     <th>EMAIL</th>
                     <th colspan="2">&nbsp;</th>
-                </tr>
+                </thead>
                 <tr *ngFor="let element of elements ; let i= index"
                     id="highlight-row-customer">
                     <td>{{element.name}}</td>

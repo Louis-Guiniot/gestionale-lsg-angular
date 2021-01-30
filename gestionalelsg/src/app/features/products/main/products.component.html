@@ -2,7 +2,7 @@
     <div class="container">
         <div class="header-page">
             <span>PRODUCTS PAGE</span>
-            <a href="/home" class="link"><span class="material-icons">home</span></a>
+            <span id="home-link"><a href="/home" class="link">home</a></span>
         </div>
 
         <div class="container-product-form">
@@ -52,7 +52,7 @@
                     <th>PRICE</th>
                     <th colspan="2">&nbsp;</th>
                 </tr>
-                <tr *ngFor="let element of elements ; let i= index"
+                <tr *ngFor="let element of elements"
                     id="highlight-row-product">
                     <td style="display: none;">{{element.id}}</td>
                     <td>{{element.codeProduct}}</td>
