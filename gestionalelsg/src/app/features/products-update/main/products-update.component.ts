@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { select, Store } from '@ngrx/store';
 import { selectProducts } from 'src/app/redux/product';
+import { ProductsUpdateService } from '../services/products-update.service';
 
 @Component({
   selector: 'app-products-update',
@@ -15,7 +16,7 @@ export class ProductsUpdateComponent implements OnInit {
   idN:number
   productsUpdateForm : FormGroup
   elements=[];
-  constructor(private route:ActivatedRoute, private fb: FormBuilder, private store: Store) { }
+  constructor(private route:ActivatedRoute, private fb: FormBuilder, private store: Store, private productUpdateService: ProductsUpdateService) { }
 
   ngOnInit(): void {
     this.store.pipe(select(selectProducts)).subscribe((products) => {
@@ -29,7 +30,6 @@ export class ProductsUpdateComponent implements OnInit {
     });
 
     this.productsUpdateForm=this.fb.group({
-      codeProduct: ['', Validators.required],
       name: ['', Validators.required],
       description: ['', Validators.required],
       measureUnit:['', Validators.required],
@@ -42,7 +42,10 @@ export class ProductsUpdateComponent implements OnInit {
   
   }
   update(){
-
+    this.productUpdateService.updateProduct(this.id,this.productsUpdateForm.value.description,
+                                            this.productsUpdateForm.value.measureUnit,
+                                            this.productsUpdateForm.value.name,
+                                            this.productsUpdateForm.value.price);
   }
 
 }

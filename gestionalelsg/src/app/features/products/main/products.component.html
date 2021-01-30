@@ -21,8 +21,15 @@
                     </td>
                 </tr>
                 <tr>
-                    <td><input type="text" formControlName="measureUnit"
+                    <td>
+                        <!-- <input type="text" formControlName="measureUnit"
                             placeholder="measure unit" id="measureUnit" autocomplete="off">
+                            <select name="" id=""></select>
+                         -->
+                         unità di misura      
+                            <select formControlName="measureUnit">
+                                <option *ngFor="let unit of measures | async" value="{{unit.type}}">{{unit.type}}</option>
+                            </select>
                     </td>
                 </tr>
                 <tr>
@@ -40,7 +47,7 @@
 
         <div class="container-products">
             <!--PRODOTTI-->
-            <!-- <div class="header">{{element.name}}</div> -->
+            <!-- <div class="header">{{product.name}}</div> -->
             <table class="products-table">
                 <tr>
                     <th>CODE</th>
@@ -50,17 +57,17 @@
                     <th>PRICE</th>
                     <th colspan="2">&nbsp;</th>
                 </tr>
-                <tr *ngFor="let element of elements ; let i= index"
+                <tr *ngFor="let product of prods | async; let i= index"
                     id="highlight-row-product">
-                    <td style="display: none;">{{element.id}}</td>
-                    <td>{{element.codeProduct}}</td>
-                    <td>{{element.name}}</td>
-                    <td>{{element.description}}</td>
-                    <td>{{element.measureUnit}}</td>
-                    <td>{{element.price}}$</td>
+                    <td style="display: none;">{{product.id}}</td>
+                    <td>{{product.codeproduct}}</td>
+                    <td>{{product.name}}</td>
+                    <td>{{product.description}}</td>
+                    <td>{{product.measureUnit}}</td>
+                    <td>{{product.price}}$</td>
 
                     <!-- devi inserire metodi -->
-                    <td id="td-btn"><a (click)="update(element.id)"class="link"
+                    <td id="td-btn"><a (click)="update(product.id)"class="link"
                             id="edit"><span class="material-icons">
                                 create
                             </span></a></td>

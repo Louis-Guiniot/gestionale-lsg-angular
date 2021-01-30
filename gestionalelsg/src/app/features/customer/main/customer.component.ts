@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { select, Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
+import { Customer } from 'src/app/core/model/Customer.interface';
 import { selectCustomers } from 'src/app/redux/customer';
 import { CustomerService } from '../services/customer.service';
 
@@ -12,7 +14,7 @@ import { CustomerService } from '../services/customer.service';
 })
 export class CustomerComponent implements OnInit {
 
-  elements = [];
+  //elements = [];
   customerForm: FormGroup;
 
   constructor(private store: Store, private route: Router, private customerService: CustomerService, private fb: FormBuilder) {
@@ -26,13 +28,16 @@ export class CustomerComponent implements OnInit {
       surname: ['', Validators.required],
     })
 
-      this.store.pipe(select(selectCustomers)).subscribe((customers) => {
-      for (let cust of customers) {
-        this.elements.push(cust);
-        console.log(cust);
-      }
-      return this.elements
-    })
+    //   this.store.pipe(select(selectCustomers)).subscribe((customers) => {
+    //   for (let cust of customers) {
+    //     this.elements.push(cust);
+    //     console.log(cust);
+    //   }
+    //   return this.elements
+    // })
+}
+get elements(): Observable<Customer[]> {
+  return this.store.pipe(select(selectCustomers));
 }
 
   insert(){

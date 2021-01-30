@@ -6,7 +6,7 @@ import { Action } from "@ngrx/store";
 import { Observable } from "rxjs";
 import { switchMap, map, tap } from 'rxjs/operators';
 import { HttpCommunicationsService } from "src/app/core/HttpCommunications/http-communications.service";
-import { createInvoice, createProduct, initInvoices, initProducts, retrieveAllInvoices, retrieveAllProducts } from "./product.actions";
+import {createProduct, initProducts, retrieveAllProducts, updateProduct } from "./product.actions";
 import { Response } from '../../core/model/Response.interface';
 import { Invoice } from "src/app/core/model/Invoice.interface";
 
@@ -19,9 +19,15 @@ export class ProductsEffects {
     retreiveAllProduct(): Observable<Response> {
         return this.http.retrieveGetCall<Response>("product/findAll");
     }
+
     retreiveAllinvoices(): Observable<Response> {
         return this.http.retrieveGetCall<Response>("invoice/findAll");
     }
+
+    findUpdateProduct(id:string, description:string, measureUnit:string,name:string,price:string): Observable<Response>{
+        return this.http.retrievePostCall<Response>('product/update',{id,description,measureUnit,name,price});
+    }
+   
 
     retreiveLastInvoice(): Observable<Response> {
         console.log("chiamata effettuata")
@@ -44,21 +50,7 @@ export class ProductsEffects {
             map((response) => initProducts({ response }))
         ))
     ));
-
-    getAllInvoices$: Observable<Action> = createEffect(() => this.actions$.pipe(
-        ofType(retrieveAllInvoices),
-        switchMap(() => this.retreiveAllinvoices().pipe(
-            map((response) => initProducts({ response }))
-        ))
-    ));
-
-
-    getLastInvoice$: Observable<Action> = createEffect(() => this.actions$.pipe(
-        ofType(retrieveAllInvoices),
-        switchMap(() => this.retreiveLastInvoice().pipe(
-            map((response) => initInvoices({ response }))
-        ))
-    ));        
+       
 
     //è sbagliato ma no sbatti di farne un altro
    
@@ -70,20 +62,27 @@ export class ProductsEffects {
             action.measureUnit,
             action.name,
             action.price).pipe(
-            map((response) => initInvoices({ response })),
-            tap(()=>this.router.navigateByUrl('/home'))
+            map((response) => initProducts({ response })),
+            tap(()=>this.router.navigateByUrl('/products'))
         ))
     ));
 
-    createInvoice$: Observable<Action> = createEffect(() => this.actions$.pipe(
-        ofType(createInvoice),
-        switchMap((action) => this.createInvoice(
-            action.prodottiLista,
-            action.totalPrice,
-            action.customerId,
-            action.sconto).pipe(
-            map((response) => initInvoices({ response })),
-            tap(()=>this.router.navigateByUrl('/fattura'))
+   
+    delay() {
+        return new Promise( resolve => setTimeout(resolve, 1000) );
+    }
+  
+
+    findUpdateProduct$: Observable<Action> = createEffect(() => this.actions$.pipe(
+        ofType(updateProduct),
+        switchMap((action) => this.findUpdateProduct(
+            action.id,
+            action.description,
+            action.measureUnit,
+            action.name,
+            action.price).pipe(
+            map((response) => initProducts({ response }))
+            ,tap(()=>this.router.navigateByUrl('/products'))
         ))
     ));
     

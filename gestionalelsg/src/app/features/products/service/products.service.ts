@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
+import { retrieveAllMeasures } from 'src/app/redux/measure/measure.actions';
 import { createProduct, retrieveAllProducts } from 'src/app/redux/product/product.actions';
 
 @Injectable({
@@ -12,6 +13,10 @@ export class ProductsService {
 
   retrieveAllProducts(){
     this.store.dispatch(retrieveAllProducts());
+  }
+
+  retrieveAllMeasures(){
+    this.store.dispatch(retrieveAllMeasures());
   }
 
   createProduct(codeProduct:string, description:string, measureUnit:string, name:string, price:string){

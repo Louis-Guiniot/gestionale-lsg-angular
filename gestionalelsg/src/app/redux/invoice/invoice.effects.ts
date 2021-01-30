@@ -43,6 +43,49 @@ export class InvoicesEffects {
         ))
     ));        
 
+
+    // getAllInvoices$: Observable<Action> = createEffect(() => this.actions$.pipe(
+    //     ofType(retrieveAllInvoices),
+    //     switchMap(() => this.retreiveAllinvoices().pipe(
+    //         map((response) => initProducts({ response }))
+    //     ))
+    // ));
+
+
+    // getLastInvoice$: Observable<Action> = createEffect(() => this.actions$.pipe(
+    //     ofType(retrieveAllInvoices),
+    //     switchMap(() => this.retreiveLastInvoice().pipe(
+    //         map((response) => initInvoices({ response }))
+    //     ))
+    // ));        
+
+    // //è sbagliato ma no sbatti di farne un altro
+   
+    // createProduct$: Observable<Action> = createEffect(() => this.actions$.pipe(
+    //     ofType(createProduct),
+    //     switchMap((action) => this.createProduct(
+    //         action.codeProduct,
+    //         action.description,
+    //         action.measureUnit,
+    //         action.name,
+    //         action.price).pipe(
+    //         map((response) => initInvoices({ response })),
+    //         tap(()=>this.router.navigateByUrl('/home'))
+    //     ))
+    // ));
+
+    // createInvoice$: Observable<Action> = createEffect(() => this.actions$.pipe(
+    //     ofType(createInvoice),
+    //     switchMap((action) => this.createInvoice(
+    //         action.prodottiLista,
+    //         action.totalPrice,
+    //         action.customerId,
+    //         action.sconto).pipe(
+    //         map((response) => initInvoices({ response })),
+    //         tap(()=>this.router.navigateByUrl('/fattura'))
+    //     ))
+    // ));
+
     
     
     

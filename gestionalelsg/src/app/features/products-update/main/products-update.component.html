@@ -2,7 +2,7 @@
     
     <div *ngFor="let element of elements">
         <div *ngIf="element.id==idN">
-            code: <input type="text" placeholder="{{element.codeProduct}}" formControlName="codeProduct" id="name">
+            
             description: <input type="text" placeholder="{{element.description}}" formControlName="description" id="name">
             <!-- da vedere bene con le referenze in db -->
             measure unit: <input type="text" placeholder="{{element.measureUnit}}" formControlName="measureUnit" id="name">

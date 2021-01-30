@@ -13,6 +13,7 @@ import { FatturaComponent } from './features/fattura/main/fattura.component';
 import { InvoicesEffects } from './redux/invoice/invoice.effects';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CustomerEffects } from './redux/customer/customer.effects';
+import { MeasureEffects } from './redux/measure/measure.effects';
 
 
 @NgModule({
@@ -31,6 +32,7 @@ import { CustomerEffects } from './redux/customer/customer.effects';
       InvoicesEffects, 
       ProductsEffects,
       CustomerEffects,
+      MeasureEffects
        
      ]
      ),

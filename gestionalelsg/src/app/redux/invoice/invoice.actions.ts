@@ -8,3 +8,4 @@ export const createInvoice = createAction('[Invoice] creazione fattura', props<{
 export const retrieveAllInvoices = createAction('[Invoice] invoice');
 export const retrieveLastInvoice = createAction('[Invoice] last invoice');
 export const initInvoices = createAction('[Invoice] initInvoices', props<{response: Response}>());
+
