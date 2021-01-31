@@ -1,14 +1,77 @@
-<p>invoices works!</p>
 
-<div *ngFor="let inv of invoices | async">
-    {{inv.id}}
-    {{inv.codeInvoice}}
-    {{inv.totalPrice}}
-    {{inv.idCustomer}}
-    {{inv.productFields}}
-    {{inv.dateTime}}
-    {{inv.sconto}}
-    {{inv.iva}}
-    {{inv.ivaPrice}}
-    {{inv.totalToPay}}
-</div>
+
+ <form ><!-- inserire attributi form -->
+    <div class="container">
+        <div class="header-page">
+            <span>Customers page</span>
+            <span id="home-link"><a href="/home" class="link">home</a></span>
+        </div>
+        <div class="container-customer-form">
+            <div class="header">Create customer</div>
+            <table class="customer-form-table">
+                <tr>
+                    <td><input type="text" formControlName="name"
+                            placeholder="name" id="name" autocomplete="off"></td>
+                </tr>
+                <tr>
+                    <td><input type="text" formControlName="surname"
+                            placeholder="surname" id="surname"
+                            autocomplete="off"></td>
+                </tr>
+                <tr>
+                    <td><input type="text" formControlName="email"
+                            placeholder="email" id="email" autocomplete="off">
+                    </td>
+                </tr>
+                <tr>
+                    <td><button type="submit" class="btn" id="btn-invoice">
+                            create customer</button>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="container-customers">
+            <!--PRODOTTI-->
+            <!-- <div class="header">{{element.name}}</div> -->
+            <table class="customers-table">
+                <thead>
+                    <th>ID</th>
+                    <th>CODICE</th>
+                    <th>PREZZO TOTALE</th>
+                    <th>ID CUSTOMER</th>
+                    <th>PRODUCT FIELDS</th>
+                    <th>DATA</th>
+                    <th>SCONTO</th>
+                    <th>IVA</th>
+                    <th>PREZZO-IVA</th>
+                    <th>TOTALE</th>
+                    <th colspan="2">&nbsp;</th>
+                </thead>
+                <tr *ngFor="let inv of invoices | async; let i= index"
+                    id="highlight-row-customer">
+                    <td>{{inv.id}}</td>
+                    <td> {{inv.codeInvoice}}</td>
+                    <td>{{inv.totalPrice}}</td>
+                    <td>{{inv.idCustomer}}</td>
+                    <td>{{inv.productFields}}</td>
+                    <td>{{inv.dateTime}}</td>
+                    <td>{{inv.sconto}}</td>
+                    <td>{{inv.iva}}</td>
+                    <td>{{inv.ivaPrice}}</td>
+                    <td>{{inv.totalToPay}}</td>
+                    <td style="display: none;">{{element.id}}</td>
+                    <td id="td-btn"><a (click)="update(element.id)" class="link"
+                            id="edit"><span class="material-icons">
+                                create
+                            </span></a></td>
+                    <td id="td-btn"><a (click)="delete(element.id);"
+                            class="link" id="delete"><span
+                                class="material-icons">
+                                delete
+                            </span></a></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</form>

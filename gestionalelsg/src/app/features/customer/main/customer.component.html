@@ -39,7 +39,7 @@
                     <th>EMAIL</th>
                     <th colspan="2">&nbsp;</th>
                 </thead>
-                <tr *ngFor="let element of elements ; let i= index"
+                <tr *ngFor="let element of elements | async; let i= index"
                     id="highlight-row-customer">
                     <td>{{element.name}}</td>
                     <td>{{element.surname}}</td>

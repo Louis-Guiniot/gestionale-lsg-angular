@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
@@ -13,6 +14,7 @@ import { InvoicesService } from '../services/invoices.service';
 })
 export class InvoicesComponent implements OnInit {
 
+  invoiceForm: FormGroup
   constructor(private store: Store, private route: Router, private invoicesService: InvoicesService) { 
     this.invoicesService.retrieveAllInvoices()
   }
