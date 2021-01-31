@@ -29,7 +29,7 @@ export class ProductsComponent implements OnInit {
   ngOnInit(): void {
    
     this.createProductForm=this.fb.group({
-      codeProduct: ['', Validators.required],
+     
       name: ['', Validators.required],
       description: ['', Validators.required],
       measureUnit:['', Validators.required],
@@ -80,7 +80,7 @@ export class ProductsComponent implements OnInit {
 
   create(){
     
-    this.pruductService.createProduct(this.createProductForm.value.codeProduct,this.createProductForm.value.description,this.createProductForm.value.measureUnit,this.createProductForm.value.name,this.createProductForm.value.price)
+    this.pruductService.createProduct(this.createProductForm.value.description,this.createProductForm.value.measureUnit,this.createProductForm.value.name,this.createProductForm.value.price)
     
   }
   delete(id:string){

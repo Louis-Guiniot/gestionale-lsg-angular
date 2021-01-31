@@ -19,8 +19,8 @@ export class ProductsService {
     this.store.dispatch(retrieveAllMeasures());
   }
 
-  createProduct(codeProduct:string, description:string, measureUnit:string, name:string, price:string){
-    this.store.dispatch(createProduct({codeProduct, description, measureUnit, name, price}))
+  createProduct(description:string, measureUnit:string, name:string, price:string){
+    this.store.dispatch(createProduct({description, measureUnit, name, price}))
   }
 
   deleteProduct(id:string){

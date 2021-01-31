@@ -6,10 +6,7 @@
         <div class="container-product-form">
             <div class="header">Create product</div>
             <table class="product-form-table">
-                <tr>
-                    <td><input type="text" formControlName="codeProduct"
-                            placeholder="code product" id="code" autocomplete="off"></td>
-                </tr>
+               
                 <tr>
                     <td><input type="text" formControlName="name"
                             placeholder="name" id="name"
@@ -60,7 +57,7 @@
                 <tr *ngFor="let product of prods | async; let i= index"
                     id="highlight-row-product">
                     <td style="display: none;">{{product.id}}</td>
-                    <td>{{product.codeproduct}}</td>
+                    <td>{{product.codeProduct}}</td>
                     <td>{{product.name}}</td>
                     <td>{{product.description}}</td>
                     <td>{{product.measureUnit}}</td>

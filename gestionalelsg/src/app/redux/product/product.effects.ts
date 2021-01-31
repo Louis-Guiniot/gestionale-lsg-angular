@@ -47,8 +47,8 @@ export class ProductsEffects {
         return this.http.retrieveGetCall<Response>("invoice/findLast");
     }
 
-    createProduct(codeProduct:string, description:string, measureUnit:string, name:string, price:string): Observable<Response>{
-        return this.http.retrievePostCall<Response>('product/create',{codeProduct, description, measureUnit,name, price});
+    createProduct( description:string, measureUnit:string, name:string, price:string): Observable<Response>{
+        return this.http.retrievePostCall<Response>('product/create',{description, measureUnit,name, price});
     }
 
     //sbagliato metterlo qua ma 2 much sbatti
@@ -69,13 +69,12 @@ export class ProductsEffects {
     createProduct$: Observable<Action> = createEffect(() => this.actions$.pipe(
         ofType(createProduct),
         switchMap((action) => this.createProduct(
-            action.codeProduct,
             action.description,
             action.measureUnit,
             action.name,
             action.price).pipe(
             map((response) => initProducts({ response })),
-            tap(()=>this.router.navigateByUrl('/products'))
+            tap(()=>this.router.navigateByUrl('/home'))
         ))
     ));
 
