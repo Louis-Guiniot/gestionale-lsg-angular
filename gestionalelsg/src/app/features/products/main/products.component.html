@@ -1,7 +1,8 @@
-<form> <!-- inserire ngSubmit-->
+<form>
+    <!-- inserire ngSubmit-->
     <div class="container">
         <div class="header-page">
-            <span>PRODUCTS PAGE</span>
+            <span>Products page</span>
             <span id="home-link"><a href="/home" class="link">home</a></span>
         </div>
 
@@ -14,17 +15,18 @@
                 </tr>
                 <tr>
                     <td><input type="text" formControlName="name"
-                            placeholder="name" id="name"
-                            autocomplete="off"></td>
+                            placeholder="name" id="name" autocomplete="off"></td>
                 </tr>
                 <tr>
                     <td><input type="text" formControlName="description"
-                            placeholder="description" id="description" autocomplete="off">
+                            placeholder="description" id="description"
+                            autocomplete="off">
                     </td>
                 </tr>
                 <tr>
                     <td><input type="text" formControlName="measureUnit"
-                            placeholder="measure unit" id="measureUnit" autocomplete="off">
+                            placeholder="measure unit" id="measureUnit"
+                            autocomplete="off">
                     </td>
                 </tr>
                 <tr>
@@ -50,10 +52,9 @@
                     <th>DESCRIPTION</th>
                     <th>MEASURE UNIT</th>
                     <th>PRICE</th>
-                    <th colspan="2">&nbsp;</th>
+                    <th colspan="3">&nbsp;</th>
                 </tr>
-                <tr *ngFor="let element of elements"
-                    id="highlight-row-product">
+                <tr *ngFor="let element of elements" id="highlight-row-product">
                     <td style="display: none;">{{element.id}}</td>
                     <td>{{element.codeProduct}}</td>
                     <td>{{element.name}}</td>
@@ -62,8 +63,12 @@
                     <td>{{element.price}}$</td>
 
                     <!-- devi inserire metodi -->
-                    <td id="td-btn"><a class="link"
-                            id="edit"><span class="material-icons">
+                    <td id="td-btn"><a class="link" id="insert"><span
+                                class="material-icons">
+                                add_shopping_cart
+                            </span></a></td>
+                    <td id="td-btn"><a class="link" id="edit"><span
+                                class="material-icons">
                                 create
                             </span></a></td>
                     <td id="td-btn"><a class="link" id="delete"><span

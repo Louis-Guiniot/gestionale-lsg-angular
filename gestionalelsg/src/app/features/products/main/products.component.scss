@@ -131,6 +131,12 @@
     }
 }
 
+#insert:hover{
+    color: rgb(36, 167, 57);
+    cursor: pointer;
+    text-decoration: underline;
+}
+
 #edit:hover{
     color: rgb(88, 119, 255);
     cursor: pointer;
@@ -141,6 +147,10 @@
     color: red;
     cursor: pointer;
     text-decoration: underline;
+}
+
+.material-icons{
+    font-size: 1.5vw;
 }
 
 //ANCHOR productS CREATE
