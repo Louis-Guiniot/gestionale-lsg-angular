@@ -34,14 +34,10 @@ a{
     font-weight: bold;
     font-size: 2em;
     color: white;
-
-    vertical-align: middle;
-
 }
 
 .grid-part:hover{
     cursor: pointer;
-    opacity: 0.8;
 }
 
 // #one:hover ~ #two > #cust { border-bottom-left-radius: 25px; }
