@@ -11,6 +11,7 @@ const routes: Routes = [
   { path: 'customer/update', loadChildren: () => import('./features/customer-update/customer-update.module').then(m => m.CustomerUpdateModule) },
   { path: 'products', loadChildren: () => import('./features/products/products.module').then(m => m.ProductsModule) },
   { path: 'products/update', loadChildren: () => import('./features/products-update/products-update.module').then(m => m.ProductsUpdateModule) },
+  { path: 'invoices', loadChildren: () => import('./features/invoices/invoices.module').then(m => m.InvoicesModule) },
   
   
  

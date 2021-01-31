@@ -1,0 +1,14 @@
+<p>invoices works!</p>
+
+<div *ngFor="let inv of invoices | async">
+    {{inv.id}}
+    {{inv.codeInvoice}}
+    {{inv.totalPrice}}
+    {{inv.idCustomer}}
+    {{inv.productFields}}
+    {{inv.dateTime}}
+    {{inv.sconto}}
+    {{inv.iva}}
+    {{inv.ivaPrice}}
+    {{inv.totalToPay}}
+</div>

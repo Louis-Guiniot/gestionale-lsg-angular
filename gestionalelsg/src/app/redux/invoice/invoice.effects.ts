@@ -18,6 +18,7 @@ export class InvoicesEffects {
     constructor(private actions$: Actions, private http: HttpCommunicationsService, private router: Router) { }
 
     retreiveAllInvoice(): Observable<Response> {
+        console.log("chiamata effettuata")
         return this.http.retrieveGetCall<Response>("invoice/findAll");
     }
 
