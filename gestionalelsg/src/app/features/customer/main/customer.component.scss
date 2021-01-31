@@ -37,6 +37,15 @@
     text-align: right;
 }
 
+#home-link a{
+    text-align: right;
+    text-decoration: none;
+    color: white;
+    & :focus{
+        outline: none;
+    }
+}
+
 //ANCHOR SHARED
 .header{
     margin: 0;
@@ -82,10 +91,11 @@
     grid-row-start: 2;
     grid-row-end: 4;
     width: auto;
-    height: 20vh;
-    color: white;
-    border: 2px black solid;
+    height: 40vh;
+    color: rgba( #A9AABC, 1);
     background-color: rgba(#012051,0.9);
+    border: 2px black solid;
+    // background-color: rgba(#012051,0.9);
     text-align: left;
     box-shadow: 10px 10px 5px rgba( #A9AABC, 1);
     overflow: auto;
@@ -104,6 +114,7 @@
     background-color: rgb(88, 119, 255);
     position: sticky;
     top: 0;
+    color: white;
 }
 
 thead{
@@ -117,6 +128,7 @@ thead{
 #highlight-row-customer{
     &:hover{
             background-color: rgba( #A9AABC, 0.5);
+            color: white;
     }
 }
 
@@ -124,9 +136,9 @@ thead{
     word-wrap: break-word;
 }
 
-.link{
+.link {
     text-decoration: none;
-    color: white;
+    color: rgba( #A9AABC, 1);
     & :focus{
         outline: none;
     }
@@ -180,7 +192,44 @@ thead{
     padding: 2%;
 }
 
-#btn-customer{
-    width: 35%;
-    font-size: 1.5vw;
+.btn{
+    font-size: 2vw;
+    width: 60%;
+    padding: 1% 2% 1% 2%;
+    transition: all 1.5s;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    border: none;
+
+    &::before{
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 0%;
+        height: 100%;
+        background-color: rgb(88, 119, 255);
+        transition: all 1.5s;
+        z-index: -1;
+    }
+
+    &::after{
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(white,0.2);
+        z-index: -2; 
+    }
+
+    &:hover {
+        color: #fff;
+        cursor: pointer;
+        &:before {
+          width: 100%;
+        }
+    }
 }

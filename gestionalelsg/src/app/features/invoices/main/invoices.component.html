@@ -3,12 +3,12 @@
  <form ><!-- inserire attributi form -->
     <div class="container">
         <div class="header-page">
-            <span>Customers page</span>
+            <span>Invoices page</span>
             <span id="home-link"><a href="/home" class="link">home</a></span>
         </div>
-        <div class="container-customer-form">
-            <div class="header">Create customer</div>
-            <table class="customer-form-table">
+        <!-- <div class="container-invoice-form">
+            <div class="header">Create invoice</div>
+            <table class="invoice-form-table">
                 <tr>
                     <td><input type="text" formControlName="name"
                             placeholder="name" id="name" autocomplete="off"></td>
@@ -25,47 +25,48 @@
                 </tr>
                 <tr>
                     <td><button type="submit" class="btn" id="btn-invoice">
-                            create customer</button>
+                            create invoice</button>
                     </td>
                 </tr>
             </table>
-        </div>
+        </div> -->
 
-        <div class="container-customers">
+        <div class="container-invoices">
             <!--PRODOTTI-->
             <!-- <div class="header">{{element.name}}</div> -->
-            <table class="customers-table">
+            <table class="invoices-table">
                 <thead>
-                    <th>ID</th>
-                    <th>CODICE</th>
-                    <th>PREZZO TOTALE</th>
-                    <th>ID CUSTOMER</th>
-                    <th>PRODUCT FIELDS</th>
-                    <th>DATA</th>
-                    <th>SCONTO</th>
-                    <th>IVA</th>
-                    <th>PREZZO-IVA</th>
-                    <th>TOTALE</th>
-                    <th colspan="2">&nbsp;</th>
+                    <th>id</th>
+                    <th>code</th>
+                    <th>first price</th>
+                    <th>costumer id</th>
+                    <th>products</th>
+                    <th>date</th>
+                    <th>sale</th>
+                    <th>iva</th>
+                    <th>price - iva</th>
+                    <th>total</th>
+                    <th>&nsub;</th>
                 </thead>
                 <tr *ngFor="let inv of invoices | async; let i= index"
-                    id="highlight-row-customer">
+                    id="highlight-row-invoice">
                     <td>{{inv.id}}</td>
                     <td> {{inv.codeInvoice}}</td>
-                    <td>{{inv.totalPrice}}</td>
+                    <td>{{inv.totalPrice}}$</td>
                     <td>{{inv.idCustomer}}</td>
+                    <!-- quando hover mostro div con dati prodotti-->
                     <td>{{inv.productFields}}</td>
                     <td>{{inv.dateTime}}</td>
-                    <td>{{inv.sconto}}</td>
-                    <td>{{inv.iva}}</td>
-                    <td>{{inv.ivaPrice}}</td>
-                    <td>{{inv.totalToPay}}</td>
-                    <td style="display: none;">{{element.id}}</td>
-                    <td id="td-btn"><a (click)="update(element.id)" class="link"
+                    <td>{{inv.sconto}}%</td>
+                    <td>{{inv.iva}}%</td>
+                    <td>{{inv.ivaPrice}}$</td>
+                    <td>{{inv.totalToPay}}$</td>
+                    <td style="display: none;">{{inv.id}}</td>
+                    <!-- <td id="td-btn"><a (click)="update(inv.id);" class="link"
                             id="edit"><span class="material-icons">
                                 create
-                            </span></a></td>
-                    <td id="td-btn"><a (click)="delete(element.id);"
+                            </span></a></td> -->
+                    <td id="td-btn"><a (click)="delete(inv.id);"
                             class="link" id="delete"><span
                                 class="material-icons">
                                 delete

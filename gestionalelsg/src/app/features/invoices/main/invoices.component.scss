@@ -1,7 +1,7 @@
 .container{
     display: grid;
     height: 100vh;
-    grid-template-columns: 1.5fr 2fr;
+    grid-template-columns: 1fr 2fr;
     grid-template-rows:  auto auto 1fr;
     padding: 1% 1% 0 1%;
     margin-left: auto;
@@ -76,9 +76,10 @@
     box-shadow: none;
 }
 
-// ANCHOR customerS TABLE
-.container-customers{
-    grid-column-start: 2;
+// ANCHOR invoices TABLE
+.container-invoices{
+    grid-column-start: 1;
+    grid-column-end: 3;
     grid-row-start: 2;
     grid-row-end: 4;
     width: auto;
@@ -91,16 +92,16 @@
     overflow: auto;
 }
 
-.customers-table{  
+.invoices-table{  
     width: 100%;
     font-size: 1.5vw;
     border-collapse: collapse;
     overflow: auto;
 }
 
-.customers-table th{
+.invoices-table th{
     font-weight: bold;
-    padding: 2%;
+    padding: 1%;
     background-color: rgb(88, 119, 255);
     position: sticky;
     top: 0;
@@ -110,18 +111,24 @@ thead{
     border-bottom: 2px black solid;
 }
 
-#highlight-row-customer td{
-    padding: 1% 0 1% 2%;
+#div-prod{
+    visibility: hidden;
+    color: black;
 }
 
-#highlight-row-customer{
+#hover-prod:hover + #div-prod{
+    visibility: visible;
+    color: black;
+}
+
+#highlight-row-invoice td{
+    padding: 1%;
+}
+
+#highlight-row-invoice{
     &:hover{
             background-color: rgba( #A9AABC, 0.5);
     }
-}
-
-.customers-table td{
-    word-wrap: break-word;
 }
 
 .link{
@@ -144,43 +151,43 @@ thead{
     text-decoration: underline;
 }
 
-//ANCHOR customerS CREATE
-.container-customer-form{
-    width: auto;
-    border: 2px black solid;
-    background-color: rgba(#012051,0.9);
-    text-align: left;
-    color: white;
-    box-shadow: 10px 10px 5px rgba( #A9AABC, 1);
-}
+//ANCHOR invoices CREATE
+// .container-customer-form{
+//     width: auto;
+//     border: 2px black solid;
+//     background-color: rgba(#012051,0.9);
+//     text-align: left;
+//     color: white;
+//     box-shadow: 10px 10px 5px rgba( #A9AABC, 1);
+// }
 
-.customer-form-table{
-    width: 100%;
-    margin: 0;
-    padding: 3%;
-}
+// .customer-form-table{
+//     width: 100%;
+//     margin: 0;
+//     padding: 3%;
+// }
 
-.customer-form-table input{
-    padding:2%;
-    width: 95%;
-    font-size: 2vw;
-    border: 0;
+// .customer-form-table input{
+//     padding:2%;
+//     width: 95%;
+//     font-size: 2vw;
+//     border: 0;
 
-    border-bottom: 1px rgba(white,0.2) solid;
-    color: white;   
-    background-color: transparent;
-    outline: 0;
+//     border-bottom: 1px rgba(white,0.2) solid;
+//     color: white;   
+//     background-color: transparent;
+//     outline: 0;
 
-    &::placeholder{
-        color: rgba(white,0.2);
-    }
-}
+//     &::placeholder{
+//         color: rgba(white,0.2);
+//     }
+// }
 
-.customer-form-table td{
-    padding: 2%;
-}
+// .customer-form-table td{
+//     padding: 2%;
+// }
 
-#btn-customer{
-    width: 35%;
-    font-size: 1.5vw;
-}
+// #btn-customer{
+//     width: 35%;
+//     font-size: 1.5vw;
+// }
