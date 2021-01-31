@@ -1,20 +1,22 @@
 <form [formGroup]="createProductForm" (ngSubmit)="create()"> <!-- inserire ngSubmit-->
     <div class="container">
-        <div class="header-page">PRODUCTS PAGE<span class="material-icons">
-            home
-            </span></div>
+        <div class="header-page">
+            <span>Products page</span>
+            <span id="home-link"><a href="/home" class="link">home</a></span>
+        </div>
+
         <div class="container-product-form">
             <div class="header">Create product</div>
             <table class="product-form-table">
                
                 <tr>
                     <td><input type="text" formControlName="name"
-                            placeholder="name" id="name"
-                            autocomplete="off"></td>
+                            placeholder="name" id="name" autocomplete="off"></td>
                 </tr>
                 <tr>
                     <td><input type="text" formControlName="description"
-                            placeholder="description" id="description" autocomplete="off">
+                            placeholder="description" id="description"
+                            autocomplete="off">
                     </td>
                 </tr>
                 <tr>
@@ -52,7 +54,7 @@
                     <th>DESCRIPTION</th>
                     <th>MEASURE UNIT</th>
                     <th>PRICE</th>
-                    <th colspan="2">&nbsp;</th>
+                    <th colspan="3">&nbsp;</th>
                 </tr>
                 <tr *ngFor="let product of prods | async; let i= index"
                     id="highlight-row-product">

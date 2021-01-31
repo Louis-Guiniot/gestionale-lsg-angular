@@ -2,7 +2,7 @@
     display: grid;
     height: 100vh;
     grid-template-columns: 1fr 2fr;
-    grid-template-rows:  0.3fr auto 1fr;
+    grid-template-rows:  auto auto 1fr;
     padding: 1% 1% 0 1%;
     margin-left: auto;
     margin-right: auto;
@@ -14,10 +14,10 @@
     grid-column-start: 1;
     grid-column-end: 3;
     display: grid;
-    grid-template-columns: 90% 10%;
+    grid-template-columns: 1fr 1fr;
     margin: 0;
     width: auto;
-    padding: 2%;
+    padding: 1%;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
     background-color: rgb(88, 119, 255);
@@ -25,14 +25,18 @@
     font-size: 2em;
     font-weight: bold;
     vertical-align: middle;
+    color: white;
 }
 
-.material-icons{
-    font-size: 2em;
+.header-page span{
+    font-size: 3vw;
     height: 100%;
-    text-align: right;
     display: table;
     vertical-align: middle;
+}
+
+#home-link{
+    text-align: right;
 }
 
 //ANCHOR SHARED
@@ -44,7 +48,7 @@
     border-top-right-radius: 5px;
     background-color: rgb(88, 119, 255);
     border-bottom: 2px black solid;
-    font-size: 2em;
+    font-size: 2vw;
 }
 
 .btn{
@@ -54,7 +58,7 @@
     width: 50%;
     padding: 3%;
     border-radius: 5px;
-    font-size: 1em;
+    font-size: 1.3vw;
 }
 
 .btn:hover{
@@ -94,7 +98,7 @@
 
 .products-table{  
     width: 100%;
-    font-size: 1.3em;
+    font-size: 1.5vw;
     border-collapse: collapse;
     overflow: auto;
 }
@@ -121,9 +125,16 @@
 
 .link{
     text-decoration: none;
+    color: white;
     & :focus{
         outline: none;
     }
+}
+
+#insert:hover{
+    color: rgb(36, 167, 57);
+    cursor: pointer;
+    text-decoration: underline;
 }
 
 #edit:hover{
@@ -136,6 +147,10 @@
     color: red;
     cursor: pointer;
     text-decoration: underline;
+}
+
+.material-icons{
+    font-size: 1.5vw;
 }
 
 //ANCHOR productS CREATE
@@ -159,7 +174,7 @@
 .product-form-table input{
     padding:2%;
     width: 95%;
-    font-size: 1.5em;
+    font-size: 2vw;
     border: 0;
 
     border-bottom: 1px rgba(white,0.2) solid;
@@ -179,5 +194,5 @@
 #btn-product{
     width: 35%;
     margin-top: 4%;
-    font-size: 1em;
+    font-size: 1.5vw;
 }

@@ -1,11 +1,37 @@
-<form  [formGroup]="customerUpdateForm" (ngSubmit)="update()">
-    
-    <div *ngFor="let element of elements">
-        <div *ngIf="element.id==idN">
-            name: <input type="text" placeholder="{{element.name}}" formControlName="name" id="name">
-            surnname: <input type="text" placeholder="{{element.surname}}" formControlName="surname" id="name">
-            email: <input type="text" placeholder="{{element.email}}" formControlName="email" id="name">
-        </div> 
+<form [formGroup]="customerUpdateForm" (ngSubmit)="update()">
+
+    <div class="container">
+        <div class="header-page">
+            <span>Customer update page</span>
+            <span id="home-link"><a href="/home" class="link">home</a></span>
+        </div>
+
+        <div class="container-update-customer">
+            <div *ngFor="let element of elements">
+                <div *ngIf="element.id==idN">
+                    <div class="header">Informations</div>
+                    <table class="update-customer-table">
+                        <tr>
+                            <td id="td-left"><label>name</label></td>
+                            <td><input type="text" placeholder="{{element.name}}" formControlName="name" id="name"></td>
+                        </tr>
+                        <tr>
+                            <td id="td-left"><label>surname</label></td>
+                            <td><input type="text" placeholder="{{element.surname}}" formControlName="surname"
+                                    id="name"></td>
+                        </tr>
+                        <tr>
+                            <td id="td-left"><label>email</label></td>
+                            <td><input type="text" placeholder="{{element.email}}" formControlName="email" id="name">
+                            </td>
+                        </tr>
+                        <tr>
+                            <!-- PROVA -->
+                            <td colspan="2" id="center-btn"><button type="submit" class="btn"><span class="btn-text">update</span></button></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
     </div>
-    <button type="submit">update</button>
 </form>
