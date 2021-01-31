@@ -9,7 +9,7 @@ import { HttpCommunicationsService } from "src/app/core/HttpCommunications/http-
 
 import { Response } from '../../core/model/Response.interface';
 
-import { createInvoice, initInvoices, retrieveAllInvoices, retrieveLastInvoice } from "./invoice.actions";
+import { createInvoice, deleteInvoice, initInvoices, retrieveAllInvoices, retrieveLastInvoice } from "./invoice.actions";
 
 
 @Injectable()
@@ -21,6 +21,18 @@ export class InvoicesEffects {
         console.log("chiamata effettuata")
         return this.http.retrieveGetCall<Response>("invoice/findAll");
     }
+
+    deleteInvoice(id:string):Observable<Response>{
+        return this.http.retrievePostCall("invoice/delete",{id})
+    }
+    deleteInvoice$: Observable<Action> = createEffect(() => this.actions$.pipe(
+        ofType(deleteInvoice),
+        switchMap((action) => this.deleteInvoice(
+            action.id).pipe(
+            map((response) => initInvoices({ response })),
+            tap(()=>this.router.navigateByUrl('/home'))
+        ))
+    ));
 
     retreiveLastInvoice(): Observable<Response> {
         console.log("chiamata effettuata")

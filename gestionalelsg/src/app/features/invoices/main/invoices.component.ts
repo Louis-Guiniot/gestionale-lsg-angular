@@ -23,6 +23,9 @@ export class InvoicesComponent implements OnInit {
   get invoices(): Observable<Invoice[]>{
     return this.store.pipe(select(selectInvoices))
   }
+  delete(id:string){
+    this.invoicesService.deleteProduct(id)
+  }
 
 
 }

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { retrieveAllInvoices } from 'src/app/redux/invoice/invoice.actions';
+import { deleteInvoice, retrieveAllInvoices } from 'src/app/redux/invoice/invoice.actions';
 
 @Injectable({
   providedIn: 'root'
@@ -12,5 +12,9 @@ export class InvoicesService {
 
   retrieveAllInvoices(){
     this.store.dispatch(retrieveAllInvoices());
+  }
+
+  deleteProduct(id:string){
+    this.store.dispatch(deleteInvoice({id}))
   }
 }
