@@ -11,13 +11,13 @@
     margin-left: auto;
     margin-right: auto;
     width: 100%;
-    grid-template-columns: repeat(3, 1.5fr);
-    grid-template-rows: auto;
+    grid-template-columns: repeat(3, 1fr);
 }
 
 a{
     text-decoration: none;
-
+    width: auto;
+    font-size: 3.5vw;
     &:active{
         text-decoration: none;
     }
@@ -28,11 +28,11 @@ a{
 }
 
 .grid-part{
+    width: auto;
     height: 40vh;
     padding: 5%;
     text-align: center;
-    font-weight: bold;
-    font-size: 2em;
+    font-weight: bolder;
     color: white;
 }
 
@@ -52,6 +52,7 @@ a{
     transition:all 1s;
     border-bottom-left-radius: 25px;
     border-top-left-radius: 25px;
+   
 
     &:hover{
         transform: translateY(-15%);
@@ -59,10 +60,26 @@ a{
     }
 }
 
+.one{
+     grid-column-start: 1;
+    grid-column-end: 2;
+}
+
+.two{
+       grid-column-start: 2;
+    grid-column-end: 3; 
+}
+
+.three{
+    grid-column-start: 3;
+    grid-column-end: 4;
+}
+
 #cust{
     width: auto;
     background-color: #033cff;
     transition:all 1s;
+
 
     &:hover{
         transform: translateY(15%);       
@@ -77,6 +94,8 @@ a{
     transition:all 1s;
     border-bottom-right-radius: 25px;
     border-top-right-radius: 25px;
+
+
     &:hover{
         transform: translateY(-15%); 
         border-top-left-radius: 25px;     

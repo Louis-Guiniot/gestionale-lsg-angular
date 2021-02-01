@@ -25,7 +25,7 @@
                     <td id="select-td">
                         <label for="">choose measure</label>    
                         <select formControlName="measureUnit" id="select-unit" required>
-                            <option *ngFor="let unit of measures | async" value="{{unit.type}}">{{unit.type}}</option>
+                            <option *ngFor="let unit of measures | async" value="{{unit.type}}" id="option">{{unit.type}}</option>
                         </select>   
                     </td>
                 </tr>
