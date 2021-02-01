@@ -44,8 +44,11 @@
                     <th>date</th>
                     <th>sale</th>
                     <th>iva</th>
-                    <th>price - iva</th>
-                    <th>total</th>
+                    <th>imponibile</th>
+                    <th>totale merce</th>
+                    <th>condizione pagamento</th>
+                    <th>tipo documento</th>
+                    <th>totale dei servizi</th>
                     <th>&nsub;</th>
                 </thead>
                 <tr *ngFor="let inv of invoices | async; let i= index"
@@ -61,6 +64,9 @@
                     <td>{{inv.iva}}%</td>
                     <td>{{inv.ivaPrice}}$</td>
                     <td>{{inv.totalToPay}}$</td>
+                    <td>{{inv.condizionePagamento}} </td>
+                    <td>{{inv.tipoDocumento}} </td>
+                    <td>{{inv.totaleServizi}}$</td>
                     <td style="display: none;">{{inv.id}}</td>
                     <!-- <td id="td-btn"><a (click)="update(inv.id);" class="link"
                             id="edit"><span class="material-icons">

@@ -52,6 +52,7 @@
                     <th>DESCRIPTION</th>
                     <th>MEASURE UNIT</th>
                     <th>PRICE</th>
+                    <th>SCONTO</th>
                     <th colspan="3">&nbsp;</th>
                 </thead>
                 <tr *ngFor="let product of prods | async; let i= index"
@@ -62,7 +63,7 @@
                     <td>{{product.description}}</td>
                     <td>{{product.measureUnit}}</td>
                     <td>{{product.price}}$</td>
-
+                    <td>{{product.scontoProd}}%</td>
                     <!-- devi inserire metodi -->
                     <td id="td-btn"><a (click)="update(product.id)"class="link"
                             id="edit"><span class="material-icons">
