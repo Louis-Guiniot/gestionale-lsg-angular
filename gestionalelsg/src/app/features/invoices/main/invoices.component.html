@@ -38,18 +38,18 @@
                 <thead>
                     <th>id</th>
                     <th>code</th>
-                    <th>first price</th>
-                    <th>costumer id</th>
+                    <th>f. price</th>
+                    <th>cust. id</th>
                     <th>products</th>
                     <th>date</th>
                     <th>sale</th>
                     <th>iva</th>
-                    <th>imponibile</th>
-                    <th>totale merce</th>
-                    <th>condizione pagamento</th>
-                    <th>tipo documento</th>
-                    <th>totale dei servizi</th>
-                    <th>&nsub;</th>
+                    <th>taxable</th>
+                    <th>tot. goods</th>
+                    <th>pay condition</th>
+                    <th>doc. type</th>
+                    <th>tot. services</th>
+                    <th>&nbsp;</th>
                 </thead>
                 <tr *ngFor="let inv of invoices | async; let i= index"
                     id="highlight-row-invoice">

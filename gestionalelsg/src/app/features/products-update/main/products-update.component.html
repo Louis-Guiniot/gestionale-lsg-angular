@@ -1,16 +1,43 @@
-<form  [formGroup]="productsUpdateForm" (ngSubmit)="update()">
-    
-    <div *ngFor="let element of elements">
-        <div *ngIf="element.id==idN">
-            
-            description: <input type="text" placeholder="{{element.description}}" formControlName="description" id="name">
-            <!-- da vedere bene con le referenze in db -->
-            measure unit: <input type="text" placeholder="{{element.measureUnit}}" formControlName="measureUnit" id="name">
-            name: <input type="text" placeholder="{{element.name}}" formControlName="name" id="name">
-            price: <input type="text" placeholder="{{element.price}}" formControlName="price" id="name">
-            sconto:<input type="text" placeholder="{{element.scontoProd}}" formControlName="sconto" id="name">
-            
-        </div> 
+<form [formGroup]="productsUpdateForm" (ngSubmit)="update()">
+
+    <div class="container">
+        <div class="header-page">
+            <span>Product update page</span>
+            <span id="home-link"><a href="/home" class="link">home</a></span>
+        </div>
+
+        <div class="container-update-product">
+            <div *ngFor="let element of elements">
+                <div *ngIf="element.id==idN">
+                    <div class="header">Informations</div>
+                    <table class="update-product-table">
+                        <tr>
+                            <td id="td-left"><label>name</label></td>
+                            <td><input type="text" placeholder="{{element.name}}" formControlName="name" id="name"></td>
+                        </tr>
+                        <tr>
+                            <td id="td-left"><label>description</label></td>
+                            <td><input type="text" placeholder="{{element.description}}" formControlName="description" id="name"></td>
+                        </tr>
+                        <tr>
+                            <td id="td-left"><label>measure unit</label></td>
+                            <td><input type="text" placeholder="{{element.measureUnit}}" formControlName="measureUnit" id="name"></td>
+                        </tr>
+                        <tr>
+                            <td id="td-left"><label>price</label></td>
+                            <td><input type="text" placeholder="{{element.price}}" formControlName="price" id="name"></td>
+                        </tr>
+                        <tr>
+                            <td id="td-left"><label>sale</label></td>
+                            <td><input type="text" placeholder="{{element.scontoProd}}" formControlName="sconto" id="name"></td>
+                        </tr>
+                        <tr>
+                            <!-- PROVA -->
+                            <td colspan="2" id="center-btn"><button type="submit" class="btn">update</button></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
     </div>
-    <button type="submit">update</button>
 </form>

@@ -83,7 +83,7 @@
     grid-row-start: 2;
     grid-row-end: 4;
     width: auto;
-    height: 20vh;
+    height: 60vh;
     color: rgba( #A9AABC, 1);
     border: 2px black solid;
     background-color: rgba(#012051,0.9);
@@ -100,12 +100,16 @@
 }
 
 .invoices-table th{
+    width: auto;
     font-weight: bold;
-    padding: 1%;
+    padding-top: 1%;
+    padding-left: 1%;
+    padding-bottom: 1%;
     background-color: rgb(88, 119, 255);
     color: white;
     position: sticky;
     top: 0;
+    word-break: break-word;
 }
 
 thead{
