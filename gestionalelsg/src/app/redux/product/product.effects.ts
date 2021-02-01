@@ -24,8 +24,8 @@ export class ProductsEffects {
         return this.http.retrieveGetCall<Response>("invoice/findAll");
     }
 
-    findUpdateProduct(id:string, description:string, measureUnit:string,name:string,price:string): Observable<Response>{
-        return this.http.retrievePostCall<Response>('product/update',{id,description,measureUnit,name,price});
+    findUpdateProduct(id:string, description:string, measureUnit:string,name:string,price:string,sconto:string): Observable<Response>{
+        return this.http.retrievePostCall<Response>('product/update',{id,description,measureUnit,name,price,sconto});
     }
 
     deleteProduct(id:string){
@@ -47,8 +47,8 @@ export class ProductsEffects {
         return this.http.retrieveGetCall<Response>("invoice/findLast");
     }
 
-    createProduct( description:string, measureUnit:string, name:string, price:string): Observable<Response>{
-        return this.http.retrievePostCall<Response>('product/create',{description, measureUnit,name, price});
+    createProduct( description:string, measureUnit:string, name:string, price:string, scontoProd:string): Observable<Response>{
+        return this.http.retrievePostCall<Response>('product/create',{description, measureUnit,name, price,scontoProd});
     }
 
     //sbagliato metterlo qua ma 2 much sbatti
@@ -72,7 +72,8 @@ export class ProductsEffects {
             action.description,
             action.measureUnit,
             action.name,
-            action.price).pipe(
+            action.price,
+            action.sconto).pipe(
             map((response) => initProducts({ response })),
             tap(()=>this.router.navigateByUrl('/home'))
         ))
@@ -91,7 +92,8 @@ export class ProductsEffects {
             action.description,
             action.measureUnit,
             action.name,
-            action.price).pipe(
+            action.price,
+            action.scontoProd).pipe(
             map((response) => initProducts({ response }))
             ,tap(()=>this.router.navigateByUrl('/products'))
         ))

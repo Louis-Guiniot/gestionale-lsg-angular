@@ -33,7 +33,8 @@ export class ProductsUpdateComponent implements OnInit {
       name: ['', Validators.required],
       description: ['', Validators.required],
       measureUnit:['', Validators.required],
-      price:['', Validators.required]
+      price:['', Validators.required],
+      sconto:['', Validators.required]
     })
 
     console.log("l'id dell url: "+this.id)
@@ -45,7 +46,8 @@ export class ProductsUpdateComponent implements OnInit {
     this.productUpdateService.updateProduct(this.id,this.productsUpdateForm.value.description,
                                             this.productsUpdateForm.value.measureUnit,
                                             this.productsUpdateForm.value.name,
-                                            this.productsUpdateForm.value.price);
+                                            this.productsUpdateForm.value.price,
+                                            this.productsUpdateForm.value.sconto);
   }
 
 }

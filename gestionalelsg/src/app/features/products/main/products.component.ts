@@ -33,7 +33,8 @@ export class ProductsComponent implements OnInit {
       name: ['', Validators.required],
       description: ['', Validators.required],
       measureUnit:['', Validators.required],
-      price:['', Validators.required]
+      price:['', Validators.required],
+      sconto:['', Validators.required]
     })
 
 
@@ -80,7 +81,7 @@ export class ProductsComponent implements OnInit {
 
   create(){
     
-    this.pruductService.createProduct(this.createProductForm.value.description,this.createProductForm.value.measureUnit,this.createProductForm.value.name,this.createProductForm.value.price)
+    this.pruductService.createProduct(this.createProductForm.value.description,this.createProductForm.value.measureUnit,this.createProductForm.value.name,this.createProductForm.value.price, this.createProductForm.value.sconto)
     
   }
   delete(id:string){

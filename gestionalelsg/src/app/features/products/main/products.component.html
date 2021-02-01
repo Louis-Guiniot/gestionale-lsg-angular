@@ -35,6 +35,11 @@
                     </td>
                 </tr>
                 <tr>
+                    <td><input type="text" formControlName="sconto"
+                            placeholder="sconto" id="sconto" autocomplete="off">
+                    </td>
+                </tr>
+                <tr>
                     <td><button type="submit" class="btn" id="btn-invoice">
                             create product</button>
                     </td>
@@ -63,7 +68,7 @@
                     <td>{{product.description}}</td>
                     <td>{{product.measureUnit}}</td>
                     <td>{{product.price}}$</td>
-                    <td>{{product.scontoProd}}%</td>
+                    <td>{{product.scontoProd}}</td>
                     <!-- devi inserire metodi -->
                     <td id="td-btn"><a (click)="update(product.id)"class="link"
                             id="edit"><span class="material-icons">
