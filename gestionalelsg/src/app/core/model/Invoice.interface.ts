@@ -9,4 +9,8 @@ export interface Invoice{
     iva:string;
     ivaPrice:string;
     totalToPay:string;
+    totaleServizi:string;
+    imponibile:string;
+    tipoDocumento:string;
+    condizionePagamento:string;
 }

@@ -6,4 +6,6 @@ export interface Product{
     price:string;
     measureUnit:string;
     img:string;
+    measureUnit_id:string;
+    scontoProd:string;
 }
