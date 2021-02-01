@@ -84,7 +84,7 @@
     grid-row-end: 4;
     width: auto;
     height: 20vh;
-    color: white;
+    color: rgba( #A9AABC, 1);
     border: 2px black solid;
     background-color: rgba(#012051,0.9);
     text-align: left;
@@ -103,6 +103,7 @@
     font-weight: bold;
     padding: 1%;
     background-color: rgb(88, 119, 255);
+    color: white;
     position: sticky;
     top: 0;
 }
@@ -128,6 +129,7 @@ thead{
 #highlight-row-invoice{
     &:hover{
             background-color: rgba( #A9AABC, 0.5);
+            color: white;
     }
 }
 

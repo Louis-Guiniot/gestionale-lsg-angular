@@ -115,9 +115,6 @@
     position: sticky;
     top: 0;
     color: white;
-}
-
-thead{
     border-bottom: 2px black solid;
 }
 
@@ -138,7 +135,7 @@ thead{
 
 .link {
     text-decoration: none;
-    color: rgba( #A9AABC, 1);
+    color: white;
     & :focus{
         outline: none;
     }
