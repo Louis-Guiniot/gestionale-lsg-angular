@@ -58,6 +58,10 @@ get elements(): Observable<Customer[]> {
       queryParamsHandling: 'merge',
     });
   }
+
+  clear(){
+    this.customerForm.reset();
+  }
   
  
 

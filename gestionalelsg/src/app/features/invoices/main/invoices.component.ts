@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
@@ -15,11 +15,17 @@ import { InvoicesService } from '../services/invoices.service';
 export class InvoicesComponent implements OnInit {
 
   invoiceForm: FormGroup
-  constructor(private store: Store, private route: Router, private invoicesService: InvoicesService) { 
+
+  constructor(private store: Store, private route: Router, private invoicesService: InvoicesService, private fb:FormBuilder) { 
     this.invoicesService.retrieveAllInvoices()
   }
 
   ngOnInit(): void {
+
+    this.invoiceForm=this.fb.group({
+      idCustomer: ['', Validators.required],
+      sale: ['', Validators.required],
+    })
   }
 
   get invoices(): Observable<Invoice[]>{
@@ -29,5 +35,8 @@ export class InvoicesComponent implements OnInit {
     this.invoicesService.deleteProduct(id)
   }
 
+  clear(){
+    this.invoiceForm.reset();
+  }
 
 }

@@ -1,4 +1,5 @@
-<form [formGroup]="createProductForm" (ngSubmit)="create()"> <!-- inserire ngSubmit-->
+<form [formGroup]="createProductForm" (ngSubmit)="create()">
+    <!-- inserire ngSubmit-->
     <div class="container">
         <div class="header-page">
             <span>Products page</span>
@@ -8,41 +9,42 @@
 
         <!--AGGIUNGERE UNITA MISURA : NUMERO-->
         <div class="container-product-form">
-            <div class="header">Create product</div>
+            <div class="header">CREATE PRODUCT</div>
             <table class="product-form-table">
-               
+
                 <tr>
-                    <td><input type="text" formControlName="name"
-                            placeholder="name" id="name" autocomplete="off"></td>
+                    <td><input type="text" formControlName="name" placeholder="name" id="name" autocomplete="off"></td>
                 </tr>
                 <tr>
-                    <td><input type="text" formControlName="description"
-                            placeholder="description" id="description"
+                    <td><input type="text" formControlName="description" placeholder="description" id="description"
                             autocomplete="off">
                     </td>
                 </tr>
                 <tr>
                     <td id="select-td">
-                        <label for="">choose measure</label>    
+                        <label for="">choose measure</label>
                         <select formControlName="measureUnit" id="select-unit" required>
-                            <option *ngFor="let unit of measures | async" value="{{unit.type}}" id="option">{{unit.type}}</option>
-                        </select>   
+                            <option *ngFor="let unit of measures | async" value="{{unit.type}}" id="option">
+                                {{unit.type}}</option>
+                        </select>
                     </td>
                 </tr>
                 <tr>
-                    <td><input type="text" formControlName="price"
-                            placeholder="price" id="price" autocomplete="off">
+                    <td><input type="text" formControlName="price" placeholder="price" id="price" autocomplete="off">
                     </td>
                 </tr>
                 <tr>
-                    <td><input type="text" formControlName="sconto"
-                            placeholder="sconto" id="sconto" autocomplete="off">
+                    <td><input type="text" formControlName="sconto" placeholder="sconto" id="sconto" autocomplete="off">
                     </td>
                 </tr>
                 <tr>
-                    <td><button type="submit" class="btn" id="btn-invoice">
+                    <td><button type="submit" class="btn" id="btn-sub">
                             create product</button>
                     </td>
+                </tr>
+                <tr>
+                    <td><button type="button" class="btn" id="btn-clear" (click)="clear()">
+                        clear</button></td>
                 </tr>
             </table>
         </div>
@@ -52,16 +54,18 @@
             <!-- <div class="header">{{product.name}}</div> -->
             <table class="products-table">
                 <thead>
-                    <th>CODE</th>
-                    <th>NAME</th>
-                    <th>DESCRIPTION</th>
-                    <th>MEASURE UNIT</th>
-                    <th>PRICE</th>
-                    <th>SCONTO</th>
-                    <th colspan="3">&nbsp;</th>
+                    <tr id="head-th">
+                        <th>CODE</th>
+                        <th>NAME</th>
+                        <th>DESCRIPTION</th>
+                        <th>MEASURE UNIT</th>
+                        <th>PRICE</th>
+                        <th>SCONTO</th>
+                        <th colspan="3">&nbsp;</th>
+                    </tr>
+
                 </thead>
-                <tr *ngFor="let product of prods | async; let i= index"
-                    id="highlight-row-product">
+                <tr *ngFor="let product of prods | async; let i= index" id="highlight-row-product">
                     <td style="display: none;">{{product.id}}</td>
                     <td>{{product.codeProduct}}</td>
                     <td>{{product.name}}</td>
@@ -70,11 +74,10 @@
                     <td>{{product.price}}$</td>
                     <td>{{product.scontoProd}}</td>
                     <!-- devi inserire metodi -->
-                    <td id="td-btn"><a (click)="update(product.id)"class="link"
-                            id="edit"><span class="material-icons">
+                    <td id="td-btn"><a (click)="update(product.id)" class="link" id="edit"><span class="material-icons">
                                 create
                             </span></a></td>
-                    <td id="td-btn"><a (click)="delete(product.id)"class="link" id="delete"><span
+                    <td id="td-btn"><a (click)="delete(product.id)" class="link" id="delete"><span
                                 class="material-icons">
                                 delete
                             </span></a></td>

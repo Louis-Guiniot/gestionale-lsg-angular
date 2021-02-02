@@ -87,6 +87,10 @@ export class ProductsComponent implements OnInit {
   delete(id:string){
     this.pruductService.deleteProduct(id)
   }
+
+  clear(){
+    this.createProductForm.reset();
+  }
   
 
 }

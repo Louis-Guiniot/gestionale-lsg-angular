@@ -4,81 +4,86 @@
     <div class="container">
         <div class="header-page">
             <span>Invoices page</span>
-            <span id="home-link"><a href="/home" class="link">home</a></span>
+            <span id="home-link" ><a href="/home" class="link">home</a></span>
         </div>
-        <!-- <div class="container-invoice-form">
-            <div class="header">Create invoice</div>
-            <table class="invoice-form-table">
-                <tr>
-                    <td><input type="text" formControlName="name"
-                            placeholder="name" id="name" autocomplete="off"></td>
-                </tr>
-                <tr>
-                    <td><input type="text" formControlName="surname"
-                            placeholder="surname" id="surname"
-                            autocomplete="off"></td>
-                </tr>
-                <tr>
-                    <td><input type="text" formControlName="email"
-                            placeholder="email" id="email" autocomplete="off">
-                    </td>
-                </tr>
-                <tr>
-                    <td><button type="submit" class="btn" id="btn-invoice">
-                            create invoice</button>
-                    </td>
-                </tr>
-            </table>
-        </div> -->
 
-        <div class="container-invoices">
             <!--PRODOTTI-->
             <!-- <div class="header">{{element.name}}</div> -->
-            <table class="invoices-table">
-                <thead>
-                    <th>id</th>
-                    <th>code</th>
-                    <th>f. price</th>
-                    <th>cust. id</th>
-                    <th>products</th>
-                    <th>date</th>
-                    <th>sale</th>
-                    <th>iva</th>
-                    <th>taxable</th>
-                    <th>tot. goods</th>
-                    <th>pay condition</th>
-                    <th>doc. type</th>
-                    <th>tot. services</th>
-                    <th>&nbsp;</th>
-                </thead>
-                <tr *ngFor="let inv of invoices | async; let i= index"
-                    id="highlight-row-invoice">
-                    <td>{{inv.id}}</td>
-                    <td> {{inv.codeInvoice}}</td>
-                    <td>{{inv.totalPrice}}$</td>
-                    <td>{{inv.idCustomer}}</td>
-                    <!-- quando hover mostro div con dati prodotti-->
-                    <td>{{inv.fields}}</td>
-                    <td>{{inv.dateTime}}</td>
-                    <td>{{inv.sconto}}%</td>
-                    <td>{{inv.iva}}%</td>
-                    <td>{{inv.ivaPrice}}$</td>
-                    <td>{{inv.totalToPay}}$</td>
-                    <td>{{inv.condizionePagamento}} </td>
-                    <td>{{inv.tipoDocumento}} </td>
-                    <td>{{inv.totaleServizi}}$</td>
-                    <td style="display: none;">{{inv.id}}</td>
-                    <!-- <td id="td-btn"><a (click)="update(inv.id);" class="link"
-                            id="edit"><span class="material-icons">
-                                create
-                            </span></a></td> -->
-                    <td id="td-btn"><a (click)="delete(inv.id);"
-                            class="link" id="delete"><span
-                                class="material-icons">
-                                delete
-                            </span></a></td>
+            <div class="container-invoices">
+                <table class="invoices-table">
+                    <thead>
+                        <tr id="head-th">
+                        <th>id</th>
+                        <th>code</th>
+                        <th>f_price</th>
+                        <th>cust_id</th>
+                        <th>products</th>
+                        <th>date</th>
+                        <th>sale</th>
+                        <th>iva</th>
+                        <th>taxable</th>
+                        <th>tot_goods</th>
+                        <th>pay_condition</th>
+                        <th>doc_type</th>
+                        <th>tot_services</th>
+                        <th>&nbsp;</th>
                 </tr>
-            </table>
-        </div>
+                    </thead>
+                    
+                    <tr *ngFor="let inv of invoices | async; let i= index"
+                        id="highlight-row-invoice">
+                        <td>{{inv.id}}</td>
+                        <td> {{inv.codeInvoice}}</td>
+                        <td>{{inv.totalPrice}}$</td>
+                        <td>{{inv.idCustomer}}</td>
+                        <!-- quando hover mostro div con dati prodotti-->
+                        <td>{{inv.fields}}</td>
+                        <!-- <td>{{inv.dateTime}}</td> -->
+                        <td>Martedi 22 febbraio 2010</td>
+                        <td>{{inv.sconto}}%</td>
+                        <td>{{inv.iva}}%</td>
+                        <td>{{inv.ivaPrice}}$</td>
+                        <td>{{inv.totalToPay}}$</td>
+                        <td>{{inv.condizionePagamento}}</td>
+                        <td>{{inv.tipoDocumento}} </td>
+                        <td>{{inv.totaleServizi}}$</td>
+                        <td style="display: none;">{{inv.id}}</td>
+                        <!-- <td id="td-btn"><a (click)="update(inv.id);" class="link"
+                                id="edit"><span class="material-icons">
+                                    create
+                                </span></a></td> -->
+                        <td id="td-btn"><a (click)="delete(inv.id);"
+                                class="link" id="delete"><span
+                                    class="material-icons">
+                                    delete
+                                </span></a></td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="container-invoice-form">
+                <div class="header">CREATE INVOICE</div>
+                <table class="invoice-form-table">
+                    <tr>
+                        <td><input type="text" formControlName="idCustomer"
+                                placeholder="idCustomer" id="idCustomer" autocomplete="off"></td>
+                    </tr>
+                    <tr>
+                        <td><input type="text" formControlName="sale"
+                                placeholder="sale %" id="sale"
+                                autocomplete="off"></td>
+                    </tr>
+                    <tr>
+                        <td><button type="submit" class="btn" id="btn-sub">
+                                create invoice</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><button type="button" class="btn" id="btn-clear" (click)="clear()">
+                                clear</button>
+                        </td>
+                    </tr>
+                </table>
+            </div>
     </div>
 </form>
