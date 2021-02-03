@@ -59,6 +59,7 @@
     grid-row-start: 2;
     grid-row-end: 4;
     width: auto;
+    height: 70vh;
     color: rgba( #A9AABC, 1);
     text-align: left;
     overflow: auto;
@@ -128,7 +129,7 @@ th{
 }
 
 #delete:hover{
-    color: red;
+    color: rgb(255, 88, 88);
     cursor: pointer;
     text-decoration: underline;
 }
