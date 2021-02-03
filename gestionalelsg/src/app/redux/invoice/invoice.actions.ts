@@ -4,7 +4,7 @@ import { Response } from '../../core/model/Response.interface';
 
 
 //sbagliato no sbatti altro
-export const createInvoice = createAction('[Invoice] creazione fattura', props<{prodottiLista:string, totalPrice:string, customerId:string, sconto:string}>());
+export const createInvoice = createAction('[Invoice] creazione fattura', props<{customerId:string, prodottiLista:string, date:string, sconto:string, imponibile:string, condizione:string, docType:string}>());
 export const retrieveAllInvoices = createAction('[Invoice] invoice');
 export const retrieveLastInvoice = createAction('[Invoice] last invoice');
 export const initInvoices = createAction('[Invoice] initInvoices', props<{response: Response}>());
