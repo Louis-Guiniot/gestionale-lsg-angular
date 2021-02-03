@@ -23,8 +23,14 @@ export class InvoicesComponent implements OnInit {
   ngOnInit(): void {
 
     this.invoiceForm=this.fb.group({
+      products:['', Validators.required],
+      date:['', Validators.required],
+      sale:['', Validators.required],
+      imponibile:['', Validators.required],
+      condizionePagamento:['', Validators.required],
+      docType:['', Validators.required],
       idCustomer: ['', Validators.required],
-      sale: ['', Validators.required],
+      
     })
   }
 
@@ -37,6 +43,18 @@ export class InvoicesComponent implements OnInit {
 
   clear(){
     this.invoiceForm.reset();
+  }
+  createInvoice(){
+    this.invoicesService.create(
+      this.invoiceForm.value.products,
+      this.invoiceForm.value.date,
+      this.invoiceForm.value.sale,
+      this.invoiceForm.value.imponibile,
+      this.invoiceForm.value.condizionePagamento,
+      this.invoiceForm.value.docType,
+      this.invoiceForm.value.idCustomer
+
+      )
   }
 
 }

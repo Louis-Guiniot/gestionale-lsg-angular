@@ -1,6 +1,6 @@
 
 
- <form ><!-- inserire attributi form -->
+ <form [formGroup]="invoiceForm" (ngSubmit)="createInvoice()"><!-- inserire attributi form -->
     <div class="container">
         <div class="header-page">
             <span>Invoices page</span>
@@ -64,13 +64,41 @@
             <div class="container-invoice-form">
                 <div class="header">CREATE INVOICE</div>
                 <table class="invoice-form-table">
+                    
                     <tr>
                         <td><input type="text" formControlName="idCustomer"
                                 placeholder="idCustomer" id="idCustomer" autocomplete="off"></td>
                     </tr>
                     <tr>
+                        <td><input type="text" formControlName="products"
+                                placeholder="products" id="products"
+                                autocomplete="off"></td>
+                    </tr>
+                    <tr>
+                        <td><input type="text" formControlName="date"
+                                placeholder="date" id="date"
+                                autocomplete="off"></td>
+                    </tr>
+                 
+                    
+                    <tr>
                         <td><input type="text" formControlName="sale"
                                 placeholder="sale %" id="sale"
+                                autocomplete="off"></td>
+                    </tr>
+                    <tr>
+                        <td><input type="text" formControlName="imponibile"
+                                placeholder="imponibile" id="imponibile"
+                                autocomplete="off"></td>
+                    </tr>
+                    <tr>
+                        <td><input type="text" formControlName="condizionePagamento"
+                                placeholder="condizionePagamento" id="condizionePagamento"
+                                autocomplete="off"></td>
+                    </tr>
+                    <tr>
+                        <td><input type="text" formControlName="docType"
+                                placeholder="docType" id="docType"
                                 autocomplete="off"></td>
                     </tr>
                     <tr>
