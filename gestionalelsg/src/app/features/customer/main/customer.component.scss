@@ -59,79 +59,7 @@
     grid-row-start: 2;
     grid-row-end: 4;
     width: auto;
-    height: 70vh;
-    color: rgba( #A9AABC, 1);
-    text-align: left;
-    overflow: auto;
-    background-color: rgba(#012051,0.9);
-    box-shadow: 0.7vw 0.7vw 0.5vw rgba( #A9AABC, 1);
-    border: 2px black solid;
-}
-
-.customers-table{  
-    width: 100%;
-    font-size: 1.5vw;
-    border-collapse: collapse;
-    position: relative;
-}
-
-th{
-    position: sticky;
-    top: 0;
-    background-color: rgb(88, 119, 255);
-    color: #ffffff;
-    text-align: left;
-    text-transform: uppercase;
-    height: 6vh;
-}
-
-.customers-table th{
-    padding: 0.2vw 1vw;
-}
-
-.customers-table td {
-    padding-top: 0.5vw;
-    padding-bottom: 0.5vw;
-    padding-left: 1vw;
-    padding-right: 1vw;
-    word-wrap: break-word;
-    white-space: nowrap;
-}
-
-#div-prod{
-    visibility: hidden;
     color: black;
-}
-
-#head-th{
-    border-bottom: 2px black solid;
-}
-
-#highlight-row-customer{
-    &:hover{
-            background-color: rgba( #A9AABC, 0.5);
-            color: white;
-    }
-}
-
-.link{
-    text-decoration: none;
-    color: white;
-    & :focus{
-        outline: none;
-    }
-}
-
-#edit:hover{
-    color: rgb(88, 119, 255);
-    cursor: pointer;
-    text-decoration: underline;
-}
-
-#delete:hover{
-    color: rgb(255, 88, 88);
-    cursor: pointer;
-    text-decoration: underline;
 }
 
 //ANCHOR customer form
