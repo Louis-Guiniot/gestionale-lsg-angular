@@ -1,6 +1,8 @@
 export interface Customer{
     id?: number;
-    name: string;
-    surname: string;
     email:string;
+    partivaIva:string;
+    ragioneSociale:string;
+    residenza:string;
+    sede:string;
 }
