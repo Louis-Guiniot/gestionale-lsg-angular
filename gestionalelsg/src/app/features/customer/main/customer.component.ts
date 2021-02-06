@@ -90,13 +90,19 @@ export class CustomerComponent implements OnInit{
     this.customerForm = this.fb.group({
       email: ['', Validators.required],
       name: ['', Validators.required],
-      surname: ['', Validators.required],
+      ragioneSociale: ['', Validators.required],
+      residenza: ['', Validators.required],
+      sede: ['', Validators.required],
+      partitaIva: ['', Validators.required]
     })
 
     this.customerFormUpdate = this.fb.group({
       email: ['', Validators.required],
       name: ['', Validators.required],
-      surname: ['', Validators.required],
+      ragioneSociale: ['', Validators.required],
+      residenza: ['', Validators.required],
+      sede: ['', Validators.required],
+      partitaIva: ['', Validators.required]
     })
 
     //   this.store.pipe(select(selectCustomers)).subscribe((customers) => {
@@ -115,7 +121,7 @@ export class CustomerComponent implements OnInit{
     console.log("email: " + this.customerForm.value.email)
     console.log("nome: " + this.customerForm.value.name)
     console.log("cognome: " + this.customerForm.value.surname)
-    this.customerService.createCustomer(this.customerForm.value.email, this.customerForm.value.name, this.customerForm.value.surname)
+    this.customerService.createCustomer(this.customerForm.value.email,  this.customerForm.value.ragioneSociale, this.customerForm.value.partitaIva, this.customerForm.value.sede , this.customerForm.value.residenza, this.customerForm.value.name)
   }
 
   deleteCust() {

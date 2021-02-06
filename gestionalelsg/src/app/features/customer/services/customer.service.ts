@@ -12,8 +12,8 @@ export class CustomerService {
 
   constructor(private store: Store) { }
 
-  createCustomer(email:string, name:string, surname:string){
-    this.store.dispatch(createCustomer({email, name, surname}))
+  createCustomer(email:string, ragioneSociale:string, partitaIva:string,sede:string,residenza:string,name:string){
+    this.store.dispatch(createCustomer({email,ragioneSociale, partitaIva,sede,residenza, name}))
   }
   
   deleteCustomer(id:string){

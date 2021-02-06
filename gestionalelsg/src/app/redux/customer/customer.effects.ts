@@ -18,8 +18,8 @@ export class CustomerEffects {
     }
 
     
-    createCustomer(email: string, name: string, surname:string): Observable<Response>{
-        return this.http.retrievePostCall<Response>('customer/create',{email,name,surname});
+    createCustomer(email:string, ragioneSociale:string, partitaIva:string,sede:string,residenza:string,name:string): Observable<Response>{
+        return this.http.retrievePostCall<Response>('customer/create',{email,ragioneSociale,partitaIva,sede,residenza,name});
     }
 
     findUpdateCustomer(id:string, name:string,surname:string,email:string){
@@ -63,8 +63,11 @@ export class CustomerEffects {
         ofType(createCustomer),
         switchMap((action) => this.createCustomer(
             action.email,
-            action.name,
-            action.surname).pipe(
+            action.ragioneSociale,
+            action.partitaIva,
+            action.sede,
+            action.residenza,
+            action.name).pipe(
             map((response) => initCustomers({ response }))
             ,tap(()=>this.router.navigateByUrl('/home'))
         ))
