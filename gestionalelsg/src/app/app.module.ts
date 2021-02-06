@@ -14,6 +14,8 @@ import { InvoicesEffects } from './redux/invoice/invoice.effects';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CustomerEffects } from './redux/customer/customer.effects';
 import { MeasureEffects } from './redux/measure/measure.effects';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 @NgModule({
@@ -36,6 +38,7 @@ import { MeasureEffects } from './redux/measure/measure.effects';
        
      ]
      ),
+     NgbModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -27,6 +27,7 @@ export class CustomerEffects {
     }
 
     deleteCustomer(id: string): Observable<Response>{
+        console.log(this.http.retrievePostCall<Response>('customer/delete',{id}));
         return this.http.retrievePostCall<Response>('customer/delete',{id});
     }
 
