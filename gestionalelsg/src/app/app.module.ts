@@ -15,6 +15,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CustomerEffects } from './redux/customer/customer.effects';
 import { MeasureEffects } from './redux/measure/measure.effects';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import {MatTabsModule} from '@angular/material/tabs';
+
+
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
@@ -29,6 +32,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     HttpClientModule,
     CoreModule,
     HttpModule,
+   
+    ReactiveFormsModule,
+ 
     StoreModule.forRoot(reducers),
      EffectsModule.forRoot([
       InvoicesEffects, 
@@ -40,7 +46,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
      ),
      NgbModule,
   ],
-  providers: [],
+  providers:[],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
