@@ -1,30 +1,78 @@
 <div class="page-content">
-LOUIS ESCI I SOLDI, TROIA
-	
+	LOUIS ESCI I SOLDI, TROIA
+
 	<div class="tabbed">
 		<input type="radio" id="tab1" name="css-tabs" checked>
 		<input type="radio" id="tab2" name="css-tabs">
 		<input type="radio" id="tab3" name="css-tabs">
-		
+
 		<ul class="tabs">
 			<li class="tab"><label for="tab1">FATTURA TESTA</label></li>
 			<li class="tab"><label for="tab2">FATTURA RIGHE</label></li>
 			<li class="tab"><label for="tab3">FATTURA CODA</label></li>
 		</ul>
-		
+
 		<div class="tab-content">
 			<h4>FATTURA TESTA</h4>
-			<p>louis</p>
+			<table>
+				<thead>
+					<th>cust_id</th>
+					<th>data</th>
+					<th>code</th><!-- numero fattura -->
+					<th>pay_condition</th>
+					<th>doc_type</th>
+					<th>sale</th>
+				</thead>
+
+
+
+				<tr *ngFor="let inv of invoices | async; let i= index" id="highlight-row-invoice">
+					<td>{{inv.idCustomer}}</td>
+					<td>{{inv.dateTime}}</td>
+					<td> {{inv.codeInvoice}}</td>
+					<td>{{inv.condizionePagamento}}</td>
+					<td>{{inv.tipoDocumento}} </td>
+					<td>{{inv.sconto}}%</td>
+
+					<td id="td-btn"><a (click)="delete(inv.id);" class="link" id="delete"><span class="material-icons">
+								delete
+							</span></a></td>
+				</tr>
+			</table>
 		</div>
-		
+
 		<div class="tab-content">
 			<h4>FATTURA RIGHE</h4>
-			<p>esci</p>
+		<!-- mancano i campi: quantità, importo unitario, sconto formula, prezzo netto, importo sconto, imposta-->
+			<table>
+				<thead>
+					<th>articles</th>
+					<!-- <th>description</th> -->
+					<!-- <th>measure unit</th> -->
+					<th>taxable</th>
+					<th>iva</th>
+					
+				</thead>
+
+
+
+				<tr *ngFor="let inv of invoices | async; let i= index" id="highlight-row-invoice">
+					<td>{{inv.fields}}</td>
+					<!-- <td>{{inv.description}}</td>
+					<td>{{inv.measure}}</td> -->
+					<td>{{inv.ivaPrice}}$</td>
+					<td>{{inv.iva}}</td>
+					
+
+					<td id="td-btn"><a (click)="delete(inv.id);" class="link" id="delete"><span class="material-icons">
+								delete
+							</span></a></td>
+				</tr>
+			</table>
 		</div>
-		
+
 		<div class="tab-content">
 			<h4>FATTURA CODA</h4>
-	<p>i soldi</p>
+			<p>i soldi</p>
 		</div>
 	</div>
-	

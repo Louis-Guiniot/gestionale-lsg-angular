@@ -1,5 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder } from '@angular/forms';
+import { Router } from '@angular/router';
+import { select, Store } from '@ngrx/store';
 import { Observable, Observer } from 'rxjs';
+import { Invoice } from 'src/app/core/model/Invoice.interface';
+import { selectInvoices } from 'src/app/redux/invoice';
+import { InvoicesService } from '../../invoices/services/invoices.service';
 
 
 export interface ExampleTab {
@@ -14,19 +20,17 @@ export interface ExampleTab {
 })
 
 
-export class TabbedInvoicesComponent  {
+export class TabbedInvoicesComponent implements OnInit{
   asyncTabs: Observable<ExampleTab[]>;
 
-  constructor() {
-    this.asyncTabs = new Observable((observer: Observer<ExampleTab[]>) => {
-      setTimeout(() => {
-        observer.next([
-          {label: 'First', content: 'Content 1'},
-          {label: 'Second', content: 'Content 2'},
-          {label: 'Third', content: 'Content 3'},
-        ]);
-      }, 1000);
-    });
+  constructor(private store: Store, private route: Router, private invoicesService: InvoicesService, private fb:FormBuilder) {
+    this.invoicesService.retrieveAllInvoices()
+   }
+  ngOnInit():void{
+
   }
 
+  get invoices(): Observable<Invoice[]>{
+    return this.store.pipe(select(selectInvoices))
+  }
 }
