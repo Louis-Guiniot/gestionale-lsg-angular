@@ -12,6 +12,7 @@ const routes: Routes = [
   { path: 'products', loadChildren: () => import('./features/products/products.module').then(m => m.ProductsModule) },
   { path: 'products/update', loadChildren: () => import('./features/products-update/products-update.module').then(m => m.ProductsUpdateModule) },
   { path: 'invoices', loadChildren: () => import('./features/invoices/invoices.module').then(m => m.InvoicesModule) },
+  { path: 'tabbed/invoices', loadChildren: () => import('./features/tabbed-invoices/tabbed-invoices.module').then(m => m.TabbedInvoicesModule) },
   
   
  
