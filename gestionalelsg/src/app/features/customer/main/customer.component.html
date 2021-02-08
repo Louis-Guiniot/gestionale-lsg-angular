@@ -4,6 +4,7 @@
     </div> -->
 <div class="container">
     <div class="container-customers">
+        <button class="btn btn-sm" id="btn-insert" (click)="open(content)">new</button>
         <table class="table">
             <thead>
                 <tr>
@@ -27,7 +28,7 @@
                     <td>{{ element.ragioneSociale}}</td>
                     <td>{{ element.sede}}</td>
                     <td>{{ element.residenza}}</td>
-                    <td><button class="btn btn-primary btn-sm" id="btn"
+                    <td><button class="btn btn-sm" id="btn-edit"
                             (click)="open(update,element.id,element.name)">edit</button>
                     </td>
                     <td><button class="btn btn-danger btn-sm" id="btn"
@@ -41,8 +42,6 @@
             <ngb-pagination [collectionSize]="collectionSize" [(page)]="page" [pageSize]="pageSize"
                 (pageChange)="refreshCountries()">
             </ngb-pagination>
-
-            <button class="btn btn-primary btn-sm" id="btn-insert" (click)="open(content)">new</button>
 
             <select class="custom-select" style="width: auto" [(ngModel)]="pageSize"
                 (ngModelChange)="refreshCountries()">
@@ -65,7 +64,7 @@
                         <div class="col">
                             <div class="input-group mb-3">
                                 <div class="input-group-prepend">
-                                    <span class="input-group-text" id="basic-addon1">N</span>
+                                    <span class="input-group-text" id="basic-addon1">name</span>
                                 </div>
                                 <input type="text" class="form-control" formControlName="name" placeholder="name"
                                     id="name" autocomplete="off" aria-label="Username" aria-describedby="basic-addon1">
@@ -74,7 +73,7 @@
                         <div class="col">
                             <div class="input-group mb-3">
                                 <div class="input-group-prepend">
-                                    <span class="input-group-text" id="basic-addon1">P IVA</span>
+                                    <span class="input-group-text" id="basic-addon1">p. iva</span>
                                 </div>
                                 <input type="text" class="form-control" formControlName="partitaIva"
                                     placeholder="partitaIva" id="partitaIva" autocomplete="off" aria-label="Username"
@@ -92,7 +91,7 @@
                     </div>
                     <div class="input-group mb-3">
                         <div class="input-group-prepend">
-                            <span class="input-group-text" id="basic-addon1">RS</span>
+                            <span class="input-group-text" id="basic-addon1">ragione sociale</span>
                         </div>
                         <input type="text" class="form-control" formControlName="ragioneSociale"
                             placeholder="ragioneSociale" id="ragioneSociale" autocomplete="off" aria-label="Username"
@@ -103,7 +102,7 @@
                         <div class="col">
                             <div class="input-group mb-3">
                                 <div class="input-group-prepend">
-                                    <span class="input-group-text" id="basic-addon1">R</span>
+                                    <span class="input-group-text" id="basic-addon1">residenza</span>
                                 </div>
                                 <input type="text" class="form-control" formControlName="residenza"
                                     placeholder="residenza" id="residenza" autocomplete="off" aria-label="Username"
@@ -113,7 +112,7 @@
                         <div class="col">
                             <div class="input-group mb-3">
                                 <div class="input-group-prepend">
-                                    <span class="input-group-text" id="basic-addon1">S</span>
+                                    <span class="input-group-text" id="basic-addon1">sede</span>
                                 </div>
                                 <input type="text" class="form-control" formControlName="sede" placeholder="sede"
                                     id="sede" autocomplete="off" aria-label="Username" aria-describedby="basic-addon1">
@@ -129,7 +128,7 @@
                     <div class="modal-footer">
                         <button type="button" class="btn btn-outline-danger" (click)="modal.dismiss('Cross click')">
                             Exit
-                        </button><button type="submit" class="btn btn-outline-primary"
+                        </button><button type="submit" class="btn" id="btn-modal-edit"
                             (click)="modal.close('Save click')">Insert</button>
                     </div>
 
@@ -152,7 +151,7 @@
                                 <div class="col">
                                     <div class="input-group mb-3">
                                         <div class="input-group-prepend">
-                                            <span class="input-group-text" id="basic-addon1">N</span>
+                                            <span class="input-group-text" id="basic-addon1">name</span>
                                         </div>
                                         <input type="text" class="form-control" formControlName="name"
                                             placeholder="{{customer.name}}" id="name" autocomplete="off"
@@ -162,7 +161,7 @@
                                 <div class="col">
                                     <div class="input-group mb-3">
                                         <div class="input-group-prepend">
-                                            <span class="input-group-text" id="basic-addon1">P IVA</span>
+                                            <span class="input-group-text" id="basic-addon1">p. iva</span>
                                         </div>
                                         <input type="text" class="form-control" formControlName="partitaIva"
                                             placeholder="{{customer.partitaIva}}" id="partitaIva" autocomplete="off"
@@ -182,7 +181,7 @@
 
                             <div class="input-group mb-3">
                                 <div class="input-group-prepend">
-                                    <span class="input-group-text" id="basic-addon1">Ragione sociale</span>
+                                    <span class="input-group-text" id="basic-addon1">ragione sociale</span>
                                 </div>
                                 <input type="text" class="form-control" formControlName="ragioneSociale"
                                     placeholder="{{customer.ragioneSociale}}" id="ragioneSociale" autocomplete="off"
@@ -193,7 +192,7 @@
                                 <div class="col">
                                     <div class="input-group mb-3">
                                         <div class="input-group-prepend">
-                                            <span class="input-group-text" id="basic-addon1">R</span>
+                                            <span class="input-group-text" id="basic-addon1">residenza</span>
                                         </div>
                                         <input type="text" class="form-control" formControlName="residenza"
                                             placeholder="{{customer.residenza}}" id="residenza" autocomplete="off" aria-label="Username"
@@ -203,7 +202,7 @@
                                 <div class="col">
                                     <div class="input-group mb-3">
                                         <div class="input-group-prepend">
-                                            <span class="input-group-text" id="basic-addon1">S</span>
+                                            <span class="input-group-text" id="basic-addon1">sede</span>
                                         </div>
                                         <input type="text" class="form-control" formControlName="sede" placeholder="{{customer.sede}}"
                                             id="sede" autocomplete="off" aria-label="Username" aria-describedby="basic-addon1">
@@ -217,7 +216,7 @@
                                 <button type="button" class="btn btn-outline-danger"
                                     (click)="modal.dismiss('Cross click')">
                                     Exit
-                                </button><button type="submit" class="btn btn-outline-primary"
+                                </button><button type="submit" class="btn" id="btn-modal-edit"
                                     (click)="modal.close('Save click')">Update</button>
                             </div>
 
@@ -241,7 +240,7 @@
                     </div>
                     <div class="modal-footer">
 
-                        <button type="button" class="btn btn-outline-primary" (click)="modal.dismiss('Cross click')">
+                        <button type="button" class="btn" id="btn-modal-edit" (click)="modal.dismiss('Cross click')">
                             No
                         </button><button type="submit" class="btn btn-outline-danger"
                             (click)="modal.close('Save click')">Yes</button>
@@ -252,7 +251,5 @@
         </ng-template>
     </div>
 </div>
-
-
 
 <!-- PER CREAZIONE A COMPARSA -->

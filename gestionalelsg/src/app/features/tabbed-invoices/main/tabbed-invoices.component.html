@@ -1,5 +1,6 @@
 <div class="page-content">
-	LOUIS ESCI I SOLDI, TROIA
+	bonjour louis regarde et apprends comment faire la page à onglets tu veux faire le graphique et tu te mouille le nez de moi ce dieu chien j'ai plus envie de vivre que de faire 
+
 
 	<div class="tabbed">
 		<input type="radio" id="tab1" name="css-tabs" checked>
@@ -43,13 +44,15 @@
 
 		<div class="tab-content">
 			<h4>FATTURA RIGHE</h4>
-		<!-- mancano i campi: quantità, importo unitario, sconto formula, prezzo netto, importo sconto, imposta-->
+		<!-- mancano i campi: quantità,  importo sconto,-->
 			<table>
 				<thead>
 					<th>articles</th>
 					<!-- <th>description</th> -->
 					<!-- <th>measure unit</th> -->
 					<th>taxable</th>
+					<th>quantity</th>
+					<th>importo sconto</th>
 					<th>iva</th>
 					
 				</thead>
@@ -61,6 +64,8 @@
 					<!-- <td>{{inv.description}}</td>
 					<td>{{inv.measure}}</td> -->
 					<td>{{inv.ivaPrice}}$</td>
+					<td>{{inv.quantita}}$</td>
+					<td>{{inv.importoSconto}}$</td>
 					<td>{{inv.iva}}</td>
 					
 
@@ -73,6 +78,27 @@
 
 		<div class="tab-content">
 			<h4>FATTURA CODA</h4>
-			<p>i soldi</p>
+			<table>
+				<thead>
+					<th>totale merce</th>
+					<th>totale servizi</th>
+					
+				
+					
+				</thead>
+
+
+
+				<tr *ngFor="let inv of invoices | async; let i= index" id="highlight-row-invoice">
+					<td>{{inv.totaleMerci}}</td>
+					<td>{{inv.totaleServizi}}$</td>
+					
+					
+
+					<td id="td-btn"><a (click)="delete(inv.id);" class="link" id="delete"><span class="material-icons">
+								delete
+							</span></a></td>
+				</tr>
+			</table>
 		</div>
 	</div>

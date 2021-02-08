@@ -13,4 +13,8 @@ export interface Invoice{
     imponibile:string;
     tipoDocumento:string;
     condizionePagamento:string;
+    //dopo update
+    quantita:string;
+    importoSconto:string;
+    totaleMerci:string;
 }
