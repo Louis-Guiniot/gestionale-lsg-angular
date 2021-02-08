@@ -29,7 +29,9 @@ export class CustomerComponent implements OnInit{
   closeResult = '';
   customerForm: FormGroup;
   customerFormUpdate: FormGroup;
+  
 
+  nameD:string;
   customers=[];
   id:string
   idN:number
@@ -52,10 +54,13 @@ export class CustomerComponent implements OnInit{
       .slice((this.page - 1) * this.pageSize, (this.page - 1) * this.pageSize + this.pageSize);
   }
 
-  open(content,idCust?:string) {
+  open(content,idCust?:string,name?:string) {
     this.idN=Number.parseInt(idCust)
     this.idS=idCust;
-    console.log("idN: "+this.idN)
+    this.nameD=name;
+
+
+    console.log("idN: "+this.idN+"nameD: "+this.nameD)
     this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
     }, (reason) => {

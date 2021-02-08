@@ -9,6 +9,7 @@ import { Product } from 'src/app/core/model/Product.interface';
 import { selectMeasures, selectMeasureState } from 'src/app/redux/measure';
 import { selectProducts } from 'src/app/redux/product';
 import { ProductsService } from '../service/products.service';
+import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-products',
@@ -17,14 +18,46 @@ import { ProductsService } from '../service/products.service';
 })
 export class ProductsComponent implements OnInit {
 
+  closeResult = '';
   products =[];
   units=[];
+
   createProductForm: FormGroup;
+  updateProductForm: FormGroup;
+
+  idN:number;
+  idS:string;
+  nameD:string;
   
-  constructor(private pruductService: ProductsService, private store: Store, private route: Router, private fb:FormBuilder) {
-    this.pruductService.retrieveAllProducts();
-    this.pruductService.retrieveAllMeasures();
-   }
+  constructor(private productService: ProductsService, private store: Store, private route: Router, private fb:FormBuilder, private modalService: NgbModal) {
+    
+    this.productService.retrieveAllProducts();
+    this.productService.retrieveAllMeasures();
+  }
+
+  open(content,idCust?:string,name?:string) {
+    this.idN=Number.parseInt(idCust)
+    this.idS=idCust;
+    this.nameD=name;
+
+
+    console.log("idN: "+this.idN+"nameD: "+this.nameD)
+    this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
+      this.closeResult = `Closed with: ${result}`;
+    }, (reason) => {
+      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+    });
+  }
+
+  private getDismissReason(reason: any): string {
+    if (reason === ModalDismissReasons.ESC) {
+      return 'by pressing ESC';
+    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+      return 'by clicking on a backdrop';
+    } else {
+      return `with: ${reason}`;
+    }
+  }
 
   ngOnInit(): void {
    
@@ -37,16 +70,24 @@ export class ProductsComponent implements OnInit {
       sconto:['', Validators.required]
     })
 
+    this.updateProductForm=this.fb.group({
+     
+      name: ['', Validators.required],
+      description: ['', Validators.required],
+      measureUnit:['', Validators.required],
+      price:['', Validators.required],
+      sconto:['', Validators.required]
+    })
 
-   
-
-    // this.store.pipe(select(selectProducts)).subscribe((products) => {
-    //   for (let prod of products) {
-    //     this.products.push(prod);
-    //     console.log(prod);
-    //   }
+    //   this.store.pipe(select(selectProducts)).subscribe((products) => {
+    //     for (let prod of products) {
+    //      this.products.push(prod);
+    //       console.log(prod);
+    //     }
     //   return this.products
-    // })
+    //  })
+
+     
     // this.store.pipe(select(selectMeasures)).subscribe((measures) => {
     //   for (let measure of measures) {
     //     this.units.push(measure);
@@ -57,35 +98,31 @@ export class ProductsComponent implements OnInit {
     
   }
 
-  get prods(): Observable<Product[]> {
-    return this.store.pipe(select(selectProducts));
-  }
+   get prods(): Observable<Product[]> {
+     return this.store.pipe(select(selectProducts));
+   }
 
-  get measures(): Observable<MeasureUnit[]> {
-    return this.store.pipe(select(selectMeasures));
-  }
+   get measures(): Observable<MeasureUnit[]> {
+     return this.store.pipe(select(selectMeasures));
+   }
 
-   delay() {
-    return new Promise( resolve => setTimeout(resolve, 1000) );
-}
+  updateProd(){
 
-  update(id:string){
-    console.log(id)
-    this.route.navigate(["products/update"], {
-      queryParams: {
-        id: id
-      },
-      queryParamsHandling: 'merge',
-    });
+    console.log("id "+this.idN)
+    console.log("name "+this.updateProductForm.value.name)
+    console.log("surname "+this.updateProductForm.value.surname)
+    console.log("email "+this.updateProductForm.value.email)
+
+    this.productService.updateProduct(this.idS.toString(),this.updateProductForm.value.name, this.updateProductForm.value.description, this.updateProductForm.value.measureUnit, this.updateProductForm.value.price, this.updateProductForm.value.sconto)
   }
 
   create(){
     
-    this.pruductService.createProduct(this.createProductForm.value.description,this.createProductForm.value.measureUnit,this.createProductForm.value.name,this.createProductForm.value.price, this.createProductForm.value.sconto)
+    this.productService.createProduct(this.createProductForm.value.description,this.createProductForm.value.measureUnit,this.createProductForm.value.name,this.createProductForm.value.price, this.createProductForm.value.sconto)
     
   }
-  delete(id:string){
-    this.pruductService.deleteProduct(id)
+  deleteProd(id:string){
+    this.productService.deleteProduct(id)
   }
 
   clear(){

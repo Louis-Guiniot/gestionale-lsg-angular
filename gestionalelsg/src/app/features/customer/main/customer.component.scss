@@ -1,184 +1,39 @@
 .container{
     display: grid;
     height: 100vh;
-    grid-template-columns: 2fr 0.5fr;
-    grid-template-rows:  auto 1fr 1fr;
-    padding: 1% 1% 1% 1%;
+    grid-template-columns: auto;
+    grid-template-rows:  1fr;
+    padding: 1%;
     margin-left: auto;
     margin-right: auto;
     column-gap: 1%;
     row-gap: 2%;
+    font-family: Mulish;
 }
 
-//ANCHOR header grid
-.header-page{
-    grid-column-start: 1;
-    grid-column-end: 3;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    margin: 0;
-    width: auto;
-    padding: 1.5%;
-    background-color: rgb(88, 119, 255);
-    border: 2px black solid;
-    font-size: 2em;
-    font-weight: bold;
+#btn{
+    width: 100%;
+}
+
+#btn-insert{
+    width: 80%;
+}
+
+.modal-body{
+    font-family: Mulish;
+}
+
+.modal-header{
+    font-family: Mulish;
+}
+
+
+table{
     vertical-align: middle;
-    color: white;
-    text-transform: uppercase;
+    width: 100%;
 }
 
-.header-page span{
-    font-size: 3vw;
-    height: 100%;
-    display: table;
-    vertical-align: middle;
-}
-
-#home-link{
-    text-align: right;
-}
-
-.header{
-    margin: 0;
-    width: auto;
-    padding: 0.2vw 1vw;
-    vertical-align: middle;
-    line-height: 6vh;
-    height: 6vh;
-    background-color: rgb(88, 119, 255);
-    border-bottom: 2px black solid;
-    font-size: 1.5vw;
-    font-weight: bold;
-}
-
-//ANCHOR customers TABLE
 .container-customers{
-    grid-column-start: 1;
-    grid-column-end: 3;
-    grid-row-start: 2;
-    grid-row-end: 3;
     width: auto;
     color: black;
-}
-
-//ANCHOR customer form
- .container-customer-form{
-    grid-column-start: 1;
-    grid-column-end: 3;
-    grid-row-start: 3;
-    grid-row-end: 4;
-     width: auto;
- }
-
- .customer-form-table{
-     width: 100%;
-     margin: 0;
-     padding: 3%;
- }
-
- .customer-form-table input{
-     padding:2%;
-     width: 95%;
-     font-size: 2vw;
-     border: 0;
-
-     border-bottom: 1px rgba(white,0.2) solid;
-     color: white;   
-     background-color: transparent;
-     outline: 0;
-
-     &::placeholder{
-         color: rgba(white,0.2);
-     }
- }
-
- .customer-form-table td{
-     padding: 2%;
- }
-
- #btn-sub{
-    font-size: 2vw;
-    width: 100%;
-    padding: 1% 2% 1% 2%;
-    transition: all 1.5s;
-    position: relative;
-    overflow: hidden;
-    z-index: 1;
-    border: none;
- 
-    &::before{
-        content: '';
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        width: 0%;
-        height: 100%;
-        background-color: rgb(88, 119, 255);
-        transition: all 1.5s;
-        z-index: -1;
-    }
-    &::after{
-        content: '';
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(white,0.2);
-        z-index: -2; 
-    }
-
-    &:hover {
-        color: #fff;
-        cursor: pointer;
-        &:before {
-          width: 100%;
-        }
-    }
-}
-
-#btn-clear{
-    font-size: 2vw;
-    width: 100%;
-    padding: 1% 2% 1% 2%;
-    transition: all 1.5s;
-    position: relative;
-    overflow: hidden;
-    z-index: 1;
-    border: none;
- 
-    &::before{
-        content: '';
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        width: 0%;
-        height: 100%;
-        background-color: rgb(255, 88, 88);
-        transition: all 1.5s;
-        z-index: -1;
-    }
-    &::after{
-        content: '';
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(white,0.2);
-        z-index: -2; 
-    }
-
-    &:hover {
-        color: #fff;
-        cursor: pointer;
-        &:before {
-          width: 100%;
-        }
-    }
-}
-
-.btn{
-    outline: none;
 }
