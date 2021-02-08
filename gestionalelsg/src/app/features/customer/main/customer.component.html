@@ -6,12 +6,13 @@
     <div class="container-customers">
         <button class="btn btn-sm" id="btn-insert" (click)="open(content)">new</button>
         <table class="table">
+            <caption>List of Customers</caption>
             <thead>
                 <tr>
                     <th scope="col">#</th>
                     <th scope="col">Name</th>
-                    <th scope="col">Partita Iva</th>
                     <th scope="col">Email</th>
+                    <th scope="col">Partita Iva</th>
                     <th scope="col">Ragione Sociale</th>
                     <th scope="col">Sede</th>
                     <th scope="col">Residenza</th>
@@ -23,8 +24,8 @@
                 <tr *ngFor="let element of elements | async;">
                     <th scope="row">{{ element.id }}</th>
                     <td>{{ element.name}}</td>
-                    <td>{{ element.partitaIva}}</td>
                     <td>{{ element.email}}</td>
+                    <td>{{ element.partitaIva}}</td>
                     <td>{{ element.ragioneSociale}}</td>
                     <td>{{ element.sede}}</td>
                     <td>{{ element.residenza}}</td>

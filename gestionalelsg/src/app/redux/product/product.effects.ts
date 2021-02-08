@@ -95,7 +95,7 @@ export class ProductsEffects {
             action.price,
             action.scontoProd).pipe(
             map((response) => initProducts({ response }))
-            ,tap(()=>this.router.navigateByUrl('/products'))
+            ,tap(()=>this.router.navigateByUrl('/home'))
         ))
     ));
     

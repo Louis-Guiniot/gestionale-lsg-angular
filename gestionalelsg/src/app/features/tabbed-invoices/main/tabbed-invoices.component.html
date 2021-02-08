@@ -13,6 +13,7 @@
 
 		<div class="tab-content">
 			<table class="table">
+				<caption>List of Invoices</caption>
 				<thead>
 					<th scope="col">cust_id</th>
 					<th scope="col">code</th><!-- numero fattura -->
@@ -45,6 +46,7 @@
 		<div class="tab-content">
 			<!-- mancano i campi: quantità,  importo sconto,-->
 			<table class="table">
+				<caption>List of Invoices</caption>
 				<thead>
 					<th scope="col">articles</th>
 					<!-- <th>description</th> -->
@@ -79,6 +81,7 @@
 
 		<div class="tab-content">
 			<table class="table">
+				<caption>List of Invoices</caption>
 				<thead>
 					<th scope="col">totale merce</th>
 					<th scope="col">totale servizi</th>
@@ -93,7 +96,7 @@
 						<td>{{inv.totaleMerci}}</td>
 						<td>{{inv.totaleServizi}}$</td>
 
-						<td><button class="btn btn-danger btn-sm" id="btn"
+						<td id="td-btn"><button class="btn btn-danger btn-sm" id="btn-delete"
 								(click)="open(delete,inv.id,inv.codeInvoice)">delete</button>
 						</td>
 					</tr>

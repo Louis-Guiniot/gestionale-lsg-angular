@@ -7,6 +7,7 @@
     <div class="container-products">
         <button class="btn  btn-sm" id="btn-insert" (click)="open(content)">new</button>
         <table class="table">
+            <caption>List of Products</caption>
             <thead>
                 <tr>
                     <th scope="col">#</th>
@@ -56,7 +57,7 @@
                                     <span class="input-group-text" id="basic-addon1">code</span>
                                 </div>
                                 <input type="text" class="form-control" placeholder="code" id="partitaIva"
-                                    autocomplete="off" aria-label="Username" aria-describedby="basic-addon1" readonly>
+                                    autocomplete="off" aria-label="Username" aria-describedby="basic-addon1">
                             </div>
                         </div>
 
@@ -65,7 +66,7 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text" id="basic-addon1">note</span>
                                 </div>
-                                <input type="text" class="form-control" formControlName="name" placeholder="name"
+                                <input type="text" class="form-control" formControlName="name" placeholder="note"
                                     id="name" autocomplete="off" aria-label="Username" aria-describedby="basic-addon1">
                             </div>
                         </div>
@@ -85,9 +86,11 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="basic-addon1">measure</span>
                         </div>
-                        <input type="text" class="form-control" formControlName="measureUnit" placeholder="measure"
-                            id="ragioneSociale" autocomplete="off" aria-label="Username"
-                            aria-describedby="basic-addon1">
+                        <select class="form-select" aria-label="Default select example">
+                            <option selected>Open this select menu</option>
+                            <option *ngFor="let measure of measures | async" value="{{measure.id}}">{{measure.type}}
+                            </option>
+                        </select>
                     </div>
 
                     <div class="row">
@@ -105,7 +108,7 @@
                         <div class="col">
                             <div class="input-group mb-3">
                                 <div class="input-group-prepend">
-                                    <span class="input-group-text" id="basic-addon1">sale</span>
+                                    <span class="input-group-text" id="basic-addon1">sconto</span>
                                 </div>
                                 <input type="text" class="form-control" formControlName="sconto" placeholder="sconto"
                                     id="sede" autocomplete="off" aria-label="Username" aria-describedby="basic-addon1">
@@ -172,33 +175,35 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text" id="basic-addon1">measure</span>
                                 </div>
-                                <input type="text" class="form-control" formControlName="measureUnit"
-                                    placeholder="{{product.measureUnit}}" id="ragioneSociale" autocomplete="off"
-                                    aria-label="Username" aria-describedby="basic-addon1">
+                                <select class="form-select" aria-label="Default select example">
+                                    <option *ngFor="let measure of measures | async" value="{{measure.id}}">
+                                        {{measure.type}}</option>
+                                </select>
                             </div>
 
-                    <div class="row">
-                        <div class="col">
-                            <div class="input-group mb-3">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text" id="basic-addon1">price</span>
-                                </div>
-                                <input type="text" class="form-control" formControlName="price" placeholder="{{product.price}}"
-                                    id="residenza" autocomplete="off" aria-label="Username"
-                                    aria-describedby="basic-addon1">
-                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="basic-addon1">price</span>
+                                        </div>
+                                        <input type="text" class="form-control" formControlName="price"
+                                            placeholder="{{product.price}}" id="residenza" autocomplete="off"
+                                            aria-label="Username" aria-describedby="basic-addon1">
+                                    </div>
 
-                        </div>
-                        <div class="col">
-                            <div class="input-group mb-3">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text" id="basic-addon1">sale</span>
                                 </div>
-                                <input type="text" class="form-control" formControlName="sconto" placeholder="{{product.sconto}}"
-                                    id="sede" autocomplete="off" aria-label="Username" aria-describedby="basic-addon1">
+                                <div class="col">
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="basic-addon1">sconto</span>
+                                        </div>
+                                        <input type="text" class="form-control" formControlName="sconto"
+                                            placeholder="{{product.sconto}}" id="sede" autocomplete="off"
+                                            aria-label="Username" aria-describedby="basic-addon1">
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    </div>
 
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-outline-danger"
@@ -239,7 +244,5 @@
         </ng-template>
     </div>
 </div>
-
-
 
 <!-- PER CREAZIONE A COMPARSA -->

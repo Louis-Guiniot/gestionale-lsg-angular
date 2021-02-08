@@ -1,23 +1,11 @@
-body {
-	background-image: linear-gradient(19deg, #21D4FD 0%, #B721FF 100%);
-
-	background-repeat: no-repeat;
-	font: 400 16px/1.5em Mulish;
-}
 .page-content {
 	padding: 1%;
 	width: 100%; 
 	background: #fff;
 }
-a {
-	color: #21D4FD; 
-	transition: all 0.3s;
-}
-a:hover {
-	color: #B721FF;
-}
 
 .tabbed {
+	width: auto;
 	overflow-x: hidden; /* so we could easily hide the radio inputs */
 	margin: 32px 0;
 	padding-bottom: 16px;
@@ -75,6 +63,14 @@ a:hover {
 #btn-modal-edit{
     background-color: rgba(#012051,0.9);
     color: white; 
+}
+
+#td-btn{
+	text-align: right;
+}
+
+#btn-delete{
+	width: 30%;
 }
 
 .modal-body{
