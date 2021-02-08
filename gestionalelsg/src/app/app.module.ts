@@ -19,6 +19,7 @@ import {MatTabsModule} from '@angular/material/tabs';
 
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 
 @NgModule({
@@ -47,6 +48,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
      NgbModule,
   ],
   providers:[],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],  
+  schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
 })
 export class AppModule { }

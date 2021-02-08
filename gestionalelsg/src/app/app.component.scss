@@ -1,53 +1,44 @@
+.main-container{
+  display: grid;
+  grid-template-columns: 10vw auto;
+  grid-template-rows: 0.3fr auto;
+  width: 100vw;
+  font-family: Mulish;
+}
 
+.head{
+  grid-column-start: 1;
+  grid-column-end: 3;
+  grid-row-start: 1;
+  grid-row-end: 2;
+  padding: 1%;
+  background-color: rgba(#012051,0.9);
+  color: white;
+  width: 100vw;
+  font-size: 3vw;
+}
 
-ul {
-    list-style-type: none;
-    width: 100%;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    background-color: #012051;
-    border: 2px black solid;
-    display: table;
-    
-  }
+.nav{
+  border-right:1px #dee2e6 solid;
+  margin-right: 0.5%;
+  font-size: 1.3vw;
+}
 
-  li{
-      float: left;
-      padding: 1%;
-      text-align: center;
-      width: fit-content;
-      width: 25%;
-  }
-  
-  #right {
-    float: right;
-  }
+ul{
+  width: 100%;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
 
-  a{
-    vertical-align:middle;
-  }
-  
-  a li {
-    font-weight: bold;
-    line-height: 2em;
-    vertical-align: middle;
-    margin: 0;
-    font-size: 1.5em;
-    color: white;
-    text-align: center;
-    height: 8vh;
-    text-decoration: none;
-  }
+li a {
+  display: block;
+  color: #000;
+  padding: 1vw;
+  text-decoration: none;
+}
 
-  .active{
-    background-color: rgba( #010f25, 0.8);
-  }
-  
-  li:hover:not(.active) {
-    background-color: rgb(88, 119, 255);
-  }
-
-  .logo{
-    display: block;
-  }
+li a:hover {
+  background-color: rgba(#012051,0.9);
+  color: white;
+}

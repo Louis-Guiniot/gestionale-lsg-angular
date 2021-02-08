@@ -1,4 +1,5 @@
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <!-- <div class="main-container">
     <ul>
@@ -6,8 +7,23 @@
     <a href="/customer"><li>customers</li></a>
     <a href="#"><li>products</li></a>
 </ul> -->
+<div class="main-container">
 
+    <div class="head">
+       Gestionale LSGC : Los Pueblos
+    </div>
 
+    <div class="nav">
+<ul>
+    <li><a href="customers">Customers</a></li>
+    <li><a href="products">Products</a></li>
+    <li><a href="invoices">Invoices</a></li>
+    <li><a href="tabbed/invoices">Tabbed</a></li>
+  </ul>
+    </div>
+    <div class="outlet">
 <router-outlet></router-outlet>
+    </div>
+</div>
 
 
