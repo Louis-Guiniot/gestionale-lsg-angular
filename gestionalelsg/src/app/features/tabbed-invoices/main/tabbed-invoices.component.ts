@@ -104,7 +104,7 @@ export class TabbedInvoicesComponent implements OnInit{
   }
 
   create(){
-    this.invoicesService.create(this.invoiceInsertForm.value.custId,this.invoiceInsertForm.value.date,
+    this.invoicesService.create(this.invoiceInsertForm.value.custId,
       this.invoiceInsertForm.value.payCondition, this.invoiceInsertForm.value.docType,
       this.invoiceInsertForm.value.sale,this.invoiceInsertForm.value.articles,this.invoiceInsertForm.value.taxable)
     

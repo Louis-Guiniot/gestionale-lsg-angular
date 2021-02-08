@@ -15,8 +15,8 @@
 			<table class="table">
 				<thead>
 					<th scope="col">cust_id</th>
-					<th scope="col">data</th>
 					<th scope="col">code</th><!-- numero fattura -->
+					<th scope="col">data</th>
 					<th scope="col">pay_condition</th>
 					<th scope="col">doc_type</th>
 					<th scope="col">sale</th>
@@ -27,8 +27,8 @@
 				<tbody>
 					<tr *ngFor="let inv of invoices | async; let i= index" id="highlight-row-invoice">
 						<th scope="row">{{inv.idCustomer}}</th>
-						<td>{{inv.dateTime}}</td>
 						<td> {{inv.codeInvoice}}</td>
+						<td>{{inv.dateTime}}</td>
 						<td>{{inv.condizionePagamento}}</td>
 						<td>{{inv.tipoDocumento}} </td>
 						<td>{{inv.sconto}}%</td>
@@ -121,25 +121,16 @@
 						<div class="input-group-prepend">
 							<span class="input-group-text" id="basic-addon1">cust id</span>
 						</div>
-						<input type="text" class="form-control" placeholder="code" id="partitaIva"
+						<input type="text" class="form-control" placeholder="customer id" id="partitaIva"
 							formControlName="custId" autocomplete="off" aria-label="Username"
 							aria-describedby="basic-addon1">
-					</div>
-
-
-					<div class="input-group mb-3">
-						<div class="input-group-prepend">
-							<span class="input-group-text" id="basic-addon1">date</span>
-						</div>
-						<input type="text" class="form-control" formControlName="date" placeholder="date" id="email"
-							autocomplete="off" aria-label="Username" aria-describedby="basic-addon1">
 					</div>
 
 					<div class="input-group mb-3">
 						<div class="input-group-prepend">
 							<span class="input-group-text" id="basic-addon1">pay condition</span>
 						</div>
-						<input type="text" class="form-control" formControlName="payCondition" placeholder="measure"
+						<input type="text" class="form-control" formControlName="payCondition" placeholder="pay condition"
 							id="ragioneSociale" autocomplete="off" aria-label="Username"
 							aria-describedby="basic-addon1">
 					</div>
@@ -150,7 +141,7 @@
 								<div class="input-group-prepend">
 									<span class="input-group-text" id="basic-addon1">doc type</span>
 								</div>
-								<input type="text" class="form-control" formControlName="docType" placeholder="price"
+								<input type="text" class="form-control" formControlName="docType" placeholder="document type"
 									id="residenza" autocomplete="off" aria-label="Username"
 									aria-describedby="basic-addon1">
 							</div>
