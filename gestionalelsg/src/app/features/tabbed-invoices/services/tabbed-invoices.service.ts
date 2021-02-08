@@ -9,15 +9,15 @@ export class TabbedInvoicesService {
 
   constructor(private store: Store) { }
 
-  create(custId:string,payCondition:string, docType:string,sale:string,articles:string,taxable:string){
-    this.store.dispatch(createInvoice({custId,payCondition,docType,sale,articles,taxable}))
+  create(custId:string,payCondition:string, docType:string,sale:string,articles:string){
+    this.store.dispatch(createInvoice({custId,payCondition,docType,sale,articles}))
 
   }
   retrieveAllInvoices(){
     this.store.dispatch(retrieveAllInvoices());
   }
 
-  deleteInvoice(id:string){
-    this.store.dispatch(deleteInvoice({id}))
+  deleteInvoice(idS:string){
+    this.store.dispatch(deleteInvoice({idS}))
   }
 }

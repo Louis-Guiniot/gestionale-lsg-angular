@@ -22,13 +22,13 @@ export class InvoicesEffects {
         return this.http.retrieveGetCall<Response>("invoice/findAll");
     }
 
-    deleteInvoice(id:string):Observable<Response>{
-        return this.http.retrievePostCall("invoice/delete",{id})
+    deleteInvoice(idS:string):Observable<Response>{
+        return this.http.retrievePostCall("invoice/delete",{idS})
     }
     deleteInvoice$: Observable<Action> = createEffect(() => this.actions$.pipe(
         ofType(deleteInvoice),
         switchMap((action) => this.deleteInvoice(
-            action.id).pipe(
+            action.idS).pipe(
             map((response) => initInvoices({ response })),
             tap(()=>this.router.navigateByUrl('/home'))
         ))
@@ -56,8 +56,8 @@ export class InvoicesEffects {
         ))
     ));    
 
-    createInvoice(custId:string,payCondition:string,docType:string,sale:string,articles:string,taxable:string): Observable<Response>{
-        return this.http.retrievePostCall<Response>('invoice/create',{custId,payCondition,docType,sale,articles,taxable});
+    createInvoice(custId:string,payCondition:string,docType:string,sale:string,articles:string): Observable<Response>{
+        return this.http.retrievePostCall<Response>('invoice/create',{custId,payCondition,docType,sale,articles});
     }
     
     createInvoice$: Observable<Action> = createEffect(() => this.actions$.pipe(
@@ -67,8 +67,7 @@ export class InvoicesEffects {
             action.payCondition,
             action.docType,
             action.sale,
-            action.articles,
-            action.taxable).pipe(
+            action.articles).pipe(
             map((response) => initInvoices({ response })),
            tap(()=>this.router.navigateByUrl('/home'))
         ))

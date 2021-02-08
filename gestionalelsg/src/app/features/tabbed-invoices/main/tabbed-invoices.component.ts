@@ -72,7 +72,7 @@ export class TabbedInvoicesComponent implements OnInit{
       docType:['', Validators.required],
       sale:['', Validators.required],
       articles:['', Validators.required],
-      taxable:['', Validators.required],
+      //taxable:['', Validators.required],
       quantity:['', Validators.required],
       saleImport:['', Validators.required],
       iva:['', Validators.required],
@@ -106,10 +106,10 @@ export class TabbedInvoicesComponent implements OnInit{
   create(){
     this.invoicesService.create(this.invoiceInsertForm.value.custId,
       this.invoiceInsertForm.value.payCondition, this.invoiceInsertForm.value.docType,
-      this.invoiceInsertForm.value.sale,this.invoiceInsertForm.value.articles,this.invoiceInsertForm.value.taxable)
+      this.invoiceInsertForm.value.sale,this.invoiceInsertForm.value.articles)
     
   }
-  deleteInv(id:string){
-    this.invoicesService.deleteInvoice(id)
+  deleteInv(){
+    this.invoicesService.deleteInvoice(this.idS)
   }
 }
