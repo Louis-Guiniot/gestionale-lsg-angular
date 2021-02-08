@@ -2,12 +2,11 @@ body {
 	background-image: linear-gradient(19deg, #21D4FD 0%, #B721FF 100%);
 
 	background-repeat: no-repeat;
-	font: 400 16px/1.5em "Open Sans", sans-serif;
+	font: 400 16px/1.5em Mulish;
 }
 .page-content {
-	max-width: 700px; 
-	margin: 32px auto; 
-	padding: 32px; 
+	padding: 1%;
+	width: 100%; 
 	background: #fff;
 }
 a {
@@ -42,8 +41,8 @@ a:hover {
 	margin-bottom: -1px;
 	padding: 12px 15px;
 	border: 1px solid #ccc;
-	background: #eee;
-	color: #666;
+	background-color: rgba(#012051,0.9);
+	color: white;
 	font-size: 12px; 
 	font-weight: 600;
 	text-transform: uppercase;
@@ -51,9 +50,58 @@ a:hover {
 	cursor: pointer;	
 	transition: all 0.3s;
 }
-.tab:hover label {
-	border-top-color: #333;
-	color: #333;
+
+.btn{
+    font-size: 1.2vw;
+}
+
+#btn{
+    width: 100%;
+
+}
+
+#btn-insert{
+    width: 20%;
+    background-color: rgba(#012051,0.9);
+    color: white;
+}
+
+#btn-edit{
+    width: 100%;
+    background-color: rgba(#012051,0.9); 
+    color: white; 
+}
+
+#btn-modal-edit{
+    background-color: rgba(#012051,0.9);
+    color: white; 
+}
+
+.modal-body{
+    font-family: Mulish;
+}
+
+.modal-header{
+    font-family: Mulish;
+    background-color: rgba(#012051,0.9);
+    color: white;
+    border: 1px solid rgba(0,0,0,.2);
+}
+
+.close{
+    color: white;
+}
+
+table{
+    vertical-align: middle;
+    width: 100%;
+    font-size: 1.2vw;
+    font-family: Mulish;
+}
+
+thead{
+    background-color: rgba(#012051,0.9);
+    color: white;
 }
 
 .tab-content {
@@ -68,7 +116,7 @@ a:hover {
 .tabbed [type="radio"]:nth-of-type(4):checked ~ .tabs .tab:nth-of-type(4) label,
 .tabbed [type="radio"]:nth-of-type(5):checked ~ .tabs .tab:nth-of-type(5) label {
 	border-bottom-color: #fff;
-	border-top-color: #B721FF;
+	
 	background: #fff;
 	color: #222;
 }

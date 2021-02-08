@@ -1,7 +1,5 @@
 <div class="page-content">
-	bonjour louis regarde et apprends comment faire la page à onglets tu veux faire le graphique et tu te mouille le nez de moi ce dieu chien j'ai plus envie de vivre que de faire 
-
-
+	<button class="btn  btn-sm" id="btn-insert" (click)="open(content)">new</button>
 	<div class="tabbed">
 		<input type="radio" id="tab1" name="css-tabs" checked>
 		<input type="radio" id="tab2" name="css-tabs">
@@ -14,91 +12,206 @@
 		</ul>
 
 		<div class="tab-content">
-			<h4>FATTURA TESTA</h4>
-			<table>
+			<table class="table">
 				<thead>
-					<th>cust_id</th>
-					<th>data</th>
-					<th>code</th><!-- numero fattura -->
-					<th>pay_condition</th>
-					<th>doc_type</th>
-					<th>sale</th>
+					<th scope="col">cust_id</th>
+					<th scope="col">data</th>
+					<th scope="col">code</th><!-- numero fattura -->
+					<th scope="col">pay_condition</th>
+					<th scope="col">doc_type</th>
+					<th scope="col">sale</th>
+					<th>&nbsp;</th>
 				</thead>
 
 
+				<tbody>
+					<tr *ngFor="let inv of invoices | async; let i= index" id="highlight-row-invoice">
+						<th scope="row">{{inv.idCustomer}}</th>
+						<td>{{inv.dateTime}}</td>
+						<td> {{inv.codeInvoice}}</td>
+						<td>{{inv.condizionePagamento}}</td>
+						<td>{{inv.tipoDocumento}} </td>
+						<td>{{inv.sconto}}%</td>
 
-				<tr *ngFor="let inv of invoices | async; let i= index" id="highlight-row-invoice">
-					<td>{{inv.idCustomer}}</td>
-					<td>{{inv.dateTime}}</td>
-					<td> {{inv.codeInvoice}}</td>
-					<td>{{inv.condizionePagamento}}</td>
-					<td>{{inv.tipoDocumento}} </td>
-					<td>{{inv.sconto}}%</td>
+						<td><button class="btn btn-danger btn-sm" id="btn"
+								(click)="open(delete,inv.id,inv.codeInvoice)">delete</button>
+						</td>
+					</tr>
+				</tbody>
 
-					<td id="td-btn"><a (click)="delete(inv.id);" class="link" id="delete"><span class="material-icons">
-								delete
-							</span></a></td>
-				</tr>
 			</table>
 		</div>
 
 		<div class="tab-content">
-			<h4>FATTURA RIGHE</h4>
-		<!-- mancano i campi: quantità,  importo sconto,-->
-			<table>
+			<!-- mancano i campi: quantità,  importo sconto,-->
+			<table class="table">
 				<thead>
-					<th>articles</th>
+					<th scope="col">articles</th>
 					<!-- <th>description</th> -->
 					<!-- <th>measure unit</th> -->
-					<th>taxable</th>
-					<th>quantity</th>
-					<th>importo sconto</th>
-					<th>iva</th>
-					
+					<th scope="col">taxable</th>
+					<th scope="col">quantity</th>
+					<th scope="col">importo sconto</th>
+					<th scope="col">iva</th>
+					<th>&nbsp;</th>
 				</thead>
 
 
-
-				<tr *ngFor="let inv of invoices | async; let i= index" id="highlight-row-invoice">
-					<td>{{inv.fields}}</td>
-					<!-- <td>{{inv.description}}</td>
+				<tbody>
+					<tr *ngFor="let inv of invoices | async; let i= index" id="highlight-row-invoice">
+						<td>{{inv.fields}}</td>
+						<!-- <td>{{inv.description}}</td>
 					<td>{{inv.measure}}</td> -->
-					<td>{{inv.ivaPrice}}$</td>
-					<td>{{inv.quantita}}$</td>
-					<td>{{inv.importoSconto}}$</td>
-					<td>{{inv.iva}}</td>
-					
+						<td>{{inv.ivaPrice}}$</td>
+						<td>{{inv.quantita}}$</td>
+						<td>{{inv.importoSconto}}$</td>
+						<td>{{inv.iva}}</td>
 
-					<td id="td-btn"><a (click)="delete(inv.id);" class="link" id="delete"><span class="material-icons">
-								delete
-							</span></a></td>
-				</tr>
+
+						<td><button class="btn btn-danger btn-sm" id="btn"
+								(click)="open(delete,inv.id,inv.codeInvoice)">delete</button>
+						</td>
+					</tr>
+				</tbody>
+
 			</table>
 		</div>
 
 		<div class="tab-content">
-			<h4>FATTURA CODA</h4>
-			<table>
+			<table class="table">
 				<thead>
-					<th>totale merce</th>
-					<th>totale servizi</th>
-					
-				
-					
+					<th scope="col">totale merce</th>
+					<th scope="col">totale servizi</th>
+					<th>&nbsp;</th>
+
+
 				</thead>
 
 
+				<tbody>
+					<tr *ngFor="let inv of invoices | async; let i= index" id="highlight-row-invoice">
+						<td>{{inv.totaleMerci}}</td>
+						<td>{{inv.totaleServizi}}$</td>
 
-				<tr *ngFor="let inv of invoices | async; let i= index" id="highlight-row-invoice">
-					<td>{{inv.totaleMerci}}</td>
-					<td>{{inv.totaleServizi}}$</td>
-					
-					
+						<td><button class="btn btn-danger btn-sm" id="btn"
+								(click)="open(delete,inv.id,inv.codeInvoice)">delete</button>
+						</td>
+					</tr>
+				</tbody>
 
-					<td id="td-btn"><a (click)="delete(inv.id);" class="link" id="delete"><span class="material-icons">
-								delete
-							</span></a></td>
-				</tr>
 			</table>
 		</div>
+
+
+
+		<!-- ALCUNI CAMPI NON SONO DA INSERIRE, SI CALCOLANO IN AUTOMATICO EX: TOT-SCONTO TOT-SERVIZI TOT-MERCE -->
+
+		<ng-template #content let-modal>
+			<div class="modal-header">
+				<h4 class="modal-title" id="modal-basic-title">Invoice creation</h4>
+				<button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<form [formGroup]="invoiceInsertForm" (ngSubmit)="create()">
+
+
+					<div class="input-group mb-3">
+						<div class="input-group-prepend">
+							<span class="input-group-text" id="basic-addon1">cust id</span>
+						</div>
+						<input type="text" class="form-control" placeholder="code" id="partitaIva"
+							formControlName="custId" autocomplete="off" aria-label="Username"
+							aria-describedby="basic-addon1">
+					</div>
+
+
+					<div class="input-group mb-3">
+						<div class="input-group-prepend">
+							<span class="input-group-text" id="basic-addon1">date</span>
+						</div>
+						<input type="text" class="form-control" formControlName="date" placeholder="date" id="email"
+							autocomplete="off" aria-label="Username" aria-describedby="basic-addon1">
+					</div>
+
+					<div class="input-group mb-3">
+						<div class="input-group-prepend">
+							<span class="input-group-text" id="basic-addon1">pay condition</span>
+						</div>
+						<input type="text" class="form-control" formControlName="payCondition" placeholder="measure"
+							id="ragioneSociale" autocomplete="off" aria-label="Username"
+							aria-describedby="basic-addon1">
+					</div>
+
+					<div class="row">
+						<div class="col">
+							<div class="input-group mb-3">
+								<div class="input-group-prepend">
+									<span class="input-group-text" id="basic-addon1">doc type</span>
+								</div>
+								<input type="text" class="form-control" formControlName="docType" placeholder="price"
+									id="residenza" autocomplete="off" aria-label="Username"
+									aria-describedby="basic-addon1">
+							</div>
+
+						</div>
+						<div class="col">
+							<div class="input-group mb-3">
+								<div class="input-group-prepend">
+									<span class="input-group-text" id="basic-addon1">articles</span>
+								</div>
+								<input type="text" class="form-control" formControlName="articles"
+									placeholder="articles" id="sede" autocomplete="off" aria-label="Username"
+									aria-describedby="basic-addon1">
+							</div>
+						</div>
+					</div>
+
+					<div class="input-group mb-3">
+						<div class="input-group-prepend">
+							<span class="input-group-text" id="basic-addon1">taxable</span>
+						</div>
+						<input type="text" class="form-control" formControlName="taxable" placeholder="taxable"
+							id="residenza" autocomplete="off" aria-label="Username" aria-describedby="basic-addon1">
+					</div>
+
+
+					<div class="modal-footer">
+						<button type="button" class="btn btn-outline-danger" (click)="modal.dismiss('Cross click')">
+							Exit
+						</button>
+						<button type="submit" class="btn" id="btn-modal-edit"
+							(click)="modal.close('Save click')">insert</button>
+					</div>
+
+				</form>
+			</div>
+		</ng-template>
+
+		<ng-template #delete let-modal>
+			<div class="modal-header">
+				<h4 class="modal-title" id="modal-basic-title">Deleting invoice: {{codeD}}</h4>
+				<button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<form (ngSubmit)="deleteInv()">
+					<div class="row">
+						<p>are you sure to delete invoice --> {{codeD}} ?</p>
+					</div>
+					<div class="modal-footer">
+
+						<button type="button" class="btn" id="btn-modal-edit" (click)="modal.dismiss('Cross click')">
+							No
+						</button><button type="submit" class="btn btn-outline-danger"
+							(click)="modal.close('Save click')">Yes</button>
+					</div>
+
+				</form>
+			</div>
+		</ng-template>
 	</div>
+
+</div>

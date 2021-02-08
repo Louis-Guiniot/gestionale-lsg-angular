@@ -5,17 +5,17 @@
     </div> -->
 
     <div class="container-products">
-        <button class="btn btn-primary btn-sm" id="btn-insert" (click)="open(content)">new</button>
+        <button class="btn  btn-sm" id="btn-insert" (click)="open(content)">new</button>
         <table class="table">
             <thead>
                 <tr>
                     <th scope="col">#</th>
+                    <th scope="col">Code</th>
                     <th scope="col">Name</th>
-                    <th scope="col">Partita Iva</th>
-                    <th scope="col">Email</th>
-                    <th scope="col">Ragione Sociale</th>
-                    <th scope="col">Sede</th>
-                    <th scope="col">Residenza</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Measure unit</th>
+                    <th scope="col">Sale</th>
                     <th scope="col">&nbsp;</th>
                     <th scope="col">&nbsp;</th>
                 </tr>
@@ -26,10 +26,10 @@
                     <td>{{ product.codeProduct}}</td>
                     <td>{{ product.name}}</td>
                     <td>{{ product.description}}</td>
-                    <td>{{ product.price}}</td>
-                    <td>{{ product.scontoProd}}</td>
+                    <td>{{ product.price}}$</td>
                     <td>{{ product.measureUnit}}</td>
-                    <td><button class="btn btn-primary btn-sm" id="btn"
+                    <td>{{ product.scontoProd}}%</td>
+                    <td><button class="btn  btn-sm" id="btn-edit"
                             (click)="open(update,product.id,product.name)">edit</button>
                     </td>
                     <td><button class="btn btn-danger btn-sm" id="btn"
@@ -41,194 +41,203 @@
 
         <ng-template #content let-modal>
             <div class="modal-header">
-                <h4 class="modal-title" id="modal-basic-title">product creation</h4>
+                <h4 class="modal-title" id="modal-basic-title">Product creation</h4>
                 <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
                 <form [formGroup]="updateProductForm" (ngSubmit)="create()">
-                    
+
                     <div class="row">
                         <div class="col">
                             <div class="input-group mb-3">
                                 <div class="input-group-prepend">
-                                    <span class="input-group-text" id="basic-addon1">N</span>
-                                </div>
-                                <input type="text" class="form-control" formControlName="name" placeholder="name" id="name"
-                                    autocomplete="off" aria-label="Username" aria-describedby="basic-addon1">
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="input-group mb-3">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text" id="basic-addon1">P IVA</span>
+                                    <span class="input-group-text" id="basic-addon1">code</span>
                                 </div>
                                 <input type="text" class="form-control" placeholder="code" id="partitaIva"
                                     autocomplete="off" aria-label="Username" aria-describedby="basic-addon1" readonly>
                             </div>
                         </div>
+
+                        <div class="col">
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="basic-addon1">note</span>
+                                </div>
+                                <input type="text" class="form-control" formControlName="name" placeholder="name"
+                                    id="name" autocomplete="off" aria-label="Username" aria-describedby="basic-addon1">
+                            </div>
+                        </div>
                     </div>
-                
 
 
-            <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                    <span class="input-group-text" id="basic-addon1">@</span>
-                </div>
-                <input type="text" class="form-control" formControlName="description" placeholder="description"
-                    id="email" autocomplete="off" aria-label="Username" aria-describedby="basic-addon1">
+
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon1">descr</span>
+                        </div>
+                        <input type="text" class="form-control" formControlName="description" placeholder="description"
+                            id="email" autocomplete="off" aria-label="Username" aria-describedby="basic-addon1">
+                    </div>
+
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon1">measure</span>
+                        </div>
+                        <input type="text" class="form-control" formControlName="measureUnit" placeholder="measure"
+                            id="ragioneSociale" autocomplete="off" aria-label="Username"
+                            aria-describedby="basic-addon1">
+                    </div>
+
+                    <div class="row">
+                        <div class="col">
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="basic-addon1">price</span>
+                                </div>
+                                <input type="text" class="form-control" formControlName="price" placeholder="price"
+                                    id="residenza" autocomplete="off" aria-label="Username"
+                                    aria-describedby="basic-addon1">
+                            </div>
+
+                        </div>
+                        <div class="col">
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="basic-addon1">sale</span>
+                                </div>
+                                <input type="text" class="form-control" formControlName="sconto" placeholder="sconto"
+                                    id="sede" autocomplete="off" aria-label="Username" aria-describedby="basic-addon1">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-danger" (click)="modal.dismiss('Cross click')">
+                            Exit
+                        </button>
+                        <button type="submit" class="btn " id="btn-modal-edit"
+                            (click)="modal.close('Save click')">Update</button>
+                    </div>
+
+                </form>
             </div>
+        </ng-template>
 
-            <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                    <span class="input-group-text" id="basic-addon1">Ragione sociale</span>
-                </div>
-                <input type="text" class="form-control" formControlName="measureUnit" placeholder="measure"
-                    id="ragioneSociale" autocomplete="off" aria-label="Username" aria-describedby="basic-addon1">
+        <ng-template #update let-modal>
+            <div class="modal-header">
+                <h4 class="modal-title" id="modal-basic-title">Product update : {{nameD}}</h4>
+                <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
+            <div class="modal-body">
+                <form [formGroup]="updateProductForm" (ngSubmit)="updateProd()">
+                    <div *ngFor="let product of prods | async">
+                        <div *ngIf="product.id==idN">
+                            <div class="row">
+                                <div class="col">
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="basic-addon1">code</span>
+                                        </div>
+                                        <input type="text" class="form-control" placeholder="{{product.codeProduct}}"
+                                            id="partitaIva" autocomplete="off" aria-label="Username"
+                                            aria-describedby="basic-addon1" readonly>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="basic-addon1">note</span>
+                                        </div>
+                                        <input type="text" class="form-control" formControlName="name"
+                                            placeholder="{{product.name}}" id="name" autocomplete="off"
+                                            aria-label="Username" aria-describedby="basic-addon1">
+                                    </div>
+                                </div>
+                            </div>
 
-            <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                    <span class="input-group-text" id="basic-addon1">residenza</span>
-                </div>
-                <input type="text" class="form-control" formControlName="price" placeholder="price" id="residenza"
-                    autocomplete="off" aria-label="Username" aria-describedby="basic-addon1">
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="basic-addon1">descr</span>
+                                </div>
+                                <input type="text" class="form-control" formControlName="description"
+                                    placeholder="{{product.description}}" id="email" autocomplete="off"
+                                    aria-label="Username" aria-describedby="basic-addon1">
+                            </div>
+
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="basic-addon1">measure</span>
+                                </div>
+                                <input type="text" class="form-control" formControlName="measureUnit"
+                                    placeholder="{{product.measureUnit}}" id="ragioneSociale" autocomplete="off"
+                                    aria-label="Username" aria-describedby="basic-addon1">
+                            </div>
+
+                    <div class="row">
+                        <div class="col">
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="basic-addon1">price</span>
+                                </div>
+                                <input type="text" class="form-control" formControlName="price" placeholder="{{product.price}}"
+                                    id="residenza" autocomplete="off" aria-label="Username"
+                                    aria-describedby="basic-addon1">
+                            </div>
+
+                        </div>
+                        <div class="col">
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="basic-addon1">sale</span>
+                                </div>
+                                <input type="text" class="form-control" formControlName="sconto" placeholder="{{product.sconto}}"
+                                    id="sede" autocomplete="off" aria-label="Username" aria-describedby="basic-addon1">
+                            </div>
+                        </div>
+                    </div>
+
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-outline-danger"
+                                    (click)="modal.dismiss('Cross click')">
+                                    Exit
+                                </button><button type="submit" class="btn " id="btn-modal-edit"
+                                    (click)="modal.close('Save click')">Update</button>
+                            </div>
+
+                        </div>
+                    </div>
+                </form>
             </div>
+        </ng-template>
 
-            <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                    <span class="input-group-text" id="basic-addon1">sede</span>
-                </div>
-                <input type="text" class="form-control" formControlName="scontoProd" placeholder="socnto" id="sede"
-                    autocomplete="off" aria-label="Username" aria-describedby="basic-addon1">
+        <ng-template #delete let-modal>
+            <div class="modal-header">
+                <h4 class="modal-title" id="modal-basic-title">Deleting product: {{nameD}}</h4>
+                <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
+            <div class="modal-body">
+                <form (ngSubmit)="deleteProd()">
+                    <div class="row">
+                        <p>are you sure to delete product --> {{nameD}} ?</p>
+                    </div>
+                    <div class="modal-footer">
 
-            <div class="modal-footer">
-                <button type="button" class="btn btn-outline-danger" (click)="modal.dismiss('Cross click')">
-                    Exit
-                </button><button type="submit" class="btn btn-outline-primary"
-                    (click)="modal.close('Save click')">Update</button>
+                        <button type="button" class="btn" id="btn-modal-edit" (click)="modal.dismiss('Cross click')">
+                            No
+                        </button><button type="submit" class="btn btn-outline-danger"
+                            (click)="modal.close('Save click')">Yes</button>
+                    </div>
+
+                </form>
             </div>
-
-            <div class="modal-footer">
-                <button type="button" class="btn btn-outline-danger" (click)="modal.dismiss('Cross click')">
-                    Exit
-                </button><button type="submit" class="btn btn-outline-primary"
-                    (click)="modal.close('Save click')">Insert</button>
-            </div>
-
-            </form>
+        </ng-template>
     </div>
-    </ng-template>
-
-    <ng-template #update let-modal>
-        <div class="modal-header">
-            <h4 class="modal-title" id="modal-basic-title">product update : {{nameD}}</h4>
-            <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-                <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-        <div class="modal-body">
-            <form [formGroup]="updateProductForm" (ngSubmit)="updateProd()">
-                <div *ngFor="let product of prods | async">
-                    <div *ngIf="product.id==idN">
-                        <div class="row">
-                            <div class="col">
-                                <div class="input-group mb-3">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text" id="basic-addon1">N</span>
-                                    </div>
-                                    <input type="text" class="form-control" formControlName="name"
-                                        placeholder="{{product.name}}" id="name" autocomplete="off"
-                                        aria-label="Username" aria-describedby="basic-addon1">
-                                </div>
-                            </div>
-                            <div class="col">
-                                <div class="input-group mb-3">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text" id="basic-addon1">P IVA</span>
-                                    </div>
-                                    <input type="text" class="form-control" placeholder="{{product.codeProduct}}"
-                                        id="partitaIva" autocomplete="off" aria-label="Username"
-                                        aria-describedby="basic-addon1" readonly>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="input-group mb-3">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text" id="basic-addon1">@</span>
-                            </div>
-                            <input type="text" class="form-control" formControlName="description"
-                                placeholder="{{product.description}}" id="email" autocomplete="off"
-                                aria-label="Username" aria-describedby="basic-addon1">
-                        </div>
-
-                        <div class="input-group mb-3">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text" id="basic-addon1">Ragione sociale</span>
-                            </div>
-                            <input type="text" class="form-control" formControlName="measureUnit"
-                                placeholder="{{product.measureUnit}}" id="ragioneSociale" autocomplete="off"
-                                aria-label="Username" aria-describedby="basic-addon1">
-                        </div>
-
-                        <div class="input-group mb-3">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text" id="basic-addon1">residenza</span>
-                            </div>
-                            <input type="text" class="form-control" formControlName="price"
-                                placeholder="{{product.price}}" id="residenza" autocomplete="off" aria-label="Username"
-                                aria-describedby="basic-addon1">
-                        </div>
-
-                        <div class="input-group mb-3">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text" id="basic-addon1">sede</span>
-                            </div>
-                            <input type="text" class="form-control" formControlName="sconto"
-                                placeholder="{{product.scontoProd}}" id="sede" autocomplete="off" aria-label="Username"
-                                aria-describedby="basic-addon1">
-                        </div>
-
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-outline-danger" (click)="modal.dismiss('Cross click')">
-                                Exit
-                            </button><button type="submit" class="btn btn-outline-primary"
-                                (click)="modal.close('Save click')">Update</button>
-                        </div>
-
-                    </div>
-                </div>
-            </form>
-        </div>
-    </ng-template>
-
-    <ng-template #delete let-modal>
-        <div class="modal-header">
-            <h4 class="modal-title" id="modal-basic-title">Deleting product: {{nameD}}</h4>
-            <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-                <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-        <div class="modal-body">
-            <form (ngSubmit)="deleteProd()">
-                <div class="row">
-                    <p>are you sure to delete product --> {{nameD}} ?</p>
-                </div>
-                <div class="modal-footer">
-
-                    <button type="button" class="btn btn-outline-primary" (click)="modal.dismiss('Cross click')">
-                        No
-                    </button><button type="submit" class="btn btn-outline-danger"
-                        (click)="modal.close('Save click')">Yes</button>
-                </div>
-
-            </form>
-        </div>
-    </ng-template>
-</div>
 </div>
 
 

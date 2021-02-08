@@ -11,12 +11,35 @@
     font-family: Mulish;
 }
 
+.btn{
+    font-size: 1.2vw;
+}
+
 #btn{
     width: 100%;
+
 }
 
 #btn-insert{
-    width: 80%;
+    width: 20%;
+    margin-bottom: 2%;
+    background-color: rgba(#012051,0.9);
+    color: white;
+}
+
+#btn-edit{
+    width: 100%;
+    background-color: rgba(#012051,0.9); 
+    color: white; 
+}
+
+#btn-modal-edit{
+    background-color: rgba(#012051,0.9);
+    color: white; 
+}
+
+.close{
+    color: white;
 }
 
 .modal-body{
@@ -25,12 +48,22 @@
 
 .modal-header{
     font-family: Mulish;
+    background-color: rgba(#012051,0.9);
+    color: white;
+    border: 1px solid rgba(0,0,0,.2);
 }
 
 
 table{
     vertical-align: middle;
     width: 100%;
+    font-size: 1.2vw;
+    font-family: Mulish;
+}
+
+thead{
+    background-color: rgba(#012051,0.9);
+    color: white;
 }
 
 .container-customers{

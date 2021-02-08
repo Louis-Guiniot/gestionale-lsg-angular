@@ -56,20 +56,20 @@ export class InvoicesEffects {
         ))
     ));    
 
-    createInvoice(products:string, date:string, sale:string, imponibile:string, condizionePagamento:string,docType:string, idCustomer:string, ): Observable<Response>{
-        return this.http.retrievePostCall<Response>('invoice/create',{products, date,sale, imponibile,condizionePagamento, docType, idCustomer});
+    createInvoice(custId:string,date:string,payCondition:string,docType:string,sale:string,articles:string,taxable:string): Observable<Response>{
+        return this.http.retrievePostCall<Response>('invoice/create',{custId,date,payCondition,docType,sale,articles,taxable});
     }
     
     createInvoice$: Observable<Action> = createEffect(() => this.actions$.pipe(
         ofType(createInvoice),
         switchMap((action) => this.createInvoice(
-            action.products,
+            action.custId,
             action.date,
-            action.sale,
-            action.imponibile,
-            action.condizionePagamento,
+            action.payCondition,
             action.docType,
-            action.idCustomer).pipe(
+            action.sale,
+            action.articles,
+            action.taxable).pipe(
             map((response) => initInvoices({ response })),
            tap(()=>this.router.navigateByUrl('/home'))
         ))
