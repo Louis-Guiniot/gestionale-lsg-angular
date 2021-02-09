@@ -22,7 +22,7 @@
             </thead>
             <tbody>
                 <!-- | slice: (page-1) * pageSize : page * pageSize -->
-                <tr *ngFor="let element of elements | async;">
+                <tr *ngFor="let element of elements | async | slice: (page-1) * pageSize : (page-1) * pageSize + pageSize">
                     <th scope="row">{{ element.id }}</th>
                     <td>{{ element.name}}</td>
                     <td>{{ element.email}}</td>
@@ -40,9 +40,11 @@
             </tbody>
         </table>
 
-        <!-- <p>{{collectionSize}}</p>
-    <ngb-pagination [collectionSize]="collectionSize" [(page)]="page" aria-label="Default pagination"></ngb-pagination>
-        <pre>Current page: {{page}}</pre> -->
+        <p>{{(elements|async).length}}</p>
+        <ngb-pagination [collectionSize]="(elements|async).length" [(page)]="page" [maxSize]="5" [rotate]="true" [ellipses]="false" [boundaryLinks]="true"></ngb-pagination>
+
+    </div>
+</div>
 
         <ng-template #content let-modal>
             <div class="modal-header">
@@ -243,7 +245,4 @@
                 </form>
             </div>
         </ng-template>
-    </div>
-</div>
-
 <!-- PER CREAZIONE A COMPARSA -->
