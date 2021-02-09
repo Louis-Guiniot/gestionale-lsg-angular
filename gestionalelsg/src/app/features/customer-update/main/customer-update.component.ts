@@ -52,7 +52,7 @@ export class CustomerUpdateComponent implements OnInit {
     console.log("surname "+this.customerUpdateForm.value.surname)
     console.log("email "+this.customerUpdateForm.value.email)
 
-    this.customerService.updateCustomer(this.id, this.customerUpdateForm.value.name,this.customerUpdateForm.value.surname, this.customerUpdateForm.value.email)
+   // this.customerService.updateCustomer(this.id, this.customerUpdateForm.value.name,this.customerUpdateForm.value.surname, this.customerUpdateForm.value.email)
   }
 
 }

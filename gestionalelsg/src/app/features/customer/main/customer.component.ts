@@ -139,7 +139,7 @@ export class CustomerComponent implements OnInit{
     console.log("surname "+this.customerFormUpdate.value.surname)
     console.log("email "+this.customerFormUpdate.value.email)
 
-    this.customerService.updateCustomer(this.idS.toString(), this.customerFormUpdate.value.name,this.customerFormUpdate.value.surname, this.customerFormUpdate.value.email)
+    this.customerService.updateCustomer(this.idS.toString(), this.customerFormUpdate.value.ragioneSociale, this.customerFormUpdate.value.partitaIva,this.customerFormUpdate.value.email, this.customerFormUpdate.value.sede,this.customerFormUpdate.value.residenza,this.customerFormUpdate.value.name )
   }
 
   // update(id: string) {

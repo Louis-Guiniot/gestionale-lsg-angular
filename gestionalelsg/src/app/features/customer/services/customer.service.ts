@@ -20,8 +20,8 @@ export class CustomerService {
     this.store.dispatch(deleteCustomer({id}))
   }
 
-  updateCustomer(id:string, name: string, surname: string, email:string){
-    this.store.dispatch(updateCustomer({id, name, surname, email}))
+  updateCustomer(id:string, ragioneSociale:string, partitaIva:string, email:string, sede: string, residenza: string, name:string){
+    this.store.dispatch(updateCustomer({id, ragioneSociale, partitaIva,email,sede,residenza,name}))
   }
 
   retreiveAllCustomers(){
