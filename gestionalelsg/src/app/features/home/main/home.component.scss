@@ -1,103 +1,21 @@
-.box{
-    padding-top:12%;
-    width: 80%;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.nav-container{
-    display: grid;
-    align-self: center;
-    margin-left: auto;
-    margin-right: auto;
+.container{
+    height: 100vh;
     width: 100%;
-    grid-template-columns: repeat(3, 1fr);
+    padding: 1%;
+    margin: 0;
+    font-family: Mulish;
 }
 
-a{
-    text-decoration: none;
-    width: auto;
-    font-size: 3.5vw;
-    &:active{
-        text-decoration: none;
-    }
-
-    &:visited{
-        text-decoration: none;
-    }
+.card{
+    font-size: 1.5vw;
 }
 
-.grid-part{
-    width: auto;
-    height: 40vh;
-    padding: 5%;
-    text-align: center;
-    font-weight: bolder;
+.btn{
+    background-color: rgba(#012051,0.9); 
     color: white;
 }
 
-.grid-part:hover{
-    cursor: pointer;
-}
-
-// #one:hover ~ #two > #cust { border-bottom-left-radius: 25px; }
-
-// .one:hover + .two > #cust{ border-bottom-left-radius: 25px; }
-// .grid-part #invo:hover + .grid-part > #cust{ border-bottom-right-radius: 25px; }
-// #three:hover + #two > #cust { background-color: red; }
-
-#prod{
-    width: auto;
-    background-color: #012051;
-    transition:all 1s;
-    border-bottom-left-radius: 25px;
-    border-top-left-radius: 25px;
-   
-
-    &:hover{
-        transform: translateY(-15%);
-        border-top-right-radius: 25px;
-    }
-}
-
-.one{
-     grid-column-start: 1;
-    grid-column-end: 2;
-}
-
-.two{
-       grid-column-start: 2;
-    grid-column-end: 3; 
-}
-
-.three{
-    grid-column-start: 3;
-    grid-column-end: 4;
-}
-
-#cust{
-    width: auto;
-    background-color: #033cff;
-    transition:all 1s;
-
-
-    &:hover{
-        transform: translateY(15%);       
-        border-bottom-left-radius: 25px;
-        border-bottom-right-radius: 25px;
-    }
-}
-
-#invo{
-    width: auto;
-    background-color: rgb(88, 119, 255);
-    transition:all 1s;
-    border-bottom-right-radius: 25px;
-    border-top-right-radius: 25px;
-
-
-    &:hover{
-        transform: translateY(-15%); 
-        border-top-left-radius: 25px;     
-    }
+.card-header{
+    background-color: rgba(#012051,0.9); 
+    color: white;
 }
