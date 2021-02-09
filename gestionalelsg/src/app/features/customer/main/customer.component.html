@@ -1,4 +1,4 @@
-    <!-- <div class="header-page">
+<!-- <div class="header-page">
         <span>Customers page</span>
         <span id="home-link"><a href="/home" class="link">home</a></span>
     </div> -->
@@ -21,6 +21,7 @@
                 </tr>
             </thead>
             <tbody>
+                <!-- | slice: (page-1) * pageSize : page * pageSize -->
                 <tr *ngFor="let element of elements | async;">
                     <th scope="row">{{ element.id }}</th>
                     <td>{{ element.name}}</td>
@@ -39,18 +40,9 @@
             </tbody>
         </table>
 
-        <div class="d-flex justify-content-between p-2">
-            <ngb-pagination [collectionSize]="collectionSize" [(page)]="page" [pageSize]="pageSize"
-                (pageChange)="refreshCountries()">
-            </ngb-pagination>
-
-            <select class="custom-select" style="width: auto" [(ngModel)]="pageSize"
-                (ngModelChange)="refreshCountries()">
-                <option [ngValue]="2">2 items per page</option>
-                <option [ngValue]="4">4 items per page</option>
-                <option [ngValue]="6">6 items per page</option>
-            </select>
-        </div>
+        <!-- <p>{{collectionSize}}</p>
+    <ngb-pagination [collectionSize]="collectionSize" [(page)]="page" aria-label="Default pagination"></ngb-pagination>
+        <pre>Current page: {{page}}</pre> -->
 
         <ng-template #content let-modal>
             <div class="modal-header">
@@ -196,8 +188,8 @@
                                             <span class="input-group-text" id="basic-addon1">residenza</span>
                                         </div>
                                         <input type="text" class="form-control" formControlName="residenza"
-                                            placeholder="{{customer.residenza}}" id="residenza" autocomplete="off" aria-label="Username"
-                                            aria-describedby="basic-addon1">
+                                            placeholder="{{customer.residenza}}" id="residenza" autocomplete="off"
+                                            aria-label="Username" aria-describedby="basic-addon1">
                                     </div>
                                 </div>
                                 <div class="col">
@@ -205,11 +197,12 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text" id="basic-addon1">sede</span>
                                         </div>
-                                        <input type="text" class="form-control" formControlName="sede" placeholder="{{customer.sede}}"
-                                            id="sede" autocomplete="off" aria-label="Username" aria-describedby="basic-addon1">
+                                        <input type="text" class="form-control" formControlName="sede"
+                                            placeholder="{{customer.sede}}" id="sede" autocomplete="off"
+                                            aria-label="Username" aria-describedby="basic-addon1">
                                     </div>
-        
-        
+
+
                                 </div>
                             </div>
 

@@ -9,6 +9,10 @@ export const selectCustomers = createSelector(
     selectCustomerState,
     (state: CustomerState) => state.customers
 );
+// export const selectTotalCustomers = createSelector(
+//     selectCustomerState,
+//     (state: CustomerState) => state.customers.length
+// );
 
 export const getCurrentCustomer = createSelector(
     selectCustomerState,

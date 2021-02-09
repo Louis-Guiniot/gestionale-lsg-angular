@@ -31,6 +31,8 @@ export class CustomerComponent implements OnInit{
   customerFormUpdate: FormGroup;
   
 
+  collectionSize:number
+
   nameD:string;
   customers=[];
   id:string
@@ -38,8 +40,7 @@ export class CustomerComponent implements OnInit{
   idS:string
 
   page = 1;
-  pageSize = 4;
-  collectionSize:number;
+  pageSize = 2;
 
   filter = new FormControl('');
 
@@ -60,7 +61,7 @@ export class CustomerComponent implements OnInit{
     this.nameD=name;
 
 
-    console.log("idN: "+this.idN+"nameD: "+this.nameD)
+    console.log("idN: "+this.idN+"    nameD: "+this.nameD)
     this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
     }, (reason) => {
@@ -80,13 +81,13 @@ export class CustomerComponent implements OnInit{
 
   ngOnInit(): void {
 
-    this.store.pipe(select(selectCustomers)).subscribe((customers) => {
-      for (let cust of customers) {
-        this.customers.push(cust);
-      }
-      this.collectionSize=this.customers.length;
-      return this.customers
-    })
+    // this.store.pipe(select(selectCustomers)).subscribe((customers) => {
+    //   for (let cust of customers) {
+    //     this.customers.push(cust);
+    //   }
+    //   this.collectionSize=this.customers.length;
+    //   return this.customers
+    // })
 
     this.route.queryParams.subscribe(params => {
       this.id = params['id'];
@@ -110,13 +111,9 @@ export class CustomerComponent implements OnInit{
       partitaIva: ['', Validators.required]
     })
 
-    //   this.store.pipe(select(selectCustomers)).subscribe((customers) => {
-    //   for (let cust of customers) {
-    //     this.elements.push(cust);
-    //     console.log(cust);
-    //   }
-    //   return this.elements
-    // })
+    //   this.store.pipe(select(selectTotalCustomers)).subscribe((customers) => {
+    //    this.collectionSize=customers;
+    //  })
   }
   get elements(): Observable<Customer[]> {
     return this.store.pipe(select(selectCustomers));
