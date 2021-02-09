@@ -48,7 +48,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form [formGroup]="updateProductForm" (ngSubmit)="create()">
+                <form [formGroup]="createProductForm" (ngSubmit)="create()">
 
                     <div class="row">
                         <div class="col">
@@ -86,9 +86,9 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="basic-addon1">measure</span>
                         </div>
-                        <select class="form-select" aria-label="Default select example">
-                            <option selected>Open this select menu</option>
-                            <option *ngFor="let measure of measures | async" value="{{measure.id}}">{{measure.type}}
+                        <select formControlName="measureUnit" class="form-select" aria-label="Default select example">
+                            <option selected>Seleziona unità</option>
+                            <option *ngFor="let measure of measures | async" value="{{measure.type}}">{{measure.type}}
                             </option>
                         </select>
                     </div>

@@ -121,8 +121,8 @@ export class ProductsComponent implements OnInit {
     this.productService.createProduct(this.createProductForm.value.description,this.createProductForm.value.measureUnit,this.createProductForm.value.name,this.createProductForm.value.price, this.createProductForm.value.sconto)
     
   }
-  deleteProd(id:string){
-    this.productService.deleteProduct(id)
+  deleteProd(){
+    this.productService.deleteProduct(this.idS)
   }
 
   clear(){

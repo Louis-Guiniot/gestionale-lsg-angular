@@ -22,22 +22,25 @@ export class CustomerEffects {
         return this.http.retrievePostCall<Response>('customer/create',{email,ragioneSociale,partitaIva,sede,residenza,name});
     }
 
-    findUpdateCustomer(id:string, name:string,surname:string,email:string){
-        return this.http.retrievePostCall<Response>('customer/update',{id,name,surname,email});
+    findUpdateCustomer(id:string, ragioneSociale:string, partitaIva:string, email:string, sede: string, residenza: string, name:string){
+        return this.http.retrievePostCall<Response>('customer/update',{id, ragioneSociale, partitaIva,email,sede,residenza,name});
     }
 
     deleteCustomer(id: string): Observable<Response>{
         console.log(this.http.retrievePostCall<Response>('customer/delete',{id}));
         return this.http.retrievePostCall<Response>('customer/delete',{id});
     }
-
+    //id:string, ragioneSociale:string, partitaIva:string, email:string, sede: string, residenza: string, name:string
     findUpdateCustomer$: Observable<Action> = createEffect(() => this.actions$.pipe(
         ofType(updateCustomer),
         switchMap((action) => this.findUpdateCustomer(
             action.id,
-            action.name,
-            action.surname,
-            action.email).pipe(
+            action.ragioneSociale,
+            action.partitaIva,
+            action.email,
+            action.sede,
+            action.residenza,
+            action.name).pipe(
             map((response) => initCustomers({ response }))
             ,tap(()=>this.router.navigateByUrl('/home'))
         ))

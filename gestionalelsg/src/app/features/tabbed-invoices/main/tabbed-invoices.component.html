@@ -162,13 +162,7 @@
 						</div>
 					</div>
 
-					<div class="input-group mb-3">
-						<div class="input-group-prepend">
-							<span class="input-group-text" id="basic-addon1">taxable</span>
-						</div>
-						<input type="text" class="form-control" formControlName="taxable" placeholder="taxable"
-							id="residenza" autocomplete="off" aria-label="Username" aria-describedby="basic-addon1">
-					</div>
+				
 
 
 					<div class="modal-footer">
@@ -185,7 +179,7 @@
 
 		<ng-template #delete let-modal>
 			<div class="modal-header">
-				<h4 class="modal-title" id="modal-basic-title">Deleting invoice: {{codeD}}</h4>
+				<h4 class="modal-title" id="modal-basic-title">Deleting invoice: {{codeD}} id: {{idS}}</h4>
 				<button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
 					<span aria-hidden="true">&times;</span>
 				</button>
