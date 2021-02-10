@@ -20,7 +20,7 @@ import {MatTabsModule} from '@angular/material/tabs';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-
+import {MatButtonModule} from '@angular/material/button';
 
 @NgModule({
   declarations: [
@@ -33,7 +33,7 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
     HttpClientModule,
     CoreModule,
     HttpModule,
-   
+    MatButtonModule,
     ReactiveFormsModule,
  
     StoreModule.forRoot(reducers),

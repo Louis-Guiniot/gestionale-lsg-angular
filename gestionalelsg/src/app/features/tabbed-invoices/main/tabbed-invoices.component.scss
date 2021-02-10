@@ -7,7 +7,7 @@
 .tabbed {
 	width: auto;
 	overflow-x: hidden; /* so we could easily hide the radio inputs */
-	margin: 32px 0;
+	margin-top: 2%;
 	padding-bottom: 16px;
 	border-bottom: 1px solid #ccc;
 }
@@ -31,16 +31,11 @@
 	border: 1px solid #ccc;
 	background-color: rgba(#012051,0.9);
 	color: white;
-	font-size: 12px; 
-	font-weight: 600;
+	font-size: 1.2vh;
 	text-transform: uppercase;
 	letter-spacing: 1px;
 	cursor: pointer;	
 	transition: all 0.3s;
-}
-
-.btn{
-    font-size: 1.2vw;
 }
 
 #btn{
@@ -48,21 +43,43 @@
 
 }
 
+i{
+    font-size: larger;
+}
+
+.btn{
+    font-family: Mulish;
+    outline: none;
+    line-height: 0%;
+    font-size: 1.2vw;
+}
+
 #btn-insert{
     width: 20%;
     background-color: rgba(#012051,0.9);
     color: white;
+	margin-bottom: 2%;
 }
 
 #btn-edit{
     width: 100%;
-    background-color: rgba(#012051,0.9); 
-    color: white; 
+    border: 1px rgba(#012051,0.9) solid;
+    color: rgba(#012051,0.9);
+
+	&:hover{
+		color: white;
+		background-color: rgba(#012051,0.9);
+	}
 }
 
 #btn-modal-edit{
-    background-color: rgba(#012051,0.9);
-    color: white; 
+    border: 1px rgba(#012051,0.9) solid;
+    color: rgba(#012051,0.9);
+
+	&:hover{
+		color: white;
+		background-color: rgba(#012051,0.9);
+	}
 }
 
 #td-btn{
@@ -77,8 +94,13 @@ p{
     padding: 3%;
 }
 
+.modal-dialog{
+	width: 80%;
+}
+
 .modal-body{
     font-family: Mulish;
+	font-size: 1.2vw;
 }
 
 .modal-header{
@@ -93,7 +115,6 @@ p{
 }
 
 table{
-    vertical-align: middle;
     width: 100%;
     font-size: 1.2vw;
     font-family: Mulish;

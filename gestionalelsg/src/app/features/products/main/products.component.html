@@ -1,16 +1,12 @@
 <div class="container">
-    <!-- <div class="header-page">
-        <span>products page</span>
-        <span id="home-link"><a href="/home" class="link">home</a></span>
-    </div> -->
-
-    <div class="container-products">
-        <button class="btn  btn-sm" id="btn-insert" (click)="open(content)">new</button>
+        <button class="btn btn-sm" id="btn-insert" (click)="open(content)">
+            <i class="bi bi-plus"></i></button>
+            
         <table class="table">
             <caption>List of Products</caption>
             <thead>
                 <tr>
-                    <th scope="col">#</th>
+                    <th scope="col">Id</th>
                     <th scope="col">Code</th>
                     <th scope="col">Name</th>
                     <th scope="col">Description</th>
@@ -30,15 +26,16 @@
                     <td>{{ product.price}}$</td>
                     <td>{{ product.measureUnit}}</td>
                     <td>{{ product.scontoProd}}%</td>
-                    <td><button class="btn  btn-sm" id="btn-edit"
-                            (click)="open(update,product.id,product.name)">edit</button>
+                    <td><button class="btn" id="btn-modal-edit"
+                            (click)="open(update,product.id,product.name)"><i class="bi bi-pencil-square"></i></button>
                     </td>
-                    <td><button class="btn btn-danger btn-sm" id="btn"
-                            (click)="open(delete,product.id,product.name)">delete</button>
+                    <td><button class="btn btn-outline-danger" id="btn-delete"
+                            (click)="open(delete,product.id,product.name)"><i class="bi bi-trash-fill"></i></button>
                     </td>
                 </tr>
             </tbody>
         </table>
+</div>
 
         <ng-template #content let-modal>
             <div class="modal-header">
@@ -208,9 +205,10 @@
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-outline-danger"
                                     (click)="modal.dismiss('Cross click')">
-                                    Exit
-                                </button><button type="submit" class="btn " id="btn-modal-edit"
-                                    (click)="modal.close('Save click')">Update</button>
+                                    <i class="bi bi-box-arrow-right"></i>
+                                </button>
+                                <button type="submit" class="btn" id="btn-modal-edit"
+                                    (click)="modal.close('Save click')"><i class="bi bi-save"></i></button>
                             </div>
 
                         </div>
@@ -234,15 +232,12 @@
                     <div class="modal-footer">
 
                         <button type="button" class="btn" id="btn-modal-edit" (click)="modal.dismiss('Cross click')">
-                            No
+                            <i class="bi bi-box-arrow-right"></i>
                         </button><button type="submit" class="btn btn-outline-danger"
-                            (click)="modal.close('Save click')">Yes</button>
+                            (click)="modal.close('Save click')"><i class="bi bi-trash-fill"></i></button>
                     </div>
 
                 </form>
             </div>
         </ng-template>
-    </div>
-</div>
-
 <!-- PER CREAZIONE A COMPARSA -->

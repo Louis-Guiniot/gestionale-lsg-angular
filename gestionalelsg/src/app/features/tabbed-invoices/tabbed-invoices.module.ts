@@ -7,7 +7,6 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
-
 @NgModule({
   declarations: [TabbedInvoicesComponent],
   imports: [
@@ -15,8 +14,8 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
     TabbedInvoicesRoutingModule,
     SharedModule,
     NgbModule,
-    
   ],
+
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
 })
 export class TabbedInvoicesModule { }

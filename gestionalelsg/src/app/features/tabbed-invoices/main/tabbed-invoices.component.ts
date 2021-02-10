@@ -4,10 +4,11 @@ import { Router } from '@angular/router';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { select, Store } from '@ngrx/store';
 import { Observable, Observer } from 'rxjs';
+import { Customer } from 'src/app/core/model/Customer.interface';
 import { Invoice } from 'src/app/core/model/Invoice.interface';
+import { selectCustomers } from 'src/app/redux/customer';
 import { selectInvoices } from 'src/app/redux/invoice';
 import { TabbedInvoicesService } from '../services/tabbed-invoices.service';
-
 
 export interface ExampleTab {
   label: string;
@@ -37,18 +38,25 @@ export class TabbedInvoicesComponent implements OnInit{
     this.invoicesService.retrieveAllInvoices()
   }
 
-  open(content,idCust?:string,name?:string) {
+  openXL(content,idCust?:string,name?:string) {
+
+    this.modalService.open(content, { size: 'l' }).result.then((result) => {
+      this.closeResult = `Closed with: ${result}`;
+    }, (reason) => {
+      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+    });;
+
     this.idN=Number.parseInt(idCust)
     this.idS=idCust;
     this.codeD=name;
 
 
     console.log("idN: "+this.idN+"codeD: "+this.codeD)
-    this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
-      this.closeResult = `Closed with: ${result}`;
-    }, (reason) => {
-      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
-    });
+    // this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
+    //   this.closeResult = `Closed with: ${result}`;
+    // }, (reason) => {
+    //   this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+    // });
   }
 
   private getDismissReason(reason: any): string {
@@ -64,27 +72,17 @@ export class TabbedInvoicesComponent implements OnInit{
   ngOnInit():void{
 
     this.invoiceInsertForm=this.fb.group({
-     
+
       custId: ['', Validators.required],
-      date: ['', Validators.required],
-      code:['', Validators.required],
       payCondition:['', Validators.required],
       docType:['', Validators.required],
       sale:['', Validators.required],
       articles:['', Validators.required],
-      //taxable:['', Validators.required],
-      quantity:['', Validators.required],
-      saleImport:['', Validators.required],
-      iva:['', Validators.required],
-      totMerce:['', Validators.required],
-      totServices:['', Validators.required]
     })
 
     this.invoiceUpdateForm=this.fb.group({
-     
       custId: ['', Validators.required],
       date: ['', Validators.required],
-      code:['', Validators.required],
       payCondition:['', Validators.required],
       docType:['', Validators.required],
       sale:['', Validators.required],
@@ -93,6 +91,7 @@ export class TabbedInvoicesComponent implements OnInit{
       quantity:['', Validators.required],
       saleImport:['', Validators.required],
       iva:['', Validators.required],
+      ivaPrice:['', Validators.required],
       totMerce:['', Validators.required],
       totServices:['', Validators.required]
     })
@@ -103,13 +102,21 @@ export class TabbedInvoicesComponent implements OnInit{
     return this.store.pipe(select(selectInvoices))
   }
 
+  get elements(): Observable<Customer[]>{
+    return this.store.pipe(select(selectCustomers))
+  }
+
   create(){
     this.invoicesService.create(this.invoiceInsertForm.value.custId,
       this.invoiceInsertForm.value.payCondition, this.invoiceInsertForm.value.docType,
       this.invoiceInsertForm.value.sale,this.invoiceInsertForm.value.articles)
-    
+
   }
   deleteInv(){
     this.invoicesService.deleteInvoice(this.idS)
+  }
+
+  update(){
+    console.log("update is coming")
   }
 }

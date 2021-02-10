@@ -10,32 +10,50 @@
     font-family: Mulish;
 }
 
-.btn{
-    font-size: 1.2vw;
-}
-
 #btn{
     width: 100%;
 
 }
 
+i{
+    font-size: larger;
+}
+
+.btn{
+    font-family: Mulish;
+    outline: none;
+    line-height: 0%;
+    font-size: 1.2vw;
+}
+
 #btn-insert{
     width: 20%;
-    margin-bottom: 2%;
     background-color: rgba(#012051,0.9);
     color: white;
+	margin-bottom: 2%;
 }
 
 #btn-edit{
     width: 100%;
-    background-color: rgba(#012051,0.9); 
-    color: white; 
+    border: 1px rgba(#012051,0.9) solid;
+    color: rgba(#012051,0.9);
+
+	&:hover{
+		color: white;
+		background-color: rgba(#012051,0.9);
+	}
 }
 
 #btn-modal-edit{
-    background-color: rgba(#012051,0.9);
-    color: white; 
+    border: 1px rgba(#012051,0.9) solid;
+    color: rgba(#012051,0.9);
+
+	&:hover{
+		color: white;
+		background-color: rgba(#012051,0.9);
+	}
 }
+
 
 .close{
     color: white;
