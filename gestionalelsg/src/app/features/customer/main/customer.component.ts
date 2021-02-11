@@ -64,8 +64,12 @@ export class CustomerComponent implements OnInit{
     console.log("idN: "+this.idN+"    nameD: "+this.nameD)
     this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
+      this.customerForm.reset();
+      this.customerFormUpdate.reset();
     }, (reason) => {
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+      this.customerFormUpdate.reset();
+      this.customerForm.reset();
     });
   }
 

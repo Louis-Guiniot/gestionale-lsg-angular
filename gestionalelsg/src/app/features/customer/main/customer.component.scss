@@ -1,12 +1,8 @@
 .container{
-    display: grid;
     height: 100vh;
-    grid-template-columns: auto;
-    grid-template-rows:  1fr;
     padding: 1%;
     margin: 0;
-    column-gap: 1%;
-    row-gap: 2%;
+    width: 100vw;
     font-family: Mulish;
 }
 
@@ -76,8 +72,8 @@ p{
 
 
 table{
-    vertical-align: middle;
     width: 100%;
+    vertical-align: middle;
     font-size: 1.2vw;
     font-family: Mulish;
 }

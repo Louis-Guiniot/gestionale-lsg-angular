@@ -1,6 +1,7 @@
 .container{
     padding: 1%;
 	width: 100%; 
+    margin: 0;
 	background: #fff;
 }
 
@@ -16,8 +17,18 @@
 	margin-bottom: 2%;
 }
 
-#btn-modal-edit{
+#btn-edit{
     width: 100%;
+    border: 1px rgba(#012051,0.9) solid;
+    color: rgba(#012051,0.9);
+
+	&:hover{
+		color: white;
+		background-color: rgba(#012051,0.9);
+	}
+}
+
+#btn-modal-edit{
     border: 1px rgba(#012051,0.9) solid;
     color: rgba(#012051,0.9);
 

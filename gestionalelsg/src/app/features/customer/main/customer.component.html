@@ -3,7 +3,6 @@
         <span id="home-link"><a href="/home" class="link">home</a></span>
     </div> -->
 <div class="container">
-    <div class="container-customers">
         <button class="btn btn-sm" id="btn-insert" (click)="open(content)"><i class="bi bi-plus"></i></button>
         <table class="table">
             <caption>List of Customers</caption>
@@ -42,8 +41,6 @@
 
         <p>{{(elements|async).length}}</p>
         <ngb-pagination [collectionSize]="(elements|async).length" [(page)]="page" [maxSize]="5" [rotate]="true" [ellipses]="false" [boundaryLinks]="true"></ngb-pagination>
-
-    </div>
 </div>
 
         <ng-template #content let-modal>

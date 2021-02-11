@@ -1,13 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ModalDismissReasons, NgbDateStruct, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { select, Store } from '@ngrx/store';
 import { Observable, Observer } from 'rxjs';
 import { Customer } from 'src/app/core/model/Customer.interface';
 import { Invoice } from 'src/app/core/model/Invoice.interface';
 import { selectCustomers } from 'src/app/redux/customer';
 import { selectInvoices } from 'src/app/redux/invoice';
+import { CustomerService } from '../../customer/services/customer.service';
 import { TabbedInvoicesService } from '../services/tabbed-invoices.service';
 
 export interface ExampleTab {
@@ -25,6 +26,8 @@ export interface ExampleTab {
 export class TabbedInvoicesComponent implements OnInit{
   asyncTabs: Observable<ExampleTab[]>;
 
+  model: NgbDateStruct;
+  placement = 'left';
 
   invoiceInsertForm:FormGroup
   invoiceUpdateForm:FormGroup
@@ -34,16 +37,21 @@ export class TabbedInvoicesComponent implements OnInit{
   codeD:string;
   closeResult='';
 
-  constructor(private store: Store, private route: Router, private invoicesService: TabbedInvoicesService, private fb:FormBuilder, private modalService: NgbModal) {
+  constructor(private store: Store, private route: Router, private invoicesService: TabbedInvoicesService, private customerService: CustomerService, private fb:FormBuilder, private modalService: NgbModal) {
     this.invoicesService.retrieveAllInvoices()
+    this.customerService.retreiveAllCustomers()
   }
 
   openXL(content,idCust?:string,name?:string) {
 
     this.modalService.open(content, { size: 'l' }).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
+      this.invoiceUpdateForm.reset();
+      this.invoiceInsertForm.reset();
     }, (reason) => {
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+      this.invoiceInsertForm.reset();
+      this.invoiceUpdateForm.reset();
     });;
 
     this.idN=Number.parseInt(idCust)
@@ -118,5 +126,9 @@ export class TabbedInvoicesComponent implements OnInit{
 
   update(){
     console.log("update is coming")
+  }
+
+  resetForm(){
+    this.invoiceUpdateForm.reset();
   }
 }

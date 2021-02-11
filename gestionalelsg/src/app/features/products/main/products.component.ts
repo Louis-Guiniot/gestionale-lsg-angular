@@ -44,8 +44,12 @@ export class ProductsComponent implements OnInit {
     console.log("idN: "+this.idN+"nameD: "+this.nameD)
     this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
+      this.updateProductForm.reset();
+      this.createProductForm.reset();
     }, (reason) => {
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+      this.updateProductForm.reset();
+      this.createProductForm.reset();
     });
   }
 
