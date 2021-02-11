@@ -9,7 +9,7 @@ import { HttpCommunicationsService } from "src/app/core/HttpCommunications/http-
 
 import { Response } from '../../core/model/Response.interface';
 
-import { createInvoice, deleteInvoice, initInvoices, retrieveAllInvoices, retrieveLastInvoice } from "./invoice.actions";
+import { createInvoice, deleteInvoice, initInvoices, retrieveAllInvoices, retrieveLastInvoice, updateInvoice } from "./invoice.actions";
 
 
 @Injectable()
@@ -102,6 +102,28 @@ export class InvoicesEffects {
     //         tap(()=>this.router.navigateByUrl('/fattura'))
     //     ))
     // ));
+
+    updateInvoice(idS: string, custId: string, date: string, payCondition: string, docType: string, sale: string, articles: string, taxable: string, quantity: string, saleImport: string): Observable<Response>{
+        return this.http.retrievePostCall<Response>('invoice/update',{idS, custId, date, payCondition, docType, sale, articles, taxable, quantity, saleImport});
+    }
+    
+    updateInvoice$: Observable<Action> = createEffect(() => this.actions$.pipe(
+        ofType(updateInvoice),
+        switchMap((action) => this.updateInvoice(
+            action.idS,
+            action.custId,
+            action.date,
+            action.payCondition,
+            action.docType,
+            action.sale,
+            action.articles,
+            action.taxable,
+            action.quantity,
+            action.saleImport).pipe(
+            map((response) => initInvoices({ response })),
+           tap(()=>this.router.navigateByUrl('/home'))
+        ))
+    ));
 
     
     

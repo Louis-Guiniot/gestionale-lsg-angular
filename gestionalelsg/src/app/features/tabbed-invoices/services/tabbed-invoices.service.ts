@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { createInvoice, deleteInvoice, retrieveAllInvoices } from 'src/app/redux/invoice/invoice.actions';
+import { createInvoice, deleteInvoice, retrieveAllInvoices, updateInvoice } from 'src/app/redux/invoice/invoice.actions';
 
 @Injectable({
   providedIn: 'root'
@@ -19,5 +19,10 @@ export class TabbedInvoicesService {
 
   deleteInvoice(idS:string){
     this.store.dispatch(deleteInvoice({idS}))
+  }
+
+  updateInvoice(idS: string, custId: string, date: string, payCondition: string, docType: string, sale: string, articles: string, taxable: string,
+    quantity: string, saleImport: string){
+    this.store.dispatch(updateInvoice({idS, custId, date, payCondition, docType, sale, articles, taxable, quantity, saleImport}))
   }
 }
