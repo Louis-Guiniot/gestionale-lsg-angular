@@ -7,7 +7,6 @@
 body{
     background-position: center;
     background-repeat: repeat-y;
-    background-color: white;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -22,6 +21,10 @@ html {
 
 input{
     font-family: Mulish;
+}
+
+button:focus{
+    outline: 0 !important;
 }
 
 

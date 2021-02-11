@@ -31,14 +31,13 @@ export class CustomerComponent implements OnInit{
   customerFormUpdate: FormGroup;
   
 
-  collectionSize:number
-
   nameD:string;
   customers=[];
   id:string
   idN:number
   idS:string
 
+  collectionSize:any;
   page = 1;
   pageSize = 2;
 
@@ -46,13 +45,6 @@ export class CustomerComponent implements OnInit{
 
   constructor(pipe: DecimalPipe,private store: Store, private route: ActivatedRoute, private customerService: CustomerService, private fb: FormBuilder, private modalService: NgbModal) {
     console.log(this.customerService.retreiveAllCustomers());
-    this.refreshCountries(); 
-  }
-
-  refreshCountries() {
-    this.customers
-      .map((customer, i) => ({id: i + 1, ...customer}))
-      .slice((this.page - 1) * this.pageSize, (this.page - 1) * this.pageSize + this.pageSize);
   }
 
   open(content,idCust?:string,name?:string) {
@@ -62,10 +54,12 @@ export class CustomerComponent implements OnInit{
 
 
     console.log("idN: "+this.idN+"    nameD: "+this.nameD)
-    this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
+    this.modalService.open(content, { size: 'xl'}).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
     }, (reason) => {
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+      this.customerFormUpdate.reset();
+      this.customerForm.reset();
     });
   }
 
@@ -81,13 +75,14 @@ export class CustomerComponent implements OnInit{
 
   ngOnInit(): void {
 
-    // this.store.pipe(select(selectCustomers)).subscribe((customers) => {
-    //   for (let cust of customers) {
-    //     this.customers.push(cust);
-    //   }
-    //   this.collectionSize=this.customers.length;
-    //   return this.customers
-    // })
+     this.store.pipe(select(selectCustomers)).subscribe((customers) => {
+       for (let cust of customers) {
+         this.customers.push(cust);
+       }
+
+       this.collectionSize = this.customers.length;
+       return this.collectionSize;
+     })
 
     this.route.queryParams.subscribe(params => {
       this.id = params['id'];

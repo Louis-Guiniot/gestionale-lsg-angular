@@ -1,12 +1,6 @@
 .container{
-    display: grid;
-    height: 100vh;
-    grid-template-columns: auto;
-    grid-template-rows:  1fr;
-    padding: 1%;
+    padding: 4% 1% 1% 1%;
     margin: 0;
-    column-gap: 1%;
-    row-gap: 2%;
     font-family: Mulish;
 }
 
@@ -28,29 +22,29 @@ i{
 
 #btn-insert{
     width: 20%;
-    background-color: rgba(#012051,0.9);
+    background-color: #012051;
     color: white;
 	margin-bottom: 2%;
 }
 
 #btn-edit{
     width: 100%;
-    border: 1px rgba(#012051,0.9) solid;
-    color: rgba(#012051,0.9);
+    border: 1px #012051 solid;
+    color: #012051;
 
 	&:hover{
 		color: white;
-		background-color: rgba(#012051,0.9);
+		background-color: #012051;
 	}
 }
 
 #btn-modal-edit{
-    border: 1px rgba(#012051,0.9) solid;
-    color: rgba(#012051,0.9);
+    border: 1px #012051 solid;
+    color: #012051;
 
 	&:hover{
 		color: white;
-		background-color: rgba(#012051,0.9);
+		background-color: #012051;
 	}
 }
 
@@ -65,7 +59,7 @@ i{
 
 .modal-header{
     font-family: Mulish;
-    background-color: rgba(#012051,0.9);
+    background-color: #012051;
     color: white;
     border: 1px solid rgba(0,0,0,.2);
 }
@@ -76,14 +70,14 @@ p{
 
 
 table{
-    vertical-align: middle;
     width: 100%;
+    vertical-align: middle;
     font-size: 1.2vw;
     font-family: Mulish;
 }
 
 thead{
-    background-color: rgba(#012051,0.9);
+    background-color: #012051;
     color: white;
 }
 

@@ -1,6 +1,6 @@
 .container{
-    padding: 1%;
-	width: 100%; 
+    padding: 4% 1% 1% 1%;
+    margin: 0;
 	background: #fff;
 }
 
@@ -11,19 +11,29 @@
 
 #btn-insert{
     width: 20%;
-    background-color: rgba(#012051,0.9);
+    background-color: #012051;
     color: white;
 	margin-bottom: 2%;
 }
 
-#btn-modal-edit{
+#btn-edit{
     width: 100%;
-    border: 1px rgba(#012051,0.9) solid;
-    color: rgba(#012051,0.9);
+    border: 1px #012051 solid;
+    color: #012051;
 
 	&:hover{
 		color: white;
-		background-color: rgba(#012051,0.9);
+		background-color: #012051;
+	}
+}
+
+#btn-modal-edit{
+    border: 1px #012051 solid;
+    color: #012051;
+
+	&:hover{
+		color: white;
+		background-color: #012051;
 	}
 }
 
@@ -52,18 +62,18 @@ p{
 
 .modal-header{
     font-family: Mulish;
-    background-color: rgba(#012051,0.9);
+    background-color: #012051;
     color: white;
     border: 1px solid rgba(0,0,0,.2);
 }
 
 #btn-modal-edit{
-    border: 1px rgba(#012051,0.9) solid;
-    color: rgba(#012051,0.9);
+    border: 1px #012051 solid;
+    color: #012051;
 
 	&:hover{
 		color: white;
-		background-color: rgba(#012051,0.9);
+		background-color: #012051;
 	}
 }
 
@@ -79,7 +89,7 @@ table{
 }
 
 thead{
-    background-color: rgba(#012051,0.9);
+    background-color: #012051;
     color: white;
 }
 
