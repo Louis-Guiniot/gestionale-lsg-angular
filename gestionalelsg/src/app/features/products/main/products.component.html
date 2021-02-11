@@ -1,5 +1,5 @@
 <div class="container">
-    <button class="btn btn-sm" id="btn-insert" (click)="open(content)">
+    <button class="btn btn-sm" id="btn-insert" (click)="open(content)" ngbTooltip="New product">
         <i class="bi bi-plus"></i></button>
 
     <table class="table">
@@ -7,11 +7,17 @@
         <thead>
             <tr>
                 <th scope="col">Id</th>
+                <th scope="col">&nbsp;</th>
                 <th scope="col">Code</th>
+                <th scope="col">&nbsp;</th>
                 <th scope="col">Name</th>
+                <th scope="col">&nbsp;</th>
                 <th scope="col">Description</th>
+                <th scope="col">&nbsp;</th>
                 <th scope="col">Price</th>
+                <th scope="col">&nbsp;</th>
                 <th scope="col">Measure unit</th>
+                <th scope="col">&nbsp;</th>
                 <th scope="col">Sale</th>
                 <th scope="col">&nbsp;</th>
                 <th scope="col">&nbsp;</th>
@@ -20,17 +26,24 @@
         <tbody>
             <tr *ngFor="let product of prods | async;">
                 <th scope="row">{{ product.id }}</th>
+                <td>&nbsp;</td>
                 <td>{{ product.codeProduct}}</td>
+                <td>&nbsp;</td>
                 <td>{{ product.name}}</td>
+                <td>&nbsp;</td>
                 <td>{{ product.description}}</td>
+                <td>&nbsp;</td>
                 <td>{{ product.price}}$</td>
+                <td>&nbsp;</td>
                 <td>{{ product.measureUnit}}</td>
+                <td>&nbsp;</td>
                 <td>{{ product.scontoProd}}%</td>
-                <td><button class="btn" id="btn-edit" (click)="open(update,product.id,product.name)"><i
+
+                <td><button class="btn" id="btn-edit" (click)="open(update,product.id,product.name)" ngbTooltip="Edit"><i
                             class="bi bi-pencil-square"></i></button>
                 </td>
                 <td><button class="btn btn-outline-danger" id="btn-delete"
-                        (click)="open(delete,product.id,product.name)"><i class="bi bi-trash-fill"></i></button>
+                        (click)="open(delete,product.id,product.name)" ngbTooltip="Delete"><i class="bi bi-trash-fill"></i></button>
                 </td>
             </tr>
         </tbody>
@@ -114,11 +127,11 @@
 
 
             <div class="modal-footer">
-                <button type="button" class="btn btn-outline-danger" (click)="modal.dismiss('Cross click')">
+                <button type="button" class="btn btn-outline-danger" (click)="modal.dismiss('Cross click')" ngbTooltip="Exit">
                     <i class="bi bi-box-arrow-right"></i>
                 </button>
                 <button type="submit" class="btn " id="btn-modal-edit"
-                    (click)="modal.close('Save click')"><i class="bi bi-save"></i></button>
+                    (click)="modal.close('Save click')" ngbTooltip="Save"><i class="bi bi-save"></i></button>
             </div>
 
         </form>
@@ -201,10 +214,10 @@
                     </div>
 
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-outline-danger" (click)="modal.dismiss('Cross click')">
+                        <button type="button" class="btn btn-outline-danger" (click)="modal.dismiss('Cross click')" ngbTooltip="Exit">
                             <i class="bi bi-box-arrow-right"></i>
                         </button>
-                        <button type="submit" class="btn" id="btn-modal-edit" (click)="modal.close('Save click')"><i
+                        <button type="submit" class="btn" id="btn-modal-edit" (click)="modal.close('Save click')" ngbTooltip="Save"><i
                                 class="bi bi-save"></i></button>
                     </div>
 
@@ -228,13 +241,14 @@
             </div>
             <div class="modal-footer">
 
-                <button type="button" class="btn" id="btn-modal-edit" (click)="modal.dismiss('Cross click')">
+                <button type="button" class="btn" id="btn-modal-edit" (click)="modal.dismiss('Cross click')" ngbTooltip="Undo">
                     <i class="bi bi-box-arrow-right"></i>
-                </button><button type="submit" class="btn btn-outline-danger" (click)="modal.close('Save click')"><i
+                </button><button type="submit" class="btn btn-outline-danger" (click)="modal.close('Save click')" ngbTooltip="Delete"><i
                         class="bi bi-trash-fill"></i></button>
             </div>
 
         </form>
     </div>
 </ng-template>
+
 <!-- PER CREAZIONE A COMPARSA -->

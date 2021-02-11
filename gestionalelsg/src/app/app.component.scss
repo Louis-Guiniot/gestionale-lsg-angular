@@ -12,7 +12,7 @@
   grid-row-end: 2;
 
   padding: 1%;
-  background-color: rgba(#012051,0.9);
+  background-color: #012051;
   color: white;
   width: auto;
   font-family: Mulish;  
@@ -45,6 +45,7 @@ span{
   font-size: 1.3vw;
   height: 100vh;
   font-family: Mulish;
+  background-color: rgb(247, 247, 247);
 }
 
 ul{
@@ -59,10 +60,11 @@ li a {
   color: #000;
   padding: 1vw;
   text-decoration: none;
+  font-weight: bold;
 }
 
 li a:hover {
-  background-color: rgba(#012051,0.9);
-  border-right: 1px rgba(#012051,0.9) solid;
+  background-color: #012051;
+  border-right: 1px #012051 solid;
   color: white;
 }

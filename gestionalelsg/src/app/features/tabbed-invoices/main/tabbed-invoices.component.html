@@ -1,5 +1,5 @@
 <div class="page-content">
-	<button class="btn btn-sm" id="btn-insert" (click)="openXL(content)"><i class="bi bi-plus"></i></button>
+	<button class="btn btn-sm" id="btn-insert" (click)="openXL(content)" ngbTooltip="New invoice"><i class="bi bi-plus"></i></button>
 
 	<!-- ANCHOR first table -->
 	<table class="table">
@@ -548,7 +548,7 @@
 
 				<button type="button" class="btn" id="btn-modal-edit" (click)="modal.dismiss('Cross click')" ngbTooltip="Delete">
 					<i class="bi bi-save"></i>
-				</button><button type="submit" class="btn btn-outline-danger" (click)="modal.close('Save click')" ngbTooltip="Exit">
+				</button><button type="submit" class="btn btn-outline-danger" (click)="modal.close('Save click')" ngbTooltip="Undo">
 					<i
 						class="bi bi-trash-fill"></i></button>
 			</div>

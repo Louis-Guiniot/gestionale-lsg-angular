@@ -44,10 +44,8 @@ export class TabbedInvoicesComponent implements OnInit{
 
   openXL(content,idCust?:string,name?:string) {
 
-    this.modalService.open(content, { size: 'l' }).result.then((result) => {
+    this.modalService.open(content, { size: 'xl' }).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
-      this.invoiceUpdateForm.reset();
-      this.invoiceInsertForm.reset();
     }, (reason) => {
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
       this.invoiceInsertForm.reset();

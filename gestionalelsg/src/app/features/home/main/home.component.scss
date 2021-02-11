@@ -1,21 +1,51 @@
-.container{
-    height: 100vh;
-    width: 100%;
-    padding: 1%;
+.box{
+    padding: 4% 1% 1% 1%;
     margin: 0;
     font-family: Mulish;
+}
+
+.btn{
+    color: #012051;
+    background-color: transparent;
+    font-size: 1.5vw;
+}
+
+h5{
+    color: #012051;
+}
+
+#a{
+        color: #012051;
+        padding: 1%;
+        background-color: transparent;
+        font-size: 1.5vw;
+        border: 1px #012051 solid;
+    
+        &:hover{
+            background-color: #012051;
+            color: white;
+        }
+}
+
+a{
+    text-decoration: none;
+    &:visited{
+        text-decoration: none;
+    }
+
+
 }
 
 .card{
     font-size: 1.5vw;
 }
 
-.btn{
-    background-color: rgba(#012051,0.9); 
-    color: white;
-}
+
 
 .card-header{
-    background-color: rgba(#012051,0.9); 
+    background-color: #012051; 
     color: white;
+    text-transform: uppercase;
+    font-weight: bold;
 }
+
