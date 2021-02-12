@@ -23,6 +23,7 @@ export class TabbedInvoicesService {
 
   updateInvoice(idS: string, custId: string, date: string, payCondition: string, docType: string, sale: string, articles: string, taxable: string,
     quantity: string, saleImport: string){
+      console.log(idS, custId, date, payCondition, docType, sale, articles, taxable, quantity, saleImport);
     this.store.dispatch(updateInvoice({idS, custId, date, payCondition, docType, sale, articles, taxable, quantity, saleImport}))
   }
 }
