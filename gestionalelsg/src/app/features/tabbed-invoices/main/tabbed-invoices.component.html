@@ -394,24 +394,23 @@
                             </button>
 
                             <div #collapse="ngbCollapse" [(ngbCollapse)]="!isCollapsed">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <div class="row">
-                                            <div class="col">
-                                                <p>Are you sure to delete this invoice?</p>
-                                            </div>
-                                            <div class="col-md-2">
-                                                <button class="btn btn-outline-danger" id="button-del-toggle " (click)="modalEdit.close( 'Save click') " id="yes ">
+                                <form (ngSubmit)="deleteInv() ">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <div class="row">
+                                                <div class="col">
+                                                    <p>Are you sure to delete this invoice?</p>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <button class="btn btn-outline-danger" id="button-del-toggle" type="submit" (click)="modalEdit.close( 'Save click') " id="yes ">
                                             yes
                                         </button></div>
-                                            <div class="col-md-2 "> <button id="button-del-toggle " (click)="collapse.toggle() " [attr.aria-expanded]="!isCollapsed " id="no ">no</button></div>
+                                                <div class="col-md-2 "> <button id="button-del-toggle" (click)="collapse.toggle() " [attr.aria-expanded]="!isCollapsed " id="no ">no</button></div>
+                                            </div>
                                         </div>
-
-
-
-
                                     </div>
-                                </div>
+                                </form>
+
                             </div>
 
                         </div>
