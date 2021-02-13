@@ -54,7 +54,7 @@ export class CustomerComponent implements OnInit{
 
 
     console.log("idN: "+this.idN+"    nameD: "+this.nameD)
-    this.modalService.open(content, { size: 'xl'}).result.then((result) => {
+    this.modalService.open(content, { size: 'l'}).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
     }, (reason) => {
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
@@ -74,15 +74,6 @@ export class CustomerComponent implements OnInit{
   }
 
   ngOnInit(): void {
-
-     this.store.pipe(select(selectCustomers)).subscribe((customers) => {
-       for (let cust of customers) {
-         this.customers.push(cust);
-       }
-
-       this.collectionSize = this.customers.length;
-       return this.collectionSize;
-     })
 
     this.route.queryParams.subscribe(params => {
       this.id = params['id'];
@@ -133,16 +124,6 @@ export class CustomerComponent implements OnInit{
 
     this.customerService.updateCustomer(this.idS.toString(), this.customerFormUpdate.value.ragioneSociale, this.customerFormUpdate.value.partitaIva,this.customerFormUpdate.value.email, this.customerFormUpdate.value.sede,this.customerFormUpdate.value.residenza,this.customerFormUpdate.value.name )
   }
-
-  // update(id: string) {
-  //   console.log(id)
-  //   this.route.navigate(["customer/update"], {
-  //     queryParams: {
-  //       id: id
-  //     },
-  //     queryParamsHandling: 'merge',
-  //   });
-  // }
 
   clear() {
     this.customerForm.reset();
