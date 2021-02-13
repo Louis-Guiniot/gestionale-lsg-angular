@@ -103,8 +103,8 @@ export class InvoicesEffects {
     //     ))
     // ));
 
-    updateInvoice(idS: string, custId: string, date: string, payCondition: string, docType: string, sale: string, articles: string, taxable: string, quantity: string, saleImport: string): Observable<Response>{
-        return this.http.retrievePostCall<Response>('invoice/update',{idS, custId, date, payCondition, docType, sale, articles, taxable, quantity, saleImport});
+    updateInvoice(idS: string, custId: string, payCondition: string, docType: string, sale: string, articles: string, taxable: string, quantity: string, saleImport: string): Observable<Response>{
+        return this.http.retrievePostCall<Response>('invoice/update',{idS, custId, payCondition, docType, sale, articles, taxable, quantity, saleImport});
     }
     
     updateInvoice$: Observable<Action> = createEffect(() => this.actions$.pipe(
@@ -112,7 +112,6 @@ export class InvoicesEffects {
         switchMap((action) => this.updateInvoice(
             action.idS,
             action.custId,
-            action.date,
             action.payCondition,
             action.docType,
             action.sale,

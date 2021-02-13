@@ -21,9 +21,9 @@ export class TabbedInvoicesService {
     this.store.dispatch(deleteInvoice({idS}))
   }
 
-  updateInvoice(idS: string, custId: string, date: string, payCondition: string, docType: string, sale: string, articles: string, taxable: string,
+  updateInvoice(idS: string, custId: string, payCondition: string, docType: string, sale: string, articles: string, taxable: string,
     quantity: string, saleImport: string){
-      console.log(idS, custId, date, payCondition, docType, sale, articles, taxable, quantity, saleImport);
-    this.store.dispatch(updateInvoice({idS, custId, date, payCondition, docType, sale, articles, taxable, quantity, saleImport}))
+      console.log(idS, custId,  payCondition, docType, sale, articles, taxable, quantity, saleImport);
+    this.store.dispatch(updateInvoice({idS, custId,  payCondition, docType, sale, articles, taxable, quantity, saleImport}))
   }
 }

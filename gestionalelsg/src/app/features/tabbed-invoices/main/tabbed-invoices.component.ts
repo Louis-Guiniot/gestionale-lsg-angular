@@ -126,10 +126,9 @@ export class TabbedInvoicesComponent implements OnInit{
 
   update(){
     
-
+    console.log("id customer che mi fa piangere: ", this.invoiceUpdateForm.value.custId )
     this.invoicesService.updateInvoice(this.idS.toString(),
                                        this.invoiceUpdateForm.value.custId, 
-                                       this.invoiceUpdateForm.value.date,
                                        this.invoiceUpdateForm.value.payCondition, 
                                        this.invoiceUpdateForm.value.docType, 
                                        this.invoiceUpdateForm.value.sale, 
