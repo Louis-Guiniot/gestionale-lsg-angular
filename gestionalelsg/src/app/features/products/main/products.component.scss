@@ -1,99 +1,122 @@
-.container{
+.box {
+    width: 100%;
+    font-family: Mulish;
     padding: 4% 1% 1% 1%;
     margin: 0;
-	background: #fff;
+    display: grid;
+    grid-template-columns: 5% auto;
+    column-gap: 1%;
 }
 
+.grid-btn {
+    width: auto;
+}
 
-#btn{
+.grid-table {
+    width: auto;
+}
+
+#btn {
     width: 100%;
 }
 
-#btn-insert{
-    width: 20%;
+#btn-insert {
+    width: 100%;
     background-color: #012051;
+    color: #012051;
+    height: 100%;
+    transition-duration: 0.3s;
+    box-shadow: 0 0 1px #ccc;
+    -webkit-transition-duration: 0.4s;
+    -webkit-transition-timing-function: ease-out;
+    -webkit-transform-origin: 0 0;
+    box-shadow: 0px 0px 0 100px white inset;
+    font-weight: bold;
+    font-size: larger;
+    border-radius: 0;
+}
+
+#btn-insert:hover {
     color: white;
-	margin-bottom: 2%;
+    box-shadow: 0px 0px 0 0px white inset;
+    -webkit-box-shadow: 0px 0px 0 0px white inset;
+    -webkit-transform: scale(1);
 }
 
-#btn-edit{
+#btn-edit {
     width: 100%;
     border: 1px #012051 solid;
     color: #012051;
-
-	&:hover{
-		color: white;
-		background-color: #012051;
-	}
+    &:hover {
+        color: white;
+        background-color: #012051;
+    }
 }
 
-#btn-modal-edit{
+#btn-modal-edit {
     border: 1px #012051 solid;
     color: #012051;
-
-	&:hover{
-		color: white;
-		background-color: #012051;
-	}
+    &:hover {
+        color: white;
+        background-color: #012051;
+    }
 }
 
-#btn-delete{
+#btn-delete {
     width: 100%;
 }
 
-i{
+i {
     font-size: larger;
 }
 
-.btn{
+.btn {
     font-family: Mulish;
     outline: none;
     line-height: 0%;
     font-size: 1.2vw;
 }
 
-p{
+p {
     padding: 3%;
 }
 
-.modal-body{
-    font-family: Mulish;
+.modal-body {
+    border-radius: 0;
 }
 
-.modal-header{
-    font-family: Mulish;
+.modal-header {
+    border-radius: 0;
     background-color: #012051;
     color: white;
-    border: 1px solid rgba(0,0,0,.2);
+    border: 1px solid rgba(0, 0, 0, .2);
 }
 
-#btn-modal-edit{
+#btn-modal-edit {
     border: 1px #012051 solid;
     color: #012051;
-
-	&:hover{
-		color: white;
-		background-color: #012051;
-	}
+    &:hover {
+        color: white;
+        background-color: #012051;
+    }
 }
 
-.close{
+.close {
     color: white;
 }
 
-
-table{
+table {
     width: 100%;
     font-size: 1.2vw;
     font-family: Mulish;
 }
 
-thead{
+thead {
     background-color: #012051;
     color: white;
 }
 
-.container-products{
+.container-products {
     width: auto;
     color: black;
 }

@@ -37,6 +37,8 @@ export class TabbedInvoicesComponent implements OnInit{
   codeD:string;
   closeResult='';
 
+  public isCollapsed = false;
+
   constructor(private store: Store, private route: Router, private invoicesService: TabbedInvoicesService, private customerService: CustomerService, private fb:FormBuilder, private modalService: NgbModal) {
     this.invoicesService.retrieveAllInvoices()
     this.customerService.retreiveAllCustomers()
@@ -44,7 +46,7 @@ export class TabbedInvoicesComponent implements OnInit{
 
   openXL(content,idCust?:string,name?:string) {
 
-    this.modalService.open(content, { size: 'xl' }).result.then((result) => {
+    this.modalService.open(content, { size: 'l' }).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
     }, (reason) => {
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
