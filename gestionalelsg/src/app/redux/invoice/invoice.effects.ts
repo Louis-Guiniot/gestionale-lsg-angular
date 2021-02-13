@@ -30,7 +30,7 @@ export class InvoicesEffects {
         switchMap((action) => this.deleteInvoice(
             action.idS).pipe(
             map((response) => initInvoices({ response })),
-            tap(()=>this.router.navigateByUrl('/home'))
+            tap(()=>this.router.navigateByUrl('/redirectinvoices'))
         ))
     ));
 
@@ -69,7 +69,7 @@ export class InvoicesEffects {
             action.sale,
             action.articles).pipe(
             map((response) => initInvoices({ response })),
-           tap(()=>this.router.navigateByUrl('/home'))
+           tap(()=>this.router.navigateByUrl('/redirectinvoices'))
         ))
     ));
 
@@ -121,7 +121,7 @@ export class InvoicesEffects {
             action.quantity,
             action.saleImport).pipe(
             map((response) => initInvoices({ response })),
-           tap(()=>this.router.navigateByUrl('/home'))
+           tap(()=>this.router.navigateByUrl('/redirectinvoices'))
         ))
     ));
 

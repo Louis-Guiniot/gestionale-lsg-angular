@@ -36,7 +36,7 @@ export class ProductsEffects {
         switchMap((action) => this.deleteProduct(
             action.id).pipe(
             map((response) => initProducts({ response })),
-            tap(()=>this.router.navigateByUrl('/home'))
+            tap(()=>this.router.navigateByUrl('/redirectproducts'))
         ))
     ));
    
@@ -75,7 +75,7 @@ export class ProductsEffects {
             action.price,
             action.sconto).pipe(
             map((response) => initProducts({ response })),
-            tap(()=>this.router.navigateByUrl('/home'))
+            tap(()=>this.router.navigateByUrl('/redirectproducts'))
         ))
     ));
 
@@ -95,7 +95,7 @@ export class ProductsEffects {
             action.price,
             action.scontoProd).pipe(
             map((response) => initProducts({ response }))
-            ,tap(()=>this.router.navigateByUrl('/home'))
+            ,tap(()=>this.router.navigateByUrl('/redirectproducts'))
         ))
     ));
     

@@ -12,6 +12,9 @@ const routes: Routes = [
   { path: 'products', loadChildren: () => import('./features/products/products.module').then(m => m.ProductsModule) },
   { path: 'products/update', loadChildren: () => import('./features/products-update/products-update.module').then(m => m.ProductsUpdateModule) },
   { path: 'tabbed/invoices', loadChildren: () => import('./features/tabbed-invoices/tabbed-invoices.module').then(m => m.TabbedInvoicesModule) },
+  { path: 'redirectcustomer', loadChildren: () => import('./redirects/customers/customers.module').then(m => m.CustomersModule) },
+  { path: 'redirectproducts', loadChildren: () => import('./redirects/products/products.module').then(m => m.ProductsModule) },
+  { path: 'redirectinvoices', loadChildren: () => import('./redirects/invoices/invoices.module').then(m => m.InvoicesModule) },
   
   
  
