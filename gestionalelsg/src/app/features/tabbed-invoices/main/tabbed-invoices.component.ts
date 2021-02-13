@@ -75,7 +75,7 @@ export class TabbedInvoicesComponent implements OnInit{
     }
   }
 
-  ngOnInit():void{
+  ngOnInit(): void{
 
     this.invoiceInsertForm=this.fb.group({
 
@@ -87,12 +87,12 @@ export class TabbedInvoicesComponent implements OnInit{
     })
 
     this.invoiceUpdateForm=this.fb.group({
-      custId: ['', Validators.required],
+      idCliente: ['', Validators.required],
       date: ['', Validators.required],
-      payCondition:['', Validators.required],
-      docType:['', Validators.required],
-      sale:['', Validators.required],
-      articles:['', Validators.required],
+      condizioniPagamento:['', Validators.required],
+      tipoDocumento:['', Validators.required],
+      sconto:['', Validators.required],
+      articoli:['', Validators.required],
       taxable:['', Validators.required],
       quantity:['', Validators.required],
       saleImport:['', Validators.required],
@@ -123,8 +123,20 @@ export class TabbedInvoicesComponent implements OnInit{
   }
 
   update(){
-    this.invoicesService.updateInvoice(this.idS.toString(), this.invoiceUpdateForm.value.custId, this.invoiceUpdateForm.value.date, this.invoiceUpdateForm.value.payCondition, 
-    this.invoiceUpdateForm.value.docType, this.invoiceUpdateForm.value.sale, this.invoiceUpdateForm.value.articles, this.invoiceUpdateForm.value.taxable,
+    console.log("LA FORM DI LOUIS FA CAGARE E INFATTI: "+this.idS.toString(), this.invoiceUpdateForm.value.idCliente, this.invoiceUpdateForm.value.date, this.invoiceUpdateForm.value.condizioniPagamento, 
+    this.invoiceUpdateForm.value.tipoDocumento, this.invoiceUpdateForm.value.sconto, this.invoiceUpdateForm.value.articoli, this.invoiceUpdateForm.value.taxable,
     this.invoiceUpdateForm.value.quantity, this.invoiceUpdateForm.value.saleImport)
+
+
+    this.invoicesService.updateInvoice(this.idS.toString(),
+                                       this.invoiceUpdateForm.value.idCliente, 
+                                       this.invoiceUpdateForm.value.date, 
+                                       this.invoiceUpdateForm.value.condizioniPagamento, 
+                                       this.invoiceUpdateForm.value.tipoDocumento, 
+                                       this.invoiceUpdateForm.value.sconto, 
+                                       this.invoiceUpdateForm.value.articoli, 
+                                       this.invoiceUpdateForm.value.taxable,
+                                       this.invoiceUpdateForm.value.quantity, 
+                                       this.invoiceUpdateForm.value.saleImport)
   }
 }

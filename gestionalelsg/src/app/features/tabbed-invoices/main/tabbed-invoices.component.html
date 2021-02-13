@@ -272,8 +272,8 @@
 										<div class="input-group-prepend">
 											<span class="input-group-text" id="basic-addon1">cust id</span>
 										</div>
-										<input type="text" class="form-control" placeholder="{{inv.idCustomer}}"
-											autocomplete="off" aria-describedby="basic-addon1" formControlName="custId">
+										<input type="text" formControlName="idCliente" class="form-control" placeholder="{{inv.idCustomer}}"
+											autocomplete="off" aria-describedby="basic-addon1" >
 									</div>
 								</div>
 							</div>
@@ -294,9 +294,8 @@
 											<div class="input-group-prepend">
 												<span class="input-group-text" id="basic-addon1">doc type</span>
 											</div>
-											<input type="text" class="form-control" placeholder="{{inv.tipoDocumento}}"
-												autocomplete="off" aria-describedby="basic-addon1"
-												formControlName="docType">
+											<input type="text" formControlName="tipoDocumento" class="form-control" placeholder="{{inv.tipoDocumento}}"
+												autocomplete="off" aria-describedby="basic-addon1">
 										</div>
 									</div>
 									<div class="col">
@@ -306,7 +305,7 @@
 											</div>
 											<input type="text" class="form-control" placeholder="{{inv.sconto}}"
 												autocomplete="off" aria-describedby="basic-addon1"
-												formControlName="sale">
+												formControlName="sconto">
 										</div>
 									</div>
 								</div>
@@ -318,7 +317,7 @@
 									</div>
 									<input type="text" class="form-control" placeholder="{{inv.condizionePagamento}}"
 										autocomplete="off" aria-describedby="basic-addon1"
-										formControlName="payCondition">
+										formControlName="condizioniPagamento">
 								</div>
 
 							</div>
@@ -334,7 +333,7 @@
 										<span class="input-group-text" id="basic-addon1">articles</span>
 									</div>
 									<input type="text" class="form-control" placeholder="{{inv.productFields}}"
-										autocomplete="off" aria-describedby="basic-addon1" formControlName="articles">
+										autocomplete="off" aria-describedby="basic-addon1" formControlName="articoli">
 								</div>
 								<div class="row">
 									<div class="col">
@@ -433,7 +432,7 @@
 
 						<div *ngFor="let inv of invoices | async">
 							<div *ngIf="inv.id==idN">
-								<button type="submit" class="btn btn-outline-danger"
+								<button type="button" class="btn btn-outline-danger"
 									(click)="openXL(delete,inv.id,inv.codeInvoice)" ngbTooltip="Delete"><i
 										class="bi bi-trash-fill"></i></button>
 							</div>
