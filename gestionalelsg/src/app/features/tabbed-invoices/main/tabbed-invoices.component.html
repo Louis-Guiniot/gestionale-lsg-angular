@@ -129,7 +129,7 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text" id="basic-addon1">articles</span>
                             </div>
-                            <input type="text" class="form-control" placeholder="{{inv.productFields}}" autocomplete="off" aria-describedby="basic-addon1" readonly>
+                            <input type="text" class="form-control" placeholder="{{inv.fields}}" autocomplete="off" aria-describedby="basic-addon1" readonly>
                         </div>
 
                         <div class="row">
@@ -260,8 +260,8 @@
                                             <span class="input-group-text" id="basic-addon1">cust id</span>
                                         </div>
                                         <select class="form-control" aria-label="Default select example" aria-describedby="basic-addon1" formControlName="custId">
-                                            <option *ngFor="let cust of elements | async" value="{{ cust.id }}">
-                                                {{ cust.id }}
+                                            <option *ngFor="let cust of elements | async" value="{{cust.id}}">
+                                                {{cust.id}}
                                             </option>
                                         </select>
                                     </div>
@@ -438,8 +438,8 @@
                         <div class="input-group-prepend ">
                             <span class="input-group-text " id="basic-addon1 ">customer id</span>
                         </div>
-                        <select formControlName="custId " class="form-control " aria-label="Default select example ">
-                            <option *ngFor="let element of elements | async " value="{{element.id}} ">
+                        <select formControlName="custId" class="form-control " aria-label="Default select example ">
+                            <option *ngFor="let element of elements | async " value="{{element.id}}">
                                 {{element.id}}
                             </option>
                         </select>
@@ -450,7 +450,7 @@
                         <div class="input-group-prepend ">
                             <span class="input-group-text " id="basic-addon1 ">articles</span>
                         </div>
-                        <input type="text " class="form-control " formControlName="articles " placeholder="articles " id="sede " autocomplete="off " aria-describedby="basic-addon1 ">
+                        <input type="text " class="form-control " formControlName="articles" placeholder="articles " id="sede " autocomplete="off " aria-describedby="basic-addon1 ">
                     </div>
                 </div>
             </div>
@@ -461,7 +461,7 @@
                         <div class="input-group-prepend ">
                             <span class="input-group-text " id="basic-addon1 ">sale</span>
                         </div>
-                        <input type="text " class="form-control " formControlName="sale " placeholder="sale " id="sale " autocomplete="off " aria-describedby="basic-addon1 ">
+                        <input type="text " class="form-control " formControlName="sale" placeholder="sale " id="sale " autocomplete="off " aria-describedby="basic-addon1 ">
                     </div>
                 </div>
                 <div class="col ">
@@ -469,7 +469,7 @@
                         <div class="input-group-prepend ">
                             <span class="input-group-text " id="basic-addon1 ">pay condition</span>
                         </div>
-                        <input type="text " class="form-control " formControlName="payCondition " placeholder="pay condition " autocomplete="off " aria-describedby="basic-addon1 ">
+                        <input type="text " class="form-control " formControlName="payCondition" placeholder="pay condition " autocomplete="off " aria-describedby="basic-addon1 ">
                     </div>
                 </div>
             </div>
@@ -480,7 +480,7 @@
                         <div class="input-group-prepend ">
                             <span class="input-group-text " id="basic-addon1 ">doc type</span>
                         </div>
-                        <input type="text " class="form-control " formControlName="docType " placeholder="document type " id="residenza " autocomplete="off " aria-describedby="basic-addon1 ">
+                        <input type="text " class="form-control " formControlName="docType" placeholder="document type " id="residenza " autocomplete="off " aria-describedby="basic-addon1 ">
                     </div>
 
                 </div>
