@@ -1,72 +1,72 @@
-.main-container{
-  display: grid;
-  grid-template-columns: 10vw auto;
-  grid-template-rows: 0.3fr auto;
-  font-family: Mulish;
+.main-container {
+    display: grid;
+    grid-template-columns: 10vw auto;
+    grid-template-rows: 0.3fr auto;
+    font-family: Mulish;
+    height: 100vh;
 }
 
-.head{
-  grid-column-start: 1;
-  grid-column-end: 3;
-  grid-row-start: 1;
-  grid-row-end: 2;
-
-  padding: 1%;
-  background-color: #012051;
-  color: white;
-  width: auto;
-  font-family: Mulish;  
-  font-size: 3vw;
-  font-weight: bold;
-  text-transform: uppercase;
+.head {
+    grid-column-start: 1;
+    grid-column-end: 3;
+    grid-row-start: 1;
+    grid-row-end: 2;
+    padding: 1%;
+    background-color: #012051;
+    color: white;
+    width: auto;
+    font-family: Mulish;
+    font-size: 3vw;
+    font-weight: bold;
+    text-transform: uppercase;
 }
 
-.logo{
-  grid-column-start: 1;
-  grid-column-end: 2;
+.logo {
+    grid-column-start: 1;
+    grid-column-end: 2;
 }
 
-.header{
-  grid-column-start: 2;
-  grid-column-end: 3;
-  width: 100%; 
-  height: 100%;
-
+.header {
+    grid-column-start: 2;
+    grid-column-end: 3;
+    width: 100%;
+    height: 100%;
 }
 
-span{
-  width: 100%; 
-  height: 100%;  
+span {
+    width: 100%;
+    height: 100%;
 }
 
-.nav{
-  border-right:1px #dee2e6 solid;
-  margin-right: 0.5%;
-  font-size: 1.3vw;
-  height: 100vh;
-  font-family: Mulish;
-  background-color: #012051;
-  color: white;
+.nav {
+    border-right: 1px #dee2e6 solid;
+    margin-right: 0.5%;
+    font-size: 1.3vw;
+    height: 100%;
+    font-family: Mulish;
+    background-color: #012051;
+    color: white;
 }
 
-ul{
-  width: 100%;
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
+ul {
+    width: 100%;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
 }
 
 li a {
-  display: block;
-  color: white;
-  padding: 1vw;
-  text-decoration: none;
-  font-weight: bold;
+    display: block;
+    color: white;
+    padding: 1vw;
+    text-decoration: none;
+    font-weight: bold;
 }
 
 li a:hover {
-  border-right: 1px #012051 solid;
-  border-left: 1px #012051 solid;
-  background-color: rgb(247, 247, 247);
-  color: #012051;
+    border-right: 1px #012051 solid;
+    border-left: 1px #012051 solid;
+    background-color: rgb(247, 247, 247);
+    color: #012051;
 }
