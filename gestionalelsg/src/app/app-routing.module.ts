@@ -16,6 +16,8 @@ const routes: Routes = [
   { path: 'redirectcustomer', loadChildren: () => import('./redirects/customers/customers.module').then(m => m.CustomersModule) },
   { path: 'redirectproducts', loadChildren: () => import('./redirects/products/products.module').then(m => m.ProductsModule) },
   { path: 'redirectinvoices', loadChildren: () => import('./redirects/invoices/invoices.module').then(m => m.InvoicesModule) },
+ 
+  { path: 'redirectmeasure', loadChildren: () => import('./redirects/measure/measure.module').then(m => m.MeasureModule) },
   
   
  
