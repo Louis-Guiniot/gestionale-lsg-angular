@@ -1,558 +1,527 @@
-<div class="page-content">
-	<button class="btn btn-sm" id="btn-insert" (click)="openXL(content)" ngbTooltip="New invoice"><i class="bi bi-plus"></i></button>
+<div class="box">
+    <div class="grid-btn">
+        <button class="btn btn-sm" id="btn-insert" (click)="openXL(content)" ngbTooltip="New invoice"><i
+            class="bi bi-plus"></i>
+        </button>
+    </div>
 
-	<!-- ANCHOR first table -->
-	<table class="table">
-		<caption>List of Invoices</caption>
-		<thead>
-			<th scope="col">cust_id</th>
-			<th scope="col">code</th><!-- numero fattura -->
-			<th scope="col">data</th>
-			<th scope="col">pay_condition</th>
-			<th scope="col">doc_type</th>
-			<th scope="col">sale</th>
-			<th>&nbsp;</th>
-			<th>&nbsp;</th>
-		</thead>
+    <!-- ANCHOR first table -->
+    <div class="grid-table">
+        <table class="table">
+            <caption>List of Invoices</caption>
+            <thead>
+                <th scope="col">cust_id</th>
+                <th scope="col">code</th>
+                <!-- numero fattura -->
+                <th scope="col">data</th>
+                <th scope="col">pay_condition</th>
+                <th scope="col">doc_type</th>
+                <th scope="col">sale</th>
+                <th>&nbsp;</th>
+                <th>&nbsp;</th>
+            </thead>
 
+            <tbody *ngFor="let inv of invoices | async; let i= index" id="highlight-row-invoice">
+                <tr>
+                    <th scope="row">{{inv.idCustomer}}</th>
+                    <td> {{inv.codeInvoice}}</td>
+                    <td>{{inv.dateTime}}</td>
+                    <td>{{inv.condizionePagamento}}</td>
+                    <td>{{inv.tipoDocumento}} </td>
+                    <td>{{inv.sconto}}%</td>
+                    <td><button class="btn btn-sm" id="btn-edit" (click)="openXL(edit,inv.id,inv.codeInvoice)" ngbTooltip="Edit"><i class="bi bi-pencil-square"></i></button>
+                    </td>
+                    <td><button class="btn btn-sm" id="btn-edit" (click)="openXL(tabbed,inv.id,inv.codeInvoice)" ngbTooltip="View"><i class="bi bi-search"></i></button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 
-		<tbody *ngFor="let inv of invoices | async; let i= index" id="highlight-row-invoice">
-			<tr>
-				<th scope="row">{{inv.idCustomer}}</th>
-				<td> {{inv.codeInvoice}}</td>
-				<td>{{inv.dateTime}}</td>
-				<td>{{inv.condizionePagamento}}</td>
-				<td>{{inv.tipoDocumento}} </td>
-				<td>{{inv.sconto}}%</td>
-				<td><button class="btn btn-sm" id="btn-edit" (click)="openXL(edit,inv.id,inv.codeInvoice)" ngbTooltip="Edit"><i
-							class="bi bi-pencil-square"></i></button>
-				</td>
-				<td><button class="btn btn-sm" id="btn-edit" (click)="openXL(tabbed,inv.id,inv.codeInvoice)" ngbTooltip="View"><i
-							class="bi bi-search"></i></button>
-				</td>
-			</tr>
-		</tbody>
-	</table>
 </div>
 
 <!-- ANCHOR view modal -->
 <ng-template #tabbed let-modal>
-	<div class="modal-xl modal-header">
-		<h4 class="modal-title" id="modal-basic-title">Invoice detail</h4>
-		<button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-			<span aria-hidden="true">&times;</span>
-		</button>
-	</div>
-	<div class="modal-body">
-		<div class="tabbed">
-			<input type="radio" id="tab1" name="css-tabs" checked>
-			<input type="radio" id="tab2" name="css-tabs">
-			<input type="radio" id="tab3" name="css-tabs">
+    <div class="modal-xl modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Invoice detail</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <div class="tabbed">
+            <input type="radio" id="tab1" name="css-tabs" checked>
+            <input type="radio" id="tab2" name="css-tabs">
+            <input type="radio" id="tab3" name="css-tabs">
 
-			<ul class="tabs">
-				<li class="tab"><label for="tab1">INVOICE HEAD</label></li>
-				<li class="tab"><label for="tab2">INVOICE RECORD</label></li>
-				<li class="tab"><label for="tab3">INVOICE TAIL</label></li>
-			</ul>
+            <ul class="tabs">
+                <li class="tab"><label for="tab1">INVOICE HEAD</label></li>
+                <li class="tab"><label for="tab2">INVOICE RECORD</label></li>
+                <li class="tab"><label for="tab3">INVOICE TAIL</label></li>
+            </ul>
 
-			<div class="tab-content">
-				<div *ngFor="let inv of invoices | async">
-					<div *ngIf="inv.id==idN">
+            <div class="tab-content">
+                <div *ngFor="let inv of invoices | async">
+                    <div *ngIf="inv.id==idN">
 
-						<div class="row">
-							<div class="col">
-								<div class="input-group mb-3">
-									<div class="input-group-prepend">
-										<span class="input-group-text" id="basic-addon1">code</span>
-									</div>
-									<input type="text" class="form-control" placeholder="{{inv.codeInvoice}}"
-										autocomplete="off" aria-describedby="basic-addon1" readonly>
-								</div>
-							</div>
-							<div class="col">
-								<div class="input-group mb-3">
-									<div class="input-group-prepend">
-										<span class="input-group-text" id="basic-addon1">cust id</span>
-									</div>
-									<input type="text" class="form-control" placeholder="{{inv.idCustomer}}"
-										autocomplete="off" aria-describedby="basic-addon1" readonly>
-								</div>
-							</div>
-						</div>
+                        <div class="row">
+                            <div class="col">
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="basic-addon1">code</span>
+                                    </div>
+                                    <input type="text" class="form-control" placeholder="{{inv.codeInvoice}}" autocomplete="off" aria-describedby="basic-addon1" readonly>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="basic-addon1">cust id</span>
+                                    </div>
+                                    <input type="text" class="form-control" placeholder="{{inv.idCustomer}}" autocomplete="off" aria-describedby="basic-addon1" readonly>
+                                </div>
+                            </div>
+                        </div>
 
-						<div class="input-group mb-3">
-							<div class="input-group-prepend">
-								<span class="input-group-text" id="basic-addon1">date</span>
-							</div>
-							<input type="text" class="form-control" placeholder="{{inv.dateTime}}" autocomplete="off"
-								aria-describedby="basic-addon1" readonly>
-						</div>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="basic-addon1">date</span>
+                            </div>
+                            <input type="text" class="form-control" placeholder="{{inv.dateTime}}" autocomplete="off" aria-describedby="basic-addon1" readonly>
+                        </div>
 
-						<div class="row">
-							<div class="col">
-								<div class="input-group mb-3">
-									<div class="input-group-prepend">
-										<span class="input-group-text" id="basic-addon1">doc type</span>
-									</div>
-									<input type="text" class="form-control" placeholder="{{inv.tipoDocumento}}"
-										autocomplete="off" aria-describedby="basic-addon1" readonly>
-								</div>
-							</div>
-							<div class="col">
-								<div class="input-group mb-3">
-									<div class="input-group-prepend">
-										<span class="input-group-text" id="basic-addon1">sale</span>
-									</div>
-									<input type="text" class="form-control" placeholder="{{inv.sconto}}"
-										autocomplete="off" aria-describedby="basic-addon1" readonly>
-								</div>
-							</div>
-						</div>
+                        <div class="row">
+                            <div class="col">
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="basic-addon1">doc type</span>
+                                    </div>
+                                    <input type="text" class="form-control" placeholder="{{inv.tipoDocumento}}" autocomplete="off" aria-describedby="basic-addon1" readonly>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="basic-addon1">sale</span>
+                                    </div>
+                                    <input type="text" class="form-control" placeholder="{{inv.sconto}}" autocomplete="off" aria-describedby="basic-addon1" readonly>
+                                </div>
+                            </div>
+                        </div>
 
 
-						<div class="input-group mb-3">
-							<div class="input-group-prepend">
-								<span class="input-group-text" id="basic-addon1">cond. pagamento</span>
-							</div>
-							<input type="text" class="form-control" placeholder="{{inv.condizionePagamento}}"
-								autocomplete="off" aria-describedby="basic-addon1" readonly>
-						</div>
-					</div>
-				</div>
-			</div>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="basic-addon1">cond. pagamento</span>
+                            </div>
+                            <input type="text" class="form-control" placeholder="{{inv.condizionePagamento}}" autocomplete="off" aria-describedby="basic-addon1" readonly>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-			<div class="tab-content">
+            <div class="tab-content">
 
-				<div *ngFor="let inv of invoices | async">
-					<div *ngIf="inv.id==idN">
+                <div *ngFor="let inv of invoices | async">
+                    <div *ngIf="inv.id==idN">
 
-						<div class="input-group mb-3">
-							<div class="input-group-prepend">
-								<span class="input-group-text" id="basic-addon1">articles</span>
-							</div>
-							<input type="text" class="form-control" placeholder="{{inv.productFields}}"
-								autocomplete="off" aria-describedby="basic-addon1" readonly>
-						</div>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="basic-addon1">articles</span>
+                            </div>
+                            <input type="text" class="form-control" placeholder="{{inv.fields}}" autocomplete="off" aria-describedby="basic-addon1" readonly>
+                        </div>
 
-						<div class="row">
-							<div class="col">
-								<div class="input-group mb-3">
-									<div class="input-group-prepend">
-										<span class="input-group-text" id="basic-addon1">iva</span>
-									</div>
-									<input type="text" class="form-control" placeholder="{{inv.iva}}" autocomplete="off"
-										aria-describedby="basic-addon1" readonly>
-								</div>
-							</div>
-							<div class="col">
-								<div class="input-group mb-3">
-									<div class="input-group-prepend">
-										<span class="input-group-text" id="basic-addon1">iva price</span>
-									</div>
-									<input type="text" class="form-control" placeholder="{{inv.ivaPrice}}"
-										autocomplete="off" aria-describedby="basic-addon1" readonly>
-								</div>
-							</div>
-						</div>
+                        <div class="row">
+                            <div class="col">
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="basic-addon1">iva</span>
+                                    </div>
+                                    <input type="text" class="form-control" placeholder="{{inv.iva}}" autocomplete="off" aria-describedby="basic-addon1" readonly>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="basic-addon1">iva price</span>
+                                    </div>
+                                    <input type="text" class="form-control" placeholder="{{inv.ivaPrice}}" autocomplete="off" aria-describedby="basic-addon1" readonly>
+                                </div>
+                            </div>
+                        </div>
 
-						<div class="row">
-							<div class="col">
-								<div class="input-group mb-3">
-									<div class="input-group-prepend">
-										<span class="input-group-text" id="basic-addon1">quantita'</span>
-									</div>
-									<input type="text" class="form-control" placeholder="{{inv.quantita}}"
-										autocomplete="off" aria-describedby="basic-addon1" readonly>
-								</div>
-							</div>
-							<div class="col">
-								<div class="input-group mb-3">
-									<div class="input-group-prepend">
-										<span class="input-group-text" id="basic-addon1">importo sconto</span>
-									</div>
-									<input type="text" class="form-control" placeholder="{{inv.importoSconto}}"
-										autocomplete="off" aria-describedby="basic-addon1" readonly>
-								</div>
-							</div>
-						</div>
+                        <div class="row">
+                            <div class="col">
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="basic-addon1">quantita'</span>
+                                    </div>
+                                    <input type="text" class="form-control" placeholder="{{inv.quantita}}" autocomplete="off" aria-describedby="basic-addon1" readonly>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="basic-addon1">importo sconto</span>
+                                    </div>
+                                    <input type="text" class="form-control" placeholder="{{inv.importoSconto}}" autocomplete="off" aria-describedby="basic-addon1" readonly>
+                                </div>
+                            </div>
+                        </div>
 
-						<div class="input-group mb-3">
-							<div class="input-group-prepend">
-								<span class="input-group-text" id="basic-addon1">imponibile</span>
-							</div>
-							<input type="text" class="form-control" placeholder="{{inv.imponibile}}" autocomplete="off"
-								aria-describedby="basic-addon1" readonly>
-						</div>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="basic-addon1">imponibile</span>
+                            </div>
+                            <input type="text" class="form-control" placeholder="{{inv.imponibile}}" autocomplete="off" aria-describedby="basic-addon1" readonly>
+                        </div>
 
-					</div>
+                    </div>
 
-				</div>
+                </div>
 
-			</div>
-			<div class="tab-content">
-				<div *ngFor="let inv of invoices | async">
-					<div *ngIf="inv.id==idN">
+            </div>
+            <div class="tab-content">
+                <div *ngFor="let inv of invoices | async">
+                    <div *ngIf="inv.id==idN">
 
-						<div class="row">
-							<div class="col">
-								<div class="input-group mb-3">
-									<div class="input-group-prepend">
-										<span class="input-group-text" id="basic-addon1">tot merce</span>
-									</div>
-									<input type="text" class="form-control" placeholder="{{inv.totaleMerci}}"
-										autocomplete="off" aria-describedby="basic-addon1" readonly>
-								</div>
-							</div>
-							<div class="col">
-								<div class="input-group mb-3">
-									<div class="input-group-prepend">
-										<span class="input-group-text" id="basic-addon1">tot servizi</span>
-									</div>
-									<input type="text" class="form-control" placeholder="{{inv.totaleServizi}}"
-										autocomplete="off" aria-describedby="basic-addon1" readonly>
-								</div>
-							</div>
-						</div>
+                        <div class="row">
+                            <div class="col">
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="basic-addon1">tot merce</span>
+                                    </div>
+                                    <input type="text" class="form-control" placeholder="{{inv.totaleMerci}}" autocomplete="off" aria-describedby="basic-addon1" readonly>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="basic-addon1">tot servizi</span>
+                                    </div>
+                                    <input type="text" class="form-control" placeholder="{{inv.totaleServizi}}" autocomplete="off" aria-describedby="basic-addon1" readonly>
+                                </div>
+                            </div>
+                        </div>
 
-					</div>
-				</div>
-			</div>
+                    </div>
+                </div>
+            </div>
 
 
-			<div class="modal-footer">
-				<button type="button" class="btn" id="btn-modal-edit" (click)="modal.dismiss('Cross click')" ngbTooltip="Exit">
-					<i class="bi bi-box-arrow-right"></i>
-				</button>
-			</div>
-		</div>
-	</div>
+            <div class="modal-footer">
+                <button type="button" class="btn" id="btn-modal-edit" (click)="modal.dismiss('Cross click')" ngbTooltip="Exit">
+                    <i class="bi bi-arrow-bar-right"></i>
+                </button>
+            </div>
+        </div>
+    </div>
 </ng-template>
 
 
 <!-- ANCHOR edit form -->
-<ng-template #edit let-modal>
-	<div class="modal-xl modal-header">
-		<h4 class="modal-title" id="modal-basic-title">Invoice detail</h4>
-		<button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-			<span aria-hidden="true">&times;</span>
-		</button>
-	</div>
-	<div class="modal-body">
+<ng-template #edit let-modalEdit>
+    <div class="modal-xl modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Invoice detail</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modalEdit.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <form [formGroup]="invoiceUpdateForm" (ngSubmit)="update()">
+            <div *ngFor="let inv of invoices | async">
+                <div *ngIf="inv.id==idN">
+                    <div class="tabbed">
+                        <input type="radio" id="tab1" name="css-tabs" checked>
+                        <input type="radio" id="tab2" name="css-tabs">
+                        <input type="radio" id="tab3" name="css-tabs">
 
-		<form [formGroup]="invoiceUpdateForm" (ngSubmit)="update()">
+                        <ul class="tabs">
+                            <li class="tab"><label for="tab1">INVOICE HEAD</label></li>
+                            <li class="tab"><label for="tab2">INVOICE RECORD</label></li>
+                            <li class="tab"><label for="tab3">INVOICE TAIL</label></li>
+                        </ul>
 
-			<div class="tabbed">
-				<input type="radio" id="tab1" name="css-tabs" checked>
-				<input type="radio" id="tab2" name="css-tabs">
-				<input type="radio" id="tab3" name="css-tabs">
+                        <div class="tab-content">
 
-				<ul class="tabs">
-					<li class="tab"><label for="tab1">INVOICE HEAD</label></li>
-					<li class="tab"><label for="tab2">INVOICE RECORD</label></li>
-					<li class="tab"><label for="tab3">INVOICE TAIL</label></li>
-				</ul>
+                            <div class="row">
+                                <div class="col">
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="basic-addon1">code</span>
+                                        </div>
+                                        <input type="text" class="form-control" placeholder="{{inv.codeInvoice}}" autocomplete="off" aria-describedby="basic-addon1" readonly>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="basic-addon1">cust id</span>
+                                        </div>
+                                        <select class="form-control" aria-label="Default select example" aria-describedby="basic-addon1" formControlName="custId">
+                                            <option *ngFor="let cust of elements | async" value="{{cust.id}}">
+                                                {{cust.id}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
 
-				<div class="tab-content">
+                            <!-- <div class="input-group mb-3">
+                                <input class="form-control" placeholder="{{inv.dateTime ? inv.dateTimem : 'choose a date'}}" name="dp" [(ngModel)]="model" ngbDatepicker #d="ngbDatepicker" formControlName="date" [positionTarget]="buttonEl" [placement]="placement" readonly>
+                                <div class="input-group-append">
+                                    <button #buttonEl class="btn btn-outline-secondary" (click)="d.toggle()" type="button"><i
+                                            class="bi bi-calendar3"></i></button>
 
-					<div *ngFor="let inv of invoices | async">
-						<div *ngIf="inv.id==idN">
+                                </div>
+                            </div> -->
 
-							<div class="row">
-								<div class="col">
-									<div class="input-group mb-3">
-										<div class="input-group-prepend">
-											<span class="input-group-text" id="basic-addon1">code</span>
-										</div>
-										<input type="text" class="form-control" placeholder="{{inv.codeInvoice}}"
-											autocomplete="off" aria-describedby="basic-addon1" readonly>
-									</div>
-								</div>
-								<div class="col">
-									<div class="input-group mb-3">
-										<div class="input-group-prepend">
-											<span class="input-group-text" id="basic-addon1">cust id</span>
-										</div>
-										<input type="text" class="form-control" placeholder="{{inv.idCustomer}}"
-											autocomplete="off" aria-describedby="basic-addon1" formControlName="custId">
-									</div>
-								</div>
-							</div>
-
-							<div class="input-group mb-3">
-								<input class="form-control" placeholder="{{inv.dateTime}}" name="dp" [(ngModel)]="model"
-									ngbDatepicker #d="ngbDatepicker" formControlName="date" [positionTarget]="buttonEl"  [placement]="placement">
-								<div class="input-group-append">
-									<button #buttonEl class="btn btn-outline-secondary" (click)="d.toggle()" type="button"><i
-											class="bi bi-calendar3"></i></button>
-		
-								</div>
-							</div>
-
-								<div class="row">
-									<div class="col">
-										<div class="input-group mb-3">
-											<div class="input-group-prepend">
-												<span class="input-group-text" id="basic-addon1">doc type</span>
-											</div>
-											<input type="text" class="form-control" placeholder="{{inv.tipoDocumento}}"
-												autocomplete="off" aria-describedby="basic-addon1"
-												formControlName="docType">
-										</div>
-									</div>
-									<div class="col">
-										<div class="input-group mb-3">
-											<div class="input-group-prepend">
-												<span class="input-group-text" id="basic-addon1">sale</span>
-											</div>
-											<input type="text" class="form-control" placeholder="{{inv.sconto}}"
-												autocomplete="off" aria-describedby="basic-addon1"
-												formControlName="sale">
-										</div>
-									</div>
-								</div>
+                            <div class="row">
+                                <div class="col">
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="basic-addon1">doc type</span>
+                                        </div>
+                                        <input type="text" class="form-control" placeholder="{{inv.tipoDocumento}}" autocomplete="off" aria-describedby="basic-addon1" formControlName="docType">
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="basic-addon1">sale</span>
+                                        </div>
+                                        <input type="text" class="form-control" placeholder="{{inv.sconto}}" autocomplete="off" aria-describedby="basic-addon1" formControlName="sale">
+                                    </div>
+                                </div>
+                            </div>
 
 
-								<div class="input-group mb-3">
-									<div class="input-group-prepend">
-										<span class="input-group-text" id="basic-addon1">cond. pagamento</span>
-									</div>
-									<input type="text" class="form-control" placeholder="{{inv.condizionePagamento}}"
-										autocomplete="off" aria-describedby="basic-addon1"
-										formControlName="payCondition">
-								</div>
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="basic-addon1">cond. pagamento</span>
+                                </div>
+                                <input type="text" class="form-control" placeholder="{{inv.condizionePagamento}}" autocomplete="off" aria-describedby="basic-addon1" formControlName="payCondition">
+                            </div>
 
-							</div>
-						</div>
-					</div>
-
-					<div class="tab-content">
-
-						<div *ngFor="let inv of invoices | async">
-							<div *ngIf="inv.id==idN">
-								<div class="input-group mb-3">
-									<div class="input-group-prepend">
-										<span class="input-group-text" id="basic-addon1">articles</span>
-									</div>
-									<input type="text" class="form-control" placeholder="{{inv.productFields}}"
-										autocomplete="off" aria-describedby="basic-addon1" formControlName="articles">
-								</div>
-								<div class="row">
-									<div class="col">
-										<div class="input-group mb-3">
-											<div class="input-group-prepend">
-												<span class="input-group-text" id="basic-addon1">iva</span>
-											</div>
-											<input type="text" class="form-control" placeholder="{{inv.iva}}"
-												autocomplete="off" aria-describedby="basic-addon1"
-												formControlName="iva">
-										</div>
-									</div>
-									<div class="col">
-										<div class="input-group mb-3">
-											<div class="input-group-prepend">
-												<span class="input-group-text" id="basic-addon1">iva price</span>
-											</div>
-											<input type="text" class="form-control" placeholder="{{inv.ivaPrice}}"
-												autocomplete="off" aria-describedby="basic-addon1"
-												formControlName="ivaPrice">
-										</div>
-									</div>
-								</div>
-								<div class="row">
-									<div class="col">
-										<div class="input-group mb-3">
-											<div class="input-group-prepend">
-												<span class="input-group-text" id="basic-addon1">quantita'</span>
-											</div>
-											<input type="text" class="form-control" placeholder="{{inv.quantita}}"
-												autocomplete="off" aria-describedby="basic-addon1"
-												formControlName="quantity">
-										</div>
-									</div>
-									<div class="col">
-										<div class="input-group mb-3">
-											<div class="input-group-prepend">
-												<span class="input-group-text" id="basic-addon1">importo sconto</span>
-											</div>
-											<input type="text" class="form-control" placeholder="{{inv.importoSconto}}"
-												autocomplete="off" aria-describedby="basic-addon1"
-												formControlName="saleImport">
-										</div>
-									</div>
-								</div>
-
-								<div class="input-group mb-3">
-									<div class="input-group-prepend">
-										<span class="input-group-text" id="basic-addon1">imponibile</span>
-									</div>
-									<input type="text" class="form-control" placeholder="{{inv.imponibile}}"
-										autocomplete="off" aria-describedby="basic-addon1" formControlName="taxable">
-								</div>
-							</div>
-						</div>
-
-					</div>
-					<div class="tab-content">
-						<div *ngFor="let inv of invoices | async">
-							<div *ngIf="inv.id==idN">
-
-								<div class="row">
-									<div class="col">
-										<div class="input-group mb-3">
-											<div class="input-group-prepend">
-												<span class="input-group-text" id="basic-addon1">tot merce</span>
-											</div>
-											<input type="text" class="form-control" placeholder="{{inv.totaleMerci}}"
-												autocomplete="off" aria-describedby="basic-addon1"
-												formControlName="totMerce">
-										</div>
-									</div>
-									<div class="col">
-										<div class="input-group mb-3">
-											<div class="input-group-prepend">
-												<span class="input-group-text" id="basic-addon1">tot servizi</span>
-											</div>
-											<input type="text" class="form-control" placeholder="{{inv.totaleServizi}}"
-												autocomplete="off" aria-describedby="basic-addon1"
-												formControlName="totServices">
-										</div>
-									</div>
-								</div>
-
-							</div>
-						</div>
-					</div>
+                        </div>
 
 
+                        <div class="tab-content">
 
-					<div class="modal-footer">
-						
-						<button type="submit" class="btn" id="btn-modal-edit" (click)="modal.dismiss('Cross click')" ngbTooltip="Save">
-							<i class="bi bi-save"></i>
-						</button>	
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="basic-addon1">articles</span>
+                                </div>
+                                <input type="text" class="form-control" placeholder="{{inv.fields}}" autocomplete="off" aria-describedby="basic-addon1" formControlName="articles">
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="basic-addon1">iva</span>
+                                        </div>
+                                        <input type="text" class="form-control" placeholder="{{inv.iva}}" autocomplete="off" aria-describedby="basic-addon1" formControlName="iva">
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="basic-addon1">iva price</span>
+                                        </div>
+                                        <input type="text" class="form-control" placeholder="{{inv.ivaPrice}}" autocomplete="off" aria-describedby="basic-addon1" formControlName="ivaPrice">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="basic-addon1">quantita'</span>
+                                        </div>
+                                        <input type="text" class="form-control" placeholder="{{inv.quantita}}" autocomplete="off" aria-describedby="basic-addon1" formControlName="quantity">
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="basic-addon1">importo sconto</span>
+                                        </div>
+                                        <input type="text" class="form-control" placeholder="{{inv.importoSconto}}" autocomplete="off" aria-describedby="basic-addon1" formControlName="saleImport">
+                                    </div>
+                                </div>
+                            </div>
 
-						<div *ngFor="let inv of invoices | async">
-							<div *ngIf="inv.id==idN">
-								<button type="submit" class="btn btn-outline-danger"
-									(click)="openXL(delete,inv.id,inv.codeInvoice)" ngbTooltip="Delete"><i
-										class="bi bi-trash-fill"></i></button>
-							</div>
-						</div>
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="basic-addon1">imponibile</span>
+                                </div>
+                                <input type="text" class="form-control" placeholder="{{inv.imponibile}}" autocomplete="off" aria-describedby="basic-addon1" formControlName="taxable">
+                            </div>
+                        </div>
 
-						<button type="button" class="btn" id="btn-modal-edit" (click)="modal.dismiss('Cross click')" ngbTooltip="Exit">
-							<i class="bi bi-box-arrow-right"></i>
-						</button>
+                        <div class="tab-content">
+                            <div class="row">
+                                <div class="col">
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="basic-addon1">tot merce</span>
+                                        </div>
+                                        <input type="text" class="form-control" placeholder="{{inv.totaleMerci}}" autocomplete="off" aria-describedby="basic-addon1" formControlName="totMerce">
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="basic-addon1">tot servizi</span>
+                                        </div>
+                                        <input type="text" class="form-control" placeholder="{{inv.totaleServizi}}" autocomplete="off" aria-describedby="basic-addon1" formControlName="totServices">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
-					</div>
-				</div>
-		</form>
-	</div>
+                        <div class="modal-footer">
+
+                            <button type="submit" class="btn" id="btn-modal-edit" (click)="modalEdit.close('Save click')" ngbTooltip="Save">
+                                <i class="bi bi-save"></i>
+                            </button>
+
+                            <button class="btn btn-outline-danger" (click)="collapse.toggle()" [attr.aria-expanded]="isCollapsed" ngbTooltip="Delete"><i class="bi bi-trash-fill"></i></button>
+
+                            <button type="button" class="btn" id="btn-modal-edit" (click)="modalEdit.dismiss('Cross click')" ngbTooltip="Exit">
+                                <i class="bi bi-arrow-bar-right"></i>
+                            </button>
+
+                            <div #collapse="ngbCollapse" [(ngbCollapse)]="!isCollapsed">
+                                <form (ngSubmit)="deleteInv() ">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <div class="row">
+                                                <div class="col">
+                                                    <p>Are you sure to delete this invoice?</p>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <button class="btn btn-outline-danger" id="button-del-toggle" type="submit" (click)="modalEdit.close( 'Save click') " id="yes ">
+                                            yes
+                                        </button></div>
+                                                <div class="col-md-2 "> <button id="button-del-toggle" (click)="collapse.toggle() " [attr.aria-expanded]="!isCollapsed " id="no ">no</button></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
 </ng-template>
 
 <!-- ANCHOR insert form -->
 <ng-template #content let-modal>
-	<div class="modal-header">
-		<h4 class="modal-title" id="modal-basic-title">Invoice creation</h4>
-		<button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-			<span aria-hidden="true">&times;</span>
-		</button>
-	</div>
-	<div class="modal-body">
-		<form [formGroup]="invoiceInsertForm" (ngSubmit)="create()">
+    <div class="modal-header ">
+        <h4 class="modal-title " id="modal-basic-title ">Invoice creation</h4>
+        <button type="button " class="close " aria-label="Close " (click)="modal.dismiss( 'Cross click') ">
+            <span aria-hidden="true ">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body ">
+        <form [formGroup]="invoiceInsertForm " (ngSubmit)="create() ">
 
-			<div class="row">
-				<div class="col">
-					<div class="input-group mb-3">
-						<div class="input-group-prepend">
-							<span class="input-group-text" id="basic-addon1">customer id</span>
-						</div>
-						<select formControlName="custId" class="form-control" aria-label="Default select example">
-							<option *ngFor="let element of elements | async" value="{{element.id}}">
-								{{element.id}}
-							</option>
-						</select>
-					</div>
-				</div>
-				<div class="col">
-					<div class="input-group mb-3">
-						<div class="input-group-prepend">
-							<span class="input-group-text" id="basic-addon1">articles</span>
-						</div>
-						<input type="text" class="form-control" formControlName="articles" placeholder="articles"
-							id="sede" autocomplete="off" aria-describedby="basic-addon1">
-					</div>
-				</div>
-			</div>
+            <div class="row ">
+                <div class="col ">
+                    <div class="input-group mb-3 ">
+                        <div class="input-group-prepend ">
+                            <span class="input-group-text " id="basic-addon1 ">customer id</span>
+                        </div>
+                        <select formControlName="custId" class="form-control " aria-label="Default select example ">
+                            <option *ngFor="let element of elements | async " value="{{element.id}}">
+                                {{element.id}}
+                            </option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col ">
+                    <div class="input-group mb-3 ">
+                        <div class="input-group-prepend ">
+                            <span class="input-group-text " id="basic-addon1 ">articles</span>
+                        </div>
+                        <input type="text " class="form-control " formControlName="articles" placeholder="articles " id="sede " autocomplete="off " aria-describedby="basic-addon1 ">
+                    </div>
+                </div>
+            </div>
 
-			<div class="row">
-				<div class="col">
-					<div class="input-group mb-3">
-						<div class="input-group-prepend">
-							<span class="input-group-text" id="basic-addon1">sale</span>
-						</div>
-						<input type="text" class="form-control" formControlName="sale" placeholder="sale" id="sale"
-							autocomplete="off" aria-describedby="basic-addon1">
-					</div>
-				</div>
-				<div class="col">
-					<div class="input-group mb-3">
-						<div class="input-group-prepend">
-							<span class="input-group-text" id="basic-addon1">pay condition</span>
-						</div>
-						<input type="text" class="form-control" formControlName="payCondition"
-							placeholder="pay condition" autocomplete="off" aria-describedby="basic-addon1">
-					</div>
-				</div>
-			</div>
+            <div class="row ">
+                <div class="col ">
+                    <div class="input-group mb-3 ">
+                        <div class="input-group-prepend ">
+                            <span class="input-group-text " id="basic-addon1 ">sale</span>
+                        </div>
+                        <input type="text " class="form-control " formControlName="sale" placeholder="sale " id="sale " autocomplete="off " aria-describedby="basic-addon1 ">
+                    </div>
+                </div>
+                <div class="col ">
+                    <div class="input-group mb-3 ">
+                        <div class="input-group-prepend ">
+                            <span class="input-group-text " id="basic-addon1 ">pay condition</span>
+                        </div>
+                        <input type="text " class="form-control " formControlName="payCondition" placeholder="pay condition " autocomplete="off " aria-describedby="basic-addon1 ">
+                    </div>
+                </div>
+            </div>
 
-			<div class="row">
-				<div class="col">
-					<div class="input-group mb-3">
-						<div class="input-group-prepend">
-							<span class="input-group-text" id="basic-addon1">doc type</span>
-						</div>
-						<input type="text" class="form-control" formControlName="docType" placeholder="document type"
-							id="residenza" autocomplete="off" aria-describedby="basic-addon1">
-					</div>
+            <div class="row ">
+                <div class="col ">
+                    <div class="input-group mb-3 ">
+                        <div class="input-group-prepend ">
+                            <span class="input-group-text " id="basic-addon1 ">doc type</span>
+                        </div>
+                        <input type="text " class="form-control " formControlName="docType" placeholder="document type " id="residenza " autocomplete="off " aria-describedby="basic-addon1 ">
+                    </div>
 
-				</div>
-			</div>
+                </div>
+            </div>
 
-			<div class="modal-footer">
-				<button type="button" class="btn btn-outline-danger" (click)="modal.dismiss('Cross click')" ngbTooltip="Exit">
-					<i class="bi bi-box-arrow-right"></i>
-				</button>
-				<button type="submit" class="btn" id="btn-modal-edit" (click)="modal.close('Save click')" ngbTooltip="Insert">
-					<i class="bi bi-save"></i>
-				</button>
-			</div>
+            <div class="modal-footer ">
+                <button type="button " class="btn btn-outline-danger " (click)="modal.dismiss( 'Cross click') " ngbTooltip="Exit ">
+                    <i class="bi bi-arrow-bar-right "></i>
+                </button>
+                <button type="submit " class="btn " id="btn-modal-edit " (click)="modal.close( 'Save click') " ngbTooltip="Insert ">
+                    <i class="bi bi-save "></i>
+                </button>
+            </div>
 
-		</form>
-	</div>
+        </form>
+    </div>
 </ng-template>
 
 <ng-template #delete let-modal>
-	<div class="modal-header">
-		<h4 class="modal-title" id="modal-basic-title">Deleting invoice: {{codeD}}
-			id: {{idS}}</h4>
-		<button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-			<span aria-hidden="true">&times;</span>
-		</button>
-	</div>
-	<div class="modal-body">
-		<form (ngSubmit)="deleteInv()">
-			<div class="row">
-				<p>are you sure to <i class="bi bi-trash-fill"></i> invoice --> {{codeD}} ?</p>
-			</div>
-			<div class="modal-footer">
+    <div class="modal-header ">
+        <h4 class="modal-title " id="modal-basic-title ">Deleting invoice with CODE - {{codeD}} ID - {{idS}}</h4>
+        <button type="button " class="close " aria-label="Close " (click)="modal.dismiss( 'Cross click') ">
+            <span aria-hidden="true ">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body ">
+        <form (ngSubmit)="deleteInv() ">
+            <div class="row ">
+                <p>are you sure to delete this invoice ?</p>
+            </div>
+            <div class="modal-footer ">
 
-				<button type="button" class="btn" id="btn-modal-edit" (click)="modal.dismiss('Cross click')" ngbTooltip="Delete">
-					<i class="bi bi-save"></i>
-				</button><button type="submit" class="btn btn-outline-danger" (click)="modal.close('Save click')" ngbTooltip="Undo">
-					<i
-						class="bi bi-trash-fill"></i></button>
-			</div>
+                <button type="submit " class="btn btn-outline-danger " (click)="modal.close( 'Save click') " ngbTooltip="Delete ">
+                    <i class="bi bi-trash-fill "></i>
+                </button>
 
-		</form>
-	</div>
+                <button type="button " class="btn " id="btn-modal-edit " (click)="modal.dismiss( 'Cross click') " ngbTooltip="Undo ">
+                    <i class="bi bi-arrow-bar-right "></i>
+                </button>
+            </div>
+
+        </form>
+    </div>
 </ng-template>
