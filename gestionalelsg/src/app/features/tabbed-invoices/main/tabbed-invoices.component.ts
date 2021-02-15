@@ -127,8 +127,4 @@ export class TabbedInvoicesComponent implements OnInit{
     this.invoiceUpdateForm.value.docType, this.invoiceUpdateForm.value.sale, this.invoiceUpdateForm.value.articles, this.invoiceUpdateForm.value.taxable,
     this.invoiceUpdateForm.value.quantity, this.invoiceUpdateForm.value.saleImport)
   }
-
-  resetForm(){
-    this.invoiceUpdateForm.reset();
-  }
 }
