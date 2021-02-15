@@ -525,3 +525,10 @@
         </form>
     </div>
 </ng-template>
+
+<form [formGroup]="cercaForm" (ngSubmit)="search()">
+
+    cerca: <input type="text" formControlName="termine" placeholder="inserisci il termine">
+    <button type="submit">cerca</button>
+
+</form>
