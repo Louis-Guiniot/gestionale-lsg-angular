@@ -110,8 +110,8 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="basic-addon1">measure</span>
                         </div>
-                        <select class="form-control" aria-label="Default select example">
-                            <option *ngFor="let measure of measures | async" value="{{ measure.id }}">
+                        <select formControlName="measureUnit" class="form-control" aria-label="Default select example">
+                            <option *ngFor="let measure of measures | async" value="{{measure.type}}">
                                 {{ measure.type }}
                             </option>
                         </select>
