@@ -1,13 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { Invoice } from 'src/app/core/model/Invoice.interface';
 import { selectInvoices } from 'src/app/redux/invoice';
-import { CustomerService } from '../../customer/services/customer.service';
 import { TabbedInvoicesService } from '../../tabbed-invoices/services/tabbed-invoices.service';
+
+import { InvoicesFoundService } from '../services/invoices-found.service';
 
 @Component({
   selector: 'app-invoices-found',
@@ -15,21 +16,26 @@ import { TabbedInvoicesService } from '../../tabbed-invoices/services/tabbed-inv
   styleUrls: ['./invoices-found.component.scss']
 })
 export class InvoicesFoundComponent implements OnInit {
-  term:any
+  term:string
 
-  constructor(private store: Store, private route: Router, private aRouter: ActivatedRoute,private invoicesService: TabbedInvoicesService, private modalService: NgbModal) {
-    this.invoicesService.retrieveAllInvoices()
-
-  }
-
-
-  ngOnInit(): void {
+  constructor(private store: Store,private invoicesService: TabbedInvoicesService, private route: Router, private aRouter: ActivatedRoute,private invoicesFoundService: InvoicesFoundService, private modalService: NgbModal) {
     this.aRouter.queryParams.subscribe(params => {
       this.term = params['term'];
-      
+      console.log("termine trovato: ", this.term)
+    
   });
-    console.log("termine trovato: ", this.term)
+  this.invoicesFoundService.retrieveFound(this.term)
+
   }
+
+  //this.invoicesFoundService.retrieveFound(this.term);
+
+  ngOnInit(): void {
+   
+  
+  }
+
+ 
 
   get invoices(): Observable<Invoice[]>{
     return this.store.pipe(select(selectInvoices))
