@@ -1,0 +1,29 @@
+
+<div>
+    <form [formGroup]="createMeasureUnitForm" (ngSubmit)="create()">
+
+        <input type="text" formControlName="tipo" placeholder="tipo unità di misura">
+        <button type="submit">add</button>
+    </form>
+</div>
+<div><form [formGroup]="updateMeasureUnitForm" (ngSubmit)="update()">
+
+    <select class="form-control" aria-label="Default select example" formControlName="vecchio">
+        <option *ngFor="let measure of measures | async" value="{{ measure.id }}">
+            {{ measure.type }}
+        </option>
+    </select>
+    <input type="text" formControlName="nuovo" placeholder="tipo unità di misura">
+    <button type="submit">update</button>
+</form></div>
+
+<div><form [formGroup]="deleteMeasureUnitForm" (ngSubmit)="delete()">
+
+    <select class="form-control" aria-label="Default select example" formControlName="id">
+        <option *ngFor="let measure of measures | async" value="{{ measure.id }}">
+            {{ measure.type }}
+        </option>
+    </select>
+    <button type="submit">delete</button>
+</form></div>
+

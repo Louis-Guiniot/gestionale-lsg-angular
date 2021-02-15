@@ -1,4 +1,4 @@
 export interface MeasureUnit{
     id?: number;
-    type: string;
+    tipo: string;
 }

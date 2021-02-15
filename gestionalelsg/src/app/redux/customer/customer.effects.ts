@@ -42,7 +42,7 @@ export class CustomerEffects {
             action.residenza,
             action.name).pipe(
             map((response) => initCustomers({ response }))
-            ,tap(()=>this.router.navigateByUrl('/home'))
+            ,tap(()=>this.router.navigateByUrl('/redirectcustomer'))
         ))
     ));
 
@@ -51,7 +51,7 @@ export class CustomerEffects {
         switchMap((action) => this.deleteCustomer(
             action.id).pipe(
             map((response) => initCustomers({ response }))
-            ,tap(()=>this.router.navigateByUrl('/home'))
+            ,tap(()=>this.router.navigateByUrl('/redirectcustomer'))
         ))
     ));
 
@@ -72,7 +72,7 @@ export class CustomerEffects {
             action.residenza,
             action.name).pipe(
             map((response) => initCustomers({ response }))
-            ,tap(()=>this.router.navigateByUrl('/home'))
+            ,tap(()=>this.router.navigateByUrl('/redirectcustomer'))
         ))
     ));
 }

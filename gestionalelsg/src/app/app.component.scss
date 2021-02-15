@@ -45,7 +45,8 @@ span{
   font-size: 1.3vw;
   height: 100vh;
   font-family: Mulish;
-  background-color: rgb(247, 247, 247);
+  background-color: #012051;
+  color: white;
 }
 
 ul{
@@ -57,14 +58,15 @@ ul{
 
 li a {
   display: block;
-  color: #000;
+  color: white;
   padding: 1vw;
   text-decoration: none;
   font-weight: bold;
 }
 
 li a:hover {
-  background-color: #012051;
   border-right: 1px #012051 solid;
-  color: white;
+  border-left: 1px #012051 solid;
+  background-color: rgb(247, 247, 247);
+  color: #012051;
 }

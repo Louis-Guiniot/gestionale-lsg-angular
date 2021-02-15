@@ -30,7 +30,7 @@ export class InvoicesEffects {
         switchMap((action) => this.deleteInvoice(
             action.idS).pipe(
             map((response) => initInvoices({ response })),
-            tap(()=>this.router.navigateByUrl('/home'))
+            tap(()=>this.router.navigateByUrl('/redirectinvoices'))
         ))
     ));
 
@@ -69,7 +69,7 @@ export class InvoicesEffects {
             action.sale,
             action.articles).pipe(
             map((response) => initInvoices({ response })),
-           tap(()=>this.router.navigateByUrl('/home'))
+           tap(()=>this.router.navigateByUrl('/redirectinvoices'))
         ))
     ));
 
@@ -103,8 +103,8 @@ export class InvoicesEffects {
     //     ))
     // ));
 
-    updateInvoice(idS: string, custId: string, date: string, payCondition: string, docType: string, sale: string, articles: string, taxable: string, quantity: string, saleImport: string): Observable<Response>{
-        return this.http.retrievePostCall<Response>('invoice/update',{idS, custId, date, payCondition, docType, sale, articles, taxable, quantity, saleImport});
+    updateInvoice(idS: string, custId: string, payCondition: string, docType: string, sale: string, articles: string, taxable: string, quantity: string, saleImport: string): Observable<Response>{
+        return this.http.retrievePostCall<Response>('invoice/update',{idS, custId, payCondition, docType, sale, articles, taxable, quantity, saleImport});
     }
     
     updateInvoice$: Observable<Action> = createEffect(() => this.actions$.pipe(
@@ -112,7 +112,6 @@ export class InvoicesEffects {
         switchMap((action) => this.updateInvoice(
             action.idS,
             action.custId,
-            action.date,
             action.payCondition,
             action.docType,
             action.sale,
@@ -121,7 +120,7 @@ export class InvoicesEffects {
             action.quantity,
             action.saleImport).pipe(
             map((response) => initInvoices({ response })),
-           tap(()=>this.router.navigateByUrl('/home'))
+           tap(()=>this.router.navigateByUrl('/redirectinvoices'))
         ))
     ));
 

@@ -9,4 +9,4 @@ export const retrieveAllInvoices = createAction('[Invoice] invoice');
 export const retrieveLastInvoice = createAction('[Invoice] last invoice');
 export const initInvoices = createAction('[Invoice] initInvoices', props<{response: Response}>());
 export const deleteInvoice=createAction('[Invoice], delete invoice', props<{idS:string}>());
-export const updateInvoice=createAction('[Invoice] update fattura', props<{idS: string, custId: string, date: string, payCondition: string, docType: string, sale: string, articles: string, taxable: string, quantity: string, saleImport: string}>())
+export const updateInvoice=createAction('[Invoice] update fattura', props<{idS: string, custId: string, payCondition: string, docType: string, sale: string, articles: string, taxable: string, quantity: string, saleImport: string}>())

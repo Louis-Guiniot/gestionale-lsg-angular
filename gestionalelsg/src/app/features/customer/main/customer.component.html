@@ -2,24 +2,28 @@
         <span>Customers page</span>
         <span id="home-link"><a href="/home" class="link">home</a></span>
     </div> -->
-<div class="container">
-        <button class="btn btn-sm" id="btn-insert" (click)="open(content)" ngbTooltip="New customer"><i class="bi bi-plus"></i></button>
+<div class="box">
+    <div class="grid-btn">
+        <button class="btn btn-sm" id="btn-insert" (click)="open(content)" ngbTooltip="New customer">
+      <i class="bi bi-plus"></i>
+    </button>
+    </div>
+    <div class="grid-table">
         <table class="table">
-            <caption>List of Customers</caption>
             <thead>
                 <tr>
                     <th scope="col">Id</th>
-                    <th scope="col">&nbsp;</th>
+
                     <th scope="col">Name</th>
-                    <th scope="col">&nbsp;</th>
+
                     <th scope="col">Email</th>
-                    <th scope="col">&nbsp;</th>
+
                     <th scope="col">Partita Iva</th>
-                    <th scope="col">&nbsp;</th>
+
                     <th scope="col">Ragione Sociale</th>
-                    <th scope="col">&nbsp;</th>
+
                     <th scope="col">Sede</th>
-                    <th scope="col">&nbsp;</th>
+
                     <th scope="col">Residenza</th>
                     <th scope="col">&nbsp;</th>
                     <th scope="col">&nbsp;</th>
@@ -29,49 +33,126 @@
                 <!-- | slice: (page-1) * pageSize : page * pageSize -->
                 <tr *ngFor="let element of elements | async">
                     <th scope="row">{{ element.id }}</th>
-                    <td>&nbsp;</td>
-                    <td>{{ element.name}}</td>
-                    <td>&nbsp;</td>
-                    <td>{{ element.email}}</td>
-                    <td>&nbsp;</td>
-                    <td>{{ element.partitaIva}}</td>
-                    <td>&nbsp;</td>
-                    <td>{{ element.ragioneSociale}}</td>
-                    <td>&nbsp;</td>
-                    <td>{{ element.sede}}</td>
-                    <td>&nbsp;</td>
-                    <td>{{ element.residenza}}</td>
-                    <td><button class="btn btn-sm" id="btn-edit"
-                            (click)="open(update,element.id,element.name)" ngbTooltip="Edit"><i class="bi bi-pencil-square"></i></button>
+
+                    <td>{{ element.name }}</td>
+
+                    <td>{{ element.email }}</td>
+
+                    <td>{{ element.partitaIva }}</td>
+
+                    <td>{{ element.ragioneSociale }}</td>
+
+                    <td>{{ element.sede }}</td>
+
+                    <td>{{ element.residenza }}</td>
+                    <td>
+                        <button class="btn btn-sm" id="btn-edit" (click)="open(update, element.id, element.name)" ngbTooltip="Edit">
+              <i class="bi bi-pencil-square"></i>
+            </button>
                     </td>
-                    <td><button class="btn btn-outline-danger btn-sm" id="btn"
-                            (click)="open(delete,element.id,element.name)" ngbTooltip="Delete"><i class="bi bi-trash-fill"></i></button>
+                    <td>
+                        <button class="btn btn-outline-danger btn-sm" id="btn" (click)="open(delete, element.id, element.name)" ngbTooltip="Delete">
+              <i class="bi bi-trash-fill"></i>
+            </button>
                     </td>
                 </tr>
             </tbody>
         </table>
-
-        <p>{{collectionSize}}</p>
-        <ngb-pagination [collectionSize]="collectionSize" [(page)]="page" [maxSize]="5" [rotate]="true" [ellipses]="false" [boundaryLinks]="true"></ngb-pagination>
+    </div>
 </div>
 
-        <ng-template #content let-modal>
-            <div class="modal-header">
-                <h4 class="modal-title" id="modal-basic-title">Customer creation</h4>
-                <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-                    <span aria-hidden="true">&times;</span>
-                </button>
+<ng-template #content let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Customer creation</h4>
+        <button type="button" class="close" id="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+    </div>
+    <div class="modal-body">
+        <form [formGroup]="customerForm" (ngSubmit)="insert()">
+            <div class="row">
+                <div class="col">
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon1">name</span>
+                        </div>
+                        <input type="text" class="form-control" formControlName="name" placeholder="name" id="name" autocomplete="off" aria-label="Username" aria-describedby="basic-addon1" />
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon1">p. iva</span>
+                        </div>
+                        <input type="text" class="form-control" formControlName="partitaIva" placeholder="partitaIva" id="partitaIva" autocomplete="off" aria-label="Username" aria-describedby="basic-addon1" />
+                    </div>
+                </div>
             </div>
-            <div class="modal-body">
-                <form [formGroup]="customerForm" (ngSubmit)="insert()">
+
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1">@</span>
+                </div>
+                <input type="text" class="form-control" formControlName="email" placeholder="email address" id="email" autocomplete="off" aria-label="Username" aria-describedby="basic-addon1" />
+            </div>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1">ragione sociale</span>
+                </div>
+                <input type="text" class="form-control" formControlName="ragioneSociale" placeholder="ragioneSociale" id="ragioneSociale" autocomplete="off" aria-label="Username" aria-describedby="basic-addon1" />
+            </div>
+
+            <div class="row">
+                <div class="col">
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon1">residenza</span>
+                        </div>
+                        <input type="text" class="form-control" formControlName="residenza" placeholder="residenza" id="residenza" autocomplete="off" aria-label="Username" aria-describedby="basic-addon1" />
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon1">sede</span>
+                        </div>
+                        <input type="text" class="form-control" formControlName="sede" placeholder="sede" id="sede" autocomplete="off" aria-label="Username" aria-describedby="basic-addon1" />
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button type="submit" class="btn" id="btn-modal-edit" (click)="modal.close('Save click')" ngbTooltip="Save">
+        <i class="bi bi-save"></i>
+      </button>
+                <button type="button" class="btn btn-outline-danger" (click)="modal.dismiss('Cross click')" ngbTooltip="Exit">
+        <i class="bi bi-arrow-bar-right"></i>
+      </button>
+            </div>
+        </form>
+    </div>
+</ng-template>
+
+<ng-template #update let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">
+            Customer update : {{ nameD }}
+        </h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+    </div>
+    <div class="modal-body">
+        <form [formGroup]="customerFormUpdate" (ngSubmit)="updateCust()">
+            <div *ngFor="let element of elements | async">
+                <div *ngIf="element.id == idN">
                     <div class="row">
                         <div class="col">
                             <div class="input-group mb-3">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text" id="basic-addon1">name</span>
                                 </div>
-                                <input type="text" class="form-control" formControlName="name" placeholder="name"
-                                    id="name" autocomplete="off" aria-label="Username" aria-describedby="basic-addon1">
+                                <input type="text" class="form-control" formControlName="name" placeholder="{{ element.name }}" id="name" autocomplete="off" aria-label="Username" aria-describedby="basic-addon1" />
                             </div>
                         </div>
                         <div class="col">
@@ -79,9 +160,7 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text" id="basic-addon1">p. iva</span>
                                 </div>
-                                <input type="text" class="form-control" formControlName="partitaIva"
-                                    placeholder="partitaIva" id="partitaIva" autocomplete="off" aria-label="Username"
-                                    aria-describedby="basic-addon1">
+                                <input type="text" class="form-control" formControlName="partitaIva" placeholder="{{ element.partitaIva }}" id="partitaIva" autocomplete="off" aria-label="Username" aria-describedby="basic-addon1" />
                             </div>
                         </div>
                     </div>
@@ -90,16 +169,14 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="basic-addon1">@</span>
                         </div>
-                        <input type="text" class="form-control" formControlName="email" placeholder="email address"
-                            id="email" autocomplete="off" aria-label="Username" aria-describedby="basic-addon1">
+                        <input type="text" class="form-control" formControlName="email" placeholder="{{ element.email }}" id="email" autocomplete="off" aria-label="Username" aria-describedby="basic-addon1" />
                     </div>
+
                     <div class="input-group mb-3">
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="basic-addon1">ragione sociale</span>
                         </div>
-                        <input type="text" class="form-control" formControlName="ragioneSociale"
-                            placeholder="ragioneSociale" id="ragioneSociale" autocomplete="off" aria-label="Username"
-                            aria-describedby="basic-addon1">
+                        <input type="text" class="form-control" formControlName="ragioneSociale" placeholder="{{ element.ragioneSociale }}" id="ragioneSociale" autocomplete="off" aria-label="Username" aria-describedby="basic-addon1" />
                     </div>
 
                     <div class="row">
@@ -108,9 +185,7 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text" id="basic-addon1">residenza</span>
                                 </div>
-                                <input type="text" class="form-control" formControlName="residenza"
-                                    placeholder="residenza" id="residenza" autocomplete="off" aria-label="Username"
-                                    aria-describedby="basic-addon1">
+                                <input type="text" class="form-control" formControlName="residenza" placeholder="{{ element.residenza }}" id="residenza" autocomplete="off" aria-label="Username" aria-describedby="basic-addon1" />
                             </div>
                         </div>
                         <div class="col">
@@ -118,138 +193,117 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text" id="basic-addon1">sede</span>
                                 </div>
-                                <input type="text" class="form-control" formControlName="sede" placeholder="sede"
-                                    id="sede" autocomplete="off" aria-label="Username" aria-describedby="basic-addon1">
+                                <input type="text" class="form-control" formControlName="sede" placeholder="{{ element.sede }}" id="sede" autocomplete="off" aria-label="Username" aria-describedby="basic-addon1" />
                             </div>
-
-
                         </div>
                     </div>
 
                     <div class="modal-footer">
+                        <button type="submit" class="btn" id="btn-modal-edit" (click)="modal.close('Save click')" ngbTooltip="Save">
+              <i class="bi bi-save"></i>
+            </button>
                         <button type="button" class="btn btn-outline-danger" (click)="modal.dismiss('Cross click')" ngbTooltip="Exit">
-                            <i class="bi bi-box-arrow-right"></i>
-                        </button>
-                        <button type="submit" class="btn" id="btn-modal-edit"
-                            (click)="modal.close('Save click')" ngbTooltip="Insert"><i class="bi bi-save"></i></button>
+              <i class="bi bi-arrow-bar-right"></i>
+            </button>
                     </div>
-
-                </form>
+                </div>
             </div>
-        </ng-template>
+        </form>
+    </div>
+</ng-template>
 
-        <ng-template #update let-modal>
-            <div class="modal-header">
-                <h4 class="modal-title" id="modal-basic-title">Customer update : {{nameD}}</h4>
-                <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <form [formGroup]="customerFormUpdate" (ngSubmit)="updateCust()">
-                    <div *ngFor="let element of elements | async">
-                        <div *ngIf="element.id==idN">
-                            <div class="row">
-                                <div class="col">
-                                    <div class="input-group mb-3">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text" id="basic-addon1">name</span>
-                                        </div>
-                                        <input type="text" class="form-control" formControlName="name"
-                                            placeholder="{{element.name}}" id="name" autocomplete="off"
-                                            aria-label="Username" aria-describedby="basic-addon1">
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <div class="input-group mb-3">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text" id="basic-addon1">p. iva</span>
-                                        </div>
-                                        <input type="text" class="form-control" formControlName="partitaIva"
-                                            placeholder="{{element.partitaIva}}" id="partitaIva" autocomplete="off"
-                                            aria-label="Username" aria-describedby="basic-addon1">
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="input-group mb-3">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text" id="basic-addon1">@</span>
-                                </div>
-                                <input type="text" class="form-control" formControlName="email"
-                                    placeholder="{{element.email}}" id="email" autocomplete="off" aria-label="Username"
-                                    aria-describedby="basic-addon1">
-                            </div>
-
-                            <div class="input-group mb-3">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text" id="basic-addon1">ragione sociale</span>
-                                </div>
-                                <input type="text" class="form-control" formControlName="ragioneSociale"
-                                    placeholder="{{element.ragioneSociale}}" id="ragioneSociale" autocomplete="off"
-                                    aria-label="Username" aria-describedby="basic-addon1">
-                            </div>
-
-                            <div class="row">
-                                <div class="col">
-                                    <div class="input-group mb-3">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text" id="basic-addon1">residenza</span>
-                                        </div>
-                                        <input type="text" class="form-control" formControlName="residenza"
-                                            placeholder="{{element.residenza}}" id="residenza" autocomplete="off"
-                                            aria-label="Username" aria-describedby="basic-addon1">
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <div class="input-group mb-3">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text" id="basic-addon1">sede</span>
-                                        </div>
-                                        <input type="text" class="form-control" formControlName="sede"
-                                            placeholder="{{element.sede}}" id="sede" autocomplete="off"
-                                            aria-label="Username" aria-describedby="basic-addon1">
-                                    </div>
-
-
-                                </div>
-                            </div>
-
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-outline-danger"
-                                    (click)="modal.dismiss('Cross click')" ngbTooltip="Exit">
-                                    <i class="bi bi-box-arrow-right"></i>
-                                </button><button type="submit" class="btn" id="btn-modal-edit"
-                                    (click)="modal.close('Save click')" ngbTooltip="Save"><i class="bi bi-save"></i></button>
-                            </div>
-
+<ng-template #delete let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">
+            Deleting customer
+        </h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+          <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <form (ngSubmit)="deleteCust()">
+            <h6>are you sure to delete invoice : {{ nameD }} ?</h6>
+            <ngb-accordion #acc="ngbAccordion" acitvateIds="custom-panel-1">
+                <ngb-panel id="custom-panel-1">
+                    <ng-template ngbPanelHeader let-opened="opened">
+                        <div class="d-flex align-items-center justify-content-between">
+                            <b>Customer detail</b>
+                            <button ngbPanelToggle id="btn-toggle">
+                {{ opened ? "close" : "open" }}
+              </button>
                         </div>
-                    </div>
-                </form>
-            </div>
-        </ng-template>
+                    </ng-template>
+                    <ng-template ngbPanelContent>
+                        <div class="card">
+                            <div *ngFor="let element of elements | async">
+                                <div *ngIf="element.id == idN">
+                                    <div class="row">
+                                        <div class="col">
+                                            <div class="input-group mb-3">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text" id="basic-addon1">name</span>
+                                                </div>
+                                                <input type="text" class="form-control" placeholder="{{ element.name }}" id="name" autocomplete="off" aria-label="Username" aria-describedby="basic-addon1" readonly />
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <div class="input-group mb-3">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text" id="basic-addon1">p. iva</span>
+                                                </div>
+                                                <input type="text" class="form-control" placeholder="{{ element.partitaIva }}" id="partitaIva" autocomplete="off" aria-label="Username" aria-describedby="basic-addon1" readonly />
+                                            </div>
+                                        </div>
+                                    </div>
 
-        <ng-template #delete let-modal>
-            <div class="modal-header">
-                <h4 class="modal-title" id="modal-basic-title">Deleting customer: {{nameD}}</h4>
-                <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <form (ngSubmit)="deleteCust()">
-                    <div class="row">
-                        <p>are you sure to delete customer --> {{nameD}} ?</p>
-                    </div>
-                    <div class="modal-footer">
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="basic-addon1">@</span>
+                                        </div>
+                                        <input type="text" class="form-control" placeholder="{{ element.email }}" id="email" autocomplete="off" aria-label="Username" aria-describedby="basic-addon1" readonly />
+                                    </div>
 
-                        <button type="button" class="btn" id="btn-modal-edit" (click)="modal.dismiss('Cross click')" ngbTooltip="Undo">
-                            <i class="bi bi-box-arrow-right"></i>
-                        </button><button type="submit" class="btn btn-outline-danger"
-                            (click)="modal.close('Save click')" ngbTooltip="Delete"><i class="bi bi-trash-fill"></i></button>
-                    </div>
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="basic-addon1">ragione sociale</span>
+                                        </div>
+                                        <input type="text" class="form-control" placeholder="{{ element.ragioneSociale }}" id="ragioneSociale" autocomplete="off" aria-label="Username" aria-describedby="basic-addon1" readonly />
+                                    </div>
 
-                </form>
+                                    <div class="row">
+                                        <div class="col">
+                                            <div class="input-group mb-3">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text" id="basic-addon1">residenza</span>
+                                                </div>
+                                                <input type="text" class="form-control" placeholder="{{ element.residenza }}" id="residenza" autocomplete="off" aria-label="Username" aria-describedby="basic-addon1" readonly />
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <div class="input-group mb-3">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text" id="basic-addon1">sede</span>
+                                                </div>
+                                                <input type="text" class="form-control" placeholder="{{ element.sede }}" id="sede" autocomplete="off" aria-label="Username" aria-describedby="basic-addon1" readonly />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </ng-template>
+                </ngb-panel>
+            </ngb-accordion>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-outline-danger" (click)="modal.close('Save click')" ngbTooltip="Delete">
+          <i class="bi bi-trash-fill"></i>
+        </button>
+                <button type="button" class="btn" id="btn-modal-edit" (click)="modal.dismiss('Cross click')" ngbTooltip="Undo">
+          <i class="bi bi-arrow-bar-right"></i>
+        </button>
             </div>
-        </ng-template>
+        </form>
+    </div>
+</ng-template>
 <!-- PER CREAZIONE A COMPARSA -->
