@@ -1,4 +1,4 @@
-.container-invoice{
+.container-invoice {
     width: 80%;
     margin-top: 2%;
     margin-left: auto;
@@ -10,7 +10,7 @@
     color: white;
 }
 
-.invoice-table{
+.invoice-table {
     width: 100%;
     margin: 0;
     padding: 3%;
@@ -18,28 +18,28 @@
     font-size: 2em;
 }
 
-.invoice-table td{
+.invoice-table td {
     width: 50%;
     padding: 1%;
 }
 
-.invoice-table tr:hover{
+.invoice-table tr:hover {
     background-color: rgba( #A9AABC, 0.5);
 }
 
-.invoice-table td:nth-child(odd){
+.invoice-table td:nth-child(odd) {
     text-align: right;
 }
 
-#total{
+#total {
     border-top: 2px black solid;
 }
 
-#total:hover{
+#total:hover {
     background-color: rgb(88, 119, 255);
 }
 
-.header{
+.header {
     margin: 0;
     width: auto;
     padding: 2%;
