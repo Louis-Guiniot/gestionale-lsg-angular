@@ -123,7 +123,7 @@ export class TabbedInvoicesComponent implements OnInit{
   }
 
   update(){
-    this.invoicesService.updateInvoice(this.idS, this.invoiceUpdateForm.value.custId, this.invoiceUpdateForm.value.date, this.invoiceUpdateForm.value.payCondition, 
+    this.invoicesService.updateInvoice(this.idS.toString(), this.invoiceUpdateForm.value.custId, this.invoiceUpdateForm.value.date, this.invoiceUpdateForm.value.payCondition, 
     this.invoiceUpdateForm.value.docType, this.invoiceUpdateForm.value.sale, this.invoiceUpdateForm.value.articles, this.invoiceUpdateForm.value.taxable,
     this.invoiceUpdateForm.value.quantity, this.invoiceUpdateForm.value.saleImport)
   }
