@@ -1,6 +1,6 @@
 import { Action, createReducer, on } from '@ngrx/store';
 import { Invoice } from 'src/app/core/model/Invoice.interface';
-import { initInvoices } from './invoice.actions';
+import { initInvoiceFounds, initInvoices } from './invoice.actions';
 
 export interface InvoiceState { 
     invoices: Invoice[]
@@ -16,6 +16,7 @@ export const initialState: InvoiceState = {
 export const invoiceReducer = createReducer(
     initialState,
     on(initInvoices, (state, { response }) => ({ ...state, invoices: response.result })),
+    on(initInvoiceFounds, (state, { response }) => ({ ...state, invoices: response.result })),
     
 );
 //----//

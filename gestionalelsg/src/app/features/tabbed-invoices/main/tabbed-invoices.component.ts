@@ -31,6 +31,7 @@ export class TabbedInvoicesComponent implements OnInit{
 
   invoiceInsertForm:FormGroup
   invoiceUpdateForm:FormGroup
+  cercaForm:FormGroup
 
   idN:number;
   idS:string;
@@ -78,6 +79,10 @@ export class TabbedInvoicesComponent implements OnInit{
   }
 
   ngOnInit(): void{
+
+    this.cercaForm=this.fb.group({
+      termine: ['', Validators.required]
+    })
 
     this.invoiceInsertForm=this.fb.group({
 
@@ -137,4 +142,13 @@ export class TabbedInvoicesComponent implements OnInit{
                                        this.invoiceUpdateForm.value.quantity, 
                                        this.invoiceUpdateForm.value.saleImport)
   }
+
+  search(){
+    console.log("cerco")
+    this.invoicesService.cerca(this.cercaForm.value.termine)
+    
+    
+  }
+
+  
 }

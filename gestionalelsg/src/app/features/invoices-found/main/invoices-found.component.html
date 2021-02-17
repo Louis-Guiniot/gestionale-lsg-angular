@@ -1,0 +1,34 @@
+termine trovato: {{term}}
+
+
+    <!-- ANCHOR first table -->
+    <div class="grid-table">
+        <table class="table">
+            <caption>List of Invoices</caption>
+            <thead>
+                <th scope="col">cust_id</th>
+                <th scope="col">code</th>
+                <!-- numero fattura -->
+                <th scope="col">data</th>
+                <th scope="col">pay_condition</th>
+                <th scope="col">doc_type</th>
+                <th scope="col">sale</th>
+                <th>&nbsp;</th>
+                <th>&nbsp;</th>
+            </thead>
+
+            <tbody *ngFor="let inv of invoices | async; let i= index" id="highlight-row-invoice">
+                <tr>
+                    <th scope="row">{{inv.idCustomer}}</th>
+                    <td> {{inv.codeInvoice}}</td>
+                    <td>{{inv.dateTime}}</td>
+                    <td>{{inv.condizionePagamento}}</td>
+                    <td>{{inv.tipoDocumento}} </td>
+                    <td>{{inv.sconto}}%</td>
+                   
+                   
+                </tr>
+            </tbody>
+        </table>
+    </div>
+

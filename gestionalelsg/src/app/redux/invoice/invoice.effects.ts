@@ -9,7 +9,7 @@ import { HttpCommunicationsService } from "src/app/core/HttpCommunications/http-
 
 import { Response } from '../../core/model/Response.interface';
 
-import { createInvoice, deleteInvoice, initInvoices, retrieveAllInvoices, retrieveLastInvoice, updateInvoice } from "./invoice.actions";
+import { createInvoice, deleteInvoice, initInvoiceFounds, initInvoices, lookForInvoices, retrieveAllInvoices, retrieveLastInvoice, updateInvoice } from "./invoice.actions";
 
 
 @Injectable()
@@ -70,6 +70,19 @@ export class InvoicesEffects {
             action.articles).pipe(
             map((response) => initInvoices({ response })),
            tap(()=>this.router.navigateByUrl('/redirectinvoices'))
+        ))
+    ));
+
+    searchInvoices(termine:string): Observable<Response>{
+        return this.http.retrievePostCall<Response>('invoice/search',{termine});
+    }
+    
+    searchInvoices$: Observable<Action> = createEffect(() => this.actions$.pipe(
+        ofType(lookForInvoices),
+        switchMap((action) => this.searchInvoices(
+            action.termine).pipe(
+            map((response) => initInvoiceFounds({ response })),
+            tap(()=>this.router.navigate(["/tabbed/invoices/found"], { queryParams: { term: action.termine }}))
         ))
     ));
 
