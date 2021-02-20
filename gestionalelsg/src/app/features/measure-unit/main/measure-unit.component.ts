@@ -64,29 +64,32 @@ export class MeasureUnitComponent implements OnInit {
     this.createMeasureUnitForm=this.fb.group({
       tipo: ['', Validators.required]
     })
+    this.deleteMeasureUnitForm=this.fb.group({
+      id: ['', Validators.required]
+    })
   }
 
   get measures(): Observable<MeasureUnit[]> {
     return this.store.pipe(select(selectMeasures));
   }
 
-  createMeasure(){
+  create(){
     console.log("add function ")
     this.measureUnitService.create(this.createMeasureUnitForm.value.tipo)
   }
 
-  updateMeasure(){
+  update(){
     console.log("update function")
     console.log("vecchia unita: ",this.updateMeasureUnitForm.value.vecchio)
     console.log("nuova unita: ",this.updateMeasureUnitForm.value.nuovo)
     this.measureUnitService.update(this.updateMeasureUnitForm.value.nuovo, this.updateMeasureUnitForm.value.vecchio)
   }
 
-  deleteMeasure(){
+  delete(){
 
     console.log("delete")
 
-    this.measureUnitService.delete(this.idMstring)
+    this.measureUnitService.delete(this.deleteMeasureUnitForm.value.id)
 
   }
   

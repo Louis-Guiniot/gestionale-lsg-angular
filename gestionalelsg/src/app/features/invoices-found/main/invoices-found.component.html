@@ -17,18 +17,24 @@ termine trovato: {{term}}
                 <th>&nbsp;</th>
             </thead>
 
-            <tbody *ngFor="let inv of invoices | async; let i= index" id="highlight-row-invoice">
-                <tr>
-                    <th scope="row">{{inv.idCustomer}}</th>
-                    <td> {{inv.codeInvoice}}</td>
-                    <td>{{inv.dateTime}}</td>
-                    <td>{{inv.condizionePagamento}}</td>
-                    <td>{{inv.tipoDocumento}} </td>
-                    <td>{{inv.sconto}}%</td>
-                   
-                   
-                </tr>
-            </tbody>
+    <tbody *ngFor="let inv of invoices | async; let i= index" id="highlight-row-invoice">
+        <div *ngIf="inv.idCustomer==term||inv.codeInvoice==term">
+            <tr>
+                <th scope="row">{{inv.idCustomer}}</th>
+                <td> {{inv.codeInvoice}}</td>
+                <td>{{inv.dateTime}}</td>
+                <td>{{inv.condizionePagamento}}</td>
+                <td>{{inv.tipoDocumento}} </td>
+                <td>{{inv.sconto}}%</td>
+               
+               
+            </tr>
+
+        </div>
+    </tbody>
+
+
+            
         </table>
     </div>
 

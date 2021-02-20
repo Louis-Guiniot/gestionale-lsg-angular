@@ -19,6 +19,8 @@ export class InvoicesFoundComponent implements OnInit {
   term:string
 
   constructor(private store: Store,private invoicesService: TabbedInvoicesService, private route: Router, private aRouter: ActivatedRoute,private invoicesFoundService: InvoicesFoundService, private modalService: NgbModal) {
+   this.invoicesService.retrieveAllInvoices();
+   
     this.aRouter.queryParams.subscribe(params => {
       this.term = params['term'];
       console.log("termine trovato: ", this.term)
