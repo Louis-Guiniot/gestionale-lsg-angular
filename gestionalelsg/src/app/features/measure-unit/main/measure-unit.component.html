@@ -1,4 +1,4 @@
-<div class="box">
+<!-- <div class="box">
     <div class="grid-btn">
         <button class="btn btn-sm" id="btn-insert" (click)="open(insert)" ngbTooltip="New measure">
             <i class="bi bi-plus"></i>
@@ -15,7 +15,7 @@
                 </tr>
             </thead>
             <tbody>
-                <!-- | slice: (page-1) * pageSize : page * pageSize -->
+               | slice: (page-1) * pageSize : page * pageSize 
                 <tr *ngFor="let measure of measures | async">
                     <th scope="row">{{ measure.id }}</th>
                     <td>{{ measure.type }}</td>
@@ -33,20 +33,20 @@
             </tbody>
         </table>
     </div>
-</div>
+</div> -->
 
-
-<!-- <div>
-    <form [formGroup]="createMeasureUnitForm" (ngSubmit)="createMeasure()">
+<h1>CREATE</h1>
+<div>
+    <form [formGroup]="createMeasureUnitForm" (ngSubmit)="create()">
 
         <input type="text" formControlName="tipo" placeholder="tipo unità di misura">
         <button type="submit">add</button>
     </form>
-</div> -->
-
-<!-- <div>
+</div><br><br>
+<h1>UPDATE</h1>
+<div>
     <form [formGroup]="updateMeasureUnitForm" (ngSubmit)="update()">
-
+        seleziona um:
         <select class="form-control" aria-label="Default select example" formControlName="vecchio">
         <option *ngFor="let measure of measures | async" value="{{ measure.id }}">
             {{ measure.type }}
@@ -55,11 +55,11 @@
         <input type="text" formControlName="nuovo" placeholder="tipo unità di misura">
         <button type="submit">update</button>
     </form>
-</div> -->
-
-<!-- <div>
+</div><br><br>
+<h1>DELETE</h1>
+<div>
     <form [formGroup]="deleteMeasureUnitForm" (ngSubmit)="delete()">
-
+        seleziona um:
         <select class="form-control" aria-label="Default select example" formControlName="id">
         <option *ngFor="let measure of measures | async" value="{{ measure.id }}">
             {{ measure.type }}
@@ -67,9 +67,9 @@
     </select>
         <button type="submit">delete</button>
     </form>
-</div> -->
+</div>
 
-<ng-template #update let-modal>
+<!-- <ng-template #update let-modal>
     <div class="modal-header">
         <h4 class="modal-title" id="modal-basic-title">Measure update</h4>
         <button type="button" class="close" id="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
@@ -141,8 +141,8 @@
     <div class="modal-body">
         <form (ngSubmit)="deleteMeasure()">
             <div class="row">
-                <p>are you sure to delete measure --> {{ typeM }} ?</p>
-            </div>
+             <p>are you sure to delete measure {{ typeM }} ?</p>
+             </div>
             <div class="modal-footer">
                 <button type="submit" class="btn btn-outline-danger" (click)="modal.close('Save click')" ngbTooltip="Delete">
                     <i class="bi bi-trash-fill"></i>
@@ -153,4 +153,4 @@
             </div>
         </form>
     </div>
-</ng-template>
+</ng-template> --> 
