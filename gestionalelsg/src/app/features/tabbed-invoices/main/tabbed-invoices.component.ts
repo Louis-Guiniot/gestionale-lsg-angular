@@ -6,9 +6,12 @@ import { select, Store } from '@ngrx/store';
 import { Observable, Observer } from 'rxjs';
 import { Customer } from 'src/app/core/model/Customer.interface';
 import { Invoice } from 'src/app/core/model/Invoice.interface';
+import { Product } from 'src/app/core/model/Product.interface';
 import { selectCustomers } from 'src/app/redux/customer';
 import { selectInvoices } from 'src/app/redux/invoice';
+import { selectProducts } from 'src/app/redux/product';
 import { CustomerService } from '../../customer/services/customer.service';
+import { ProductsService } from '../../products/service/products.service';
 import { TabbedInvoicesService } from '../services/tabbed-invoices.service';
 
 export interface ExampleTab {
@@ -40,9 +43,10 @@ export class TabbedInvoicesComponent implements OnInit{
 
   public isCollapsed = false;
 
-  constructor(private store: Store, private route: Router, private invoicesService: TabbedInvoicesService, private customerService: CustomerService, private fb:FormBuilder, private modalService: NgbModal) {
+  constructor(private store: Store,  private router: Router, private productService: ProductsService, private route: Router, private invoicesService: TabbedInvoicesService, private customerService: CustomerService, private fb:FormBuilder, private modalService: NgbModal) {
     this.invoicesService.retrieveAllInvoices()
     this.customerService.retreiveAllCustomers()
+    this.productService.retrieveAllProducts()
   }
 
   openXL(content,idCust?:string,name?:string) {
@@ -119,6 +123,10 @@ export class TabbedInvoicesComponent implements OnInit{
     return this.store.pipe(select(selectCustomers))
   }
 
+  get products(): Observable<Product[]>{
+    return this.store.pipe(select(selectProducts))
+  }
+
   create(){
     this.invoicesService.create(this.invoiceInsertForm.value.custId,
       this.invoiceInsertForm.value.payCondition, this.invoiceInsertForm.value.docType,
@@ -145,8 +153,7 @@ export class TabbedInvoicesComponent implements OnInit{
 
   search(){
     console.log("cerco")
-    this.invoicesService.cerca(this.cercaForm.value.termine)
-    
+    this.router.navigate(["/tabbed/invoices/found"], { queryParams: { term: this.cercaForm.value.termine }})
     
   }
 

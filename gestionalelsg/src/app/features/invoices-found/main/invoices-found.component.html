@@ -18,10 +18,8 @@ termine trovato: {{term}}
             </thead>
 
     <tbody *ngFor="let inv of invoices | async; let i= index" id="highlight-row-invoice">
-        <div *ngIf="inv.idCustomer==term||inv.codeInvoice==term||inv.condizionePagamento==term||inv.dateTime==term||inv.fields==term||
-                    inv.imponibile==term||inv.importoSconto==term||inv.iva==term||inv.ivaPrice==term||inv.quantita==term||inv.sconto==term||inv.tipoDocumento==term||
-                    inv.totaleMerci==term||inv.totaleServizi==term">
-            <tr>
+        
+            <tr *ngIf="inv.idCustomer==term||inv.codeInvoice==term||inv.condizionePagamento==term||inv.dateTime==term||inv.fields==term||inv.imponibile==term||inv.importoSconto==term||inv.iva==term||inv.ivaPrice==term||inv.quantita==term||inv.sconto==term||inv.tipoDocumento==term||inv.totaleMerci==term||inv.totaleServizi==term">
                 <th scope="row">{{inv.idCustomer}}</th>
                 <td> {{inv.codeInvoice}}</td>
                 <td>{{inv.dateTime}}</td>
@@ -32,7 +30,6 @@ termine trovato: {{term}}
                
             </tr>
 
-        </div>
     </tbody>
 
 
