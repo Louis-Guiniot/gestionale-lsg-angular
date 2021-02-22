@@ -10,6 +10,8 @@ import { selectMeasures, selectMeasureState } from 'src/app/redux/measure';
 import { selectProducts } from 'src/app/redux/product';
 import { ProductsService } from '../service/products.service';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import { CartService } from '../../cart/services/cart.service';
+import { CartComponent } from '../../cart/main/cart.component';
 
 @Component({
   selector: 'app-products',
@@ -28,8 +30,12 @@ export class ProductsComponent implements OnInit {
   idN:number;
   idS:string;
   nameD:string;
+
+  collectionSize:number;
+  page = 1;
+  pageSize = 5;
   
-  constructor(private productService: ProductsService, private store: Store, private route: Router, private fb:FormBuilder, private modalService: NgbModal) {
+  constructor(private productService: ProductsService, private cartService: CartService,private store: Store, private route: Router, private fb:FormBuilder, private modalService: NgbModal) {
     
     this.productService.retrieveAllProducts();
     this.productService.retrieveAllMeasures();
@@ -64,30 +70,24 @@ export class ProductsComponent implements OnInit {
   ngOnInit(): void {
    
     this.createProductForm=this.fb.group({
-     
-      name: ['', Validators.required],
       description: ['', Validators.required],
       measureUnit:['', Validators.required],
       price:['', Validators.required],
-      sconto:['', Validators.required]
+      sconto:['', Validators.required],
+      note:['', Validators.required]
     })
 
     this.updateProductForm=this.fb.group({
-     
-      name: ['', Validators.required],
       description: ['', Validators.required],
       measureUnit:['', Validators.required],
       price:['', Validators.required],
-      sconto:['', Validators.required]
+      sconto:['', Validators.required],
+      note:['', Validators.required]
     })
 
-    //   this.store.pipe(select(selectProducts)).subscribe((products) => {
-    //     for (let prod of products) {
-    //      this.products.push(prod);
-    //       console.log(prod);
-    //     }
-    //   return this.products
-    //  })
+       this.store.pipe(select(selectProducts)).subscribe((products) => {
+        this.collectionSize = products.length
+      })
 
      
     // this.store.pipe(select(selectMeasures)).subscribe((measures) => {
@@ -111,16 +111,18 @@ export class ProductsComponent implements OnInit {
   updateProd(){
 
     console.log("id "+this.idN)
-    console.log("name "+this.updateProductForm.value.name)
-    console.log("surname "+this.updateProductForm.value.surname)
-    console.log("email "+this.updateProductForm.value.email)
+    console.log("price "+this.updateProductForm.value.price)
+    console.log("measure "+this.updateProductForm.value.measureUnit)
+    console.log("note "+this.updateProductForm.value.note)
+    console.log("descr "+this.updateProductForm.value.description)
 
-    this.productService.updateProduct(this.idS.toString(),this.updateProductForm.value.name, this.updateProductForm.value.description, this.updateProductForm.value.measureUnit, this.updateProductForm.value.price, this.updateProductForm.value.sconto)
+
+    this.productService.updateProduct(this.idS.toString(),this.updateProductForm.value.note, this.updateProductForm.value.description, this.updateProductForm.value.measureUnit, this.updateProductForm.value.price, this.updateProductForm.value.sconto)
   }
 
   create(){
     
-    this.productService.createProduct(this.createProductForm.value.description,this.createProductForm.value.measureUnit,this.createProductForm.value.name,this.createProductForm.value.price, this.createProductForm.value.sconto)
+    this.productService.createProduct(this.createProductForm.value.description,this.createProductForm.value.measureUnit,this.createProductForm.value.note,this.createProductForm.value.price, this.createProductForm.value.sconto)
     
   }
   deleteProd(){
@@ -130,6 +132,11 @@ export class ProductsComponent implements OnInit {
   clear(){
     this.createProductForm.reset();
   }
+
+   addProd(){
+     console.log(this.idS+" aggiunto")
+     this.cartService.addInto(this.idS);
+   }
   
 
 }

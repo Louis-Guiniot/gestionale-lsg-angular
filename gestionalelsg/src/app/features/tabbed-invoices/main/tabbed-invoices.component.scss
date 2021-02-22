@@ -1,10 +1,11 @@
 .box {
     width: 100%;
-    font-family: Mulish;
     padding: 4% 1% 1% 1%;
+    height: 100vh;
     margin: 0;
     display: grid;
     grid-template-columns: 5% auto;
+    grid-template-rows: 0.6fr;
     column-gap: 1%;
 }
 
@@ -46,7 +47,6 @@
     background-color: #012051;
     color: white;
     font-size: 2vh;
-    font-family: Mulish;
     text-transform: uppercase;
     letter-spacing: 1px;
     cursor: pointer;
@@ -62,14 +62,13 @@ i {
 }
 
 .btn {
-    font-family: Mulish;
     outline: none;
     line-height: 0%;
     font-size: 1.2vw;
 }
 
 #btn-insert {
-    width: 100%;
+    width: 50%;
     background-color: #012051;
     color: #012051;
     height: 100%;
@@ -82,6 +81,7 @@ i {
     font-weight: bold;
     font-size: larger;
     border-radius: 0;
+    font-size: 1.5vw;
 }
 
 #btn-insert:hover {
@@ -158,8 +158,12 @@ i {
 
 table {
     font-size: 1.2vw;
-    font-family: Mulish;
     border: 1px rgb(217, 222, 226) solid;
+}
+
+td,
+th {
+    padding: 1%;
 }
 
 thead {

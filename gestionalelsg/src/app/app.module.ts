@@ -9,7 +9,6 @@ import { reducers } from './redux';
 import { EffectsModule } from '@ngrx/effects';
 import { ProductsEffects } from "./redux/product/product.effects";
 import { CoreModule } from './core/core.module';
-import { FatturaComponent } from './features/fattura/main/fattura.component';
 import { InvoicesEffects } from './redux/invoice/invoice.effects';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CustomerEffects } from './redux/customer/customer.effects';
@@ -25,8 +24,6 @@ import {MatButtonModule} from '@angular/material/button';
 @NgModule({
   declarations: [
     AppComponent,
-    
-
   ],
   imports: [
     BrowserModule,

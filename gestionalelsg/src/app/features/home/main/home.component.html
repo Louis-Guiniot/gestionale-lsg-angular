@@ -1,81 +1,69 @@
-<div class="box">
-        <ngb-accordion #acc="ngbAccordion" activeIds="custom-panel-1">
+<div class="box-home">
+    <ngb-accordion #acc="ngbAccordion" activeIds="custom-panel-1">
 
-                <!-- {{ opened ? <i class="bi bi-eye-slash-fill"></i> : <i class="bi bi-eye-fill"></i> }} -->
+        <!-- {{ opened ? <i class="bi bi-eye-slash-fill"></i> : <i class="bi bi-eye-fill"></i> }} -->
 
-                <ngb-panel id="custom-panel-1">
-                        <ng-template ngbPanelHeader let-opened="opened">
-                                <div class="d-flex align-items-center justify-content-between">
-                                        <h5 class="m-0"><b>Customers panel</b>
-                                        </h5>
-                                        <button ngbPanelToggle class="btn p-0">{{ opened ? 'chiudi' : 'apri' }}</button>
-                                </div>
-                        </ng-template>
-                        <ng-template ngbPanelContent>
-                                <div class="card">
-                                        <p class="card-header">Customers</p>
-                                        <div class="card-body">
-                                                <p class="card-title">All the CRUD opertations are fixed</p>
-                                                <p class="card-text">With CRUD operations you can: create, update and
-                                                        delete
-                                                        your records.</p>
-                                                <p class="card-text">In the customers section you can menage all your
-                                                        customers,
-                                                        whitout limits</p>
-                                                <a href="customers"><button id="a">Go to the customers page</button></a>
-                                        </div>
-                                </div>
-                        </ng-template>
-                </ngb-panel>
+        <ngb-panel id="custom-panel-1">
+            <ng-template ngbPanelHeader let-opened="opened">
+                <div class="d-flex align-items-center justify-content-between">
+                    <h5 class="m-0"><b>Customers panel</b>
+                    </h5>
+                    <button ngbPanelToggle class="btn p-0">{{ opened ? 'chiudi' : 'apri' }}</button>
+                </div>
+            </ng-template>
+            <ng-template ngbPanelContent>
+                <div class="card">
+                    <p class="card-header">Customers</p>
+                    <div class="card-body">
+                        <p class="card-title">All the CRUD opertations are fixed</p>
+                        <p class="card-text">With CRUD operations you can: create, update and delete your records.</p>
+                        <p class="card-text">In the customers section you can menage all your customers, whitout limits</p>
+                        <a href="customers"><button id="a">Go to the customers page</button></a>
+                    </div>
+                </div>
+            </ng-template>
+        </ngb-panel>
 
-                <ngb-panel>
-                        <ng-template ngbPanelHeader let-opened="opened">
-                                <div class="d-flex align-items-center justify-content-between">
-                                        <h5 class="m-0"><b>Products panel</b></h5>
-                                        <button ngbPanelToggle class="btn p-0">{{ opened ? 'chiudi' : 'apri' }}</button>
-                                </div>
-                        </ng-template>
-                        <ng-template ngbPanelContent>
-                                <div class="card">
-                                        <p class="card-header">Products</p>
-                                        <div class="card-body">
-                                                <p class="card-title">All the CRUD opertations are fixed</p>
-                                                <p class="card-text">With CRUD operations you can: create, update and
-                                                        delete
-                                                        your records.</p>
-                                                <p class="card-text">In the products section you can menage all your
-                                                        products,
-                                                        whitout limits</p>
-                                                <a href="products"><button id="a">Go to the products page</button></a>
-                                        </div>
-                                </div>
-                        </ng-template>
-                </ngb-panel>
+        <ngb-panel>
+            <ng-template ngbPanelHeader let-opened="opened">
+                <div class="d-flex align-items-center justify-content-between">
+                    <h5 class="m-0"><b>Products panel</b></h5>
+                    <button ngbPanelToggle class="btn p-0">{{ opened ? 'chiudi' : 'apri' }}</button>
+                </div>
+            </ng-template>
+            <ng-template ngbPanelContent>
+                <div class="card">
+                    <p class="card-header">Products</p>
+                    <div class="card-body">
+                        <p class="card-title">All the CRUD opertations are fixed</p>
+                        <p class="card-text">With CRUD operations you can: create, update and delete your records.</p>
+                        <p class="card-text">In the products section you can menage all your products, whitout limits</p>
+                        <a href="products"><button id="a">Go to the products page</button></a>
+                    </div>
+                </div>
+            </ng-template>
+        </ngb-panel>
 
-                <ngb-panel>
-                        <ng-template ngbPanelHeader let-opened="opened">
-                                <div class="d-flex align-items-center justify-content-between">
-                                        <h5 class="m-0"><b>Invoices panel</b></h5>
-                                        <button ngbPanelToggle class="btn p-0">{{ opened ? 'chiudi' : 'apri' }}</button>
-                                </div>
-                        </ng-template>
-                        <ng-template ngbPanelContent>
-                                <div class="card">
-                                        <p class="card-header">Invoices</p>
-                                        <div class="card-body">
-                                                <p class="card-title">All the CRUD opertations are fixed</p>
-                                                <p class="card-text">With CRUD operations you can: create, update and
-                                                        delete
-                                                        your records.</p>
-                                                <p class="card-text">In the invoices section you can menage all your
-                                                        invoices,
-                                                        whitout limits</p>
-                                                <a href="tabbed/invoices"><button id="a">Go to the invoices page</button></a>
-                                        </div>
-                                </div>
-                        </ng-template>
-                </ngb-panel>
-        </ngb-accordion>
+        <ngb-panel>
+            <ng-template ngbPanelHeader let-opened="opened">
+                <div class="d-flex align-items-center justify-content-between">
+                    <h5 class="m-0"><b>Invoices panel</b></h5>
+                    <button ngbPanelToggle class="btn p-0">{{ opened ? 'chiudi' : 'apri' }}</button>
+                </div>
+            </ng-template>
+            <ng-template ngbPanelContent>
+                <div class="card">
+                    <p class="card-header">Invoices</p>
+                    <div class="card-body">
+                        <p class="card-title">All the CRUD opertations are fixed</p>
+                        <p class="card-text">With CRUD operations you can: create, update and delete your records.</p>
+                        <p class="card-text">In the invoices section you can menage all your invoices, whitout limits</p>
+                        <a href="tabbed/invoices"><button id="a">Go to the invoices page</button></a>
+                    </div>
+                </div>
+            </ng-template>
+        </ngb-panel>
+    </ngb-accordion>
 </div>
 
 

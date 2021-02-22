@@ -15,8 +15,6 @@
 
                     <th scope="col">Code</th>
 
-                    <th scope="col">Name</th>
-
                     <th scope="col">Description</th>
 
                     <th scope="col">Price</th>
@@ -29,13 +27,10 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let product of prods | async">
+                <tr *ngFor="let product of prods | async | slice: (page-1) * pageSize : page * pageSize">
                     <th scope="row">{{ product.id }}</th>
 
                     <td>{{ product.codeProduct }}</td>
-
-                    <td>{{ product.name }}</td>
-
                     <td>{{ product.description }}</td>
 
                     <td>{{ product.price }}$</td>
@@ -50,13 +45,20 @@
                         </button>
                     </td>
                     <td>
-                        <button class="btn btn-outline-danger" id="btn-delete" (click)="open(delete, product.id, product.name)" ngbTooltip="Delete">
+                        <button class="btn btn-outline-danger" id="btn" (click)="open(delete, product.id, product.name)" ngbTooltip="Delete">
                             <i class="bi bi-trash-fill"></i>
+                        </button>
+                    </td>
+                    <td>
+                        <button class="btn btn-outline-danger" id="btn" (click)="open(addToCart, product.id)" ngbTooltip="Delete">
+                            <i class="bi bi-plus-circle"></i>
                         </button>
                     </td>
                 </tr>
             </tbody>
         </table>
+
+        <ngb-pagination [(page)]="page" [pageSize]="pageSize" [collectionSize]="collectionSize"></ngb-pagination>
     </div>
 </div>
 
@@ -69,65 +71,60 @@
     </div>
     <div class="modal-body">
         <form [formGroup]="createProductForm" (ngSubmit)="create()">
-            <div class="row">
-                <div class="col">
-                    <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text" id="basic-addon1">code</span>
-                        </div>
-                        <input type="text" class="form-control" placeholder="code" id="partitaIva" autocomplete="off" aria-label="Username" aria-describedby="basic-addon1" />
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text" id="basic-addon1">price</span>
-                        </div>
-                        <input type="text" class="form-control" formControlName="price" placeholder="prezzo" id="residenza" autocomplete="off" aria-label="Username" aria-describedby="basic-addon1" />
-                    </div>
-                </div>
-            </div>
-
-            <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                    <span class="input-group-text" id="basic-addon1">descr</span>
-                </div>
-                <input type="text" class="form-control" formControlName="description" placeholder="description" id="email" autocomplete="off" aria-label="Username" aria-describedby="basic-addon1" />
-            </div>
 
             <div class="row">
                 <div class="col">
-                    <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text" id="basic-addon1">sconto</span>
-                        </div>
-                        <input type="text" class="form-control" formControlName="sconto" placeholder="sconto" id="sede" autocomplete="off" aria-label="Username" aria-describedby="basic-addon1" />
+                    <div class="form-group mb-3">
+                        <span class="form-group has-float-label">
+                            <input type="text" class="form-control" formControlName="price" placeholder="insert the price" id="partitaIva"
+                                autocomplete="off" aria-label="Username" aria-describedby="basic-addon1" />
+                            <label for="description">Price</label>
+                        </span>
+
                     </div>
                 </div>
-
                 <div class="col">
-                    <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text" id="basic-addon1">measure</span>
-                        </div>
-                        <select formControlName="measureUnit" class="form-control" aria-label="Default select example">
-                            <option *ngFor="let measure of measures | async" value="{{measure.type}}">
-                                {{ measure.type }}
-                            </option>
-                        </select>
+                    <div class="form-group mb-3">
+                        <span class="form-group has-float-label">
+                            <input type="text" class="form-control" formControlName="sconto" placeholder="insert the sale"
+                                id="residenza" autocomplete="off" aria-label="Username"
+                                aria-describedby="basic-addon1" />
+                            <label for="description">Sale</label>
+                        </span>
                     </div>
                 </div>
             </div>
 
-            <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                    <span class="input-group-text" id="basic-addon1">note</span>
-                </div>
-                <input type="text" class="form-control" formControlName="name" placeholder="note" id="name" autocomplete="off" aria-label="Username" aria-describedby="basic-addon1" />
+
+            <div class="form-group mb-3">
+                <span class="form-group has-float-label">
+                    <select formControlName="measureUnit" class="form-control" aria-label="Default select example">
+                        <option value="null" selected>Choose a measureUnit</option>
+                        <option *ngFor="let measure of measures | async" value="{{measure.id}}">
+                            {{ measure.type }}
+                        </option>
+                    </select>
+                    <label for="description">Measure unit</label>
+                </span>
+            </div>
+
+            <div class="form-group mb-3">
+                <span class="form-group has-float-label">
+                    <input class="form-control" id="description" formControlName="description"
+                        placeholder="insert a description" />
+                    <label for="description">Description</label>
+                </span>
+            </div>
+
+            <div class="form-group mb-3">
+                <span class="form-group has-float-label">
+                    <textarea type="text" class="form-control" formControlName="note" placeholder="insert a note" id="name" autocomplete="off" aria-label="Username" aria-describedby="basic-addon1"></textarea>
+                    <label for="description">Note</label>
+                </span>
             </div>
 
             <div class="modal-footer">
-                <button type="submit" class="btn" id="btn-modal-edit" (click)="modal.close('Save click')" ngbTooltip="Save">
+                <button type="submit" class="btn" id="btn-modal-edit" [disabled]="!createProductForm.valid" (click)="modal.close('Save click')" ngbTooltip="Save">
                     <i class="bi bi-save"></i>
                 </button>
                 <button type="button" class="btn btn-outline-danger" (click)="modal.dismiss('Cross click')" ngbTooltip="Exit">
@@ -204,8 +201,9 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="basic-addon1">note</span>
                         </div>
-                        <input type="text" class="form-control" formControlName="name" placeholder="{{ product.name }}" id="name" autocomplete="off" aria-label="Username" aria-describedby="basic-addon1" />
+                        <input type="text" class="form-control" formControlName="note" placeholder="{{ product.name }}" id="name" autocomplete="off" aria-label="Username" aria-describedby="basic-addon1" />
                     </div>
+
 
                     <div class="modal-footer">
                         <button type="submit" class="btn" id="btn-modal-edit" (click)="modal.close('Save click')" ngbTooltip="Save">
@@ -242,6 +240,27 @@
                 <button type="button" class="btn" id="btn-modal-edit" (click)="modal.dismiss('Cross click')" ngbTooltip="Undo">
                     <i class="bi bi-arrow-bar-right"></i></button>
 
+            </div>
+        </form>
+    </div>
+</ng-template>
+
+<ng-template #addToCart let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Product creation</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <form (ngSubmit)="addProd()">
+            <div class="modal-footer">
+                <button type="submit" class="btn" id="btn-modal-edit" (click)="modal.close('Save click')" ngbTooltip="Save">
+                    <i class="bi bi-save"></i>
+                </button>
+                <button type="button" class="btn btn-outline-danger" (click)="modal.dismiss('Cross click')" ngbTooltip="Exit">
+                    <i class="bi bi-arrow-bar-right"></i>
+                </button>
             </div>
         </form>
     </div>

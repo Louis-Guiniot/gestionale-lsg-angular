@@ -1,51 +1,49 @@
-.box{
+.box-home {
     padding: 4% 1% 1% 1%;
     margin: 0;
-    font-family: Mulish;
 }
 
-.btn{
+.btn {
     color: #012051;
     background-color: transparent;
     font-size: 1.5vw;
 }
 
-h5{
+h5 {
     color: #012051;
 }
 
-#a{
-        color: #012051;
-        padding: 1%;
-        background-color: transparent;
-        font-size: 1.5vw;
-        border: 1px #012051 solid;
-    
-        &:hover{
-            background-color: #012051;
-            color: white;
-        }
+p {
+    padding: 0;
 }
 
-a{
+#a {
+    color: #012051;
+    padding: 1%;
+    background-color: transparent;
+    font-size: 1.5vw;
+    border: 1px #012051 solid;
+    &:hover {
+        background-color: #012051;
+        color: white;
+    }
+}
+
+a {
     text-decoration: none;
-    &:visited{
+    &:visited {
         text-decoration: none;
     }
-
-
 }
 
-.card{
+.card {
     font-size: 1.5vw;
 }
 
-
-
-.card-header{
-    background-color: #012051; 
+.card-header {
+    background-color: #012051;
     color: white;
     text-transform: uppercase;
     font-weight: bold;
+    padding: 2%;
 }
-

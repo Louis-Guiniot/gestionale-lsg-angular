@@ -1,7 +1,7 @@
 <div class="box">
     <div class="grid-btn">
-        <button class="btn btn-sm" id="btn-insert" (click)="openXL(content)" ngbTooltip="New invoice"><i
-            class="bi bi-plus"></i>
+        <button class="btn btn-sm" id="btn-edit" (click)="openXL(content)" ngbTooltip="New invoice">
+            <i class="bi bi-plus-square"></i>
         </button>
     </div>
 
@@ -10,21 +10,21 @@
         <table class="table">
             <caption>List of Invoices</caption>
             <thead>
-                <th scope="col">cust_id</th>
                 <th scope="col">code</th>
+                <th scope="col">cust_id</th>
                 <!-- numero fattura -->
                 <th scope="col">data</th>
                 <th scope="col">pay_condition</th>
                 <th scope="col">doc_type</th>
                 <th scope="col">sale</th>
-                <th>&nbsp;</th>
-                <th>&nbsp;</th>
+                <th colspan="2">&nbsp;</th>
             </thead>
 
-            <tbody *ngFor="let inv of invoices | async; let i= index" id="highlight-row-invoice">
+            <tbody *ngFor="let inv of invoices | async | slice: (page-1) * pageSize : page * pageSize" id="highlight-row-invoice">
                 <tr>
-                    <th scope="row">{{inv.idCustomer}}</th>
+
                     <td> {{inv.codeInvoice}}</td>
+                    <td>{{inv.idCustomer}}</td>
                     <td>{{inv.dateTime}}</td>
                     <td>{{inv.condizionePagamento}}</td>
                     <td>{{inv.tipoDocumento}} </td>
@@ -36,6 +36,9 @@
                 </tr>
             </tbody>
         </table>
+
+        <ngb-pagination [(page)]="page" [pageSize]="pageSize" [collectionSize]="collectionSize"></ngb-pagination>
+
     </div>
 
 </div>
@@ -112,7 +115,7 @@
 
                         <div class="input-group mb-3">
                             <div class="input-group-prepend">
-                                <span class="input-group-text" id="basic-addon1">cond. pagamento</span>
+                                <span class="input-group-text" id="basic-addon1">pay condition</span>
                             </div>
                             <input type="text" class="form-control" placeholder="{{inv.condizionePagamento}}" autocomplete="off" aria-describedby="basic-addon1" readonly>
                         </div>
@@ -155,7 +158,7 @@
                             <div class="col">
                                 <div class="input-group mb-3">
                                     <div class="input-group-prepend">
-                                        <span class="input-group-text" id="basic-addon1">quantita'</span>
+                                        <span class="input-group-text" id="basic-addon1">quantity</span>
                                     </div>
                                     <input type="text" class="form-control" placeholder="{{inv.quantita}}" autocomplete="off" aria-describedby="basic-addon1" readonly>
                                 </div>
@@ -163,7 +166,7 @@
                             <div class="col">
                                 <div class="input-group mb-3">
                                     <div class="input-group-prepend">
-                                        <span class="input-group-text" id="basic-addon1">importo sconto</span>
+                                        <span class="input-group-text" id="basic-addon1">sale import</span>
                                     </div>
                                     <input type="text" class="form-control" placeholder="{{inv.importoSconto}}" autocomplete="off" aria-describedby="basic-addon1" readonly>
                                 </div>
@@ -172,7 +175,7 @@
 
                         <div class="input-group mb-3">
                             <div class="input-group-prepend">
-                                <span class="input-group-text" id="basic-addon1">imponibile</span>
+                                <span class="input-group-text" id="basic-addon1">taxable</span>
                             </div>
                             <input type="text" class="form-control" placeholder="{{inv.imponibile}}" autocomplete="off" aria-describedby="basic-addon1" readonly>
                         </div>
@@ -198,7 +201,7 @@
                             <div class="col">
                                 <div class="input-group mb-3">
                                     <div class="input-group-prepend">
-                                        <span class="input-group-text" id="basic-addon1">tot servizi</span>
+                                        <span class="input-group-text" id="basic-addon1">tot services</span>
                                     </div>
                                     <input type="text" class="form-control" placeholder="{{inv.totaleServizi}}" autocomplete="off" aria-describedby="basic-addon1" readonly>
                                 </div>
@@ -260,6 +263,7 @@
                                             <span class="input-group-text" id="basic-addon1">cust id</span>
                                         </div>
                                         <select class="form-control" aria-label="Default select example" aria-describedby="basic-addon1" formControlName="custId">
+                                            <option value="" selected>{{inv.idCustomer}}</option>
                                             <option *ngFor="let cust of elements | async" value="{{cust.id}}">
                                                 {{cust.id}}
                                             </option>
@@ -299,7 +303,7 @@
 
                             <div class="input-group mb-3">
                                 <div class="input-group-prepend">
-                                    <span class="input-group-text" id="basic-addon1">cond. pagamento</span>
+                                    <span class="input-group-text" id="basic-addon1">pay condition</span>
                                 </div>
                                 <input type="text" class="form-control" placeholder="{{inv.condizionePagamento}}" autocomplete="off" aria-describedby="basic-addon1" formControlName="payCondition">
                             </div>
@@ -345,7 +349,7 @@
                                 <div class="col">
                                     <div class="input-group mb-3">
                                         <div class="input-group-prepend">
-                                            <span class="input-group-text" id="basic-addon1">importo sconto</span>
+                                            <span class="input-group-text" id="basic-addon1">sale import</span>
                                         </div>
                                         <input type="text" class="form-control" placeholder="{{inv.importoSconto}}" autocomplete="off" aria-describedby="basic-addon1" formControlName="saleImport">
                                     </div>
@@ -354,7 +358,7 @@
 
                             <div class="input-group mb-3">
                                 <div class="input-group-prepend">
-                                    <span class="input-group-text" id="basic-addon1">imponibile</span>
+                                    <span class="input-group-text" id="basic-addon1">taxable</span>
                                 </div>
                                 <input type="text" class="form-control" placeholder="{{inv.imponibile}}" autocomplete="off" aria-describedby="basic-addon1" formControlName="taxable">
                             </div>
@@ -373,7 +377,7 @@
                                 <div class="col">
                                     <div class="input-group mb-3">
                                         <div class="input-group-prepend">
-                                            <span class="input-group-text" id="basic-addon1">tot servizi</span>
+                                            <span class="input-group-text" id="basic-addon1">tot services</span>
                                         </div>
                                         <input type="text" class="form-control" placeholder="{{inv.totaleServizi}}" autocomplete="off" aria-describedby="basic-addon1" formControlName="totServices">
                                     </div>
@@ -446,6 +450,15 @@
                     </div>
                 </div>
                 <div class="col ">
+
+                    <div class="form-group mb-3">
+                        <span class="form-group has-float-label">
+                            <input type="text" class="form-control" formControlName="price" placeholder="insert the price" id="partitaIva"
+                                autocomplete="off" aria-label="Username" aria-describedby="basic-addon1" />
+                            <label for="description">Price</label>
+                        </span>
+                    </div>
+
                     <div class="input-group mb-3 ">
                         <div class="input-group-prepend ">
                             <span class="input-group-text " id="basic-addon1 ">articles</span>
@@ -487,12 +500,13 @@
             </div>
 
             <div class="modal-footer ">
-                <button type="button " class="btn btn-outline-danger " (click)="modal.dismiss( 'Cross click') " ngbTooltip="Exit ">
-                    <i class="bi bi-arrow-bar-right "></i>
-                </button>
-                <button type="submit " class="btn " id="btn-modal-edit " (click)="modal.close( 'Save click') " ngbTooltip="Insert ">
+                <button type="submit " class="btn" id="btn-modal-edit" [disabled]="!invoiceInsertForm.valid" (click)="modal.close( 'Save click') " ngbTooltip="Insert ">
                     <i class="bi bi-save "></i>
                 </button>
+                <button type="button" class="btn btn-outline-danger" (click)="modal.dismiss( 'Cross click') " ngbTooltip="Exit ">
+                    <i class="bi bi-arrow-bar-right "></i>
+             </button>
+
             </div>
 
         </form>
@@ -513,11 +527,11 @@
             </div>
             <div class="modal-footer ">
 
-                <button type="submit " class="btn btn-outline-danger " (click)="modal.close( 'Save click') " ngbTooltip="Delete ">
+                <button type="submit" class="btn btn-outline-danger" (click)="modal.close( 'Save click') " ngbTooltip="Delete ">
                     <i class="bi bi-trash-fill "></i>
                 </button>
 
-                <button type="button " class="btn " id="btn-modal-edit " (click)="modal.dismiss( 'Cross click') " ngbTooltip="Undo ">
+                <button type="button" class="btn" id="btn-modal-edit" (click)="modal.dismiss( 'Cross click') " ngbTooltip="Undo ">
                     <i class="bi bi-arrow-bar-right "></i>
                 </button>
             </div>

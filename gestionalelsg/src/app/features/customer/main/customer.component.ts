@@ -6,19 +6,8 @@ import { Observable } from 'rxjs';
 import { Customer } from 'src/app/core/model/Customer.interface';
 import { selectCustomers } from 'src/app/redux/customer';
 import { CustomerService } from '../services/customer.service';
-import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
-import { DecimalPipe } from '@angular/common';
-import { map, startWith } from 'rxjs/operators';
+import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
-
-function search(text: string, pipe: PipeTransform): Customer[] {
-  return this.customers.filter(() => {
-    const term = text.toLowerCase();
-    return this.customers.name.toLowerCase().includes(term)
-        || pipe.transform(this.customers.email).includes(term)
-        || pipe.transform(this.customers.surname).includes(term);
-  });
-}
 @Component({
   selector: 'app-customer',
   templateUrl: './customer.component.html',
@@ -37,13 +26,14 @@ export class CustomerComponent implements OnInit{
   idN:number
   idS:string
 
-  collectionSize:any;
+  collectionSize:number;
   page = 1;
-  pageSize = 2;
+  pageSize = 5;
+
 
   filter = new FormControl('');
 
-  constructor(pipe: DecimalPipe,private store: Store, private route: ActivatedRoute, private customerService: CustomerService, private fb: FormBuilder, private modalService: NgbModal) {
+  constructor(private store: Store, private route: ActivatedRoute, private customerService: CustomerService, private fb: FormBuilder, private modalService: NgbModal) {
     console.log(this.customerService.retreiveAllCustomers());
   }
 
@@ -97,10 +87,11 @@ export class CustomerComponent implements OnInit{
       partitaIva: ['', Validators.required]
     })
 
-    //   this.store.pipe(select(selectTotalCustomers)).subscribe((customers) => {
-    //    this.collectionSize=customers;
-    //  })
+     this.store.pipe(select(selectCustomers)).subscribe((customers) => {
+        this.collectionSize=customers.length;
+      })
   }
+  
   get elements(): Observable<Customer[]> {
     return this.store.pipe(select(selectCustomers));
   }
