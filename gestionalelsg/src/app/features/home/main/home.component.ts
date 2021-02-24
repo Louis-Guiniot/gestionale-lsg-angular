@@ -1,10 +1,16 @@
 import { stringify } from '@angular/compiler/src/util';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
+import { Customer } from 'src/app/core/model/Customer.interface';
 import { Invoice } from 'src/app/core/model/Invoice.interface';
+import { MeasureUnit } from 'src/app/core/model/MeasureUnit.interface';
 import { Product } from 'src/app/core/model/Product.interface';
+import { selectCustomers } from 'src/app/redux/customer';
+import { selectInvoices } from 'src/app/redux/invoice';
+import { selectMeasures } from 'src/app/redux/measure';
 import { selectProducts } from 'src/app/redux/product';
 import { HomeService } from '../services/home.service';
 
@@ -16,88 +22,74 @@ import { HomeService } from '../services/home.service';
 
 export class HomeComponent implements OnInit {
 
-  elements = [];
-  preview = [];
-  previewId=[]; //id preview per cancellare prod singolo
-  previewPrice=[];//id price preview
-  prod: Product;
-  prodottiForm: FormGroup;
-  prodottiLista: string = "";
-  totalPrice: string = "";
-  invoice: Invoice;
-  sender: FormGroup;
+  collectionCust: number
+  collectionProd: number
+  collectionMeas: number
+  collectionInvo: number
 
-  constructor(private store: Store, private homeService: HomeService, private fb: FormBuilder) {
+  constructor(private store: Store, private homeService: HomeService, private fb: FormBuilder, private router: Router) {
     console.log("siamo nel costruttore")
-   // console.log(this.homeService.retrieveAllProducts());
+    this.homeService.retreiveAllCustomers();
+    this.homeService.retrieveAllInvoices();
+    this.homeService.retrieveAllMeasures();
+    this.homeService.retrieveAllProducts();
+
   }
 
   ngOnInit(): void {
-    // console.log("ng on init");
 
-    // this.prodottiForm = this.fb.group({
-    //   id: ['', Validators.required],
-    //   customerId: ['', Validators.required],
-    //   sconto: ['', Validators.required]
-    // })
+    this.store.pipe(select(selectCustomers)).subscribe((customer) => {
+      this.collectionCust = customer.length;
+    })
 
+    this.store.pipe(select(selectProducts)).subscribe((customer) => {
+      this.collectionProd = customer.length;
+    })
 
-    // console.log(this.prodottiForm.value.id)
+    this.store.pipe(select(selectInvoices)).subscribe((customer) => {
+      this.collectionInvo = customer.length;
+    })
 
-    // this.store.pipe(select(selectProducts)).subscribe((products) => {
-    //   for (let prod of products) {
-    //     this.elements.push(prod);
-    //     console.log(prod);
-    //   }
-    //   return this.elements
-    // })
+    this.store.pipe(select(selectMeasures)).subscribe((customer) => {
+      this.collectionMeas = customer.length;
+    })
+
   }
 
-  // get products(): Observable<Product[]> {
-  //   return this.store.pipe(select(selectProducts));
-  // }
+  get prods(): Observable<Product[]> {
+    return this.store.pipe(select(selectProducts));
+  }
 
-  // fattura() {
+  get measures(): Observable<MeasureUnit[]> {
+    return this.store.pipe(select(selectMeasures));
+  }
 
-  //   if (this.previewId.length > 0) {
+  get custs(): Observable<Customer[]> {
+    return this.store.pipe(select(selectCustomers));
+  }
 
-  //     for(let i=0; i<this.previewId.length; i++){
-  //       this.prodottiLista=this.prodottiLista+this.previewId[i]+";"
-  //       this.totalPrice=this.totalPrice+this.previewPrice[i]+";"
-  //     }
-  //     console.log("invio fattura");
-  //     console.log("PRODOTTI LISTA", this.prodottiLista)
-  //     console.log("prezzo finale", this.totalPrice)
-  //     console.log("customer id", this.prodottiForm.value.customerId)
-  //     console.log("sconto: ", this.prodottiForm.value.sconto)
+  get invoices(): Observable<Invoice[]> {
+    return this.store.pipe(select(selectInvoices));
+  }
 
-  //     this.homeService.generateSubmit(this.prodottiLista, this.totalPrice,
-  //     this.prodottiForm.value.customerId,
-  //     this.prodottiForm.value.sconto)
-  //   } else {
-  //     console.log("nessun prodotto in lista");
-  //   }
-  // }
+  redirectToCust() {
+    this.router.navigateByUrl("/customers")
 
-  // aggiungi(id: string, prezzo: string) {
-  //   console.log(id)
-  //   this.previewId.push(id)
-  //   this.previewPrice.push(prezzo)
-  //   console.log("preview id: "+ this.previewId)
-  //   this.preview.push("id prodotto: "+id+" prezzo: "+prezzo+"$");
-  // }
+  }
 
-  // clearPreview() {
-  //   this.preview.length = 0;
-  //   this.prodottiLista = "";
-  //   this.totalPrice="";
-  // }
+  redirectToProd() {
+    this.router.navigateByUrl("/products")
 
-  // clearPreviewSelected(i: number){ 
-  //   this.previewId.splice(i, 1);
-  //   this.preview.splice(i, 1); 
-  //   this.previewPrice.splice(i,1) 
-    
-  // }
+  }
+
+  redirectToInvo() {
+    this.router.navigateByUrl("/tabbed/invoices")
+
+  }
+
+  redirectToMeas() {
+    this.router.navigateByUrl("/measureunit")
+
+  }
 
 }

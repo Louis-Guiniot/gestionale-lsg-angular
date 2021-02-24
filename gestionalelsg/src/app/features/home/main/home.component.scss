@@ -1,51 +1,61 @@
-.box{
+.box {
     padding: 4% 1% 1% 1%;
     margin: 0;
     font-family: Mulish;
 }
 
-.btn{
+.btn {
     color: #012051;
     background-color: transparent;
     font-size: 1.5vw;
 }
 
-h5{
+h5 {
     color: #012051;
 }
 
-#a{
-        color: #012051;
-        padding: 1%;
-        background-color: transparent;
-        font-size: 1.5vw;
-        border: 1px #012051 solid;
-    
-        &:hover{
-            background-color: #012051;
-            color: white;
-        }
+#a {
+    color: #012051;
+    padding: 1%;
+    background-color: transparent;
+    font-size: 1.5vw;
+    border: 1px #012051 solid;
+    &:hover {
+        background-color: #012051;
+        color: white;
+    }
 }
 
-a{
+a {
     text-decoration: none;
-    &:visited{
+    &:visited {
         text-decoration: none;
     }
-
-
 }
 
-.card{
+.card {
     font-size: 1.5vw;
+    box-shadow: 10px 10px 5px rgb(217, 222, 226);
+    transition-duration: 0.3s;
+    &:hover {
+        box-shadow: none;
+        transform: scale(1.05)
+    }
 }
 
-
-
-.card-header{
-    background-color: #012051; 
+.card-header {
+    background-color: #012051;
     color: white;
     text-transform: uppercase;
     font-weight: bold;
 }
 
+.card-text {
+    color: #012051;
+}
+
+.col-sm {
+    &:hover {
+        cursor: pointer;
+    }
+}
