@@ -24,12 +24,18 @@ export class ProductsComponent implements OnInit {
 
   createProductForm: FormGroup;
   updateProductForm: FormGroup;
+  cercaForm: FormGroup;
 
   idN:number;
   idS:string;
   nameD:string;
+
+  collectionSize:number
+  page = 1;
+  pageSize = 2;
+
   
-  constructor(private productService: ProductsService, private store: Store, private route: Router, private fb:FormBuilder, private modalService: NgbModal) {
+  constructor(private productService: ProductsService, private store: Store, private router: Router, private fb:FormBuilder, private modalService: NgbModal) {
     
     this.productService.retrieveAllProducts();
     this.productService.retrieveAllMeasures();
@@ -42,7 +48,7 @@ export class ProductsComponent implements OnInit {
 
 
     console.log("idN: "+this.idN+"nameD: "+this.nameD)
-    this.modalService.open(content, { size: 'l' }).result.then((result) => {
+    this.modalService.open(content, { size: 'xl' }).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
     }, (reason) => {
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
@@ -62,6 +68,15 @@ export class ProductsComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
+    this.store.pipe(select(selectProducts)).subscribe((products) => {
+      this.collectionSize=products.length;
+    })
+
+    this.cercaForm=this.fb.group({
+      termine: ['', Validators.required]
+    })
+
    
     this.createProductForm=this.fb.group({
      
@@ -130,6 +145,13 @@ export class ProductsComponent implements OnInit {
   clear(){
     this.createProductForm.reset();
   }
-  
+
+  search(){
+    console.log("cerco")
+    this.router.navigate(["/tabbed/invoices/found"], { queryParams: { term: this.cercaForm.value.termine }})
+    
+  }
 
 }
+
+

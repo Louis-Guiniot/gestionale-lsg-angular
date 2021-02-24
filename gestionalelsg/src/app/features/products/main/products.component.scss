@@ -1,30 +1,64 @@
 .box {
     width: 100%;
     font-family: Mulish;
-    padding: 4% 1% 1% 1%;
+    padding: 1%;
     margin: 0;
     display: grid;
-    grid-template-columns: 5% auto;
+    grid-template-columns: 1fr 1fr;
     column-gap: 1%;
+}
+
+.search {
+    grid-column-start: 2;
+    grid-column-end: 3;
+    grid-row-start: 1;
+    grid-row-end: 2;
+    text-align: left;
 }
 
 .grid-btn {
     width: auto;
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row-start: 1;
+    grid-row-end: 2;
 }
 
 .grid-table {
     width: auto;
+    grid-column-start: 1;
+    grid-column-end: 3;
+    grid-row-start: 2;
+    grid-row-end: 3;
 }
 
 #btn {
     width: 100%;
 }
 
+i {
+    font-size: larger;
+}
+
+.btn {
+    font-family: Mulish;
+    outline: none;
+    line-height: 0%;
+    font-size: 1.2vw;
+}
+
+b {
+    font-size: 1.5vw;
+}
+
+.card {
+    border: 0;
+}
+
 #btn-insert {
     width: 100%;
     background-color: #012051;
     color: #012051;
-    height: 100%;
     transition-duration: 0.3s;
     box-shadow: 0 0 1px #ccc;
     -webkit-transition-duration: 0.4s;
@@ -62,23 +96,25 @@
     }
 }
 
-#btn-delete {
-    width: 100%;
+#btn-toggle {
+    padding: 1%;
+    border: none;
+    background: transparent;
+    font-weight: bold;
 }
 
-i {
-    font-size: larger;
-}
-
-.btn {
-    font-family: Mulish;
-    outline: none;
-    line-height: 0%;
+.table {
     font-size: 1.2vw;
+    border: 1px rgb(217, 222, 226) solid;
 }
 
-p {
-    padding: 3%;
+tr,
+td {
+    text-align: left;
+}
+
+.close {
+    color: white;
 }
 
 .modal-body {
@@ -87,37 +123,30 @@ p {
 
 .modal-header {
     border-radius: 0;
+    font-family: Mulish;
     background-color: #012051;
     color: white;
-    border: 1px solid rgba(0, 0, 0, .2);
+    border: 1px solid rgba(0, 0, 0, 0.2);
 }
 
-#btn-modal-edit {
-    border: 1px #012051 solid;
-    color: #012051;
-    &:hover {
-        color: white;
-        background-color: #012051;
-    }
-}
-
-.close {
-    color: white;
-}
-
-table {
-    width: 100%;
-    font-size: 1.2vw;
-    border: 1px rgb(217, 222, 226) solid;
+.modal-body {
     font-family: Mulish;
+}
+
+p {
+    padding: 3%;
 }
 
 thead {
     background-color: #012051;
+    border: 1px #012051 solid;
     color: white;
 }
 
-.container-products {
-    width: auto;
-    color: black;
+th {
+    text-transform: uppercase;
+}
+
+#th-btn {
+    width: 5vw;
 }
