@@ -28,6 +28,8 @@
     "@ngrx/effects": "^10.1.2",
     "@ngrx/router-store": "^10.1.2",
     "@ngrx/store": "^10.1.2",
+    "@syncfusion/ej2-angular-buttons": "^18.4.44",
+    "@syncfusion/ej2-angular-navigations": "^18.4.44",
     "@types/chart.js": "^2.9.30",
     "angular-bootstrap-md": "^10.1.1",
     "animate.css": "^4.1.1",
