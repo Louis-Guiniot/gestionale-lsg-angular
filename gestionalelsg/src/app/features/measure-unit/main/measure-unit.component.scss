@@ -1,19 +1,35 @@
 .box {
     width: 100%;
     font-family: Mulish;
-    padding: 4% 1% 1% 1%;
+    padding: 1%;
     margin: 0;
     display: grid;
-    grid-template-columns: 5% auto;
+    grid-template-columns: 1fr 1fr;
     column-gap: 1%;
+}
+
+.search {
+    grid-column-start: 2;
+    grid-column-end: 3;
+    grid-row-start: 1;
+    grid-row-end: 2;
+    text-align: left;
 }
 
 .grid-btn {
     width: auto;
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row-start: 1;
+    grid-row-end: 2;
 }
 
 .grid-table {
     width: auto;
+    grid-column-start: 1;
+    grid-column-end: 3;
+    grid-row-start: 2;
+    grid-row-end: 3;
 }
 
 #btn {
@@ -43,7 +59,6 @@ b {
     width: 100%;
     background-color: #012051;
     color: #012051;
-    height: 100%;
     transition-duration: 0.3s;
     box-shadow: 0 0 1px #ccc;
     -webkit-transition-duration: 0.4s;
@@ -121,4 +136,14 @@ thead {
     background-color: #012051;
     border: 1px #012051 solid;
     color: white;
+}
+
+td,
+tr {
+    width: auto;
+    text-align: left;
+}
+
+#th-btn {
+    width: 5vw;
 }

@@ -19,11 +19,16 @@ export class MeasureUnitComponent implements OnInit {
   createMeasureUnitForm: FormGroup;
   updateMeasureUnitForm: FormGroup;
   deleteMeasureUnitForm: FormGroup;
+  cercaForm: FormGroup;
 
   idMnumber:number
   idMstring:string;
   typeM:string;
   closeResult = '';
+
+  page = 1;
+  pageSize = 2;
+  collectionSize:number;
 
 
   open(content,idMeasure?:string,typeMeasure?:string) {
@@ -37,6 +42,7 @@ export class MeasureUnitComponent implements OnInit {
       this.closeResult = `Closed with: ${result}`;
     }, (reason) => {
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+      this.createMeasureUnitForm.reset();
 
     });
   }
@@ -51,11 +57,21 @@ export class MeasureUnitComponent implements OnInit {
     }
   }
 
-  constructor(private measureUnitService: MeasureUnitService, private store: Store, private route: Router, private fb:FormBuilder, private modalService: NgbModal) {
+  constructor(private measureUnitService: MeasureUnitService, private store: Store, private router: Router, private fb:FormBuilder, private modalService: NgbModal) {
     this.measureUnitService.retrieveAllMeasures();
    }
 
   ngOnInit(): void {
+
+
+    this.store.pipe(select(selectMeasures)).subscribe((measures) => {
+      this.collectionSize=measures.length;
+    })
+
+    this.cercaForm=this.fb.group({
+      termine: ['', Validators.required]
+    })
+
     this.updateMeasureUnitForm=this.fb.group({
       vecchio: ['', Validators.required],
       nuovo: ['', Validators.required],
@@ -78,19 +94,25 @@ export class MeasureUnitComponent implements OnInit {
     this.measureUnitService.create(this.createMeasureUnitForm.value.tipo)
   }
 
-  update(){
+  updateM(){
     console.log("update function")
     console.log("vecchia unita: ",this.updateMeasureUnitForm.value.vecchio)
     console.log("nuova unita: ",this.updateMeasureUnitForm.value.nuovo)
     this.measureUnitService.update(this.updateMeasureUnitForm.value.nuovo, this.updateMeasureUnitForm.value.vecchio)
   }
 
-  delete(){
+  deleteM(){
 
     console.log("delete")
 
     this.measureUnitService.delete(this.deleteMeasureUnitForm.value.id)
 
+  }
+
+  search(){
+    console.log("cerco")
+    this.router.navigate(["/tabbed/invoices/found"], { queryParams: { term: this.cercaForm.value.termine }})
+    
   }
   
 
