@@ -13,7 +13,6 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
     CommonModule,
     TabbedInvoicesRoutingModule,
     SharedModule,
-    NgbModule,
   ],
 
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ]

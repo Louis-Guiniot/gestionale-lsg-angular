@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, PipeTransform } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ModalDismissReasons, NgbDateStruct, NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -25,7 +25,6 @@ export interface ExampleTab {
   styleUrls: ['./tabbed-invoices.component.scss']
 })
 
-
 export class TabbedInvoicesComponent implements OnInit{
   asyncTabs: Observable<ExampleTab[]>;
 
@@ -43,6 +42,11 @@ export class TabbedInvoicesComponent implements OnInit{
 
   public isCollapsed = false;
 
+  //paginazione
+  collectionSize:number
+  page = 1;
+  pageSize = 2;
+
   constructor(private store: Store,  private router: Router, private productService: ProductsService, private route: Router, private invoicesService: TabbedInvoicesService, private customerService: CustomerService, private fb:FormBuilder, private modalService: NgbModal) {
     this.invoicesService.retrieveAllInvoices()
     this.customerService.retreiveAllCustomers()
@@ -51,7 +55,7 @@ export class TabbedInvoicesComponent implements OnInit{
 
   openXL(content,idCust?:string,name?:string) {
 
-    this.modalService.open(content, { size: 'l' }).result.then((result) => {
+    this.modalService.open(content, { size: 'xl' }).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
     }, (reason) => {
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
@@ -84,12 +88,16 @@ export class TabbedInvoicesComponent implements OnInit{
 
   ngOnInit(): void{
 
+    this.store.pipe(select(selectInvoices)).subscribe((invoices) => {
+      this.collectionSize=invoices.length;
+    })
+
+
     this.cercaForm=this.fb.group({
       termine: ['', Validators.required]
     })
 
     this.invoiceInsertForm=this.fb.group({
-
       custId: ['', Validators.required],
       payCondition:['', Validators.required],
       docType:['', Validators.required],
