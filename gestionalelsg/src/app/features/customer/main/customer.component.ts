@@ -1,15 +1,12 @@
 import { Component, OnInit, PipeTransform} from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { Customer } from 'src/app/core/model/Customer.interface';
 import { selectCustomers } from 'src/app/redux/customer';
 import { CustomerService } from '../services/customer.service';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
-import { DecimalPipe } from '@angular/common';
-import { map, startWith } from 'rxjs/operators';
-
 
 function search(text: string, pipe: PipeTransform): Customer[] {
   return this.customers.filter(() => {
@@ -29,7 +26,8 @@ export class CustomerComponent implements OnInit{
   closeResult = '';
   customerForm: FormGroup;
   customerFormUpdate: FormGroup;
-  
+  cercaForm: FormGroup;
+
 
   nameD:string;
   customers=[];
@@ -37,13 +35,12 @@ export class CustomerComponent implements OnInit{
   idN:number
   idS:string
 
-  collectionSize:any;
+  collectionSize:number
   page = 1;
   pageSize = 2;
 
-  filter = new FormControl('');
 
-  constructor(pipe: DecimalPipe,private store: Store, private route: ActivatedRoute, private customerService: CustomerService, private fb: FormBuilder, private modalService: NgbModal) {
+  constructor(private store: Store, private router: Router, private customerService: CustomerService, private fb: FormBuilder, private modalService: NgbModal) {
     console.log(this.customerService.retreiveAllCustomers());
   }
 
@@ -75,9 +72,13 @@ export class CustomerComponent implements OnInit{
 
   ngOnInit(): void {
 
-    this.route.queryParams.subscribe(params => {
-      this.id = params['id'];
-    });
+    this.store.pipe(select(selectCustomers)).subscribe((customers) => {
+      this.collectionSize=customers.length;
+    })
+
+    this.cercaForm=this.fb.group({
+      termine: ['', Validators.required]
+    })
 
     this.customerForm = this.fb.group({
       email: ['', Validators.required],
@@ -129,6 +130,11 @@ export class CustomerComponent implements OnInit{
     this.customerForm.reset();
   }
 
+  search(){
+    console.log("cerco")
+    this.router.navigate(["/tabbed/invoices/found"], { queryParams: { term: this.cercaForm.value.termine }})
+    
+  }
 
 
 
