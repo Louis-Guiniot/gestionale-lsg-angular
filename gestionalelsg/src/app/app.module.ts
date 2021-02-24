@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
@@ -9,18 +9,15 @@ import { reducers } from './redux';
 import { EffectsModule } from '@ngrx/effects';
 import { ProductsEffects } from "./redux/product/product.effects";
 import { CoreModule } from './core/core.module';
-import { FatturaComponent } from './features/fattura/main/fattura.component';
 import { InvoicesEffects } from './redux/invoice/invoice.effects';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { CustomerEffects } from './redux/customer/customer.effects';
 import { MeasureEffects } from './redux/measure/measure.effects';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import {MatTabsModule} from '@angular/material/tabs';
-
-
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import {MatButtonModule} from '@angular/material/button';
+import { SidebarModule } from '@syncfusion/ej2-angular-navigations';
+import { ButtonModule, RadioButtonModule } from '@syncfusion/ej2-angular-buttons';
 
 @NgModule({
   declarations: [
@@ -36,6 +33,9 @@ import {MatButtonModule} from '@angular/material/button';
     HttpModule,
     MatButtonModule,
     ReactiveFormsModule,
+    SidebarModule,
+    ButtonModule, 
+    RadioButtonModule,
  
     StoreModule.forRoot(reducers),
      EffectsModule.forRoot([
@@ -50,6 +50,6 @@ import {MatButtonModule} from '@angular/material/button';
   ],
   providers:[],
   bootstrap: [AppComponent],  
-  schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
+  schemas: [ CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA ],
 })
 export class AppModule { }

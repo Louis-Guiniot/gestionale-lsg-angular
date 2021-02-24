@@ -1,20 +1,46 @@
-<div class="main-container">
-
-    <div class="head">
-        <span class="align-text-bottom">LSGC : Los Pueblos</span>
+<div class="control-section">
+    <!-- sample level element  -->
+    <div class="col-lg-12 col-sm-12 col-md-12 center">
+        Click/Touch the button to view the sample
     </div>
-
-    <div class="nav">
-        <ul>
-            <li><a href="home">Home</a></li>
-            <li class="animated bounce"><a href="customers">Customers</a></li>
-            <li><a href="products">Products</a></li>
-            <li><a href="tabbed/invoices">Invoices</a></li>
-            <li><a href="measureunit">Measure Unit</a></li>    
-        </ul>
-    </div>
-
-    <div class="outlet">
-        <router-outlet></router-outlet>
+    <!-- sample level element  -->
+    <div id="wrapper">
+        <div class="col-lg-12 col-sm-12 col-md-12" id="sidebar-section">
+            <div class="col-lg-12 col-sm-12 col-md-12">
+                <div id="head">
+                    <span id="hamburger" class="e-icons menu" (click)="openClick()"></span>
+                    <div class="header">LSG GESTIONALE</div>
+                </div>
+                <!-- sidebar element declaration-->
+                <ejs-sidebar id="sidebar-menu" #sidebarInstance [type]='type' [width]='width'>
+                    <!-- normal state element declaration -->
+                    <div id="close" class="e-icons" (click)="closeClick()"></div>
+                    <div class="content-area">
+                        <!--ListView element declaration-->
+                        <ul>
+                            <li (click)="redirectToHome();">
+                                <i class="bi bi-house" placement="right"></i></li>
+                            <li (click)="redirectToCust();">
+                                <i class="bi bi-people" placement="right"></i></li>
+                            <li (click)="redirectToProd();">
+                                <i class="bi bi-box-seam" placement="right"></i></li>
+                            <li (click)="redirectToInvo();">
+                                <i class="bi bi-cash " placement="right"></i></li>
+                            <li (click)="redirectToMeas();">
+                                <i class="bi bi-tools " placement="right"></i></li>
+                        </ul>
+                    </div>
+                    <!-- end of normal state element declaration -->
+                </ejs-sidebar>
+                <!-- end of sidebar element -->
+                <!-- main content declaration -->
+                <div>
+                    <div class="content textArea">
+                        <router-outlet></router-outlet>
+                    </div>
+                </div>
+                <!--end of main content declaration -->
+            </div>
+        </div>
     </div>
 </div>
