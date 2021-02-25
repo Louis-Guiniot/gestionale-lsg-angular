@@ -53,9 +53,9 @@ termine trovato: {{term.toLowerCase()}}
             <input type="radio" id="tab3" name="css-tabs">
 
             <ul class="tabs">
-                <li class="tab"><label for="tab1">INVOICE HEAD</label></li>
-                <li class="tab"><label for="tab2">INVOICE RECORD</label></li>
-                <li class="tab"><label for="tab3">INVOICE TAIL</label></li>
+                <li class="tab"><label for="tab1">TESTA FATTURA</label></li>
+                <li class="tab"><label for="tab2">RECORD FATTURA</label></li>
+                <li class="tab"><label for="tab3">CODA FATTURA</label></li>
             </ul>
 
             <div class="tab-content">
@@ -66,7 +66,7 @@ termine trovato: {{term.toLowerCase()}}
                             <div class="col">
                                 <div class="input-group mb-3">
                                     <div class="input-group-prepend">
-                                        <span class="input-group-text" id="basic-addon1">code</span>
+                                        <span class="input-group-text" id="basic-addon1">codice</span>
                                     </div>
                                     <input type="text" class="form-control" placeholder="{{inv.codeInvoice}}" autocomplete="off" aria-describedby="basic-addon1" readonly>
                                 </div>
@@ -74,7 +74,7 @@ termine trovato: {{term.toLowerCase()}}
                             <div class="col">
                                 <div class="input-group mb-3">
                                     <div class="input-group-prepend">
-                                        <span class="input-group-text" id="basic-addon1">cust id</span>
+                                        <span class="input-group-text" id="basic-addon1">id cliente</span>
                                     </div>
                                     <input type="text" class="form-control" placeholder="{{inv.idCustomer}}" autocomplete="off" aria-describedby="basic-addon1" readonly>
                                 </div>
@@ -83,7 +83,7 @@ termine trovato: {{term.toLowerCase()}}
 
                         <div class="input-group mb-3">
                             <div class="input-group-prepend">
-                                <span class="input-group-text" id="basic-addon1">date</span>
+                                <span class="input-group-text" id="basic-addon1">data</span>
                             </div>
                             <input type="text" class="form-control" placeholder="{{inv.dateTime}}" autocomplete="off" aria-describedby="basic-addon1" readonly>
                         </div>
@@ -92,7 +92,7 @@ termine trovato: {{term.toLowerCase()}}
                             <div class="col">
                                 <div class="input-group mb-3">
                                     <div class="input-group-prepend">
-                                        <span class="input-group-text" id="basic-addon1">doc type</span>
+                                        <span class="input-group-text" id="basic-addon1">tipo doc.</span>
                                     </div>
                                     <input type="text" class="form-control" placeholder="{{inv.tipoDocumento}}" autocomplete="off" aria-describedby="basic-addon1" readonly>
                                 </div>
@@ -100,7 +100,7 @@ termine trovato: {{term.toLowerCase()}}
                             <div class="col">
                                 <div class="input-group mb-3">
                                     <div class="input-group-prepend">
-                                        <span class="input-group-text" id="basic-addon1">sale</span>
+                                        <span class="input-group-text" id="basic-addon1">sconto</span>
                                     </div>
                                     <input type="text" class="form-control" placeholder="{{inv.sconto}}" autocomplete="off" aria-describedby="basic-addon1" readonly>
                                 </div>
@@ -125,7 +125,7 @@ termine trovato: {{term.toLowerCase()}}
 
                         <div class="input-group mb-3">
                             <div class="input-group-prepend">
-                                <span class="input-group-text" id="basic-addon1">articles</span>
+                                <span class="input-group-text" id="basic-addon1">prodotti</span>
                             </div>
                             <input type="text" class="form-control" placeholder="{{inv.fields}}" autocomplete="off" aria-describedby="basic-addon1" readonly>
                         </div>
@@ -142,7 +142,7 @@ termine trovato: {{term.toLowerCase()}}
                             <div class="col">
                                 <div class="input-group mb-3">
                                     <div class="input-group-prepend">
-                                        <span class="input-group-text" id="basic-addon1">iva price</span>
+                                        <span class="input-group-text" id="basic-addon1">prezzo + iva</span>
                                     </div>
                                     <input type="text" class="form-control" placeholder="{{inv.ivaPrice}}" autocomplete="off" aria-describedby="basic-addon1" readonly>
                                 </div>
@@ -236,9 +236,9 @@ termine trovato: {{term.toLowerCase()}}
                         <input type="radio" id="tab3" name="css-tabs">
 
                         <ul class="tabs">
-                            <li class="tab"><label for="tab1">INVOICE HEAD</label></li>
-                            <li class="tab"><label for="tab2">INVOICE RECORD</label></li>
-                            <li class="tab"><label for="tab3">INVOICE TAIL</label></li>
+                            <li class="tab"><label for="tab1">TESTA FATTURA</label></li>
+                            <li class="tab"><label for="tab2">CORPO FATTURA</label></li>
+                            <li class="tab"><label for="tab3">CODA FATTURA</label></li>
                         </ul>
 
                         <div class="tab-content">
@@ -247,7 +247,7 @@ termine trovato: {{term.toLowerCase()}}
                                 <div class="col">
                                     <div class="input-group mb-3">
                                         <div class="input-group-prepend">
-                                            <span class="input-group-text" id="basic-addon1">code</span>
+                                            <span class="input-group-text" id="basic-addon1">codice</span>
                                         </div>
                                         <input type="text" class="form-control" placeholder="{{inv.codeInvoice}}" autocomplete="off" aria-describedby="basic-addon1" readonly>
                                     </div>
@@ -255,7 +255,7 @@ termine trovato: {{term.toLowerCase()}}
                                 <div class="col">
                                     <div class="input-group mb-3">
                                         <div class="input-group-prepend">
-                                            <span class="input-group-text" id="basic-addon1">cust id</span>
+                                            <span class="input-group-text" id="basic-addon1">id cliente</span>
                                         </div>
                                         <select class="form-control" aria-label="Default select example" aria-describedby="basic-addon1" formControlName="custId">
                                             <option *ngFor="let cust of elements | async" value="{{cust.id}}">
@@ -279,7 +279,7 @@ termine trovato: {{term.toLowerCase()}}
                                 <div class="col">
                                     <div class="input-group mb-3">
                                         <div class="input-group-prepend">
-                                            <span class="input-group-text" id="basic-addon1">doc type</span>
+                                            <span class="input-group-text" id="basic-addon1">tipo doc.</span>
                                         </div>
                                         <input type="text" class="form-control" placeholder="{{inv.tipoDocumento}}" autocomplete="off" aria-describedby="basic-addon1" formControlName="docType">
                                     </div>
@@ -287,7 +287,7 @@ termine trovato: {{term.toLowerCase()}}
                                 <div class="col">
                                     <div class="input-group mb-3">
                                         <div class="input-group-prepend">
-                                            <span class="input-group-text" id="basic-addon1">sale</span>
+                                            <span class="input-group-text" id="basic-addon1">sconto</span>
                                         </div>
                                         <input type="text" class="form-control" placeholder="{{inv.sconto}}" autocomplete="off" aria-describedby="basic-addon1" formControlName="sale">
                                     </div>
@@ -309,7 +309,7 @@ termine trovato: {{term.toLowerCase()}}
 
                             <div class="input-group mb-3">
                                 <div class="input-group-prepend">
-                                    <span class="input-group-text" id="basic-addon1">articles</span>
+                                    <span class="input-group-text" id="basic-addon1">prodotti</span>
                                 </div>
                                 <input type="text" class="form-control" placeholder="{{inv.fields}}" autocomplete="off" aria-describedby="basic-addon1" formControlName="articles">
                             </div>
@@ -325,7 +325,7 @@ termine trovato: {{term.toLowerCase()}}
                                 <div class="col">
                                     <div class="input-group mb-3">
                                         <div class="input-group-prepend">
-                                            <span class="input-group-text" id="basic-addon1">iva price</span>
+                                            <span class="input-group-text" id="basic-addon1">prezzo + iva</span>
                                         </div>
                                         <input type="text" class="form-control" placeholder="{{inv.ivaPrice}}" autocomplete="off" aria-describedby="basic-addon1" formControlName="ivaPrice">
                                     </div>
