@@ -1,4 +1,4 @@
-termine trovato: {{term}}
+termine trovato: {{term.toLowerCase()}}
 
 
     <!-- ANCHOR first table -->
@@ -19,7 +19,7 @@ termine trovato: {{term}}
 
     <tbody *ngFor="let inv of invoices | async; let i= index" id="highlight-row-invoice">
         
-            <tr *ngIf="inv.idCustomer==term||inv.codeInvoice==term||inv.condizionePagamento==term||inv.dateTime==term||inv.fields==term||inv.imponibile==term||inv.importoSconto==term||inv.iva==term||inv.ivaPrice==term||inv.quantita==term||inv.sconto==term||inv.tipoDocumento==term||inv.totaleMerci==term||inv.totaleServizi==term">
+            <tr *ngIf="inv.idCustomer.toLowerCase().includes(term.toLowerCase())||inv.codeInvoice.toLowerCase().includes(term.toLowerCase())||inv.condizionePagamento.toLowerCase().includes(term.toLowerCase())||inv.dateTime.toLowerCase().includes(term.toLowerCase())||inv.fields.toLowerCase().includes(term.toLowerCase())||inv.imponibile.toLowerCase().includes(term.toLowerCase())||inv.importoSconto.toLowerCase().includes(term.toLowerCase())||inv.iva.toLowerCase().includes(term.toLowerCase())||inv.ivaPrice.toLowerCase().includes(term.toLowerCase())||inv.quantita.toLowerCase().includes(term.toLowerCase())||inv.sconto.toLowerCase().includes(term.toLowerCase())||inv.tipoDocumento.toLowerCase().includes(term.toLowerCase())||inv.totaleMerci.toLowerCase().includes(term.toLowerCase())||inv.totaleServizi.toLowerCase().includes(term.toLowerCase())">
                 <th scope="row">{{inv.idCustomer}}</th>
                 <td> {{inv.codeInvoice}}</td>
                 <td>{{inv.dateTime}}</td>
