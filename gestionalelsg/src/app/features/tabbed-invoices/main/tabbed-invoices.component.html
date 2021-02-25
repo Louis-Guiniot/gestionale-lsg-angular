@@ -8,7 +8,7 @@
     </div>
 
     <div class="search">
-        <form [formGroup]="cercaForm" (ngSubmit)="search()">
+        <form [formGroup]="cercaForm" (ngSubmit)="searchTerm()">
             <div class="input-group mb-3">
                 <input type="text" class="form-control" formControlName="termine" placeholder="word to search" aria-label="Recipient's username" aria-describedby="button-addon2">
                 <button class="btn btn-outline-secondary" type="submit" id="button-addon2"><i class="bi bi-search"></i></button>

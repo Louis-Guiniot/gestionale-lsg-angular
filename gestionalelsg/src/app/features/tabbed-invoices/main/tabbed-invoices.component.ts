@@ -25,7 +25,9 @@ export interface ExampleTab {
   styleUrls: ['./tabbed-invoices.component.scss']
 })
 
+
 export class TabbedInvoicesComponent implements OnInit{
+
   asyncTabs: Observable<ExampleTab[]>;
 
   model: NgbDateStruct;
@@ -34,6 +36,7 @@ export class TabbedInvoicesComponent implements OnInit{
   invoiceInsertForm:FormGroup
   invoiceUpdateForm:FormGroup
   cercaForm:FormGroup
+  cercaFormN:FormGroup
 
   idN:number;
   idS:string;
@@ -94,7 +97,7 @@ export class TabbedInvoicesComponent implements OnInit{
 
 
     this.cercaForm=this.fb.group({
-      termine: ['', Validators.required]
+      termine: ['', Validators.required],
     })
 
     this.invoiceInsertForm=this.fb.group({
@@ -159,11 +162,9 @@ export class TabbedInvoicesComponent implements OnInit{
                                        this.invoiceUpdateForm.value.saleImport)
   }
 
-  search(){
+  searchTerm(){
     console.log("cerco")
     this.router.navigate(["/tabbed/invoices/found"], { queryParams: { term: this.cercaForm.value.termine }})
-    
+ 
   }
-
-  
 }
