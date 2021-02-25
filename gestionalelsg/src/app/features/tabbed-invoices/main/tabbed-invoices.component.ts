@@ -41,6 +41,10 @@ export class TabbedInvoicesComponent implements OnInit{
   codeD:string;
   closeResult='';
 
+  collectionSize:number
+  page = 1;
+  pageSize = 5;
+
   public isCollapsed = false;
 
   constructor(private store: Store,  private router: Router, private productService: ProductsService, private route: Router, private invoicesService: TabbedInvoicesService, private customerService: CustomerService, private fb:FormBuilder, private modalService: NgbModal) {
@@ -111,6 +115,10 @@ export class TabbedInvoicesComponent implements OnInit{
       ivaPrice:['', Validators.required],
       totMerce:['', Validators.required],
       totServices:['', Validators.required]
+    })
+
+    this.store.pipe(select(selectInvoices)).subscribe((invoices) => {
+      this.collectionSize=invoices.length;
     })
 
   }

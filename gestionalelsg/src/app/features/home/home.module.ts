@@ -11,8 +11,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
       CommonModule,
       HomeRoutingModule,
       SharedModule,
-      NgbModule,
     ],
-    schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
+    schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
   })
 export class HomeModule{ }
