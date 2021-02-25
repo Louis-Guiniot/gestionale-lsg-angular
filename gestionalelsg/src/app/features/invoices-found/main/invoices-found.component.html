@@ -1,4 +1,4 @@
-termine trovato: {{term}}
+termine trovato: {{term.toLowerCase()}}
 
 
 <!-- ANCHOR first table -->
@@ -6,23 +6,21 @@ termine trovato: {{term}}
     <table class="table">
         <caption>List of Invoices</caption>
         <thead>
-            <th scope="col">cust_id</th>
-            <th scope="col">code</th>
+            <th scope="col">id cliente</th>
+            <th scope="col">codice</th>
+            <!-- numero fattura -->
             <th scope="col">data</th>
-            <th scope="col">pay_condition</th>
-            <th scope="col">doc_type</th>
-            <th scope="col">sale</th>
+            <th scope="col">cond. pagamento</th>
+            <th scope="col">tipo doc.</th>
+            <th scope="col">sconto</th>
             <th>&nbsp;</th>
             <th>&nbsp;</th>
         </thead>
 
         <tbody *ngFor="let inv of invoices | async; let i= index" id="highlight-row-invoice">
 
-            <!-- <tr *ngIf="contains(inv.idCustomer, inv.codeInvoice, inv.dateTime, inv.condizionePagamento, inv.tipoDocumento, inv.sconto, inv.fields, inv.iva, inv.ivaPrice, inv.quantita, inv.importoSconto, inv.imponibile, inv.totMerci, inv.totServices)"> -->
-            <tr *ngIf="inv.idCustomer.includes(term)||inv.codeInvoice.includes(term)||inv.condizionePagamento.includes(term)||inv.dateTime.includes(term)||inv.fields.includes(term)||inv.imponibile.includes(term)||inv.importoSconto.includes(term)||inv.iva.includes(term)||inv.ivaPrice.includes(term)||inv.quantita.includes(term)||inv.sconto.includes(term)||inv.tipoDocumento.includes(term)||inv.totaleMerci.includes(term)||inv.totaleServizi.includes(term)">
-
-
-                <td>{{inv.idCustomer}}</td>
+            <tr *ngIf="inv.idCustomer.toLowerCase().includes(term.toLowerCase())||inv.codeInvoice.toLowerCase().includes(term.toLowerCase())||inv.condizionePagamento.toLowerCase().includes(term.toLowerCase())||inv.dateTime.toLowerCase().includes(term.toLowerCase())||inv.fields.toLowerCase().includes(term.toLowerCase())||inv.imponibile.toLowerCase().includes(term.toLowerCase())||inv.importoSconto.toLowerCase().includes(term.toLowerCase())||inv.iva.toLowerCase().includes(term.toLowerCase())||inv.ivaPrice.toLowerCase().includes(term.toLowerCase())||inv.quantita.toLowerCase().includes(term.toLowerCase())||inv.sconto.toLowerCase().includes(term.toLowerCase())||inv.tipoDocumento.toLowerCase().includes(term.toLowerCase())||inv.totaleMerci.toLowerCase().includes(term.toLowerCase())||inv.totaleServizi.toLowerCase().includes(term.toLowerCase())">
+                <th scope="row">{{inv.idCustomer}}</th>
                 <td> {{inv.codeInvoice}}</td>
                 <td>{{inv.dateTime}}</td>
                 <td>{{inv.condizionePagamento}}</td>
