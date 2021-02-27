@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ModalDismissReasons, NgbDateStruct, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { select, Store } from '@ngrx/store';
@@ -98,7 +98,7 @@ export class TabbedInvoicesComponent implements OnInit{
       payCondition:['', Validators.required],
       docType:['', Validators.required],
       sale:['', Validators.required],
-      articles:['', Validators.required],
+      //articles:['', Validators.required],
     })
 
     this.invoiceUpdateForm=this.fb.group({
@@ -107,7 +107,10 @@ export class TabbedInvoicesComponent implements OnInit{
       payCondition:['', Validators.required],
       docType:['', Validators.required],
       sale:['', Validators.required],
-      articles:['', Validators.required],
+
+     // articles:['', Validators.required],
+
+
       taxable:['', Validators.required],
       quantity:['', Validators.required],
       saleImport:['', Validators.required],
@@ -138,7 +141,7 @@ export class TabbedInvoicesComponent implements OnInit{
   create(){
     this.invoicesService.create(this.invoiceInsertForm.value.custId,
       this.invoiceInsertForm.value.payCondition, this.invoiceInsertForm.value.docType,
-      this.invoiceInsertForm.value.sale,this.invoiceInsertForm.value.articles)
+      this.invoiceInsertForm.value.sale,this.idItemsString, this.qntItemsString)
 
   }
   deleteInv(){
@@ -153,9 +156,9 @@ export class TabbedInvoicesComponent implements OnInit{
                                        this.invoiceUpdateForm.value.payCondition, 
                                        this.invoiceUpdateForm.value.docType, 
                                        this.invoiceUpdateForm.value.sale, 
-                                       this.invoiceUpdateForm.value.articles, 
+                                       this.idItemsString, 
                                        this.invoiceUpdateForm.value.taxable,
-                                       this.invoiceUpdateForm.value.quantity, 
+                                       this.qntItemsString, 
                                        this.invoiceUpdateForm.value.saleImport)
   }
 
@@ -163,6 +166,27 @@ export class TabbedInvoicesComponent implements OnInit{
     console.log("cerco")
     this.router.navigate(["/tabbed/invoices/found"], { queryParams: { term: this.cercaForm.value.termine }})
     
+  }
+
+  idItems=[];
+  qntItems=[];
+
+  idItemsString:string=""
+  qntItemsString:string=""
+
+
+  addProdNQnt(itemId:string, itemQuantity:string){
+    console.log("id items: ",itemId)
+    console.log("qnt items:", itemQuantity)
+
+    this.idItemsString=this.idItemsString+itemId+";"
+    this.qntItemsString=this.qntItemsString+itemQuantity+";"
+
+   this.idItems.push(itemId);
+   this.qntItems.push(itemQuantity)
+
+   console.log("id items: ",this.idItems)
+   console.log("qnt items:", this.qntItems)
   }
 
   

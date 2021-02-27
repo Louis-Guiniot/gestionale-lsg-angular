@@ -451,20 +451,24 @@
                 </div>
                 <div class="col ">
 
-                    <div class="form-group mb-3">
+                    <!-- <div class="form-group mb-3">
                         <span class="form-group has-float-label">
                             <input type="text" class="form-control" formControlName="price" placeholder="insert the price" id="partitaIva"
                                 autocomplete="off" aria-label="Username" aria-describedby="basic-addon1" />
                             <label for="description">Price</label>
                         </span>
-                    </div>
-
-                    <div class="input-group mb-3 ">
-                        <div class="input-group-prepend ">
-                            <span class="input-group-text " id="basic-addon1 ">articles</span>
+                    </div> -->
+                    
+                        <div class="input-group mb-3 ">
+                            <div class="input-group-prepend ">
+                                <span class="input-group-text " id="basic-addon1 ">articles</span>
+                            </div>
+                            <input type="text " #idArticle class="form-control " placeholder="idArticle" name="idArticle" id="idArticle" autocomplete="off " aria-describedby="basic-addon1 ">
+                            <input type="text " #itemQuantity class="form-control "  placeholder="itemQuantity" name="itemQuantity"id="itemQuantity" autocomplete="off " aria-describedby="basic-addon1 ">
+                            <input type="button" (click)="addProdNQnt(idArticle.value, itemQuantity.value)" value="add">
                         </div>
-                        <input type="text " class="form-control " formControlName="articles" placeholder="articles " id="sede " autocomplete="off " aria-describedby="basic-addon1 ">
-                    </div>
+                   
+                        
                 </div>
             </div>
 

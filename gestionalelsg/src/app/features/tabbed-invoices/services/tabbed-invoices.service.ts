@@ -9,8 +9,8 @@ export class TabbedInvoicesService {
 
   constructor(private store: Store) { }
 
-  create(custId:string,payCondition:string, docType:string,sale:string,articles:string){
-    this.store.dispatch(createInvoice({custId,payCondition,docType,sale,articles}))
+  create(custId:string,payCondition:string, docType:string,sale:string,idItemsString:string,qntItemsString: string){
+    this.store.dispatch(createInvoice({custId,payCondition,docType,sale,idItemsString,qntItemsString}))
 
   }
   retrieveAllInvoices(){
@@ -25,9 +25,9 @@ export class TabbedInvoicesService {
     this.store.dispatch(lookForInvoices({termine}))
   }
 
-  updateInvoice(idS: string, custId: string, payCondition: string, docType: string, sale: string, articles: string, taxable: string,
-    quantity: string, saleImport: string){
-      console.log(idS, custId,  payCondition, docType, sale, articles, taxable, quantity, saleImport);
-    this.store.dispatch(updateInvoice({idS, custId,  payCondition, docType, sale, articles, taxable, quantity, saleImport}))
+  updateInvoice(idS: string, custId: string, payCondition: string, docType: string, sale: string, idItemsString: string, taxable: string,
+    qntItemsString: string, saleImport: string){
+      console.log(idS, custId,  payCondition, docType, sale, idItemsString, taxable, qntItemsString, saleImport);
+    this.store.dispatch(updateInvoice({idS, custId,  payCondition, docType, sale, idItemsString, taxable, qntItemsString, saleImport}))
   }
 }
