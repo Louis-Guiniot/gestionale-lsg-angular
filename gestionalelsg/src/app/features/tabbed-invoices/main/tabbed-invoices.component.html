@@ -510,10 +510,14 @@
                     <label for="description">Customer</label>
                 </span>
 
-            <span class="form-group has-float-label">
-                    <input type="text " class="form-control " formControlName="articles" placeholder="insert articles " id="sede " autocomplete="off " aria-describedby="basic-addon1 ">
-                    <label for="description">Articles</label>
-                </span>
+                <div class="input-group mb-3 ">
+                    <div class="input-group-prepend ">
+                        <span class="input-group-text " id="basic-addon1 ">articles</span>
+                    </div>
+                    <input type="text " #idArticle class="form-control " placeholder="idArticle" name="idArticle" id="idArticle" autocomplete="off " aria-describedby="basic-addon1 ">
+                    <input type="text " #itemQuantity class="form-control "  placeholder="itemQuantity" name="itemQuantity"id="itemQuantity" autocomplete="off " aria-describedby="basic-addon1 ">
+                    <input type="button" (click)="addProdNQnt(idArticle.value, itemQuantity.value)" value="add">
+                </div>
 
 
             <span class="form-group has-float-label">
