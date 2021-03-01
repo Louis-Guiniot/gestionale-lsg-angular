@@ -1,20 +1,23 @@
 <div class="box">
 
     <div class="grid-btn">
-        <button class="btn btn-sm" id="btn-insert" (click)="open(insert)" ngbTooltip="New measure">
+        <button class="btn btn-sm" id="btn-insert" (click)="open(insert)">
             <i class="bi bi-plus"></i>
         </button>
     </div>
 
     <div class="search">
-        <form [formGroup]="cercaForm" (ngSubmit)="search()">
+        <form [formGroup]="cercaForm" (ngSubmit)="searchTerm()">
             <div class="input-group mb-3">
-                <input type="text" class="form-control" formControlName="termine" placeholder="word to search" aria-label="Recipient's username" aria-describedby="button-addon2">
-                <button class="btn btn-outline-secondary" type="submit" id="button-addon2"><i class="bi bi-search"></i></button>
+                <input type="text" class="form-control" formControlName="termine" placeholder="parola da cercare" aria-label="Recipient's username" aria-describedby="button-addon2">
+                <div class="input-group-append">
+                    <button type="submit" class="btn btn-sm" id="btn-edit"><i class="bi bi-search" id="searchIcon"></i></button>
+                    <button type="reset" class="btn btn-sm" id="btn-edit" (click)="resetSearchBar()"><i class="bi bi-x" id="searchIcon"></i></button>
+                </div>
             </div>
-
         </form>
     </div>
+
 
     <div class="grid-table">
         <table class="table">
@@ -26,21 +29,48 @@
                     <th scope="col" id="th-btn">&nbsp;</th>
                 </tr>
             </thead>
-            <tbody>
-                <tr *ngFor="let measure of measures | async | slice: (page-1) * pageSize : page * pageSize ">
-                    <th scope="row">{{ measure.id }}</th>
-                    <td>{{ measure.type }}</td>
-                    <td>
-                        <button class="btn btn-sm" id="btn-edit" (click)="open(update, measure.id)">
-                            <i class="bi bi-pencil-square"></i>
-                        </button>
-                    </td>
-                    <td>
-                        <button class="btn btn-outline-danger btn-sm" id="btn" (click)="open(delete, measure.id, measure.type)">
-                            <i class="bi bi-trash-fill"></i>
-                        </button>
-                    </td>
-                </tr>
+            <tbody *ngFor="let element of measures | async | slice: (page-1) * pageSize : page * pageSize;">
+
+                <div *ngIf="term==='null'; then elseBlock"></div>
+                <ng-template #elseBlock>
+                    <tr>
+                        <th scope="row">{{ element.id }}</th>
+                        <td>{{ element.type }}</td>
+                        <td>
+                            <button class="btn btn-sm" id="btn-edit" (click)="open(update, element.id, element.type)">
+                                <i class="bi bi-pencil-square"></i>
+                            </button>
+                        </td>
+                        <td>
+                            <button class="btn btn-outline-danger btn-sm" id="btn" (click)="open(delete, element.id, element.type)">
+                                <i class="bi bi-trash-fill"></i>
+                            </button>
+
+                        </td>
+                    </tr>
+                </ng-template>
+
+                <!-- ricerca su id non posso, è un int -->
+                <!-- problema : con slice paginazione non riempie le prime pagine. i record rimangono al loro posto. MA FIXATO settando dimensione tabella 1000 elementi ad ogni ricerca -->
+                <div *ngIf="(element.type.toLowerCase().includes(term.toLowerCase())); then thenBlock"></div>
+                <ng-template #thenBlock>
+                    <tr>
+                        <th scope="row">{{ element.id }}</th>
+                        <td>{{ element.type }}</td>
+                        <td>
+                            <button class="btn btn-sm" id="btn-edit" (click)="open(update, element.id, element.name)">
+                                <i class="bi bi-pencil-square"></i>
+                            </button>
+                        </td>
+                        <td>
+                            <button class="btn btn-outline-danger btn-sm" id="btn" (click)="open(delete, element.id, element.name)">
+                                <i class="bi bi-trash-fill"></i>
+                            </button>
+
+                        </td>
+                    </tr>
+                </ng-template>
+
             </tbody>
         </table>
 
@@ -50,6 +80,7 @@
             <option [ngValue]="2">2 items per page</option>
             <option [ngValue]="4">4 items per page</option>
             <option [ngValue]="6">6 items per page</option>
+            <option [ngValue]="1000">1000 items per page</option>
           </select>
         </div>
 
@@ -66,7 +97,7 @@
     <form [formGroup]="createMeasureUnitForm" (ngSubmit)="create()">
         <div class="modal-body">
             <span class="form-group has-float-label">
-            <input type="text " class="form-control " formControlName="tipo" placeholder="insert new measure " id="sede " autocomplete="off " aria-describedby="basic-addon1 ">
+            <input type="text " class="form-control " formControlName="tipo" placeholder="insert new measure " id="sede " autocomplete="off" aria-describedby="basic-addon1 ">
             <label for="description">Measure Type</label>
         </span>
 
@@ -89,16 +120,30 @@
         <form [formGroup]="updateMeasureUnitForm" (ngSubmit)="updateM()">
             <div *ngFor="let measure of measures | async">
                 <div *ngIf="measure.id == idMnumber">
-                    <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text" id="basic-addon1">type</span>
+
+                    <div class="row">
+                        <div class="col">
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="basic-addon1">vecchio</span>
+                                </div>
+                                <select class="form-control" aria-label="Default select example" formControlName="vecchio">
+                                    <option *ngIf="measure.id == idMnumber" value="{{ measure.id }}" selected>
+                                                {{ measure.type }}  
+                                    </option>
+                                </select>
+                            </div>
                         </div>
-                        <select class="form-control" aria-label="Default select example" formControlName="vecchio">
-                            <option *ngIf="measure.id == idMnumber" value="{{ measure.id }}" selected>
-                                        {{ measure.type }}  
-                            </option>
-                        </select>
-                        <input type="text" class="form-control" formControlName="nuovo" placeholder="tipo unità di misura">
+
+                        <div class="col">
+                            <div class="form-group mb-3">
+                                <span class="form-group has-float-label">
+                                    <input type="text" class="form-control" formControlName="nuovo" placeholder="tipo unità di misura">
+                                    <label for="description">Measure Type</label>
+                                </span>
+                            </div>
+
+                        </div>
                     </div>
 
                     <div class="modal-footer">
@@ -128,7 +173,7 @@
                 <div *ngIf="measure.id == idMnumber">
                     <div class="input-group mb-3">
                         <div class="input-group-prepend">
-                            <span class="input-group-text" id="basic-addon1">type</span>
+                            <span class="input-group-text" id="basic-addon1">old</span>
                         </div>
                         <select class="form-control" aria-label="Default select example" formControlName="id">
                             <option *ngIf="measure.id == idMnumber" value="{{ measure.id }}" selected>

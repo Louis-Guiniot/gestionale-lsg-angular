@@ -1,6 +1,5 @@
 .box {
     width: 100%;
-    font-family: Mulish;
     padding: 1%;
     margin: 0;
     display: grid;
@@ -36,12 +35,7 @@
     width: 100%;
 }
 
-i {
-    font-size: larger;
-}
-
 .btn {
-    font-family: Mulish;
     outline: none;
     line-height: 0%;
     font-size: 1.2vw;
@@ -75,6 +69,15 @@ b {
     box-shadow: 0px 0px 0 0px white inset;
     -webkit-box-shadow: 0px 0px 0 0px white inset;
     -webkit-transform: scale(1);
+}
+
+#btn-search {
+    border: 1px #012051 solid;
+    color: #012051;
+    &:hover {
+        color: white;
+        background-color: #012051;
+    }
 }
 
 #btn-edit {
@@ -117,26 +120,6 @@ td {
     color: white;
 }
 
-.modal-body {
-    border-radius: 0;
-}
-
-.modal-header {
-    border-radius: 0;
-    font-family: Mulish;
-    background-color: #012051;
-    color: white;
-    border: 1px solid rgba(0, 0, 0, 0.2);
-}
-
-.modal-body {
-    font-family: Mulish;
-}
-
-p {
-    padding: 3%;
-}
-
 thead {
     background-color: #012051;
     border: 1px #012051 solid;
@@ -149,4 +132,13 @@ th {
 
 #th-btn {
     width: 5vw;
+}
+
+ngb-pagination ::ng-deep ul>li:not(.active)>a {
+    color: #012051;
+}
+
+ngb-pagination ::ng-deep ul>li.active>a {
+    background-color: #012051 !important;
+    color: white;
 }

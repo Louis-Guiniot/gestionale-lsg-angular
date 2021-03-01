@@ -30,6 +30,8 @@ export class MeasureUnitComponent implements OnInit {
   pageSize = 2;
   collectionSize:number;
 
+  term = 'null'
+
 
   open(content,idMeasure?:string,typeMeasure?:string) {
     this.idMnumber=Number.parseInt(idMeasure)
@@ -38,7 +40,7 @@ export class MeasureUnitComponent implements OnInit {
 
 
     console.log("idN: "+this.idMnumber+"    nameD: "+this.typeM)
-    this.modalService.open(content, { size: 'l'}).result.then((result) => {
+    this.modalService.open(content, { size: 'xl'}).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
     }, (reason) => {
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
@@ -109,11 +111,18 @@ export class MeasureUnitComponent implements OnInit {
 
   }
 
-  search(){
-    console.log("cerco")
-    this.router.navigate(["/tabbed/invoices/found"], { queryParams: { term: this.cercaForm.value.termine }})
-    
+  searchTerm(){
+    this.term = this.cercaForm.value.termine
+    console.log("cerco con termine: ",this.term)
+
+    //per evitare errore paginazione
+    this.pageSize = 1000;
   }
-  
+
+  resetSearchBar(){
+    this.term = 'null';
+    this.pageSize = 2
+  }
+
 
 }

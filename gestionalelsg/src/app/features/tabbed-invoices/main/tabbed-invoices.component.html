@@ -1,8 +1,6 @@
 <div class="box">
-
-
     <div class="grid-btn">
-        <button class="btn btn-sm" id="btn-insert" (click)="openXL(content)" ngbTooltip="New invoice"><i
+        <button class="btn btn-sm" id="btn-insert" (click)="openXL(content)"><i
             class="bi bi-plus"></i>
         </button>
     </div>
@@ -10,8 +8,11 @@
     <div class="search">
         <form [formGroup]="cercaForm" (ngSubmit)="searchTerm()">
             <div class="input-group mb-3">
-                <input type="text" class="form-control" formControlName="termine" placeholder="word to search" aria-label="Recipient's username" aria-describedby="button-addon2">
-                <button class="btn btn-outline-secondary" type="submit" id="button-addon2"><i class="bi bi-search"></i></button>
+                <input type="text" class="form-control" formControlName="termine" placeholder="parola da cercare" aria-label="Recipient's username" aria-describedby="button-addon2">
+                <div class="input-group-append">
+                    <button type="submit" class="btn btn-sm" id="btn-edit"><i class="bi bi-search" id="searchIcon"></i></button>
+                    <button type="reset" class="btn btn-sm" id="btn-edit" (click)="resetSearchBar()"><i class="bi bi-x" id="searchIcon"></i></button>
+                </div>
             </div>
 
         </form>
@@ -20,10 +21,6 @@
     <!-- ANCHOR first table -->
     <div class="grid-table">
         <table class="table">
-            <caption>
-                {{collectionSize}} fatture inserite
-            </caption>
-
             <thead>
                 <th scope="col">ID CLIENTE</th>
                 <th scope="col">CODice</th>
@@ -37,6 +34,47 @@
             </thead>
 
             <tbody *ngFor="let inv of invoices | async | slice: (page-1) * pageSize : page * pageSize; let i= index" id="highlight-row-invoice">
+
+                <div *ngIf="term==='null'; then elseBlock"></div>
+                <ng-template #elseBlock>
+                    <tr>
+                        <th scope="col">{{inv.idCustomer}}</th>
+                        <td> {{inv.codeInvoice}}</td>
+                        <td>{{inv.dateTime}}</td>
+                        <td>{{inv.condizionePagamento}}</td>
+                        <td>{{inv.tipoDocumento}} </td>
+                        <td>{{inv.sconto}}%</td>
+                        <td><button class="btn btn-sm" id="btn-edit" (click)="openXL(edit,inv.id,inv.codeInvoice)"><i class="bi bi-pencil-square"></i></button>
+                        </td>
+                        <td><button class="btn btn-sm" id="btn-edit" (click)="openXL(tabbed,inv.id,inv.codeInvoice)"><i class="bi bi-eye"></i></button>
+                        </td>
+                    </tr>
+                </ng-template>
+
+                <div *ngIf="(inv.idCustomer.toLowerCase().includes(term.toLowerCase())||inv.codeInvoice.toLowerCase().includes(term.toLowerCase())||inv.condizionePagamento.toLowerCase().includes(term.toLowerCase())||inv.dateTime.toLowerCase().includes(term.toLowerCase())||inv.fields.toLowerCase().includes(term.toLowerCase())||inv.imponibile.toLowerCase().includes(term.toLowerCase())||inv.importoSconto.toLowerCase().includes(term.toLowerCase())||inv.iva.toLowerCase().includes(term.toLowerCase())||inv.ivaPrice.toLowerCase().includes(term.toLowerCase())||inv.quantita.toLowerCase().includes(term.toLowerCase())||inv.sconto.toLowerCase().includes(term.toLowerCase())||inv.tipoDocumento.toLowerCase().includes(term.toLowerCase())||inv.totaleMerci.toLowerCase().includes(term.toLowerCase())||inv.totaleServizi.toLowerCase().includes(term.toLowerCase())); then thenBlock"></div>
+                <ng-template #thenBlock>
+                    <tr>
+                        <th scope="col">{{inv.idCustomer}}</th>
+                        <td> {{inv.codeInvoice}}</td>
+                        <td>{{inv.dateTime}}</td>
+                        <td>{{inv.condizionePagamento}}</td>
+                        <td>{{inv.tipoDocumento}} </td>
+                        <td>{{inv.sconto}}%</td>
+                        <td><button class="btn btn-sm" id="btn-edit" (click)="openXL(edit,inv.id,inv.codeInvoice)"><i class="bi bi-pencil-square"></i></button>
+                        </td>
+                        <td><button class="btn btn-sm" id="btn-edit" (click)="openXL(tabbed,inv.id,inv.codeInvoice)"><i class="bi bi-eye"></i></button>
+                        </td>
+                    </tr>
+                </ng-template>
+            </tbody>
+
+            <!-- <tbody *ngFor="let inv of invoices | async | slice: (page-1) * pageSize : page * pageSize; let i= index" id="highlight-row-invoice">
+
+                <div *ngIf="inv.idCustomer.toLowerCase().includes(term.toLowerCase())||inv.codeInvoice.toLowerCase().includes(term.toLowerCase())||inv.condizionePagamento.toLowerCase().includes(term.toLowerCase())||inv.dateTime.toLowerCase().includes(term.toLowerCase())||inv.fields.toLowerCase().includes(term.toLowerCase())||inv.imponibile.toLowerCase().includes(term.toLowerCase())||inv.importoSconto.toLowerCase().includes(term.toLowerCase())||inv.iva.toLowerCase().includes(term.toLowerCase())||inv.ivaPrice.toLowerCase().includes(term.toLowerCase())||inv.quantita.toLowerCase().includes(term.toLowerCase())||inv.sconto.toLowerCase().includes(term.toLowerCase())||inv.tipoDocumento.toLowerCase().includes(term.toLowerCase())||inv.totaleMerci.toLowerCase().includes(term.toLowerCase())||inv.totaleServizi.toLowerCase().includes(term.toLowerCase()&&term!=''); then thenBlock else elseBlock"></div>
+                <ng-template #thenBlock>Content to render when condition is true.</ng-template>
+                <ng-template #elseBlock>Content to render when condition is false.</ng-template>
+
+
                 <tr>
                     <td>{{inv.idCustomer}}</td>
                     <td> {{inv.codeInvoice}}</td>
@@ -49,7 +87,7 @@
                     <td><button class="btn btn-sm" id="btn-edit" (click)="openXL(tabbed,inv.id,inv.codeInvoice)"><i class="bi bi-eye"></i></button>
                     </td>
                 </tr>
-            </tbody>
+            </tbody> -->
         </table>
 
         <div class="d-flex justify-content-between p-2">
@@ -60,6 +98,7 @@
               <option [ngValue]="4">4 elementi per pagina</option>
               <option [ngValue]="6">6 elementi per pagina</option>
               <option [ngValue]="10">10 elementi per pagina</option>
+              <option [ngValue]="1000">1000 items per page</option>
             </select>
         </div>
     </div>

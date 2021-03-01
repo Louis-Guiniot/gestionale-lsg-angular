@@ -34,6 +34,7 @@ export class ProductsComponent implements OnInit {
   page = 1;
   pageSize = 2;
 
+  term='null'
   
   constructor(private productService: ProductsService, private store: Store, private router: Router, private fb:FormBuilder, private modalService: NgbModal) {
     
@@ -146,10 +147,17 @@ export class ProductsComponent implements OnInit {
     this.createProductForm.reset();
   }
 
-  search(){
-    console.log("cerco")
-    this.router.navigate(["/tabbed/invoices/found"], { queryParams: { term: this.cercaForm.value.termine }})
-    
+  searchTerm(){
+    this.term = this.cercaForm.value.termine
+    console.log("cerco con termine: ",this.term)
+
+    //per evitare errore paginazione
+    this.pageSize = 1000;
+  }
+
+  resetSearchBar(){
+    this.term = 'null';
+    this.pageSize = 2 
   }
 
 }

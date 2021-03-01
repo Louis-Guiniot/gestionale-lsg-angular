@@ -1,21 +1,14 @@
-import { Component, OnInit, PipeTransform} from '@angular/core';
+import { Component, OnInit, PipeTransform, ViewChild} from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { select, Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { Customer } from 'src/app/core/model/Customer.interface';
 import { selectCustomers } from 'src/app/redux/customer';
 import { CustomerService } from '../services/customer.service';
-import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal, ModalDismissReasons, NgbAlert } from '@ng-bootstrap/ng-bootstrap';
+import { debounceTime } from 'rxjs/operators';
 
-function search(text: string, pipe: PipeTransform): Customer[] {
-  return this.customers.filter(() => {
-    const term = text.toLowerCase();
-    return this.customers.name.toLowerCase().includes(term)
-        || pipe.transform(this.customers.email).includes(term)
-        || pipe.transform(this.customers.surname).includes(term);
-  });
-}
 @Component({
   selector: 'app-customer',
   templateUrl: './customer.component.html',
@@ -39,6 +32,17 @@ export class CustomerComponent implements OnInit{
   page = 1;
   pageSize = 2;
 
+  term = 'null'
+
+  private _success = new Subject<string>();
+
+  staticAlertClosed = false;
+  successMessage = '';
+
+  @ViewChild('staticAlert', {static: false}) staticAlert: NgbAlert;
+  @ViewChild('selfClosingAlert', {static: false}) selfClosingAlert: NgbAlert;
+
+
 
   constructor(private store: Store, private router: Router, private customerService: CustomerService, private fb: FormBuilder, private modalService: NgbModal) {
     console.log(this.customerService.retreiveAllCustomers());
@@ -51,7 +55,7 @@ export class CustomerComponent implements OnInit{
 
 
     console.log("idN: "+this.idN+"    nameD: "+this.nameD)
-    this.modalService.open(content, { size: 'l'}).result.then((result) => {
+    this.modalService.open(content, { size: 'xl'}).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
     }, (reason) => {
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
@@ -71,6 +75,15 @@ export class CustomerComponent implements OnInit{
   }
 
   ngOnInit(): void {
+
+    setTimeout(() => this.staticAlert.close(), 20000);
+
+    this._success.subscribe(message => this.successMessage = message);
+    this._success.pipe(debounceTime(5000)).subscribe(() => {
+      if (this.selfClosingAlert) {
+        this.selfClosingAlert.close();
+      }
+    });
 
     this.store.pipe(select(selectCustomers)).subscribe((customers) => {
       this.collectionSize=customers.length;
@@ -130,12 +143,16 @@ export class CustomerComponent implements OnInit{
     this.customerForm.reset();
   }
 
-  search(){
-    console.log("cerco")
-    this.router.navigate(["/tabbed/invoices/found"], { queryParams: { term: this.cercaForm.value.termine }})
-    
+  searchTerm(){
+    this.term = this.cercaForm.value.termine
+    console.log("cerco con termine: ",this.term)
+
+    //per evitare errore paginazione
+    this.pageSize = 1000;
   }
 
-
-
+  resetSearchBar(){
+    this.term = 'null';
+    this.pageSize = 2
+  }
 }

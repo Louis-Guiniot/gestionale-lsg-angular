@@ -11,20 +11,19 @@
     </div>
 
     <div class="search">
-        <form [formGroup]="cercaForm" (ngSubmit)="search()">
+        <form [formGroup]="cercaForm" (ngSubmit)="searchTerm()">
             <div class="input-group mb-3">
-                <input type="text" class="form-control" formControlName="termine" placeholder="word to search" aria-label="Recipient's username" aria-describedby="button-addon2">
-                <button class="btn btn-outline-secondary" type="submit" id="button-addon2"><i class="bi bi-search"></i></button>
+                <input type="text" class="form-control" formControlName="termine" placeholder="parola da cercare" aria-label="Recipient's username" aria-describedby="button-addon2">
+                <div class="input-group-append">
+                    <button type="submit" class="btn btn-sm" id="btn-edit"><i class="bi bi-search" id="searchIcon"></i></button>
+                    <button type="reset" class="btn btn-sm" id="btn-edit" (click)="resetSearchBar()"><i class="bi bi-x" id="searchIcon"></i></button>
+                </div>
             </div>
-
         </form>
     </div>
 
     <div class="grid-table">
         <table class="table">
-            <caption>
-                {{collectionSize}} customers presenti
-            </caption>
             <thead>
                 <tr>
                     <th scope="col">ID</th>
@@ -38,28 +37,57 @@
                     <th scope="col" id="th-btn">&nbsp;</th>
                 </tr>
             </thead>
-            <tbody>
-                <!-- | slice: (page-1) * pageSize : page * pageSize -->
-                <tr *ngFor="let element of elements | async | slice: (page-1) * pageSize : page * pageSize;">
-                    <th scope="row">{{ element.id }}</th>
-                    <td>{{ element.name }}</td>
-                    <td>{{ element.email }}</td>
-                    <td>{{ element.partitaIva }}</td>
-                    <td>{{ element.ragioneSociale }}</td>
-                    <td>{{ element.sede }}</td>
-                    <td>{{ element.residenza }}</td>
-                    <td>
-                        <button class="btn btn-sm" id="btn-edit" (click)="open(update, element.id, element.name)">
-                            <i class="bi bi-pencil-square"></i>
-                        </button>
-                    </td>
-                    <td>
-                        <button class="btn btn-outline-danger btn-sm" id="btn" (click)="open(delete, element.id, element.name)">
-                            <i class="bi bi-trash-fill"></i>
-                        </button>
+            <tbody *ngFor="let element of elements | async | slice: (page-1) * pageSize : page * pageSize;">
 
-                    </td>
-                </tr>
+                <div *ngIf="term==='null'; then elseBlock"></div>
+                <ng-template #elseBlock>
+                    <tr>
+                        <th scope="row">{{ element.id }}</th>
+                        <td>{{ element.name }}</td>
+                        <td>{{ element.email }}</td>
+                        <td>{{ element.partitaIva }}</td>
+                        <td>{{ element.ragioneSociale }}</td>
+                        <td>{{ element.sede }}</td>
+                        <td>{{ element.residenza }}</td>
+                        <td>
+                            <button class="btn btn-sm" id="btn-edit" (click)="open(update, element.id, element.name)">
+                                <i class="bi bi-pencil-square"></i>
+                            </button>
+                        </td>
+                        <td>
+                            <button class="btn btn-outline-danger btn-sm" id="btn" (click)="open(delete, element.id, element.name)">
+                                <i class="bi bi-trash-fill"></i>
+                            </button>
+
+                        </td>
+                    </tr>
+                </ng-template>
+
+                <!-- ricerca su id non posso, è un int -->
+                <!-- problema : con slice paginazione non riempie le prime pagine. i record rimangono al loro posto. MA FIXATO settando dimensione tabella 1000 elementi ad ogni ricerca -->
+                <div *ngIf="(element.id.toString().toLowerCase().includes(term.toLowerCase())||element.name.toLowerCase().includes(term.toLowerCase())||element.email.toLowerCase().includes(term.toLowerCase())||element.partitaIva.toLowerCase().includes(term.toLowerCase())||element.ragioneSociale.toLowerCase().includes(term.toLowerCase())||element.sede.toLowerCase().includes(term.toLowerCase())||element.residenza.toLowerCase().includes(term.toLowerCase())); then thenBlock else msgBlock"></div>
+                <ng-template #thenBlock>
+                    <tr>
+                        <th scope="row">{{ element.id }}</th>
+                        <td>{{ element.name }}</td>
+                        <td>{{ element.email }}</td>
+                        <td>{{ element.partitaIva }}</td>
+                        <td>{{ element.ragioneSociale }}</td>
+                        <td>{{ element.sede }}</td>
+                        <td>{{ element.residenza }}</td>
+                        <td>
+                            <button class="btn btn-sm" id="btn-edit" (click)="open(update, element.id, element.name)">
+                                <i class="bi bi-pencil-square"></i>
+                            </button>
+                        </td>
+                        <td>
+                            <button class="btn btn-outline-danger btn-sm" id="btn" (click)="open(delete, element.id, element.name)">
+                                <i class="bi bi-trash-fill"></i>
+                            </button>
+
+                        </td>
+                    </tr>
+                </ng-template>
             </tbody>
         </table>
 
@@ -69,6 +97,7 @@
             <option [ngValue]="2">2 items per page</option>
             <option [ngValue]="4">4 items per page</option>
             <option [ngValue]="6">6 items per page</option>
+            <option [ngValue]="1000">1000 items per page</option>
           </select>
         </div>
 
@@ -228,7 +257,7 @@
     </div>
     <div class="modal-body">
         <form (ngSubmit)="deleteCust()">
-            <h6>are you sure to delete customer : {{ nameD }} ?</h6>
+            <p>are you sure to delete customer : <b>{{ nameD }}</b> ?</p>
             <ngb-accordion #acc="ngbAccordion" acitvateIds="custom-panel-1">
                 <ngb-panel id="custom-panel-1">
                     <ng-template ngbPanelHeader let-opened="opened">

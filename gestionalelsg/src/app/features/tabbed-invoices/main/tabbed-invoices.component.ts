@@ -50,6 +50,9 @@ export class TabbedInvoicesComponent implements OnInit{
   page = 1;
   pageSize = 2;
 
+
+  term='null';
+
   constructor(private store: Store,  private router: Router, private productService: ProductsService, private route: Router, private invoicesService: TabbedInvoicesService, private customerService: CustomerService, private fb:FormBuilder, private modalService: NgbModal) {
     this.invoicesService.retrieveAllInvoices()
     this.customerService.retreiveAllCustomers()
@@ -90,6 +93,8 @@ export class TabbedInvoicesComponent implements OnInit{
   }
 
   ngOnInit(): void{
+
+    console.log(this.term)
 
     this.store.pipe(select(selectInvoices)).subscribe((invoices) => {
       this.collectionSize=invoices.length;
@@ -162,9 +167,20 @@ export class TabbedInvoicesComponent implements OnInit{
                                        this.invoiceUpdateForm.value.saleImport)
   }
 
+  // searchTerm(){
+  //   console.log("cerco")
+  //   this.router.navigate(["/tabbed/invoices/found"], { queryParams: { term: this.cercaForm.value.termine }})
+  // }
+
   searchTerm(){
-    console.log("cerco")
-    this.router.navigate(["/tabbed/invoices/found"], { queryParams: { term: this.cercaForm.value.termine }})
- 
+    this.term = this.cercaForm.value.termine
+    console.log("cerco con termine: ",this.term)
+    this.pageSize = 1000
   }
+
+  resetSearchBar(){
+    this.term = 'null';
+    this.pageSize = 2
+  }
+
 }

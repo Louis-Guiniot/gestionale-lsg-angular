@@ -7,24 +7,25 @@
     </div>
 
     <div class="search">
-        <form [formGroup]="cercaForm" (ngSubmit)="search()">
+        <form [formGroup]="cercaForm" (ngSubmit)="searchTerm()">
             <div class="input-group mb-3">
-                <input type="text" class="form-control" formControlName="termine" placeholder="word to search" aria-label="Recipient's username" aria-describedby="button-addon2">
-                <button class="btn btn-outline-secondary" type="submit" id="button-addon2"><i class="bi bi-search"></i></button>
+                <input type="text" class="form-control" formControlName="termine" placeholder="parola da cercare" aria-label="Recipient's username" aria-describedby="button-addon2">
+                <div class="input-group-append">
+                    <button type="submit" class="btn btn-sm" id="btn-edit"><i class="bi bi-search"
+                            id="searchIcon"></i></button>
+                    <button type="reset" class="btn btn-sm" id="btn-edit" (click)="resetSearchBar()"><i class="bi bi-x"
+                            id="searchIcon"></i></button>
+                </div>
             </div>
         </form>
     </div>
 
     <div class="grid-table">
         <table class="table">
-            <caption>
-                {{collectionSize}} products stored
-            </caption>
             <thead>
                 <tr>
                     <th scope="col">Id</th>
                     <th scope="col">codice</th>
-                    <th scope="col">nome</th>
                     <th scope="col">descrizione</th>
                     <th scope="col">prezzo</th>
                     <th scope="col">unita' di misura</th>
@@ -33,43 +34,66 @@
                     <th scope="col" id="th-btn">&nbsp;</th>
                 </tr>
             </thead>
-            <tbody>
-                <tr *ngFor="let product of prods | async | slice: (page-1) * pageSize : page * pageSize;">
-                    <td>{{ product.id }}</td>
+            <tbody *ngFor="let prod of prods | async | slice: (page-1) * pageSize : page * pageSize;">
 
-                    <td>{{ product.codeProduct }}</td>
+                <div *ngIf="term==='null'; then elseBlock"></div>
+                <ng-template #elseBlock>
+                    <tr>
+                        <th scope="col">{{ prod.id }}</th>
+                        <td>{{ prod.codeProduct }}</td>
+                        <td>{{ prod.description }}</td>
+                        <td>{{ prod.price }}</td>
+                        <td>{{ prod.measureUnit }}</td>
+                        <td>{{ prod.scontoProd }}</td>
+                        <td>
+                            <button class="btn" id="btn-edit" (click)="open(update, prod.id, prod.name)">
+                                <i class="bi bi-pencil-square"></i>
+                            </button>
+                        </td>
+                        <td>
+                            <button class="btn btn-outline-danger" id="btn" (click)="open(delete, prod.id, prod.name)">
+                                <i class="bi bi-trash-fill"></i>
+                            </button>
+                        </td>
+                    </tr>
+                </ng-template>
 
-                    <td>{{ product.name }}</td>
+                <!-- ricerca su id non posso, è un int -->
+                <!-- problema : con slice paginazione non riempie le prime pagine. i record rimangono al loro posto. MA FIXATO settando dimensione tabella 1000 elementi ad ogni ricerca -->
+                <div *ngIf="(prod.codeProduct.toLowerCase().includes(term.toLowerCase())||prod.name.toLowerCase().includes(term.toLowerCase())||prod.description.toLowerCase().includes(term.toLowerCase())||prod.price.toLowerCase().includes(term.toLowerCase())||prod.scontoProd.toLowerCase().includes(term.toLowerCase())||prod.measureUnit.toLowerCase().includes(term.toLowerCase())); then thenBlock else msgBlock">
+                </div>
+                <ng-template #thenBlock>
+                    <tr>
+                        <td>{{ prod.id }}</td>
+                        <td>{{ prod.codeProduct }}</td>
+                        <td>{{ prod.description }}</td>
+                        <td>{{ prod.price }}</td>
+                        <td>{{ prod.measureUnit }}</td>
+                        <td>{{ prod.scontoProd }}</td>
+                        <td>
+                            <button class="btn" id="btn-edit" (click)="open(update, prod.id, prod.name)">
+                                <i class="bi bi-pencil-square"></i>
+                            </button>
+                        </td>
+                        <td>
+                            <button class="btn btn-outline-danger" id="btn" (click)="open(delete, prod.id, prod.name)">
+                                <i class="bi bi-trash-fill"></i>
+                            </button>
+                        </td>
+                    </tr>
+                </ng-template>
 
-                    <td>{{ product.description }}</td>
-
-                    <td>{{ product.price }}</td>
-
-                    <td>{{ product.measureUnit }}</td>
-
-                    <td>{{ product.scontoProd }}</td>
-
-                    <th>
-                        <button class="btn" id="btn-edit" (click)="open(update, product.id, product.name)">
-                            <i class="bi bi-pencil-square"></i>
-                        </button>
-                    </th>
-                    <th>
-                        <button class="btn btn-outline-danger" id="btn-delete" (click)="open(delete, product.id, product.name)">
-                            <i class="bi bi-trash-fill"></i>
-                        </button>
-                    </th>
-                </tr>
             </tbody>
         </table>
 
         <div class="d-flex justify-content-between p-2">
             <ngb-pagination [(page)]="page" [pageSize]="pageSize" [collectionSize]="collectionSize"></ngb-pagination>
             <select class="custom-select" style="width: auto" [(ngModel)]="pageSize">
-            <option [ngValue]="2">2 items per page</option>
-            <option [ngValue]="4">4 items per page</option>
-            <option [ngValue]="6">6 items per page</option>
-          </select>
+                <option [ngValue]="2">2 items per page</option>
+                <option [ngValue]="4">4 items per page</option>
+                <option [ngValue]="6">6 items per page</option>
+                <option [ngValue]="1000">1000 items per page</option>
+            </select>
         </div>
     </div>
 </div>
@@ -87,20 +111,24 @@
             <div class="row">
                 <div class="col">
                     <span class="form-group has-float-label">
-                        <input type="text " class="form-control " formControlName="price" placeholder="inserisci prezzo" id="sede " autocomplete="off" aria-describedby="basic-addon1 ">
+                        <input type="text " class="form-control " formControlName="price" placeholder="inserisci prezzo"
+                            id="sede " autocomplete="off" aria-describedby="basic-addon1 ">
                         <label for="description">Prezzo</label>
                     </span>
                 </div>
                 <div class="col">
                     <span class="form-group has-float-label">
-                        <input type="text " class="form-control " formControlName="sconto" placeholder="inserisci sconto" id="sede " autocomplete="off" aria-describedby="basic-addon1 ">
+                        <input type="text " class="form-control " formControlName="sconto"
+                            placeholder="inserisci sconto" id="sede " autocomplete="off"
+                            aria-describedby="basic-addon1 ">
                         <label for="description">Sconto</label>
                     </span>
                 </div>
             </div>
 
             <span class="form-group has-float-label">
-                <input type="text " class="form-control " formControlName="description" placeholder="inserisci descrizione" id="sede " autocomplete="off" aria-describedby="basic-addon1 ">
+                <input type="text " class="form-control " formControlName="description"
+                    placeholder="inserisci descrizione" id="sede " autocomplete="off" aria-describedby="basic-addon1 ">
                 <label for="description">Descrizione</label>
             </span>
 
@@ -110,12 +138,14 @@
                     <option *ngFor="let measure of measures | async" value="{{measure.type}}">
                         {{ measure.type }}
                     </option>
-                </select>                
+                </select>
                 <label for="description">Misura</label>
             </span>
 
             <span class="form-group has-float-label">
-                <textarea type="text " class="form-control " formControlName="name" placeholder="inserisci note (opzionale)" id="sede" autocomplete="off" aria-describedby="basic-addon1 "></textarea>
+                <textarea type="text " class="form-control " formControlName="name"
+                    placeholder="inserisci note (opzionale)" id="sede" autocomplete="off"
+                    aria-describedby="basic-addon1 "></textarea>
                 <label for="description">Note</label>
             </span>
 
@@ -142,15 +172,15 @@
     </div>
     <div class="modal-body">
         <form [formGroup]="updateProductForm" (ngSubmit)="updateProd()">
-            <div *ngFor="let product of prods | async">
-                <div *ngIf="product.id == idN">
+            <div *ngFor="let prod of prods | async">
+                <div *ngIf="prod.id == idN">
                     <div class="row">
                         <div class="col">
                             <div class="input-group mb-3">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text" id="basic-addon1">codice</span>
                                 </div>
-                                <input type="text" class="form-control" placeholder="{{ product.codeProduct }}" id="partitaIva" autocomplete="off" aria-label="Username" aria-describedby="basic-addon1" readonly />
+                                <input type="text" class="form-control" placeholder="{{ prod.codeProduct }}" id="partitaIva" autocomplete="off" aria-label="Username" aria-describedby="basic-addon1" readonly />
                             </div>
                         </div>
                         <div class="col">
@@ -158,7 +188,7 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text" id="basic-addon1">prezzo</span>
                                 </div>
-                                <input type="text" class="form-control" formControlName="price" placeholder="{{ product.price }}" id="residenza" autocomplete="off" aria-label="Username" aria-describedby="basic-addon1" />
+                                <input type="text" class="form-control" formControlName="price" placeholder="{{ prod.price }}" id="residenza" autocomplete="off" aria-label="Username" aria-describedby="basic-addon1" />
                             </div>
                         </div>
                     </div>
@@ -167,7 +197,7 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="basic-addon1">descrizione</span>
                         </div>
-                        <input type="text" class="form-control" formControlName="description" placeholder="{{ product.description }}" id="email" autocomplete="off" aria-label="Username" aria-describedby="basic-addon1" />
+                        <input type="text" class="form-control" formControlName="description" placeholder="{{ prod.description }}" id="email" autocomplete="off" aria-label="Username" aria-describedby="basic-addon1" />
                     </div>
 
                     <div class="row">
@@ -176,7 +206,7 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text" id="basic-addon1">sconto</span>
                                 </div>
-                                <input type="text" class="form-control" formControlName="sconto" placeholder="{{ product.scontoProd }}" id="sede" autocomplete="off" aria-label="Username" aria-describedby="basic-addon1" />
+                                <input type="text" class="form-control" formControlName="sconto" placeholder="{{ prod.scontoProd }}" id="sede" autocomplete="off" aria-label="Username" aria-describedby="basic-addon1" />
                             </div>
                         </div>
                         <div class="col">
@@ -197,7 +227,7 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="basic-addon1">note</span>
                         </div>
-                        <textarea type="text" class="form-control" formControlName="name" placeholder="{{ product.name }}" id="name" autocomplete="off" aria-label="Username" aria-describedby="basic-addon1"></textarea>
+                        <textarea type="text" class="form-control" formControlName="name" placeholder="{{ prod.name }}" id="name" autocomplete="off" aria-label="Username" aria-describedby="basic-addon1"></textarea>
                     </div>
 
                     <div class="modal-footer">
@@ -217,7 +247,7 @@
 <ng-template #delete let-modal>
     <div class="modal-header">
         <h4 class="modal-title" id="modal-basic-title">
-            Deleting product: {{ nameD }}
+            Deleting prod: {{ nameD }}
         </h4>
         <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
             <span aria-hidden="true">&times;</span>
@@ -225,9 +255,82 @@
     </div>
     <div class="modal-body">
         <form (ngSubmit)="deleteProd()">
-            <div class="row">
-                <p>are you sure to delete product --> {{ nameD }} ?</p>
-            </div>
+            <p>are you sure to delete customer : <b>{{ nameD }}</b> ?</p>
+            <ngb-accordion #acc="ngbAccordion" acitvateIds="custom-panel-0">
+                <ngb-panel id="custom-panel-0">
+                    <ng-template ngbPanelHeader let-opened="opened">
+                        <div class="d-flex align-items-center justify-content-between">
+                            <b>Customer detail</b>
+                            <button ngbPanelToggle id="btn-toggle">
+                                {{ opened ? "close" : "open" }}
+                            </button>
+                        </div>
+                    </ng-template>
+                    <ng-template ngbPanelContent>
+                        <div class="card">
+                            <div *ngFor="let prod of prods | async">
+                                <div *ngIf="prod.id == idN">
+                                    <div class="row">
+                                        <div class="col">
+                                            <div class="input-group mb-3">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text" id="basic-addon1">codice</span>
+                                                </div>
+                                                <input type="text" class="form-control" placeholder="{{ prod.codeProduct }}" id="partitaIva" autocomplete="off" aria-label="Username" aria-describedby="basic-addon1" readonly />
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <div class="input-group mb-3">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text" id="basic-addon1">prezzo</span>
+                                                </div>
+                                                <input type="text" class="form-control" formControlName="price" placeholder="{{ prod.price }}" id="residenza" autocomplete="off" aria-label="Username" aria-describedby="basic-addon1" readonly/>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="basic-addon1">descrizione</span>
+                                        </div>
+                                        <input type="text" class="form-control" formControlName="description" placeholder="{{ prod.description }}" id="email" autocomplete="off" aria-label="Username" aria-describedby="basic-addon1" readonly/>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col">
+                                            <div class="input-group mb-3">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text" id="basic-addon1">sconto</span>
+                                                </div>
+                                                <input type="text" class="form-control" formControlName="sconto" placeholder="{{ prod.scontoProd }}" id="sede" autocomplete="off" aria-label="Username" aria-describedby="basic-addon1" readonly/>
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <div class="input-group mb-3">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text" id="basic-addon1">misura</span>
+                                                </div>
+                                                <select class="form-control" aria-label="Default select example" formControlName="measureUnit" readonly>
+                                                    <option *ngFor="let measure of measures | async" value="{{ measure.type }}">
+                                                        {{ measure.type }}
+                                                    </option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="basic-addon1">note</span>
+                                        </div>
+                                        <textarea type="text" class="form-control" formControlName="name" placeholder="{{ prod.name }}" id="name" autocomplete="off" aria-label="Username" aria-describedby="basic-addon1" readonly></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </ng-template>
+                </ngb-panel>
+            </ngb-accordion>
             <div class="modal-footer">
                 <button type="submit" class="btn btn-outline-danger" (click)="modal.close('Save click')" ngbTooltip="Delete">
                     <i class="bi bi-trash-fill"></i>

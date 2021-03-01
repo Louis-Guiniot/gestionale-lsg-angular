@@ -1,6 +1,5 @@
 .box {
     width: 100%;
-    font-family: Mulish;
     padding: 1%;
     margin: 0;
     display: grid;
@@ -68,7 +67,6 @@
     ;
     color: white;
     font-size: 2vh;
-    font-family: Mulish;
     text-transform: uppercase;
     letter-spacing: 1px;
     cursor: pointer;
@@ -79,12 +77,7 @@
     width: 100%;
 }
 
-i {
-    font-size: larger;
-}
-
 .btn {
-    font-family: Mulish;
     outline: none;
     line-height: 0%;
     font-size: 1.2vw;
@@ -217,4 +210,13 @@ thead {
 .tabbed [type="radio"]:nth-of-type(3):checked~.tab-content:nth-of-type(3),
 .tabbed [type="radio"]:nth-of-type(4):checked~.tab-content:nth-of-type(4) {
     display: block;
+}
+
+ngb-pagination ::ng-deep ul>li:not(.active)>a {
+    color: #012051;
+}
+
+ngb-pagination ::ng-deep ul>li.active>a {
+    background-color: #012051 !important;
+    color: white;
 }

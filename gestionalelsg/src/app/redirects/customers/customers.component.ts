@@ -11,6 +11,7 @@ export class CustomersComponent implements OnInit {
   constructor(private route: Router) { }
 
   ngOnInit(): void {
+    
     this.route.navigateByUrl("/customers")
   }
 

@@ -1,6 +1,5 @@
 .box {
     width: 100%;
-    font-family: Mulish;
     padding: 1%;
     margin: 0;
     display: grid;
@@ -36,23 +35,10 @@
     width: 100%;
 }
 
-i {
-    font-size: larger;
-}
-
 .btn {
-    font-family: Mulish;
     outline: none;
     line-height: 0%;
     font-size: 1.2vw;
-}
-
-b {
-    font-size: 1.5vw;
-}
-
-.card {
-    border: 0;
 }
 
 #btn-insert {
@@ -112,22 +98,6 @@ b {
     color: white;
 }
 
-.modal-body {
-    border-radius: 0;
-}
-
-.modal-header {
-    border-radius: 0;
-    font-family: Mulish;
-    background-color: #012051;
-    color: white;
-    border: 1px solid rgba(0, 0, 0, 0.2);
-}
-
-.modal-body {
-    font-family: Mulish;
-}
-
 p {
     padding: 3%;
 }
@@ -146,4 +116,13 @@ tr {
 
 #th-btn {
     width: 5vw;
+}
+
+ngb-pagination ::ng-deep ul>li:not(.active)>a {
+    color: #012051;
+}
+
+ngb-pagination ::ng-deep ul>li.active>a {
+    background-color: #012051 !important;
+    color: white;
 }
