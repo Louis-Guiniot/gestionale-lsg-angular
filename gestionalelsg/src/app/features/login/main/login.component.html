@@ -1,0 +1,38 @@
+<p>login works!</p>
+
+<div class="box">
+    <form [formGroup]="loginForm">
+        <div class="row">
+            <div class="col">
+                <span class="form-group has-float-label">
+                    <input type="text" class="form-control" formControlName="password" placeholder="inserisci password"
+                        id="sede" autocomplete="off" aria-describedby="basic-addon1 ">
+                    <label for="description">Password</label>
+                </span>
+            </div>
+            <div class="col">
+                <span class="form-group has-float-label">
+                    <input type="text" class="form-control" formControlName="email" placeholder="inserisci email"
+                        id="sede" autocomplete="off" aria-describedby="basic-addon1 ">
+                    <label for="description">Email</label>
+                </span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1">codice</span>
+                    </div>
+                    <input type="text" class="form-control" formControlName="password" placeholder="inserisci password" id="sede" autocomplete="off" aria-describedby="basic-addon1 "> </div>
+            </div>
+            <div class="col">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1">prezzo</span>
+                    </div>
+                    <input type="text" class="form-control" formControlName="email" placeholder="inserisci email" id="sede" autocomplete="off" aria-describedby="basic-addon1 "> </div>
+            </div>
+        </div>
+    </form>
+</div>
