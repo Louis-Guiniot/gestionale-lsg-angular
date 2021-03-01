@@ -464,7 +464,7 @@
                                         <div class="card-body">
                                             <div class="row">
                                                 <div class="col-md">
-                                                    <p>Are you sure to delete this invoice?</p>
+                                                    <p>Are you sure to delete invoice : {{inv.codeInvoice}}</p>
                                                 </div>
                                                 <div class="col-md-2">
                                                     <button class="btn btn-outline-danger" type="submit" (click)="modalEdit.close( 'Save click')"><i class="bi bi-hand-thumbs-up"></i>
@@ -492,7 +492,7 @@
 <!-- ANCHOR insert form -->
 <ng-template #content let-modal>
     <div class="modal-header ">
-        <h4 class="modal-title " id="modal-basic-title ">Invoice creation</h4>
+        <h4 class="modal-title " id="modal-basic-title ">Crezione invoice</h4>
         <button type="button " class="close " aria-label="Close " (click)="modal.dismiss( 'Cross click') ">
             <span aria-hidden="true ">&times;</span>
         </button>
@@ -502,23 +502,23 @@
 
             <span class="form-group has-float-label">
                     <select formControlName="custId" class="form-control">
-                        <option value="" selected>select customer id</option>
+                        <option value="" selected>seleziona id cliente</option>
                         <option *ngFor="let element of elements | async " value="{{element.id}}">
                             {{element.id}}
                         </option>
                     </select>                    
-                    <label for="description">Customer</label>
+                    <label for="description">Id cliente</label>
                 </span>
 
             <span class="form-group has-float-label">
                     <input type="text " class="form-control " formControlName="articles" placeholder="insert articles " id="sede " autocomplete="off " aria-describedby="basic-addon1 ">
-                    <label for="description">Articles</label>
+                    <label for="description">Articoli</label>
                 </span>
 
 
             <span class="form-group has-float-label">
                             <input type="text " class="form-control " formControlName="sale" placeholder="insert sale " id="sale " autocomplete="off " aria-describedby="basic-addon1 ">
-                            <label for="description">Sale</label>
+                            <label for="description">Sconto</label>
                 </span>
 
 
@@ -527,13 +527,13 @@
                 <div class="col ">
                     <span class="form-group has-float-label">
                             <input type="text " class="form-control " formControlName="docType" placeholder="document type " id="residenza " autocomplete="off " aria-describedby="basic-addon1 ">
-                            <label for="description">Document type</label>
+                            <label for="description">Tipo doc.</label>
                         </span>
                 </div>
                 <div class="col ">
                     <span class="form-group has-float-label">
                             <input type="text " class="form-control " formControlName="payCondition" placeholder="insert pay condition" id="residenza " autocomplete="off " aria-describedby="basic-addon1 ">
-                            <label for="description">Pay condition</label>
+                            <label for="description">Cond. pagamento</label>
                         </span>
                 </div>
             </div>
