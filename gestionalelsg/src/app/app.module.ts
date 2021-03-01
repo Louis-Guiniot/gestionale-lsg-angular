@@ -13,16 +13,17 @@ import { InvoicesEffects } from './redux/invoice/invoice.effects';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CustomerEffects } from './redux/customer/customer.effects';
 import { MeasureEffects } from './redux/measure/measure.effects';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbAlert, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import {MatButtonModule} from '@angular/material/button';
 import { SidebarModule } from '@syncfusion/ej2-angular-navigations';
 import { ButtonModule, RadioButtonModule } from '@syncfusion/ej2-angular-buttons';
+import { LoginComponent } from './features/login/main/login.component';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    
 
   ],
   imports: [
@@ -36,6 +37,7 @@ import { ButtonModule, RadioButtonModule } from '@syncfusion/ej2-angular-buttons
     SidebarModule,
     ButtonModule, 
     RadioButtonModule,
+    SharedModule,
  
     StoreModule.forRoot(reducers),
      EffectsModule.forRoot([
@@ -46,7 +48,6 @@ import { ButtonModule, RadioButtonModule } from '@syncfusion/ej2-angular-buttons
        
      ]
      ),
-     NgbModule,
   ],
   providers:[],
   bootstrap: [AppComponent],  
