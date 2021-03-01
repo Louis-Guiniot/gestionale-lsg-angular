@@ -550,30 +550,3 @@
         </form>
     </div>
 </ng-template>
-
-<ng-template #delete let-modal>
-    <div class="modal-header ">
-        <h4 class="modal-title " id="modal-basic-title ">Deleting invoice with CODE - {{codeD}} ID - {{idS}}</h4>
-        <button type="button " class="close " aria-label="Close " (click)="modal.dismiss( 'Cross click') ">
-            <span aria-hidden="true ">&times;</span>
-        </button>
-    </div>
-    <div class="modal-body ">
-        <form (ngSubmit)="deleteInv() ">
-            <div class="row ">
-                <p>are you sure to delete this invoice ?</p>
-            </div>
-            <div class="modal-footer ">
-
-                <button type="submit " class="btn btn-outline-danger" (click)="modal.close( 'Save click') " ngbTooltip="Delete ">
-                    <i class="bi bi-trash-fill "></i>
-                </button>
-
-                <button type="button " class="btn " id="btn-modal-edit" (click)="modal.dismiss( 'Cross click') " ngbTooltip="Undo ">
-                    <i class="bi bi-arrow-bar-right "></i>
-                </button>
-            </div>
-
-        </form>
-    </div>
-</ng-template>
