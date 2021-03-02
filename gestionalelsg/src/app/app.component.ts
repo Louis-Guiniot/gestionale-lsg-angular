@@ -10,7 +10,7 @@ import { SelectEventArgs, SidebarComponent } from '@syncfusion/ej2-angular-navig
 export class AppComponent {
     @ViewChild('sidebarInstance')
     public sidebarInstance: SidebarComponent;
-    public width: string = '12%';
+    public width: string = '7%';
     public type: string = 'Over';
     title='gestionaleLSG'
 
