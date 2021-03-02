@@ -96,23 +96,6 @@ export class ProductsComponent implements OnInit {
       price:['', Validators.required],
       sconto:['', Validators.required]
     })
-
-    //   this.store.pipe(select(selectProducts)).subscribe((products) => {
-    //     for (let prod of products) {
-    //      this.products.push(prod);
-    //       console.log(prod);
-    //     }
-    //   return this.products
-    //  })
-
-     
-    // this.store.pipe(select(selectMeasures)).subscribe((measures) => {
-    //   for (let measure of measures) {
-    //     this.units.push(measure);
-    //     console.log(measure);
-    //   }
-    //   return this.units
-    // })
     
   }
 
