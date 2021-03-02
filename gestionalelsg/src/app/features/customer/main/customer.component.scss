@@ -3,18 +3,5 @@
 @import "src/style/pagination-table.scss";
 @import "src/style/modal.scss";
 @import "src/style/input.scss";
-b {
-    font-size: 1.5vw;
-}
-
-.card {
-    border: 0;
-}
-
-.close {
-    color: white;
-}
-
-i {
-    font-size: 1.5vw;
-}
+@import "src/style/icons.scss";
+@import "src/style/other.scss";

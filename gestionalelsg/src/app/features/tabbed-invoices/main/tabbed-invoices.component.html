@@ -47,10 +47,10 @@
                         <td>{{inv.tipoDocumento}} </td>
                         <td>{{inv.sconto}}%</td>
                         <td><button class="btn btn-sm" id="btn-edit" (click)="openXL(edit,inv.id,inv.codeInvoice)"><i
-                                    class="bi bi-pencil-square"></i></button>
+                                    class="bi bi-wrench"></i></button>
                         </td>
                         <td><button class="btn btn-sm" id="btn-edit" (click)="openXL(tabbed,inv.id,inv.codeInvoice)"><i
-                                    class="bi bi-eye"></i></button>
+                                    class="bi bi-eye-fill"></i></button>
                         </td>
                     </tr>
                 </ng-template>
@@ -66,10 +66,10 @@
                         <td>{{inv.tipoDocumento}} </td>
                         <td>{{inv.sconto}}%</td>
                         <td><button class="btn btn-sm" id="btn-edit" (click)="openXL(edit,inv.id,inv.codeInvoice)"><i
-                                    class="bi bi-pencil-square"></i></button>
+                                    class="bi bi-wrench"></i></button>
                         </td>
                         <td><button class="btn btn-sm" id="btn-edit" (click)="openXL(tabbed,inv.id,inv.codeInvoice)"><i
-                                    class="bi bi-eye"></i></button>
+                                    class="bi bi-eye-fill"></i></button>
                         </td>
                     </tr>
                 </ng-template>
@@ -88,6 +88,9 @@
                 <option [ngValue]="1000">1000 elementi per pagina</option>
             </select>
         </div>
+        <br><br><br>
+        <ngb-alert #selfClosingAlert *ngIf="successMessage" type="custom" (closed)="successMessage = ''">{{ successMessage }}
+        </ngb-alert>
     </div>
 
 </div>
@@ -523,7 +526,7 @@
                             <input type="number" min="1" #itemQuantity formControlName="itemQuantity" class="form-control " placeholder="inserisci la quantita' desiderata" name="itemQuantity" id="itemQuantity" autocomplete="off" aria-describedby="basic-addon1 ">
                             <label for="description">Quantita'</label>
                             <div class="input-group-append">
-                                <button class="btn" id="btn-edit" [disabled]="invoiceInsertProd.invalid" (click)="addProdNQnt(idArticle.value, itemQuantity.value)"><i class="bi bi-plus-square-fill"></i></button>
+                                <button class="btn" id="btn-edit" [disabled]="invoiceInsertProd.invalid" (click)="addProdNQnt(idArticle.value, itemQuantity.value)" (click)="changeSuccessMessage()"><i class="bi bi-plus-square-fill"></i></button>
                                 <button type="reset" class="btn btn-outline-danger" [disabled]="invoiceInsertProd.invalid"><i class="bi bi-x-square-fill"></i></button>
                             </div>
                         </span>
