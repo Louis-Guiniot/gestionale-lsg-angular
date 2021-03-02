@@ -37,11 +37,18 @@ export class TabbedInvoicesComponent implements OnInit{
   invoiceUpdateForm:FormGroup
   cercaForm:FormGroup
   cercaFormN:FormGroup
+  invoiceInsertProd:FormGroup
 
   idN:number;
   idS:string;
   codeD:string;
   closeResult='';
+
+  idItems=[];
+  qntItems=[];
+
+  idItemsString:string=""
+  qntItemsString:string=""
 
   public isCollapsed = false;
 
@@ -65,8 +72,11 @@ export class TabbedInvoicesComponent implements OnInit{
       this.closeResult = `Closed with: ${result}`;
     }, (reason) => {
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+      
       this.invoiceInsertForm.reset();
       this.invoiceUpdateForm.reset();
+      this.invoiceInsertProd.reset();
+
     });;
 
     this.idN=Number.parseInt(idCust)
@@ -110,7 +120,11 @@ export class TabbedInvoicesComponent implements OnInit{
       payCondition:['', Validators.required],
       docType:['', Validators.required],
       sale:['', Validators.required],
-      articles:['', Validators.required],
+    })
+
+    this.invoiceInsertProd=this.fb.group({
+      idItem: ['', Validators.required],
+      itemQuantity: ['', Validators.required],
     })
 
     this.invoiceUpdateForm=this.fb.group({
@@ -146,9 +160,9 @@ export class TabbedInvoicesComponent implements OnInit{
   create(){
     this.invoicesService.create(this.invoiceInsertForm.value.custId,
       this.invoiceInsertForm.value.payCondition, this.invoiceInsertForm.value.docType,
-      this.invoiceInsertForm.value.sale,this.invoiceInsertForm.value.articles)
-
+      this.invoiceInsertForm.value.sale,this.idItemsString, this.qntItemsString)
   }
+
   deleteInv(){
     this.invoicesService.deleteInvoice(this.idS)
   }
@@ -161,9 +175,9 @@ export class TabbedInvoicesComponent implements OnInit{
                                        this.invoiceUpdateForm.value.payCondition, 
                                        this.invoiceUpdateForm.value.docType, 
                                        this.invoiceUpdateForm.value.sale, 
-                                       this.invoiceUpdateForm.value.articles, 
+                                       this.idItemsString, 
                                        this.invoiceUpdateForm.value.taxable,
-                                       this.invoiceUpdateForm.value.quantity, 
+                                       this.qntItemsString, 
                                        this.invoiceUpdateForm.value.saleImport)
   }
 
@@ -181,6 +195,24 @@ export class TabbedInvoicesComponent implements OnInit{
   resetSearchBar(){
     this.term = 'null';
     this.pageSize = 2
+  }
+
+  addProdNQnt(itemId:string, itemQuantity:string){
+
+    console.log("id items: ",itemId)
+    console.log("qnt items:", itemQuantity)
+
+    this.idItemsString=this.idItemsString+itemId+";"
+    this.qntItemsString=this.qntItemsString+itemQuantity+";"
+
+   this.idItems.push(itemId);
+   this.qntItems.push(itemQuantity)
+
+   console.log("id items: ",this.idItems)
+   console.log("qnt items:", this.qntItems)
+
+   this.invoiceInsertProd.reset()
+
   }
 
 }
