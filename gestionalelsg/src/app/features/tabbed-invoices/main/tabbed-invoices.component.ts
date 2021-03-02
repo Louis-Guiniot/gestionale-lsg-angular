@@ -1,9 +1,10 @@
-import { Component, OnInit, PipeTransform } from '@angular/core';
+import { Component, OnInit, PipeTransform, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { ModalDismissReasons, NgbDateStruct, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ModalDismissReasons, NgbAlert, NgbDateStruct, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { select, Store } from '@ngrx/store';
-import { Observable, Observer } from 'rxjs';
+import { Observable, Observer, Subject } from 'rxjs';
+import { debounceTime } from 'rxjs/operators';
 import { Customer } from 'src/app/core/model/Customer.interface';
 import { Invoice } from 'src/app/core/model/Invoice.interface';
 import { Product } from 'src/app/core/model/Product.interface';
@@ -22,7 +23,7 @@ export interface ExampleTab {
 @Component({
   selector: 'app-tabbed-invoices',
   templateUrl: './tabbed-invoices.component.html',
-  styleUrls: ['./tabbed-invoices.component.scss']
+  styleUrls: ['./tabbed-invoices.component.scss'],
 })
 
 
@@ -32,33 +33,46 @@ export class TabbedInvoicesComponent implements OnInit{
 
   model: NgbDateStruct;
   placement = 'left';
-
+  
+  //form
   invoiceInsertForm:FormGroup
   invoiceUpdateForm:FormGroup
   cercaForm:FormGroup
   cercaFormN:FormGroup
   invoiceInsertProd:FormGroup
 
-  idN:number;
-  idS:string;
-  codeD:string;
-  closeResult='';
+  //dati per update e delete
+  idN:number
+  idS:string
+  codeD:string
 
-  idItems=[];
-  qntItems=[];
+  closeResult=''
+
+  //aggiunta prodotti
+  idItems=[]
+  qntItems=[]
 
   idItemsString:string=""
   qntItemsString:string=""
 
+  //accordion
   public isCollapsed = false;
 
   //paginazione
   collectionSize:number
-  page = 1;
-  pageSize = 2;
+  page = 1
+  pageSize = 2
 
+  //ricerca
+  term='null'
 
-  term='null';
+  //alert
+  private _success = new Subject<string>();
+  staticAlertClosed = false;
+  successMessage = '';
+
+  @ViewChild('staticAlert', {static: false}) staticAlert: NgbAlert;
+  @ViewChild('selfClosingAlert', {static: false}) selfClosingAlert: NgbAlert;
 
   constructor(private store: Store,  private router: Router, private productService: ProductsService, private route: Router, private invoicesService: TabbedInvoicesService, private customerService: CustomerService, private fb:FormBuilder, private modalService: NgbModal) {
     this.invoicesService.retrieveAllInvoices()
@@ -77,19 +91,13 @@ export class TabbedInvoicesComponent implements OnInit{
       this.invoiceUpdateForm.reset();
       this.invoiceInsertProd.reset();
 
-    });;
+    });
 
     this.idN=Number.parseInt(idCust)
     this.idS=idCust;
     this.codeD=name;
 
-
     console.log("idN: "+this.idN+"codeD: "+this.codeD)
-    // this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
-    //   this.closeResult = `Closed with: ${result}`;
-    // }, (reason) => {
-    //   this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
-    // });
   }
 
   private getDismissReason(reason: any): string {
@@ -103,6 +111,14 @@ export class TabbedInvoicesComponent implements OnInit{
   }
 
   ngOnInit(): void{
+
+    setTimeout(() => this.staticAlert.close(), 20000);
+    this._success.subscribe(message => this.successMessage = message);
+    this._success.pipe(debounceTime(5000)).subscribe(() => {
+      if (this.selfClosingAlert) {
+        this.selfClosingAlert.close();
+      }
+    });
 
     console.log(this.term)
 
@@ -144,6 +160,8 @@ export class TabbedInvoicesComponent implements OnInit{
     })
 
   }
+
+  public changeSuccessMessage() { this._success.next(`${new Date()} - PRODOTTO AGGIUNTO.`); }
 
   get invoices(): Observable<Invoice[]>{
     return this.store.pipe(select(selectInvoices))
