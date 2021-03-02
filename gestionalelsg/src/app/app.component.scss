@@ -149,7 +149,6 @@ i {
     transition-duration: 0.3s;
     &:hover {
         cursor: pointer;
-        padding: 1%;
         font-size: 4vw;
     }
 }
@@ -229,9 +228,3 @@ ul {
 
 
 /* end of custom generated icons styles */
-
-footer {
-    position: absolute;
-    width: 100%;
-    background-color: #012051;
-}

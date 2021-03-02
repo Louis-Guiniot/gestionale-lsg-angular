@@ -23,7 +23,7 @@
 
 
     <div class="grid-table">
-        <table class="table">
+        <table class="table table-hover">
             <thead>
                 <tr>
                     <th scope="col">Id</th>
@@ -108,12 +108,12 @@
         </span>
 
         </div>
-        <div class="modal-footer ">
-            <button type="button " class="btn btn-outline-danger" (click)="modal.dismiss( 'Cross click') " ngbTooltip="Exit ">
-                <i class="bi bi-arrow-bar-right "></i>
-            </button>
-            <button type="submit " class="btn " id="btn-modal-edit" (click)="modal.close( 'Save click') " ngbTooltip="Insert ">
+        <div class="modal-footer">
+            <button type="submit " class="btn " id="btn-modal-edit" (click)="modal.close( 'Save click') " ngbTooltip="Insert" [disabled]="createMeasureUnitForm.invalid">
                 <i class="bi bi-save "></i>
+            </button>
+            <button type="button " class="btn btn-outline-danger" (click)="modal.dismiss( 'Cross click') " ngbTooltip="Exit">
+                <i class="bi bi-arrow-bar-right "></i>
             </button>
         </div>
     </form>
@@ -158,7 +158,7 @@
                     </div>
 
                     <div class="modal-footer">
-                        <button type="submit" class="btn" id="btn-modal-edit" (click)="modal.close('Save click')" ngbTooltip="Save">
+                        <button type="submit" class="btn" id="btn-modal-edit" (click)="modal.close('Save click')" ngbTooltip="Save" [disabled]="updateMeasureUnitForm.invalid">
                             <i class="bi bi-save"></i>
                         </button>
                         <button type="button" class="btn btn-outline-danger" (click)="modal.dismiss('Cross click')" ngbTooltip="Exit">
@@ -193,7 +193,7 @@
                         </span>
 
                     <div class="modal-footer">
-                        <button type="submit" class="btn" id="btn-modal-edit" (click)="modal.close('Save click')" ngbTooltip="Save">
+                        <button type="submit" class="btn" id="btn-modal-edit" (click)="modal.close('Save click')" ngbTooltip="Save" [disabled]="deleteMeasureUnitForm.invalid">
                             <i class="bi bi-save"></i>
                         </button>
                         <button type="button" class="btn btn-outline-danger" (click)="modal.dismiss('Cross click')" ngbTooltip="Exit">
