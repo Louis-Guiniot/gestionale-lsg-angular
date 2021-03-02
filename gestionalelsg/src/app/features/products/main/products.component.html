@@ -41,7 +41,7 @@
                 <ng-template #elseBlock>
                     <tr>
                         <th scope="col">{{ prod.id }}</th>
-                        <td>{{ prod.codeProduct }}</td>
+                        <td>{{ prod.codeProduct | lowercase }}</td>
                         <td>{{ prod.description }}</td>
                         <td>{{ prod.price }}</td>
                         <td>{{ prod.measureUnit }}</td>
