@@ -3,7 +3,8 @@ span {
 }
 
 input,
-select {
+select,
+textarea {
     font-family: "Oxygen";
     color: #012051;
     &::placeholder {
@@ -14,4 +15,12 @@ select {
 label {
     font-family: "Oxygen";
     color: #012051;
+}
+
+.form-control:focus {
+    color: #012051;
+    background-color: #fff;
+    border-color: #012051 !important;
+    outline: 0;
+    box-shadow: 0 0 0 #F44336
 }

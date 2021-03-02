@@ -4,8 +4,10 @@
     margin: 0;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    column-gap: 1%;
-    row-gap: 2%;
+    grid-template-rows: 5vh auto;
+    column-gap: 1vw;
+    row-gap: 2vh;
+    font-family: "Oxygen";
 }
 
 .search {
@@ -48,7 +50,7 @@ tr {
 }
 
 #th-btn {
-    width: 10vw;
+    width: 7vw;
 }
 
 thead {
@@ -56,4 +58,5 @@ thead {
     border-radius: 25px;
     border: 1px #012051 solid;
     color: white;
+    text-transform: uppercase;
 }
