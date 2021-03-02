@@ -104,18 +104,15 @@ p {
 
 thead {
     background-color: #012051;
-    border: 1px #012051 solid;
+    border: 1px hsl(217, 98%, 16%) solid;
     color: white;
+    text-transform: uppercase;
 }
 
 td,
 tr {
     width: auto;
     text-align: left;
-}
-
-#th-btn {
-    width: 5vw;
 }
 
 ngb-pagination ::ng-deep ul>li:not(.active)>a {
@@ -125,4 +122,8 @@ ngb-pagination ::ng-deep ul>li:not(.active)>a {
 ngb-pagination ::ng-deep ul>li.active>a {
     background-color: #012051 !important;
     color: white;
+}
+
+i {
+    font-size: 1.5vw;
 }

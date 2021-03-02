@@ -15,15 +15,18 @@
             <div class="input-group mb-3">
                 <input type="text" class="form-control" formControlName="termine" placeholder="parola da cercare" aria-label="Recipient's username" aria-describedby="button-addon2">
                 <div class="input-group-append">
-                    <button type="submit" class="btn btn-sm" id="btn-edit"><i class="bi bi-search" id="searchIcon"></i></button>
-                    <button type="reset" class="btn btn-sm" id="btn-edit" (click)="resetSearchBar()"><i class="bi bi-x" id="searchIcon"></i></button>
+                    <button type="submit" class="btn" id="btn-edit" [disabled]="cercaForm.invalid"><i class="bi bi-search"
+                            id="searchIcon"></i></button>
+                    <button type="reset" class="btn btn-outline-danger" [disabled]="cercaForm.invalid" (click)="resetSearchBar()"><i class="bi bi-x-square-fill"
+                            id="searchIcon"></i></button>
                 </div>
             </div>
+
         </form>
     </div>
 
     <div class="grid-table">
-        <table class="table">
+        <table class="table table-hover">
             <thead>
                 <tr>
                     <th scope="col">ID</th>
@@ -92,13 +95,16 @@
         </table>
 
         <div class="d-flex justify-content-between p-2">
-            <ngb-pagination [(page)]="page" [pageSize]="pageSize" [collectionSize]="collectionSize"></ngb-pagination>
-            <select class="custom-select" style="width: auto" [(ngModel)]="pageSize">
-            <option [ngValue]="2">2 items per page</option>
-            <option [ngValue]="4">4 items per page</option>
-            <option [ngValue]="6">6 items per page</option>
-            <option [ngValue]="1000">1000 items per page</option>
-          </select>
+            <ngb-pagination [(page)]="page" [pageSize]="pageSize" [collectionSize]="collectionSize" class="pagination">
+            </ngb-pagination>
+
+            <select class="custom-select" style="width: auto" name="pageSize" [(ngModel)]="pageSize">
+                <option [ngValue]="2">2 elementi per pagina</option>
+                <option [ngValue]="4">4 elementi per pagina</option>
+                <option [ngValue]="6">6 elementi per pagina</option>
+                <option [ngValue]="10">10 elementi per pagina</option>
+                <option [ngValue]="1000">1000 elementi per pagina</option>
+            </select>
         </div>
 
 
@@ -118,7 +124,7 @@
                 <div class="col">
                     <span class="form-group has-float-label">
                         <input type="text " class="form-control " formControlName="name" placeholder="inserisci nome " id="sede " autocomplete="off" aria-describedby="basic-addon1 ">
-                        <label for="description">Name</label>
+                        <label for="description">Nome</label>
                     </span>
                 </div>
                 <div class="col">

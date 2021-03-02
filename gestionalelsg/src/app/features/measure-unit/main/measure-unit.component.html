@@ -11,10 +11,13 @@
             <div class="input-group mb-3">
                 <input type="text" class="form-control" formControlName="termine" placeholder="parola da cercare" aria-label="Recipient's username" aria-describedby="button-addon2">
                 <div class="input-group-append">
-                    <button type="submit" class="btn btn-sm" id="btn-edit"><i class="bi bi-search" id="searchIcon"></i></button>
-                    <button type="reset" class="btn btn-sm" id="btn-edit" (click)="resetSearchBar()"><i class="bi bi-x" id="searchIcon"></i></button>
+                    <button type="submit" class="btn" id="btn-edit" [disabled]="cercaForm.invalid"><i class="bi bi-search"
+                            id="searchIcon"></i></button>
+                    <button type="reset" class="btn btn-outline-danger" [disabled]="cercaForm.invalid" (click)="resetSearchBar()"><i class="bi bi-x-square-fill"
+                            id="searchIcon"></i></button>
                 </div>
             </div>
+
         </form>
     </div>
 
@@ -24,7 +27,7 @@
             <thead>
                 <tr>
                     <th scope="col">Id</th>
-                    <th scope="col">Measure</th>
+                    <th scope="col">Misura</th>
                     <th scope="col" id="th-btn">&nbsp;</th>
                     <th scope="col" id="th-btn">&nbsp;</th>
                 </tr>
@@ -75,13 +78,16 @@
         </table>
 
         <div class="d-flex justify-content-between p-2">
-            <ngb-pagination [(page)]="page" [pageSize]="pageSize" [collectionSize]="collectionSize"></ngb-pagination>
-            <select class="custom-select" style="width: auto" [(ngModel)]="pageSize">
-            <option [ngValue]="2">2 items per page</option>
-            <option [ngValue]="4">4 items per page</option>
-            <option [ngValue]="6">6 items per page</option>
-            <option [ngValue]="1000">1000 items per page</option>
-          </select>
+            <ngb-pagination [(page)]="page" [pageSize]="pageSize" [collectionSize]="collectionSize" class="pagination">
+            </ngb-pagination>
+
+            <select class="custom-select" style="width: auto" name="pageSize" [(ngModel)]="pageSize">
+                <option [ngValue]="2">2 elementi per pagina</option>
+                <option [ngValue]="4">4 elementi per pagina</option>
+                <option [ngValue]="6">6 elementi per pagina</option>
+                <option [ngValue]="10">10 elementi per pagina</option>
+                <option [ngValue]="1000">1000 elementi per pagina</option>
+            </select>
         </div>
 
     </div>
@@ -89,7 +95,7 @@
 
 <ng-template #insert let-modal>
     <div class="modal-header">
-        <h4 class="modal-title" id="modal-basic-title">Measure creation</h4>
+        <h4 class="modal-title" id="modal-basic-title">Creazione Misura</h4>
         <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
             <span aria-hidden="true">&times;</span>
         </button>
@@ -98,20 +104,24 @@
         <div class="modal-body">
             <span class="form-group has-float-label">
             <input type="text " class="form-control " formControlName="tipo" placeholder="insert new measure " id="sede " autocomplete="off" aria-describedby="basic-addon1 ">
-            <label for="description">Measure Type</label>
+            <label for="description">Tipo misura</label>
         </span>
 
         </div>
-        <div class="modal-footer">
-            <button type="submit" (click)="modal.close('Save click')">add</button>
-            <button (click)="modal.dismiss('Cross click')">undo</button>
+        <div class="modal-footer ">
+            <button type="button " class="btn btn-outline-danger" (click)="modal.dismiss( 'Cross click') " ngbTooltip="Exit ">
+                <i class="bi bi-arrow-bar-right "></i>
+            </button>
+            <button type="submit " class="btn " id="btn-modal-edit" (click)="modal.close( 'Save click') " ngbTooltip="Insert ">
+                <i class="bi bi-save "></i>
+            </button>
         </div>
     </form>
 </ng-template>
 
 <ng-template #update let-modal>
     <div class="modal-header">
-        <h4 class="modal-title" id="modal-basic-title">Measure update</h4>
+        <h4 class="modal-title" id="modal-basic-title">Aggiornamento misura</h4>
         <button type="button" class="close" id="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
             <span aria-hidden="true">&times;</span>
         </button>
@@ -123,23 +133,24 @@
 
                     <div class="row">
                         <div class="col">
-                            <div class="input-group mb-3">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text" id="basic-addon1">vecchio</span>
-                                </div>
-                                <select class="form-control" aria-label="Default select example" formControlName="vecchio">
-                                    <option *ngIf="measure.id == idMnumber" value="{{ measure.id }}" selected>
-                                                {{ measure.type }}  
-                                    </option>
-                                </select>
+                            <div class="form-group mb-3">
+                                <span class="form-group has-float-label">
+                                    <select class="form-control" aria-label="Default select example" formControlName="vecchio">
+                                        <option *ngIf="measure.id == idMnumber" value="{{ measure.id }}" selected>
+                                                    {{ measure.type }}  
+                                        </option>
+                                    </select>                                    
+                                    <label for="description">Vecchia misura</label>
+                                </span>
                             </div>
+
                         </div>
 
                         <div class="col">
                             <div class="form-group mb-3">
                                 <span class="form-group has-float-label">
                                     <input type="text" class="form-control" formControlName="nuovo" placeholder="tipo unità di misura">
-                                    <label for="description">Measure Type</label>
+                                    <label for="description">Nuova misura</label>
                                 </span>
                             </div>
 
@@ -162,7 +173,7 @@
 
 <ng-template #delete let-modal>
     <div class="modal-header">
-        <h4 class="modal-title" id="modal-basic-title">Measure delete</h4>
+        <h4 class="modal-title" id="modal-basic-title">Eliminazione misura</h4>
         <button type="button" class="close" id="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
             <span aria-hidden="true">&times;</span>
         </button>
@@ -171,16 +182,15 @@
         <form [formGroup]="deleteMeasureUnitForm" (ngSubmit)="deleteM()">
             <div *ngFor="let measure of measures | async">
                 <div *ngIf="measure.id == idMnumber">
-                    <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text" id="basic-addon1">old</span>
-                        </div>
-                        <select class="form-control" aria-label="Default select example" formControlName="id">
-                            <option *ngIf="measure.id == idMnumber" value="{{ measure.id }}" selected>
-                                        {{ measure.type }}  
-                            </option>
-                        </select>
-                    </div>
+
+                    <span class="form-group has-float-label">
+                            <select class="form-control" aria-label="Default select example" formControlName="id">
+                                <option *ngIf="measure.id == idMnumber" value="{{ measure.id }}" selected>
+                                            {{ measure.type }}  
+                                </option>
+                            </select>
+                            <label for="description">Misura da eliminare</label>
+                        </span>
 
                     <div class="modal-footer">
                         <button type="submit" class="btn" id="btn-modal-edit" (click)="modal.close('Save click')" ngbTooltip="Save">

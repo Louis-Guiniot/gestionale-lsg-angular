@@ -1,7 +1,6 @@
 <div class="box">
     <div class="grid-btn">
-        <button class="btn btn-sm" id="btn-insert" (click)="openXL(content)"><i
-            class="bi bi-plus"></i>
+        <button class="btn btn-sm" id="btn-insert" (click)="openXL(content)"><i class="bi bi-plus"></i>
         </button>
     </div>
 
@@ -10,8 +9,10 @@
             <div class="input-group mb-3">
                 <input type="text" class="form-control" formControlName="termine" placeholder="parola da cercare" aria-label="Recipient's username" aria-describedby="button-addon2">
                 <div class="input-group-append">
-                    <button type="submit" class="btn btn-sm" id="btn-edit"><i class="bi bi-search" id="searchIcon"></i></button>
-                    <button type="reset" class="btn btn-sm" id="btn-edit" (click)="resetSearchBar()"><i class="bi bi-x" id="searchIcon"></i></button>
+                    <button type="submit" class="btn" id="btn-edit" [disabled]="cercaForm.invalid"><i class="bi bi-search"
+                            id="searchIcon"></i></button>
+                    <button type="reset" class="btn btn-outline-danger" [disabled]="cercaForm.invalid" (click)="resetSearchBar()"><i class="bi bi-x-square-fill"
+                            id="searchIcon"></i></button>
                 </div>
             </div>
 
@@ -44,14 +45,17 @@
                         <td>{{inv.condizionePagamento}}</td>
                         <td>{{inv.tipoDocumento}} </td>
                         <td>{{inv.sconto}}%</td>
-                        <td><button class="btn btn-sm" id="btn-edit" (click)="openXL(edit,inv.id,inv.codeInvoice)"><i class="bi bi-pencil-square"></i></button>
+                        <td><button class="btn btn-sm" id="btn-edit" (click)="openXL(edit,inv.id,inv.codeInvoice)"><i
+                                    class="bi bi-pencil-square"></i></button>
                         </td>
-                        <td><button class="btn btn-sm" id="btn-edit" (click)="openXL(tabbed,inv.id,inv.codeInvoice)"><i class="bi bi-eye"></i></button>
+                        <td><button class="btn btn-sm" id="btn-edit" (click)="openXL(tabbed,inv.id,inv.codeInvoice)"><i
+                                    class="bi bi-eye"></i></button>
                         </td>
                     </tr>
                 </ng-template>
 
-                <div *ngIf="(inv.idCustomer.toLowerCase().includes(term.toLowerCase())||inv.codeInvoice.toLowerCase().includes(term.toLowerCase())||inv.condizionePagamento.toLowerCase().includes(term.toLowerCase())||inv.dateTime.toLowerCase().includes(term.toLowerCase())||inv.fields.toLowerCase().includes(term.toLowerCase())||inv.imponibile.toLowerCase().includes(term.toLowerCase())||inv.importoSconto.toLowerCase().includes(term.toLowerCase())||inv.iva.toLowerCase().includes(term.toLowerCase())||inv.ivaPrice.toLowerCase().includes(term.toLowerCase())||inv.quantita.toLowerCase().includes(term.toLowerCase())||inv.sconto.toLowerCase().includes(term.toLowerCase())||inv.tipoDocumento.toLowerCase().includes(term.toLowerCase())||inv.totaleMerci.toLowerCase().includes(term.toLowerCase())||inv.totaleServizi.toLowerCase().includes(term.toLowerCase())); then thenBlock"></div>
+                <div *ngIf="(inv.idCustomer.toLowerCase().includes(term.toLowerCase())||inv.codeInvoice.toLowerCase().includes(term.toLowerCase())||inv.condizionePagamento.toLowerCase().includes(term.toLowerCase())||inv.dateTime.toLowerCase().includes(term.toLowerCase())||inv.fields.toLowerCase().includes(term.toLowerCase())||inv.imponibile.toLowerCase().includes(term.toLowerCase())||inv.importoSconto.toLowerCase().includes(term.toLowerCase())||inv.iva.toLowerCase().includes(term.toLowerCase())||inv.ivaPrice.toLowerCase().includes(term.toLowerCase())||inv.quantita.toLowerCase().includes(term.toLowerCase())||inv.sconto.toLowerCase().includes(term.toLowerCase())||inv.tipoDocumento.toLowerCase().includes(term.toLowerCase())||inv.totaleMerci.toLowerCase().includes(term.toLowerCase())||inv.totaleServizi.toLowerCase().includes(term.toLowerCase())); then thenBlock">
+                </div>
                 <ng-template #thenBlock>
                     <tr>
                         <th scope="col">{{inv.idCustomer}}</th>
@@ -60,9 +64,11 @@
                         <td>{{inv.condizionePagamento}}</td>
                         <td>{{inv.tipoDocumento}} </td>
                         <td>{{inv.sconto}}%</td>
-                        <td><button class="btn btn-sm" id="btn-edit" (click)="openXL(edit,inv.id,inv.codeInvoice)"><i class="bi bi-pencil-square"></i></button>
+                        <td><button class="btn btn-sm" id="btn-edit" (click)="openXL(edit,inv.id,inv.codeInvoice)"><i
+                                    class="bi bi-pencil-square"></i></button>
                         </td>
-                        <td><button class="btn btn-sm" id="btn-edit" (click)="openXL(tabbed,inv.id,inv.codeInvoice)"><i class="bi bi-eye"></i></button>
+                        <td><button class="btn btn-sm" id="btn-edit" (click)="openXL(tabbed,inv.id,inv.codeInvoice)"><i
+                                    class="bi bi-eye"></i></button>
                         </td>
                     </tr>
                 </ng-template>
@@ -91,14 +97,15 @@
         </table>
 
         <div class="d-flex justify-content-between p-2">
-            <ngb-pagination [(page)]="page" [pageSize]="pageSize" [collectionSize]="collectionSize" class="pagination"></ngb-pagination>
+            <ngb-pagination [(page)]="page" [pageSize]="pageSize" [collectionSize]="collectionSize" class="pagination">
+            </ngb-pagination>
 
             <select class="custom-select" style="width: auto" name="pageSize" [(ngModel)]="pageSize">
-              <option [ngValue]="2">2 elementi per pagina</option>
-              <option [ngValue]="4">4 elementi per pagina</option>
-              <option [ngValue]="6">6 elementi per pagina</option>
-              <option [ngValue]="10">10 elementi per pagina</option>
-              <option [ngValue]="1000">1000 items per page</option>
+                <option [ngValue]="2">2 elementi per pagina</option>
+                <option [ngValue]="4">4 elementi per pagina</option>
+                <option [ngValue]="6">6 elementi per pagina</option>
+                <option [ngValue]="10">10 elementi per pagina</option>
+                <option [ngValue]="1000">1000 elementi per pagina</option>
             </select>
         </div>
     </div>
@@ -374,12 +381,17 @@
 
                         <div class="tab-content">
 
-                            <div class="input-group mb-3">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text" id="basic-addon1">prodotti</span>
+                            <form>
+                                <div class="input-group mb-3 ">
+                                    <div class="input-group-prepend ">
+                                        <span class="input-group-text " id="basic-addon1 ">articles</span>
+                                    </div>
+                                    <input type="text " #idArticle class="form-control " placeholder="idArticle" name="idArticle" id="idArticle" autocomplete="off" aria-describedby="basic-addon1 ">
+                                    <input type="text " #itemQuantity class="form-control " placeholder="itemQuantity" name="itemQuantity" id="itemQuantity" autocomplete="off" aria-describedby="basic-addon1 ">
+                                    <input type="button" (click)="addProdNQnt(idArticle.value, itemQuantity.value)" value="add">
                                 </div>
-                                <input type="text" class="form-control" placeholder="{{inv.fields}}" autocomplete="off" aria-describedby="basic-addon1" formControlName="articles">
-                            </div>
+                            </form>
+
                             <div class="row">
                                 <div class="col">
                                     <div class="input-group mb-3">
@@ -452,7 +464,8 @@
                                 <i class="bi bi-save"></i>
                             </button>
 
-                            <button class="btn btn-outline-danger" (click)="collapse.toggle()" [attr.aria-expanded]="isCollapsed" ngbTooltip="Delete"><i class="bi bi-trash-fill"></i></button>
+                            <button class="btn btn-outline-danger" (click)="collapse.toggle()" [attr.aria-expanded]="isCollapsed" ngbTooltip="Delete"><i
+                                    class="bi bi-trash-fill"></i></button>
 
                             <button type="button" class="btn" id="btn-modal-edit" (click)="modalEdit.dismiss('Cross click')" ngbTooltip="Exit">
                                 <i class="bi bi-arrow-bar-right"></i>
@@ -467,7 +480,8 @@
                                                     <p>Are you sure to delete invoice : {{inv.codeInvoice}}</p>
                                                 </div>
                                                 <div class="col-md-2">
-                                                    <button class="btn btn-outline-danger" type="submit" (click)="modalEdit.close( 'Save click')"><i class="bi bi-hand-thumbs-up"></i>
+                                                    <button class="btn btn-outline-danger" type="submit" (click)="modalEdit.close( 'Save click')"><i
+                                                            class="bi bi-hand-thumbs-up"></i>
                                                     </button>
                                                 </div>
                                                 <div class="col-md-2">
@@ -501,40 +515,69 @@
         <form [formGroup]="invoiceInsertForm " (ngSubmit)="create() ">
 
             <span class="form-group has-float-label">
-                    <select formControlName="custId" class="form-control">
-                        <option value="" selected>seleziona id cliente</option>
-                        <option *ngFor="let element of elements | async " value="{{element.id}}">
-                            {{element.id}}
-                        </option>
-                    </select>                    
-                    <label for="description">Id cliente</label>
-                </span>
+                <select formControlName="custId" class="form-control">
+                    <option selected="selected">seleziona id cliente</option>
+                    <option *ngFor="let element of elements | async " value="{{element.id}}">
+                        {{element.name}} - {{element.email}}
+                    </option>
+                </select>
+                <label for="description">Id cliente</label>
+            </span>
+
+            <form [formGroup]="invoiceInsertProd">
+                <div class="row">
+                    <div class="col">
+                        <span class="form-group has-float-label">
+                        <select #idArticle formControlName="idItem" class="form-control">
+                            <option selected>seleziona il prodotto da inserire</option>
+                            <option *ngFor="let prod of products | async " value="{{prod.id}}">
+                                {{prod.description}} - {{prod.price}}$ con {{prod.scontoProd}}% di sconto
+                            </option>
+                        </select>
+                        <label for="description">Prodotto</label>
+
+                    </span>
+                    </div>
+                    <div class="col">
+                        <span class="input-group has-float-label">
+                            <input type="number" min="1" #itemQuantity formControlName="itemQuantity" class="form-control " placeholder="inserisci la quantita' desiderata" name="itemQuantity" id="itemQuantity" autocomplete="off" aria-describedby="basic-addon1 ">
+                            <label for="description">Quantita'</label>
+                            <div class="input-group-append">
+                                <button class="btn" id="btn-edit" [disabled]="invoiceInsertProd.invalid" (click)="addProdNQnt(idArticle.value, itemQuantity.value)"><i class="bi bi-plus-square-fill"></i></button>
+                                <button type="reset" class="btn btn-outline-danger" [disabled]="invoiceInsertProd.invalid"><i class="bi bi-x-square-fill"></i></button>
+                            </div>
+                        </span>
+                    </div>
+
+                </div>
+            </form>
+            <!-- (click)="addProdNQnt(idArticle.value, itemQuantity.value)" -->
+
+
 
             <span class="form-group has-float-label">
-                    <input type="text " class="form-control " formControlName="articles" placeholder="insert articles " id="sede " autocomplete="off " aria-describedby="basic-addon1 ">
-                    <label for="description">Articoli</label>
-                </span>
-
-
-            <span class="form-group has-float-label">
-                            <input type="text " class="form-control " formControlName="sale" placeholder="insert sale " id="sale " autocomplete="off " aria-describedby="basic-addon1 ">
-                            <label for="description">Sconto</label>
-                </span>
+                <input type="text " class="form-control " formControlName="sale" placeholder="inserisci sconto " id="sale "
+                    autocomplete="off" aria-describedby="basic-addon1 ">
+                <label for="description">Sconto</label>
+            </span>
 
 
 
             <div class="row ">
                 <div class="col ">
                     <span class="form-group has-float-label">
-                            <input type="text " class="form-control " formControlName="docType" placeholder="document type " id="residenza " autocomplete="off " aria-describedby="basic-addon1 ">
-                            <label for="description">Tipo doc.</label>
-                        </span>
+                        <input type="text " class="form-control " formControlName="docType" placeholder="inserisci il tipo di documento"
+                            id="residenza " autocomplete="off" aria-describedby="basic-addon1 ">
+                        <label for="description">Tipo doc.</label>
+                    </span>
                 </div>
                 <div class="col ">
                     <span class="form-group has-float-label">
-                            <input type="text " class="form-control " formControlName="payCondition" placeholder="insert pay condition" id="residenza " autocomplete="off " aria-describedby="basic-addon1 ">
-                            <label for="description">Cond. pagamento</label>
-                        </span>
+                        <input type="text " class="form-control " formControlName="payCondition"
+                            placeholder="inserisci la condizione di pagamamento" id="residenza " autocomplete="off"
+                            aria-describedby="basic-addon1 ">
+                        <label for="description">Cond. pagamento</label>
+                    </span>
                 </div>
             </div>
 
@@ -542,7 +585,7 @@
                 <button type="button " class="btn btn-outline-danger" (click)="modal.dismiss( 'Cross click') " ngbTooltip="Exit ">
                     <i class="bi bi-arrow-bar-right "></i>
                 </button>
-                <button type="submit " class="btn " id="btn-modal-edit" (click)="modal.close( 'Save click') " ngbTooltip="Insert ">
+                <button type="submit " class="btn " id="btn-modal-edit" [disabled]="invoiceInsertForm.invalid" (click)="modal.close( 'Save click') " ngbTooltip="Insert ">
                     <i class="bi bi-save "></i>
                 </button>
             </div>

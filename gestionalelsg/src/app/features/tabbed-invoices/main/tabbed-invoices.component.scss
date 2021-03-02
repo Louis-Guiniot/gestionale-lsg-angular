@@ -183,10 +183,6 @@ thead {
     color: white;
 }
 
-#th-btn {
-    width: 5vw;
-}
-
 .tab-content {
     display: none;
     color: #777;
@@ -219,4 +215,8 @@ ngb-pagination ::ng-deep ul>li:not(.active)>a {
 ngb-pagination ::ng-deep ul>li.active>a {
     background-color: #012051 !important;
     color: white;
+}
+
+i {
+    font-size: 1.5vw;
 }
