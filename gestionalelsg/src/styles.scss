@@ -22,46 +22,6 @@ html {
 /* Importing Bootstrap SCSS file. */
 
 @import '~bootstrap/scss/bootstrap';
-.modal-content {
-    animation-name: example;
-    animation-duration: 0.5s;
-}
-
-.modal-body {
-    border-radius: 0;
-    font-family: "Oxygen";
-}
-
-.modal-header {
-    border-radius: 0;
-    background-color: #012051;
-    color: white;
-    border: 1px solid rgba(0, 0, 0, 0.2);
-}
-
-.modal-title {
-    font-family: "Oxygen";
-    letter-spacing: 0.1vw;
-}
-
-span {
-    font-family: "Oxygen";
-}
-
-input,
-select {
-    font-family: "Oxygen";
-    color: #012051;
-    &::placeholder {
-        color: #012051;
-    }
-}
-
-label {
-    font-family: "Oxygen";
-    color: #012051;
-}
-
 p {
     font-size: 1vw;
 }
@@ -76,20 +36,4 @@ ng-template {
 
 i {
     font-size: 1.3vw;
-}
-
-#th-btn {
-    width: 10vw;
-}
-
-@keyframes example {
-    0% {
-        transform: scale(0.5)
-    }
-    75% {
-        transform: scale(1.1)
-    }
-    100% {
-        transform: scale(1)
-    }
 }

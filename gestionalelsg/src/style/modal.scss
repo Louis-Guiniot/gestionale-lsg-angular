@@ -1,0 +1,21 @@
+.modal-content {
+    animation-name: example;
+    animation-duration: 0.5s;
+}
+
+.modal-body {
+    border-radius: 0;
+    font-family: "Oxygen";
+}
+
+.modal-header {
+    border-radius: 0;
+    background-color: #012051;
+    color: white;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.modal-title {
+    font-family: "Oxygen";
+    letter-spacing: 0.1vw;
+}

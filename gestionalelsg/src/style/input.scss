@@ -1,0 +1,17 @@
+span {
+    font-family: "Oxygen";
+}
+
+input,
+select {
+    font-family: "Oxygen";
+    color: #012051;
+    &::placeholder {
+        color: #012051;
+    }
+}
+
+label {
+    font-family: "Oxygen";
+    color: #012051;
+}
