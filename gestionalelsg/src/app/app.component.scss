@@ -85,8 +85,9 @@ body {
 #head .header {
     text-align: center;
     line-height: 50px;
-    font-size: 1.5vw;
-    width: 100%
+    width: 100%;
+    font-weight: bold;
+    font-size: 2.5vw;
 }
 
 
@@ -119,7 +120,7 @@ body {
 }
 
 i {
-    font-size: 2.5vw;
+    font-size: 2.7vw;
 }
 
 
@@ -145,9 +146,11 @@ li {
 }
 
 i {
+    transition-duration: 0.3s;
     &:hover {
         cursor: pointer;
-        color: #A5BE00;
+        padding: 1%;
+        font-size: 4vw;
     }
 }
 
