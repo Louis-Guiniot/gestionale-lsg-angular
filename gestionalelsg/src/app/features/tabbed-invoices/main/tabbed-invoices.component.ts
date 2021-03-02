@@ -120,6 +120,7 @@ export class TabbedInvoicesComponent implements OnInit{
       payCondition:['', Validators.required],
       docType:['', Validators.required],
       sale:['', Validators.required],
+      iva: ['', Validators.required],
     })
 
     this.invoiceInsertProd=this.fb.group({
@@ -160,7 +161,7 @@ export class TabbedInvoicesComponent implements OnInit{
   create(){
     this.invoicesService.create(this.invoiceInsertForm.value.custId,
       this.invoiceInsertForm.value.payCondition, this.invoiceInsertForm.value.docType,
-      this.invoiceInsertForm.value.sale,this.idItemsString, this.qntItemsString)
+      this.invoiceInsertForm.value.sale,this.idItemsString, this.qntItemsString, this.invoiceInsertForm.value.iva)
   }
 
   deleteInv(){

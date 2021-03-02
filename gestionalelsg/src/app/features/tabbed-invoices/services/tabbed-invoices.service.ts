@@ -9,8 +9,8 @@ export class TabbedInvoicesService {
 
   constructor(private store: Store) { }
 
-  create(custId:string,payCondition:string, docType:string,sale:string,idItemsString:string,qntItemsString: string){
-    this.store.dispatch(createInvoice({custId,payCondition,docType,sale,idItemsString,qntItemsString}))
+  create(custId:string,payCondition:string, docType:string,sale:string,idItemsString:string,qntItemsString: string, iva: string){
+    this.store.dispatch(createInvoice({custId,payCondition,docType,sale,idItemsString,qntItemsString, iva}))
   }
 
   retrieveAllInvoices(){
