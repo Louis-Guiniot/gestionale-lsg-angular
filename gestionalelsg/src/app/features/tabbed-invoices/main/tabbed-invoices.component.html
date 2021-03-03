@@ -23,6 +23,7 @@
     <!-- ANCHOR first table -->
     <div class="grid-table">
         <table class="table table-hover">
+            <caption>Tabella fatture</caption>
             <thead>
                 <th scope="col">ID CLIENTE</th>
                 <th scope="col">CODice</th>
@@ -538,12 +539,34 @@
 
 
 
-            <span class="form-group has-float-label">
-                <input type="text " class="form-control " formControlName="sale" placeholder="inserisci sconto " id="sale "
-                    autocomplete="off" aria-describedby="basic-addon1 ">
-                <label for="description">Sconto</label>
-            </span>
-
+            <div class="row">
+                <div class="col">
+                    <span class="form-group has-float-label">
+                        <input type="text " class="form-control " formControlName="sale" placeholder="inserisci sconto " id="sale "
+                            autocomplete="off" aria-describedby="basic-addon1 ">
+                        <label for="description">Sconto</label>
+                    </span>
+                </div>
+                <div class="col ">
+                    <span class="form-group has-float-label">
+                        <select class="form-control" aria-label="Default select example" aria-describedby="basic-addon1" formControlName="iva">
+                            <option value="22">
+                                22%
+                            </option>
+                            <option value="10">
+                                10%
+                            </option>
+                            <option value="4">
+                                4%
+                            </option>
+                            <option value="0">
+                                0%
+                            </option>
+                        </select>
+                        <label>Iva</label>
+                    </span>
+                </div>
+            </div>
 
 
             <div class="row ">
@@ -560,28 +583,6 @@
                             placeholder="inserisci la condizione di pagamamento" id="residenza " autocomplete="off"
                             aria-describedby="basic-addon1 ">
                         <label for="description">Cond. pagamento</label>
-                    </span>
-                </div>
-            </div>
-
-            <div class="row ">
-                <div class="col ">
-                    <span class="form-group has-float-label">
-                        iva:
-                        <select class="form-control" aria-label="Default select example" aria-describedby="basic-addon1" formControlName="iva">
-                            <option value="22">
-                                22%
-                            </option>
-                            <option value="10">
-                                10%
-                            </option>
-                            <option value="4">
-                                4%
-                            </option>
-                            <option value="0">
-                                0%
-                            </option>
-                        </select>
                     </span>
                 </div>
             </div>
