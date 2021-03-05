@@ -25,8 +25,8 @@
         <table class="table table-hover">
             <caption>Tabella fatture</caption>
             <thead>
-                <th scope="col">ID CLIENTE</th>
-                <th scope="col">CODice</th>
+                <th scope="col">codice cliente</th>
+                <th scope="col">numero fattura</th>
                 <!-- numero fattura -->
                 <th scope="col">data</th>
                 <th scope="col">cond. pagamento</th>
@@ -99,7 +99,7 @@
 <!-- ANCHOR view modal -->
 <ng-template #tabbed let-modal>
     <div class="modal-xl modal-header">
-        <h4 class="modal-title" id="modal-basic-title">Invoice detail</h4>
+        <h4 class="modal-title" id="modal-basic-title">DETTAGLIO FATTURA</h4>
         <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
             <span aria-hidden="true">&times;</span>
         </button>
@@ -124,7 +124,7 @@
                             <div class="col">
                                 <div class="input-group mb-3">
                                     <div class="input-group-prepend">
-                                        <span class="input-group-text" id="basic-addon1">codice</span>
+                                        <span class="input-group-text" id="basic-addon1">numero fattura</span>
                                     </div>
                                     <input type="text" class="form-control" placeholder="{{inv.codeInvoice}}" autocomplete="off" aria-describedby="basic-addon1" readonly>
                                 </div>
@@ -132,7 +132,7 @@
                             <div class="col">
                                 <div class="input-group mb-3">
                                     <div class="input-group-prepend">
-                                        <span class="input-group-text" id="basic-addon1">id cliente</span>
+                                        <span class="input-group-text" id="basic-addon1">codice cliente</span>
                                     </div>
                                     <input type="text" class="form-control" placeholder="{{inv.idCustomer}}" autocomplete="off" aria-describedby="basic-addon1" readonly>
                                 </div>
@@ -279,7 +279,7 @@
 <!-- ANCHOR edit form -->
 <ng-template #edit let-modalEdit>
     <div class="modal-xl modal-header">
-        <h4 class="modal-title" id="modal-basic-title">Invoice detail</h4>
+        <h4 class="modal-title" id="modal-basic-title">AGGIORNAMENTO FATTURA</h4>
         <button type="button" class="close" aria-label="Close" (click)="modalEdit.dismiss('Cross click')">
             <span aria-hidden="true">&times;</span>
         </button>
@@ -305,7 +305,7 @@
                                 <div class="col">
                                     <div class="input-group mb-3">
                                         <div class="input-group-prepend">
-                                            <span class="input-group-text" id="basic-addon1">codice</span>
+                                            <span class="input-group-text" id="basic-addon1">numero fattura</span>
                                         </div>
                                         <input type="text" class="form-control" placeholder="{{inv.codeInvoice}}" autocomplete="off" aria-describedby="basic-addon1" readonly>
                                     </div>
@@ -313,7 +313,7 @@
                                 <div class="col">
                                     <div class="input-group mb-3">
                                         <div class="input-group-prepend">
-                                            <span class="input-group-text" id="basic-addon1">id cliente</span>
+                                            <span class="input-group-text" id="basic-addon1">codice cliente</span>
                                         </div>
                                         <select class="form-control" aria-label="Default select example" aria-describedby="basic-addon1" formControlName="custId">
                                             <option *ngFor="let cust of elements | async" value="{{cust.id}}">
@@ -370,11 +370,42 @@
                                     <div class="input-group-prepend ">
                                         <span class="input-group-text " id="basic-addon1 ">articles</span>
                                     </div>
-                                    <input type="text " #idArticle class="form-control " placeholder="idArticle" name="idArticle" id="idArticle" autocomplete="off" aria-describedby="basic-addon1 ">
-                                    <input type="text " #itemQuantity class="form-control " placeholder="itemQuantity" name="itemQuantity" id="itemQuantity" autocomplete="off" aria-describedby="basic-addon1 ">
+                                    <input type="text " #idArticle class="form-control" placeholder="idArticle" name="idArticle" id="idArticle" autocomplete="off" aria-describedby="basic-addon1 ">
+                                    <input type="text " #itemQuantity class="form-control" placeholder="itemQuantity" name="itemQuantity" id="itemQuantity" autocomplete="off" aria-describedby="basic-addon1 ">
                                     <input type="button" (click)="addProdNQnt(idArticle.value, itemQuantity.value)" value="add">
                                 </div>
                             </form>
+
+                            <div class="input-group">
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Id</th>
+                                            <th scope="col">codice</th>
+                                            <th scope="col">descrizione</th>
+                                            <th scope="col">prezzo</th>
+                                            <th scope="col">unita' di misura</th>
+                                            <th scope="col">sconto</th>
+                                            <th scope="col" id="th-btn">&nbsp;</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <th scope="col">id</th>
+                                            <td>code</td>
+                                            <td>description</td>
+                                            <td>price</td>
+                                            <td>measure</td>
+                                            <td>sale</td>
+                                            <td>
+                                                <button class="btn" id="btn-edit">
+                                                    <i class="bi bi-plus"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
 
                             <div class="row">
                                 <div class="col">
@@ -490,7 +521,7 @@
 <!-- ANCHOR insert form -->
 <ng-template #content let-modal>
     <div class="modal-header ">
-        <h4 class="modal-title " id="modal-basic-title ">Crezione invoice</h4>
+        <h4 class="modal-title " id="modal-basic-title ">CREAZIONE FATTURA</h4>
         <button type="button " class="close " aria-label="Close " (click)="modal.dismiss( 'Cross click') ">
             <span aria-hidden="true ">&times;</span>
         </button>
@@ -500,36 +531,41 @@
 
             <span class="form-group has-float-label">
                 <select formControlName="custId" class="form-control">
-                    <option selected="selected">seleziona id cliente</option>
+                    <option selected="selected">seleziona codice cliente</option>
                     <option *ngFor="let element of elements | async " value="{{element.id}}">
                         {{element.name}} - {{element.email}}
                     </option>
                 </select>
-                <label for="description">Id cliente</label>
+                <label for="description">codice cliente</label>
             </span>
 
             <form [formGroup]="invoiceInsertProd">
                 <div class="row">
                     <div class="col">
                         <span class="form-group has-float-label">
-                        <select #idArticle formControlName="idItem" class="form-control">
+                        <select #idArticle formControlName="idItem" class="form-control" >
                             <option selected>seleziona il prodotto da inserire</option>
                             <option *ngFor="let prod of products | async " value="{{prod.id}}">
                                 {{prod.description}} - {{prod.price}}$ con {{prod.scontoProd}}% di sconto
                             </option>
                         </select>
                         <label for="description">Prodotto</label>
-
                     </span>
                     </div>
                     <div class="col">
                         <span class="input-group has-float-label">
-                            <input type="number" min="1" #itemQuantity formControlName="itemQuantity" class="form-control " placeholder="inserisci la quantita' desiderata" name="itemQuantity" id="itemQuantity" autocomplete="off" aria-describedby="basic-addon1 ">
+                            <input type="number" min="1" #itemQuantity formControlName="itemQuantity" class="form-control" placeholder="inserisci la quantita' desiderata" name="itemQuantity" id="itemQuantity" autocomplete="off" aria-describedby="basic-addon1 ">
                             <label for="description">Quantita'</label>
                             <div class="input-group-append">
                                 <button class="btn" id="btn-edit" [disabled]="invoiceInsertProd.invalid" (click)="addProdNQnt(idArticle.value, itemQuantity.value)" (click)="changeSuccessMessage()"><i class="bi bi-plus-square-fill"></i></button>
-                                <button type="reset" class="btn btn-outline-danger" [disabled]="invoiceInsertProd.invalid"><i class="bi bi-x-square-fill"></i></button>
+                                <button type="button" class="btn btn-outline-danger" (click)="resetCart()"><i class="bi bi-x-square-fill"></i></button>
                             </div>
+                        </span>
+                    </div>
+                    <div class="col">
+                        <span class="input-group has-float-label">
+                            <input type="button" class="form-control" readonly value="{{prodCount}}">
+                            <label for="description">Totale Prodotti salvati</label>
                         </span>
                     </div>
 
@@ -542,7 +578,7 @@
             <div class="row">
                 <div class="col">
                     <span class="form-group has-float-label">
-                        <input type="text " class="form-control " formControlName="sale" placeholder="inserisci sconto " id="sale "
+                        <input type="text " class="form-control" formControlName="sale" placeholder="inserisci sconto " id="sale "
                             autocomplete="off" aria-describedby="basic-addon1 ">
                         <label for="description">Sconto</label>
                     </span>
@@ -572,14 +608,14 @@
             <div class="row ">
                 <div class="col ">
                     <span class="form-group has-float-label">
-                        <input type="text " class="form-control " formControlName="docType" placeholder="inserisci il tipo di documento"
+                        <input type="text " class="form-control" formControlName="docType" placeholder="inserisci il tipo di documento"
                             id="residenza " autocomplete="off" aria-describedby="basic-addon1 ">
                         <label for="description">Tipo doc.</label>
                     </span>
                 </div>
                 <div class="col ">
                     <span class="form-group has-float-label">
-                        <input type="text " class="form-control " formControlName="payCondition"
+                        <input type="text " class="form-control" formControlName="payCondition"
                             placeholder="inserisci la condizione di pagamamento" id="residenza " autocomplete="off"
                             aria-describedby="basic-addon1 ">
                         <label for="description">Cond. pagamento</label>
