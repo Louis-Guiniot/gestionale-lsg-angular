@@ -4,6 +4,7 @@
 @import '../node_modules/@syncfusion/ej2-base/styles/material.css';
 @import '../node_modules/@syncfusion/ej2-angular-navigations/styles/material.css';
 @import url('https://fonts.googleapis.com/css2?family=Oxygen&display=swap');
+@import '~bootstrap/scss/bootstrap';
 body {
     background-position: center;
     background-repeat: repeat-y;
@@ -11,29 +12,11 @@ body {
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
-    height: 100vh;
-}
-
-html {
-    height: 100vh;
 }
 
 
 /* Importing Bootstrap SCSS file. */
 
-@import '~bootstrap/scss/bootstrap';
-p {
-    font-size: 1vw;
-}
-
 ng-template {
     font-family: "Oxygen";
-}
-
-.box {
-    font-family: "Oxygen";
-}
-
-i {
-    font-size: 1.3vw;
 }

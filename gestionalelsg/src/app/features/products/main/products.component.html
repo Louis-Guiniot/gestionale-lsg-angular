@@ -41,14 +41,14 @@
                 <ng-template #elseBlock>
                     <tr>
                         <th scope="col">{{ prod.id }}</th>
-                        <td>{{ prod.codeProduct }}</td>
+                        <td>{{ prod.codeProduct | lowercase }}</td>
                         <td>{{ prod.description }}</td>
                         <td>{{ prod.price }}</td>
                         <td>{{ prod.measureUnit }}</td>
                         <td>{{ prod.scontoProd }}</td>
                         <td>
                             <button class="btn" id="btn-edit" (click)="open(update, prod.id, prod.name)">
-                                <i class="bi bi-pencil-square"></i>
+                                <i class="bi bi-wrench"></i>
                             </button>
                         </td>
                         <td>
@@ -73,7 +73,7 @@
                         <td>{{ prod.scontoProd }}</td>
                         <td>
                             <button class="btn" id="btn-edit" (click)="open(update, prod.id, prod.name)">
-                                <i class="bi bi-pencil-square"></i>
+                                <i class="bi bi-wrench"></i>
                             </button>
                         </td>
                         <td>
@@ -255,10 +255,10 @@
         </button>
     </div>
     <div class="modal-body">
-        <form (ngSubmit)="deleteProd()">
+        <form [formGroup]="createProductForm" (ngSubmit)="deleteProd()">
             <p>are you sure to delete customer : <b>{{ nameD }}</b> ?</p>
-            <ngb-accordion #acc="ngbAccordion" acitvateIds="custom-panel-0">
-                <ngb-panel id="custom-panel-0">
+            <ngb-accordion #acc="ngbAccordion" acitvateIds="custom-panel-1">
+                <ngb-panel id="custom-panel-1">
                     <ng-template ngbPanelHeader let-opened="opened">
                         <div class="d-flex align-items-center justify-content-between">
                             <b>Customer detail</b>
@@ -311,11 +311,8 @@
                                                 <div class="input-group-prepend">
                                                     <span class="input-group-text" id="basic-addon1">misura</span>
                                                 </div>
-                                                <select class="form-control" aria-label="Default select example" formControlName="measureUnit" readonly>
-                                                    <option *ngFor="let measure of measures | async" value="{{ measure.type }}">
-                                                        {{ measure.type }}
-                                                    </option>
-                                                </select>
+                                                <input type="text" class="form-control" formControlName="measureUnit" placeholder="{{ prod.measureUnit }}" id="sede" autocomplete="off" aria-label="Username" aria-describedby="basic-addon1" readonly/>
+
                                             </div>
                                         </div>
                                     </div>

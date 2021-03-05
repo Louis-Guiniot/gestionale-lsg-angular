@@ -40,7 +40,7 @@ export class MeasureUnitComponent implements OnInit {
 
 
     console.log("idN: "+this.idMnumber+"    nameD: "+this.typeM)
-    this.modalService.open(content, { size: 'xl'}).result.then((result) => {
+    this.modalService.open(content, { size: 'l'}).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
     }, (reason) => {
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
