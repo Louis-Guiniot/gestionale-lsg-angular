@@ -8,16 +8,16 @@
 
     <div class="search">
         <form [formGroup]="cercaForm" (ngSubmit)="searchTerm()">
-            <div class="input-group mb-3">
-                <input type="text" class="form-control" formControlName="termine" placeholder="parola da cercare" aria-label="Recipient's username" aria-describedby="button-addon2">
-                <div class="input-group-append">
-                    <button type="submit" class="btn" id="btn-edit" [disabled]="cercaForm.invalid"><i class="bi bi-search"
-                            id="searchIcon"></i></button>
-                    <button type="reset" class="btn btn-outline-danger" [disabled]="cercaForm.invalid" (click)="resetSearchBar()"><i class="bi bi-x-square-fill"
-                            id="searchIcon"></i></button>
-                </div>
-            </div>
-
+            <span class="input-group has-float-label">
+                    <input type="text" class="form-control" formControlName="temrine" placeholder="inserire la parola da cercare" autocomplete="off" aria-describedby="basic-addon1 ">
+                    <label for="description">Ricerca</label>
+                    <div class="input-group-append">
+                        <button type="submit" class="btn" [disabled]="cercaForm.invalid"><i class="bi bi-search"
+                                id="searchIcon"></i></button>
+                        <button type="reset" class="btn btn-outline-danger" [disabled]="cercaForm.invalid" (click)="resetSearchBar()"><i class="bi bi-x-square-fill"
+                                id="searchIcon"></i></button>
+                    </div>
+                </span>
         </form>
     </div>
 
@@ -96,7 +96,7 @@
 
 <ng-template #insert let-modal>
     <div class="modal-header">
-        <h4 class="modal-title" id="modal-basic-title">Creazione Misura</h4>
+        <h4 class="modal-title" id="modal-basic-title">CREAZIONE MISURA</h4>
         <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
             <span aria-hidden="true">&times;</span>
         </button>
@@ -122,7 +122,7 @@
 
 <ng-template #update let-modal>
     <div class="modal-header">
-        <h4 class="modal-title" id="modal-basic-title">Aggiornamento misura</h4>
+        <h4 class="modal-title" id="modal-basic-title">AGGIORNAMENTO MISURA</h4>
         <button type="button" class="close" id="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
             <span aria-hidden="true">&times;</span>
         </button>
@@ -137,7 +137,7 @@
                             <div class="form-group mb-3">
                                 <span class="form-group has-float-label">
                                     <select class="form-control" aria-label="Default select example" formControlName="vecchio">
-                                        <option *ngIf="measure.id == idMnumber" value="{{ measure.id }}" selected>
+                                        <option *ngIf="measure.id == idMnumber" value="{{ measure.id }}">
                                                     {{ measure.type }}  
                                         </option>
                                     </select>                                    
@@ -174,7 +174,7 @@
 
 <ng-template #delete let-modal>
     <div class="modal-header">
-        <h4 class="modal-title" id="modal-basic-title">Eliminazione misura</h4>
+        <h4 class="modal-title" id="modal-basic-title">ELIMINAZIONE MISURA</h4>
         <button type="button" class="close" id="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
             <span aria-hidden="true">&times;</span>
         </button>
