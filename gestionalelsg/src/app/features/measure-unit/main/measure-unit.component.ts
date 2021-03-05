@@ -44,7 +44,9 @@ export class MeasureUnitComponent implements OnInit {
       this.closeResult = `Closed with: ${result}`;
     }, (reason) => {
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
-      this.createMeasureUnitForm.reset();
+      this.createMeasureUnitForm.reset()
+      this.updateMeasureUnitForm.reset()
+      this.deleteMeasureUnitForm.reset()
 
     });
   }
@@ -76,12 +78,13 @@ export class MeasureUnitComponent implements OnInit {
 
     this.updateMeasureUnitForm=this.fb.group({
       vecchio: ['', Validators.required],
-      nuovo: ['', Validators.required],
-      tipo: ['', Validators.required]
+      nuovo: ['', Validators.required]
     })
+
     this.createMeasureUnitForm=this.fb.group({
       tipo: ['', Validators.required]
     })
+    
     this.deleteMeasureUnitForm=this.fb.group({
       id: ['', Validators.required]
     })
