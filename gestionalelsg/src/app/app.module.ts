@@ -20,6 +20,7 @@ import { SidebarModule } from '@syncfusion/ej2-angular-navigations';
 import { ButtonModule, RadioButtonModule } from '@syncfusion/ej2-angular-buttons';
 import { LoginComponent } from './features/login/main/login.component';
 import { SharedModule } from './shared/shared.module';
+import { PayConditionEffects } from './redux/paycondition/payCondition.effects';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { SharedModule } from './shared/shared.module';
       InvoicesEffects, 
       ProductsEffects,
       CustomerEffects,
-      MeasureEffects
+      MeasureEffects,
+      PayConditionEffects,
        
      ]
      ),
