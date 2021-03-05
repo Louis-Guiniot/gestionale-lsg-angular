@@ -157,7 +157,8 @@ export class TabbedInvoicesComponent implements OnInit{
       iva:['', Validators.required],
       ivaPrice:['', Validators.required],
       totMerce:['', Validators.required],
-      totServices:['', Validators.required]
+      totServices:['', Validators.required],
+      iva: ['', Validators.required]
     })
 
   }
@@ -197,7 +198,8 @@ export class TabbedInvoicesComponent implements OnInit{
                                        this.idItemsString, 
                                        this.invoiceUpdateForm.value.taxable,
                                        this.qntItemsString, 
-                                       this.invoiceUpdateForm.value.saleImport)
+                                       this.invoiceUpdateForm.value.saleImport,
+                                       this.invoiceUpdateForm.value.iva)
   }
 
   // searchTerm(){
