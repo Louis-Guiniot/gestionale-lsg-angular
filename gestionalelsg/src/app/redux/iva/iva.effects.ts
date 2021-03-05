@@ -18,8 +18,8 @@ export class IvaEffects {
     }
 
     
-    createIva(percentualeIva: string): Observable<Response>{
-        return this.http.retrievePostCall<Response>('iva/create',{percentualeIva});
+    createIva(percentualeIva: string,info:string): Observable<Response>{
+        return this.http.retrievePostCall<Response>('iva/create',{percentualeIva, info});
     }
 
     findUpdateIva(percentualeIva:string){
@@ -59,7 +59,8 @@ export class IvaEffects {
     createIva$: Observable<Action> = createEffect(() => this.actions$.pipe(
         ofType(createIva),
         switchMap((action) => this.createIva(
-            action.percentualeIva).pipe(
+            action.percentualeIva,
+            action.info).pipe(
             map((response) => initIva({ response }))
             ,tap(()=>this.router.navigateByUrl('/redirectiva'))
         ))

@@ -4,7 +4,7 @@ import { Response } from '../../core/model/Response.interface';
 
 
 
-export const createIva = createAction('[Iva] creazione iva', props<{percentualeIva: string}>());
+export const createIva = createAction('[Iva] creazione iva', props<{percentualeIva: string,info:string}>());
 export const retrieveAllIva = createAction('[Iva] iva');
 export const retrieveLastIva = createAction('[Iva] last iva');
 export const initIva = createAction('[Iva] initIiva', props<{response: Response}>());

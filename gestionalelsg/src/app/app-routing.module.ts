@@ -20,6 +20,7 @@ const routes: Routes = [
  
   { path: 'redirectmeasure', loadChildren: () => import('./redirects/measure/measure.module').then(m => m.MeasureModule) },
   { path: 'tabbed/invoices/found', loadChildren: () => import('./features/invoices-found/invoices-found.module').then(m => m.InvoicesFoundModule) },
+  { path: 'iva', loadChildren: () => import('./features/iva/iva.module').then(m => m.IvaModule) },
   
 
   
