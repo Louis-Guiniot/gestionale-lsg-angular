@@ -5,6 +5,7 @@ import { invoiceReducer, InvoiceState } from './invoice/invoice.reducers';
 import { customersReducer, CustomerState } from './customer/customer.reducers';
 import { measureReducer, MeasureState } from './measure/measure.reducers';
 import { ivaReducer, IvaState } from './iva/iva.reducers';
+import { payConditionReducer, PayConditionState } from './paycondition/payCondition.reducers';
 
 export interface AppState{
     router: RouterReducerState<any>;
@@ -13,6 +14,7 @@ export interface AppState{
     ivaState: IvaState;
     customerState: CustomerState;
     measureState: MeasureState;
+    payConditionState: PayConditionState
 }
 
 export const reducers: ActionReducerMap<AppState> = {
@@ -21,5 +23,6 @@ export const reducers: ActionReducerMap<AppState> = {
     invoiceState: invoiceReducer,
     ivaState: ivaReducer,
     customerState: customersReducer,
-    measureState: measureReducer
+    measureState: measureReducer,
+    payConditionState: payConditionReducer,
 }

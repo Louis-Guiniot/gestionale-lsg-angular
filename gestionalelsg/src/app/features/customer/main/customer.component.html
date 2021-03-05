@@ -27,10 +27,8 @@
 
     <div class="grid-table">
         <table class="table table-hover">
+            <caption>Tabella clienti</caption>
             <thead>
-                <tr>
-                    <th scope="col" colspan="9" class="text-center">clienti</th>
-                </tr>
                 <tr>
                     <th scope="col">ID</th>
                     <th scope="col">NOME</th>
@@ -116,7 +114,7 @@
 
 <ng-template #content let-modal>
     <div class="modal-header">
-        <h4 class="modal-title" id="modal-basic-title">Customer creation</h4>
+        <h4 class="modal-title" id="modal-basic-title">CREAZIONE CLIENTE</h4>
         <button type="button" class="close" id="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
             <span aria-hidden="true">&times;</span>
         </button>
@@ -179,7 +177,7 @@
 <ng-template #update let-modal>
     <div class="modal-header">
         <h4 class="modal-title" id="modal-basic-title">
-            Customer update : {{ nameD }}
+            AGGIORNAMENTO CLIENTE
         </h4>
         <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
             <span aria-hidden="true">&times;</span>
@@ -258,7 +256,7 @@
 <ng-template #delete let-modal>
     <div class="modal-header">
         <h4 class="modal-title" id="modal-basic-title">
-            Deleting customer
+            ELIMINAZIONE PRODOTTO
         </h4>
         <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
             <span aria-hidden="true">&times;</span>
@@ -266,12 +264,12 @@
     </div>
     <div class="modal-body">
         <form [formGroup]="customerForm" (ngSubmit)="deleteCust()">
-            <p>are you sure to delete customer : <b>{{ nameD }}</b> ?</p>
+            <p>Sei sicuro di voler eliminare il cliente : <b>{{ nameD }}</b> ?</p>
             <ngb-accordion #acc="ngbAccordion" acitvateIds="custom-panel-1">
                 <ngb-panel id="custom-panel-1">
                     <ng-template ngbPanelHeader let-opened="opened">
                         <div class="d-flex align-items-center justify-content-between">
-                            <b>Customer detail</b>
+                            <b>DETTAGLIO CLIENTE</b>
                             <button ngbPanelToggle id="btn-toggle">
                                 {{ opened ? "close" : "open" }}
                             </button>

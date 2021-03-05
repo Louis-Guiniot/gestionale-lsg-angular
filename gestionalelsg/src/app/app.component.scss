@@ -146,11 +146,7 @@ li {
 }
 
 i {
-    transition-duration: 0.3s;
-    &:hover {
-        cursor: pointer;
-        font-size: 4vw;
-    }
+    cursor: pointer;
 }
 
 ul {
