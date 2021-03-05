@@ -162,17 +162,18 @@ export class TabbedInvoicesComponent implements OnInit {
     this.invoiceUpdateForm = this.fb.group({
       custId: ['', Validators.required],
       date: ['', Validators.required],
-      payCondition: ['', Validators.required],
-      docType: ['', Validators.required],
-      sale: ['', Validators.required],
-      articles: ['', Validators.required],
-      taxable: ['', Validators.required],
-      quantity: ['', Validators.required],
-      saleImport: ['', Validators.required],
-      iva: ['', Validators.required],
-      ivaPrice: ['', Validators.required],
-      totMerce: ['', Validators.required],
-      totServices: ['', Validators.required]
+      payCondition:['', Validators.required],
+      docType:['', Validators.required],
+      sale:['', Validators.required],
+      articles:['', Validators.required],
+      taxable:['', Validators.required],
+      quantity:['', Validators.required],
+      saleImport:['', Validators.required],
+      iva:['', Validators.required],
+      ivaPrice:['', Validators.required],
+      totMerce:['', Validators.required],
+      totServices:['', Validators.required],
+      iva: ['', Validators.required]
     })
   }
 
@@ -204,14 +205,15 @@ export class TabbedInvoicesComponent implements OnInit {
 
     console.log("id customer che mi fa piangere: ", this.invoiceUpdateForm.value.custId)
     this.invoicesService.updateInvoice(this.idS.toString(),
-      this.invoiceUpdateForm.value.custId,
-      this.invoiceUpdateForm.value.payCondition,
-      this.invoiceUpdateForm.value.docType,
-      this.invoiceUpdateForm.value.sale,
-      this.idItemsString,
-      this.invoiceUpdateForm.value.taxable,
-      this.qntItemsString,
-      this.invoiceUpdateForm.value.saleImport)
+                                       this.invoiceUpdateForm.value.custId, 
+                                       this.invoiceUpdateForm.value.payCondition, 
+                                       this.invoiceUpdateForm.value.docType, 
+                                       this.invoiceUpdateForm.value.sale, 
+                                       this.idItemsString, 
+                                       this.invoiceUpdateForm.value.taxable,
+                                       this.qntItemsString, 
+                                       this.invoiceUpdateForm.value.saleImport,
+                                       this.invoiceUpdateForm.value.iva)
   }
 
   // searchTerm(){
