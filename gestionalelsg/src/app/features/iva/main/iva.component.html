@@ -1,1 +1,168 @@
-<p>iva works!</p>
+<div class="box">
+
+    <div class="grid-btn">
+        <button class="btn btn-sm" id="btn-insert" (click)="open(insert)">
+            <i class="bi bi-plus"></i>
+        </button>
+    </div>
+
+    <div class="search">
+        <form [formGroup]="cercaForm" (ngSubmit)="searchTerm()">
+            <div class="input-group mb-3">
+                <input percentualeIva="text" class="form-control" formControlName="termine" placeholder="parola da cercare" aria-label="Recipient's username" aria-describedby="button-addon2">
+                <div class="input-group-append">
+                    <button percentualeIva="submit" class="btn" id="btn-edit" [disabled]="cercaForm.invalid"><i class="bi bi-search"
+                            id="searchIcon"></i></button>
+                    <button percentualeIva="reset" class="btn btn-outline-danger" [disabled]="cercaForm.invalid" (click)="resetSearchBar()"><i class="bi bi-x-square-fill"
+                            id="searchIcon"></i></button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+
+    <div class="grid-table">
+        <table class="table table-hover">
+            <caption>Tabella misure</caption>
+            <thead>
+                <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Misura</th>
+                    <th scope="col" id="th-btn">&nbsp;</th>
+                    <th scope="col" id="th-btn">&nbsp;</th>
+                </tr>
+            </thead>
+            <tbody *ngFor="let iva of ivaList | async | slice: (page-1) * pageSize : page * pageSize;">
+
+                <div *ngIf="term==='null'; then elseBlock"></div>
+                <ng-template #elseBlock>
+                    <tr>
+                        <th scope="row">{{ iva.id }}</th>
+                        <td>{{ iva.percentualeIva }}</td>
+                        <td>
+                            <button class="btn btn-sm" id="btn-edit" (click)="open(update, iva.id, iva.percentualeIva)">
+                                <i class="bi bi-wrench"></i>
+                            </button>
+                        </td>
+                        <td>
+                            <button class="btn btn-outline-danger btn-sm" id="btn" (click)="open(delete, iva.id, iva.percentualeIva)">
+                                <i class="bi bi-trash-fill"></i>
+                            </button>
+
+                        </td>
+                    </tr>
+                </ng-template>
+
+                <!-- ricerca su id non posso, è un int -->
+                <!-- problema : con slice paginazione non riempie le prime pagine. i record rimangono al loro posto. MA FIXATO settando dimensione tabella 1000 ivai ad ogni ricerca -->
+                <div *ngIf="(iva.percentualeIva.toLowerCase().includes(term.toLowerCase())); then thenBlock"></div>
+                <ng-template #thenBlock>
+                    <tr>
+                        <th scope="row">{{ iva.id }}</th>
+                        <td>{{ iva.percentualeIva }}</td>
+                        <td>
+                            <button class="btn btn-sm" id="btn-edit" (click)="open(update, iva.id, iva.name)">
+                                <i class="bi bi-wrench"></i>
+                            </button>
+                        </td>
+                        <td>
+                            <button class="btn btn-outline-danger btn-sm" id="btn" (click)="open(delete, iva.id, iva.name)">
+                                <i class="bi bi-trash-fill"></i>
+                            </button>
+
+                        </td>
+                    </tr>
+                </ng-template>
+
+            </tbody>
+        </table>
+
+        <div class="d-flex justify-content-between p-2">
+            <ngb-pagination [(page)]="page" [pageSize]="pageSize" [collectionSize]="collectionSize" class="pagination">
+            </ngb-pagination>
+
+            <select class="custom-select" style="width: auto" name="pageSize" [(ngModel)]="pageSize">
+                <option [ngValue]="2">2 ivai per pagina</option>
+                <option [ngValue]="4">4 ivai per pagina</option>
+                <option [ngValue]="6">6 ivai per pagina</option>
+                <option [ngValue]="10">10 ivai per pagina</option>
+                <option [ngValue]="1000">1000 ivai per pagina</option>
+            </select>
+        </div>
+
+    </div>
+</div>
+
+<ng-template #insert let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">CREAZIONE MISURA</h4>
+        <button percentualeIva="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <form [formGroup]="createIva" (ngSubmit)="create()">
+        <div class="modal-body">
+
+            <div class="form-group md-3">
+                <div class="row">
+                    <div class="col">
+                        <span class="form-group has-float-label">
+                            <input percentualeIva="text " class="form-control " formControlName="percentualeIva" placeholder="insert new measure " id="sede " autocomplete="off" aria-describedby="basic-addon1 ">
+                            <label for="description">Tipo misura</label>
+                        </span>
+                    </div>
+                    <div class="col">
+                        <span class="form-group has-float-label">
+                            <input percentualeIva="text " class="form-control " formControlName="info" placeholder="insert new measure " id="sede " autocomplete="off" aria-describedby="basic-addon1 ">
+                            <label for="description">Tipo misura</label>
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="modal-footer">
+            <button percentualeIva="submit " class="btn " id="btn-modal-edit" (click)="modal.close( 'Save click') " ngbTooltip="Insert" [disabled]="createIva.invalid">
+                <i class="bi bi-save "></i>
+            </button>
+            <button percentualeIva="button " class="btn btn-outline-danger" (click)="modal.dismiss( 'Cross click') " ngbTooltip="Exit">
+                <i class="bi bi-arrow-bar-right "></i>
+            </button>
+        </div>
+    </form>
+</ng-template>
+
+<ng-template #delete let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">ELIMINAZIONE MISURA</h4>
+        <button percentualeIva="button" class="close" id="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <form [formGroup]="deleteIva" (ngSubmit)="deleteM()">
+            <div *ngFor="let measure of measures | async">
+                <div *ngIf="measure.id == idMnumber">
+
+                    <span class="form-group has-float-label">
+                            <select class="form-control" aria-label="Default select example" formControlName="id">
+                                <option *ngIf="measure.id == idMnumber" value="{{ measure.id }}" selected>
+                                            {{ measure.percentualeIva }}  
+                                </option>
+                            </select>
+                            <label for="description">Misura da eliminare</label>
+                        </span>
+
+                    <div class="modal-footer">
+                        <button percentualeIva="submit" class="btn" id="btn-modal-edit" (click)="modal.close('Save click')" ngbTooltip="Save" [disabled]="deleteIva.invalid">
+                            <i class="bi bi-save"></i>
+                        </button>
+                        <button percentualeIva="button" class="btn btn-outline-danger" (click)="modal.dismiss('Cross click')" ngbTooltip="Exit">
+                            <i class="bi bi-arrow-bar-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</ng-template>

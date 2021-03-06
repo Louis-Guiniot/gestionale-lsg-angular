@@ -3,13 +3,15 @@ import { CommonModule } from '@angular/common';
 
 import { IvaRoutingModule } from './iva-routing.module';
 import { IvaComponent } from './main/iva.component';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 
 @NgModule({
   declarations: [IvaComponent],
   imports: [
     CommonModule,
-    IvaRoutingModule
+    IvaRoutingModule,
+    SharedModule,
   ]
 })
 export class IvaModule { }
