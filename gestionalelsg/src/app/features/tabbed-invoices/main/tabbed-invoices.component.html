@@ -56,7 +56,7 @@
                     </tr>
                 </ng-template>
 
-                <div *ngIf="(inv.idCustomer.toLowerCase().includes(term.toLowerCase())||inv.codeInvoice.toLowerCase().includes(term.toLowerCase())||inv.condizionePagamento.toLowerCase().includes(term.toLowerCase())||inv.dateTime.toLowerCase().includes(term.toLowerCase())||inv.fields.toLowerCase().includes(term.toLowerCase())||inv.imponibile.toLowerCase().includes(term.toLowerCase())||inv.importoSconto.toLowerCase().includes(term.toLowerCase())||inv.iva.toLowerCase().includes(term.toLowerCase())||inv.ivaPrice.toLowerCase().includes(term.toLowerCase())||inv.quantita.toLowerCase().includes(term.toLowerCase())||inv.sconto.toLowerCase().includes(term.toLowerCase())||inv.tipoDocumento.toLowerCase().includes(term.toLowerCase())||inv.totaleMerci.toLowerCase().includes(term.toLowerCase())||inv.totaleServizi.toLowerCase().includes(term.toLowerCase())); then thenBlock">
+                <div *ngIf="(inv.idCustomer.toLowerCase().includes(term)||inv.codeInvoice.toLowerCase().includes(term)||inv.condizionePagamento.toLowerCase().includes(term)||inv.dateTime.toLowerCase().includes(term)||inv.fields.toLowerCase().includes(term)||inv.imponibile.toLowerCase().includes(term)||inv.importoSconto.toLowerCase().includes(term)||inv.iva.toLowerCase().includes(term)||inv.ivaPrice.toLowerCase().includes(term)||inv.quantita.toLowerCase().includes(term)||inv.sconto.toLowerCase().includes(term)||inv.tipoDocumento.toLowerCase().includes(term)||inv.totaleMerci.toLowerCase().includes(term)||inv.totaleServizi.toLowerCase().includes(term)); then thenBlock">
                 </div>
                 <ng-template #thenBlock>
                     <tr>

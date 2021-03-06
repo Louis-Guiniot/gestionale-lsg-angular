@@ -222,6 +222,7 @@ export class TabbedInvoicesComponent implements OnInit {
 
   searchTerm() {
     this.term = this.cercaForm.value.termine
+    this.term = this.term.toLowerCase();
     console.log("cerco con termine: ", this.term)
     this.pageSize = 1000
   }
@@ -267,14 +268,5 @@ export class TabbedInvoicesComponent implements OnInit {
     }
 
   }
-
-  
-    public focusIn(target: HTMLElement): void {
-        target.parentElement.classList.add('e-input-focus');
-    }
-
-    public focusOut(target: HTMLElement): void {
-        target.parentElement.classList.remove('e-input-focus');
-    }
 
 }
