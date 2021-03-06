@@ -173,7 +173,6 @@ export class TabbedInvoicesComponent implements OnInit {
       ivaPrice:['', Validators.required],
       totMerce:['', Validators.required],
       totServices:['', Validators.required],
-      iva: ['', Validators.required]
     })
   }
 
