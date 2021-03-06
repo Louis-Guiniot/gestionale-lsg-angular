@@ -16,6 +16,11 @@ import { ProductsService } from '../../products/service/products.service';
 import { TabbedInvoicesService } from '../services/tabbed-invoices.service';
 
 import {Input} from '@syncfusion/ej2-inputs';
+import { PayCondition } from 'src/app/core/model/PayCondition.interface';
+import { selectPayCondition } from 'src/app/redux/paycondition';
+import { IvaService } from '../../iva/service/iva.service';
+import { Iva } from 'src/app/core/model/Iva.interface';
+import { selectIva } from 'src/app/redux/iva';
 
 
 export interface ExampleTab {
@@ -80,10 +85,12 @@ export class TabbedInvoicesComponent implements OnInit {
   @ViewChild('staticAlert', { static: false }) staticAlert: NgbAlert;
   @ViewChild('selfClosingAlert', { static: false }) selfClosingAlert: NgbAlert;
 
-  constructor(private store: Store, private router: Router, private productService: ProductsService, private route: Router, private invoicesService: TabbedInvoicesService, private customerService: CustomerService, private fb: FormBuilder, private modalService: NgbModal) {
+  constructor(private store: Store, private router: Router, private productService: ProductsService, private route: Router, private invoicesService: TabbedInvoicesService, private ivaService: IvaService, private customerService: CustomerService, private fb: FormBuilder, private modalService: NgbModal) {
     this.invoicesService.retrieveAllInvoices()
     this.customerService.retreiveAllCustomers()
     this.productService.retrieveAllProducts()
+    this.invoicesService.retreiveAllPayConditions()
+    this.ivaService.retrieveAllIva()
   }
 
   openXL(content, idCust?: string, name?: string) {
@@ -190,6 +197,14 @@ export class TabbedInvoicesComponent implements OnInit {
     return this.store.pipe(select(selectProducts))
   }
 
+  get conditions(): Observable<PayCondition[]> {
+    return this.store.pipe(select(selectPayCondition))
+  }
+
+  get ivaList(): Observable<Iva[]>{
+    return this.store.pipe(select(selectIva))
+  }
+
   create() {
     this.invoicesService.create(this.invoiceInsertForm.value.custId,
       this.invoiceInsertForm.value.payCondition, this.invoiceInsertForm.value.docType,
@@ -204,6 +219,7 @@ export class TabbedInvoicesComponent implements OnInit {
 
     console.log("id customer che mi fa piangere: ", this.invoiceUpdateForm.value.custId)
     this.invoicesService.updateInvoice(this.idS.toString(),
+
                                        this.invoiceUpdateForm.value.custId, 
                                        this.invoiceUpdateForm.value.payCondition, 
                                        this.invoiceUpdateForm.value.docType, 
@@ -212,8 +228,9 @@ export class TabbedInvoicesComponent implements OnInit {
                                        this.invoiceUpdateForm.value.taxable,
                                        this.qntItemsString, 
                                        this.invoiceUpdateForm.value.saleImport,
-                                       this.invoiceUpdateForm.value.iva)
-  }
+                                       this.invoiceUpdateForm.value.iva
+                                       
+                                       )}
 
   // searchTerm(){
   //   console.log("cerco")
@@ -264,8 +281,9 @@ export class TabbedInvoicesComponent implements OnInit {
 
       this.prodCount = 0
 
-      this.invoiceInsertProd.reset()
     }
+
+    this.invoiceInsertProd.reset()
 
   }
 
