@@ -118,8 +118,8 @@ export class InvoicesEffects {
     //     ))
     // ));
 
-    updateInvoice(idS: string, custId: string, payCondition: string, docType: string, sale: string, idItemsString: string, taxable: string, qntItemsString: string, saleImport: string): Observable<Response>{
-        return this.http.retrievePostCall<Response>('invoice/update',{idS, custId, payCondition, docType, sale, idItemsString, taxable, qntItemsString, saleImport});
+    updateInvoice(idS: string, custId: string, payCondition: string, docType: string, sale: string, idItemsString: string, taxable: string, qntItemsString: string, saleImport: string, iva: string): Observable<Response>{
+        return this.http.retrievePostCall<Response>('invoice/update',{idS, custId, payCondition, docType, sale, idItemsString, taxable, qntItemsString, saleImport, iva});
     }
     
     updateInvoice$: Observable<Action> = createEffect(() => this.actions$.pipe(
@@ -133,7 +133,8 @@ export class InvoicesEffects {
             action.idItemsString,
             action.taxable,
             action.qntItemsString,
-            action.saleImport).pipe(
+            action.saleImport,
+            action.iva).pipe(
             map((response) => initInvoices({ response })),
            tap(()=>this.router.navigateByUrl('/redirectinvoices'))
         ))
