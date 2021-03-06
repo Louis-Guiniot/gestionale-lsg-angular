@@ -28,7 +28,7 @@
                 <tr>
                     <th scope="col">Id</th>
                     <th scope="col">Iva</th>
-                    <th scope="col" id="th-btn">&nbsp;</th>
+                    <th scope="col">Info</th>
                     <th scope="col" id="th-btn">&nbsp;</th>
                 </tr>
             </thead>
@@ -39,13 +39,9 @@
                     <tr>
                         <th scope="row">{{ iva.id }}</th>
                         <td>{{ iva.percentualeIva }}</td>
+                        <td>{{ iva.info}} </td>
                         <td>
-                            <button class="btn btn-sm" id="btn-edit" (click)="open(update, iva.id, iva.percentualeIva)">
-                                <i class="bi bi-wrench"></i>
-                            </button>
-                        </td>
-                        <td>
-                            <button class="btn btn-outline-danger btn-sm" id="btn" (click)="open(delete, iva.id, iva.percentualeIva)">
+                            <button class="btn btn-outline-danger btn-sm" id="btn" (click)="open(delete, iva.id)">
                                 <i class="bi bi-trash-fill"></i>
                             </button>
 
@@ -55,11 +51,12 @@
 
                 <!-- ricerca su id non posso, è un int -->
                 <!-- problema : con slice paginazione non riempie le prime pagine. i record rimangono al loro posto. MA FIXATO settando dimensione tabella 1000 iva ad ogni ricerca -->
-                <div *ngIf="(iva.percentualeIva.toLowerCase().includes(term.toLowerCase())); then thenBlock"></div>
+                <div *ngIf="(iva.percentualeIva.toLowerCase().includes(term)); then thenBlock"></div>
                 <ng-template #thenBlock>
                     <tr>
                         <th scope="row">{{ iva.id }}</th>
                         <td>{{ iva.percentualeIva }}</td>
+                        <td>{{ iva.info}} </td>
                         <td>
                             <button class="btn btn-outline-danger btn-sm" id="btn" (click)="open(delete, iva.id)">
                                 <i class="bi bi-trash-fill"></i>
@@ -135,28 +132,15 @@
         </button>
     </div>
     <div class="modal-body">
-        <form [formGroup]="deleteIva" (ngSubmit)="deleteM()">
-            <div *ngFor="let measure of measures | async">
-                <div *ngIf="measure.id == idMnumber">
+        <form [formGroup]="deleteIva" (ngSubmit)="deleteIvaById()">
 
-                    <span class="form-group has-float-label">
-                            <select class="form-control" aria-label="Default select example" formControlName="id">
-                                <option *ngIf="measure.id == idMnumber" value="{{ measure.id }}" selected>
-                                            {{ measure.percentualeIva }}  
-                                </option>
-                            </select>
-                            <label for="description">Iva da eliminare</label>
-                        </span>
-
-                    <div class="modal-footer">
-                        <button percentualeIva="submit" class="btn" id="btn-modal-edit" (click)="modal.close('Save click')" ngbTooltip="Save" [disabled]="deleteIva.invalid">
+            <div class="modal-footer">
+                <button percentualeIva="submit" class="btn" id="btn-modal-edit" (click)="modal.close('Save click')" ngbTooltip="Save">
                             <i class="bi bi-save"></i>
                         </button>
-                        <button percentualeIva="button" class="btn btn-outline-danger" (click)="modal.dismiss('Cross click')" ngbTooltip="Exit">
+                <button percentualeIva="button" class="btn btn-outline-danger" (click)="modal.dismiss('Cross click')" ngbTooltip="Exit">
                             <i class="bi bi-arrow-bar-right"></i>
                         </button>
-                    </div>
-                </div>
             </div>
         </form>
     </div>

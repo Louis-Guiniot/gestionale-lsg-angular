@@ -69,8 +69,8 @@ export class IvaComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.store.pipe(select(selectMeasures)).subscribe((measures) => {
-      this.collectionSize=measures.length;
+    this.store.pipe(select(selectIva)).subscribe((ivas) => {
+      this.collectionSize=ivas.length;
     })
 
     this.cercaForm=this.fb.group({
@@ -98,14 +98,16 @@ export class IvaComponent implements OnInit {
     this.ivaService.createIva(this.createIva.value.percentualeIva,this.createIva.value.info)
   }
 
-  deleteM(){
+  deleteIvaById(){
     console.log("delete")
-    this.ivaService.deleteIva(this.deleteIva.value.id)
+    console.log(this.idMstring)
+    this.ivaService.deleteIva(this.idMstring.toString())
 
   }
 
   searchTerm(){
     this.term = this.cercaForm.value.termine
+    this.term = this.term.toLowerCase();
     console.log("cerco con termine: ",this.term)
 
     //per evitare errore paginazione

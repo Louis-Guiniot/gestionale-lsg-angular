@@ -22,10 +22,12 @@ import { LoginComponent } from './features/login/main/login.component';
 import { SharedModule } from './shared/shared.module';
 import { PayConditionEffects } from './redux/paycondition/payCondition.effects';
 import { IvaEffects } from './redux/iva/iva.effects';
+import { IvaComponent } from './redirects/iva/iva.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    IvaComponent,
 
   ],
   imports: [
