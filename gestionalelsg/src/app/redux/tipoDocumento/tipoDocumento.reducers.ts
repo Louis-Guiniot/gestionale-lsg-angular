@@ -1,5 +1,5 @@
 import { Action, createReducer, on } from '@ngrx/store';
-import { tipoDocumento } from 'src/app/core/model/TipoDocumento.interface';
+import { DocumentType } from 'src/app/core/model/DocumentType.interface';
 import { initTipoDocumentoFounds, initTipoDocumento } from './tipoDocumento.actions';
 
 export interface TipoDocumentoState { 
