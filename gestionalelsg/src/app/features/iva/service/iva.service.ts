@@ -16,6 +16,8 @@ export class IvaService {
 
   createIva(percentualeIva: string, info:string){
     console.log("service iva")
+    console.log("percentuale iva service ",percentualeIva)
+    console.log("info iva service ",info)
     this.store.dispatch(createIva({percentualeIva, info}))
   }
 

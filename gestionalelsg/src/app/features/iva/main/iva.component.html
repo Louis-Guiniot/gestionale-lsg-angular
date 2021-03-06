@@ -27,7 +27,7 @@
             <thead>
                 <tr>
                     <th scope="col">Id</th>
-                    <th scope="col">Misura</th>
+                    <th scope="col">iva</th>
                     <th scope="col" id="th-btn">&nbsp;</th>
                     <th scope="col" id="th-btn">&nbsp;</th>
                 </tr>
@@ -95,7 +95,7 @@
 
 <ng-template #insert let-modal>
     <div class="modal-header">
-        <h4 class="modal-title" id="modal-basic-title">CREAZIONE MISURA</h4>
+        <h4 class="modal-title" id="modal-basic-title">CREAZIONE IVA</h4>
         <button percentualeIva="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
             <span aria-hidden="true">&times;</span>
         </button>
@@ -108,13 +108,13 @@
                     <div class="col">
                         <span class="form-group has-float-label">
                             <input percentualeIva="text " class="form-control " formControlName="percentualeIva" placeholder="insert new measure " id="sede " autocomplete="off" aria-describedby="basic-addon1 ">
-                            <label for="description">Tipo misura</label>
+                            <label for="description">percentuale IVA</label>
                         </span>
                     </div>
                     <div class="col">
                         <span class="form-group has-float-label">
                             <input percentualeIva="text " class="form-control " formControlName="info" placeholder="insert new measure " id="sede " autocomplete="off" aria-describedby="basic-addon1 ">
-                            <label for="description">Tipo misura</label>
+                            <label for="description">Tipo iva</label>
                         </span>
                     </div>
                 </div>
@@ -134,7 +134,7 @@
 
 <ng-template #delete let-modal>
     <div class="modal-header">
-        <h4 class="modal-title" id="modal-basic-title">ELIMINAZIONE MISURA</h4>
+        <h4 class="modal-title" id="modal-basic-title">ELIMINAZIONE iva</h4>
         <button percentualeIva="button" class="close" id="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
             <span aria-hidden="true">&times;</span>
         </button>
@@ -150,7 +150,7 @@
                                             {{ measure.percentualeIva }}  
                                 </option>
                             </select>
-                            <label for="description">Misura da eliminare</label>
+                            <label for="description">iva da eliminare</label>
                         </span>
 
                     <div class="modal-footer">
