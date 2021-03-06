@@ -21,14 +21,12 @@ import { ButtonModule, RadioButtonModule } from '@syncfusion/ej2-angular-buttons
 import { LoginComponent } from './features/login/main/login.component';
 import { SharedModule } from './shared/shared.module';
 import { PayConditionEffects } from './redux/paycondition/payCondition.effects';
-import { IvaEffects } from './redux/iva/iva.effects';
 import { IvaComponent } from './redirects/iva/iva.component';
+import { IvaEffects } from './redux/iva/iva.effects';
 
 @NgModule({
   declarations: [
     AppComponent,
-    IvaComponent,
-
   ],
   imports: [
     BrowserModule,
