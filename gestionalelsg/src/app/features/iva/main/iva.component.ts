@@ -48,7 +48,6 @@ export class IvaComponent implements OnInit {
     }, (reason) => {
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
       this.createIva.reset()
-      this.updateIva.reset()
       this.deleteIva.reset()
 
     });
@@ -60,8 +59,8 @@ export class IvaComponent implements OnInit {
     } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
       return 'by clicking on a backdrop';
     } else {
-      return `with: ${reason}`;
-    }
+    }      return `with: ${reason}`;
+
   }
 
   constructor(private ivaService: IvaService, private store: Store, private router: Router, private fb:FormBuilder, private modalService: NgbModal) {
@@ -70,10 +69,9 @@ export class IvaComponent implements OnInit {
 
   ngOnInit(): void {
 
-
-    // this.store.pipe(select(selectMeasures)).subscribe((measures) => {
-    //   this.collectionSize=measures.length;
-    // })
+    this.store.pipe(select(selectMeasures)).subscribe((measures) => {
+      this.collectionSize=measures.length;
+    })
 
     this.cercaForm=this.fb.group({
       termine: ['', Validators.required]
