@@ -381,25 +381,16 @@
                                     <thead>
                                         <tr>
                                             <th scope="col">Id</th>
-                                            <th scope="col">codice</th>
-                                            <th scope="col">descrizione</th>
-                                            <th scope="col">prezzo</th>
-                                            <th scope="col">unita' di misura</th>
-                                            <th scope="col">sconto</th>
+                                            <th scope="col">Qta</th>
                                             <th scope="col" id="th-btn">&nbsp;</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <th scope="col">id</th>
-                                            <td>code</td>
-                                            <td>description</td>
-                                            <td>price</td>
-                                            <td>measure</td>
-                                            <td>sale</td>
+                                            <th scope="col" *ngFor="let id of idItems">{{id}}</th>
+                                            <td *ngFor="let qta of qntItems">{{qta}}</td>
                                             <td>
                                                 <button class="btn" id="btn-edit">
-                                                    <i class="bi bi-plus"></i>
                                                 </button>
                                             </td>
                                         </tr>
@@ -429,27 +420,23 @@
                                 <div class="col">
                                     <div class="input-group mb-3">
                                         <div class="input-group-prepend">
-                                            <span class="input-group-text" id="basic-addon1">quantita'</span>
-                                        </div>
-                                        <input type="text" class="form-control" placeholder="{{inv.quantita}}" autocomplete="off" aria-describedby="basic-addon1" formControlName="quantity">
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <div class="input-group mb-3">
-                                        <div class="input-group-prepend">
                                             <span class="input-group-text" id="basic-addon1">importo sconto</span>
                                         </div>
                                         <input type="text" class="form-control" placeholder="{{inv.importoSconto}}" autocomplete="off" aria-describedby="basic-addon1" formControlName="saleImport">
                                     </div>
                                 </div>
+
+                                <div class="col">
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="basic-addon1">imponibile</span>
+                                        </div>
+                                        <input type="text" class="form-control" placeholder="{{inv.imponibile}}" autocomplete="off" aria-describedby="basic-addon1" formControlName="taxable">
+                                    </div>
+                                </div>
                             </div>
 
-                            <div class="input-group mb-3">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text" id="basic-addon1">imponibile</span>
-                                </div>
-                                <input type="text" class="form-control" placeholder="{{inv.imponibile}}" autocomplete="off" aria-describedby="basic-addon1" formControlName="taxable">
-                            </div>
+
                         </div>
 
                         <div class="tab-content">
@@ -586,17 +573,8 @@
                 <div class="col ">
                     <span class="form-group has-float-label">
                         <select class="form-control" aria-label="Default select example" aria-describedby="basic-addon1" formControlName="iva">
-                            <option value="22">
-                                22%
-                            </option>
-                            <option value="10">
-                                10%
-                            </option>
-                            <option value="4">
-                                4%
-                            </option>
-                            <option value="0">
-                                0%
+                            <option *ngFor="let iva of ivaList | async " value="{{iva.id}}">
+                                {{iva.percentualeIva}} - {{iva.info}}
                             </option>
                         </select>
                         <label>Iva</label>
@@ -615,9 +593,12 @@
                 </div>
                 <div class="col ">
                     <span class="form-group has-float-label">
-                        <input type="text " class="form-control" formControlName="payCondition"
-                            placeholder="inserisci la condizione di pagamamento" id="residenza " autocomplete="off"
-                            aria-describedby="basic-addon1 ">
+                        <select formControlName="payCondition" class="form-control" >
+                            <option selected>seleziona la condizione di pagamento da usare</option>
+                            <option *ngFor="let cond of conditions | async " value="{{cond.id}}">
+                                {{cond.condizione}}
+                            </option>
+                        </select>
                         <label for="description">Cond. pagamento</label>
                     </span>
                 </div>
