@@ -23,11 +23,11 @@
 
     <div class="grid-table">
         <table class="table table-hover">
-            <caption>Tabella misure</caption>
+            <caption>Tabella iva</caption>
             <thead>
                 <tr>
                     <th scope="col">Id</th>
-                    <th scope="col">Misura</th>
+                    <th scope="col">Iva</th>
                     <th scope="col" id="th-btn">&nbsp;</th>
                     <th scope="col" id="th-btn">&nbsp;</th>
                 </tr>
@@ -54,19 +54,14 @@
                 </ng-template>
 
                 <!-- ricerca su id non posso, è un int -->
-                <!-- problema : con slice paginazione non riempie le prime pagine. i record rimangono al loro posto. MA FIXATO settando dimensione tabella 1000 ivai ad ogni ricerca -->
+                <!-- problema : con slice paginazione non riempie le prime pagine. i record rimangono al loro posto. MA FIXATO settando dimensione tabella 1000 iva ad ogni ricerca -->
                 <div *ngIf="(iva.percentualeIva.toLowerCase().includes(term.toLowerCase())); then thenBlock"></div>
                 <ng-template #thenBlock>
                     <tr>
                         <th scope="row">{{ iva.id }}</th>
                         <td>{{ iva.percentualeIva }}</td>
                         <td>
-                            <button class="btn btn-sm" id="btn-edit" (click)="open(update, iva.id, iva.name)">
-                                <i class="bi bi-wrench"></i>
-                            </button>
-                        </td>
-                        <td>
-                            <button class="btn btn-outline-danger btn-sm" id="btn" (click)="open(delete, iva.id, iva.name)">
+                            <button class="btn btn-outline-danger btn-sm" id="btn" (click)="open(delete, iva.id)">
                                 <i class="bi bi-trash-fill"></i>
                             </button>
 
@@ -82,11 +77,11 @@
             </ngb-pagination>
 
             <select class="custom-select" style="width: auto" name="pageSize" [(ngModel)]="pageSize">
-                <option [ngValue]="2">2 ivai per pagina</option>
-                <option [ngValue]="4">4 ivai per pagina</option>
-                <option [ngValue]="6">6 ivai per pagina</option>
-                <option [ngValue]="10">10 ivai per pagina</option>
-                <option [ngValue]="1000">1000 ivai per pagina</option>
+                <option [ngValue]="2">2 iva per pagina</option>
+                <option [ngValue]="4">4 iva per pagina</option>
+                <option [ngValue]="6">6 iva per pagina</option>
+                <option [ngValue]="10">10 iva per pagina</option>
+                <option [ngValue]="1000">1000 iva per pagina</option>
             </select>
         </div>
 
@@ -95,7 +90,7 @@
 
 <ng-template #insert let-modal>
     <div class="modal-header">
-        <h4 class="modal-title" id="modal-basic-title">CREAZIONE MISURA</h4>
+        <h4 class="modal-title" id="modal-basic-title">CREAZIONE IVA</h4>
         <button percentualeIva="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
             <span aria-hidden="true">&times;</span>
         </button>
@@ -108,13 +103,13 @@
                     <div class="col">
                         <span class="form-group has-float-label">
                             <input percentualeIva="text " class="form-control " formControlName="percentualeIva" placeholder="insert new measure " id="sede " autocomplete="off" aria-describedby="basic-addon1 ">
-                            <label for="description">Tipo misura</label>
+                            <label for="description">Percentuale iva</label>
                         </span>
                     </div>
                     <div class="col">
                         <span class="form-group has-float-label">
                             <input percentualeIva="text " class="form-control " formControlName="info" placeholder="insert new measure " id="sede " autocomplete="off" aria-describedby="basic-addon1 ">
-                            <label for="description">Tipo misura</label>
+                            <label for="description">Info iva</label>
                         </span>
                     </div>
                 </div>
@@ -134,7 +129,7 @@
 
 <ng-template #delete let-modal>
     <div class="modal-header">
-        <h4 class="modal-title" id="modal-basic-title">ELIMINAZIONE MISURA</h4>
+        <h4 class="modal-title" id="modal-basic-title">ELIMINAZIONE IVA</h4>
         <button percentualeIva="button" class="close" id="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
             <span aria-hidden="true">&times;</span>
         </button>
@@ -150,7 +145,7 @@
                                             {{ measure.percentualeIva }}  
                                 </option>
                             </select>
-                            <label for="description">Misura da eliminare</label>
+                            <label for="description">Iva da eliminare</label>
                         </span>
 
                     <div class="modal-footer">
