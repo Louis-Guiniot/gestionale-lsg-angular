@@ -1,0 +1,23 @@
+@import "src/style/grid.scss";
+@import "src/style/buttons.scss";
+@import "src/style/pagination-table.scss";
+@import "src/style/modal.scss";
+@import "src/style/input.scss";
+@import "src/style/icons.scss";
+@import "src/style/other.scss";
+table {
+    font-size: 1.2vw;
+    width: auto;
+    border-collapse: collapse;
+}
+
+th,
+td {
+    text-align: center;
+}
+
+tr {
+    border-bottom: 1px rgb(217, 222, 226) solid;
+}
+
+#th-btn {}
