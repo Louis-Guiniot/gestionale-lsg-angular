@@ -16,6 +16,7 @@ import { IvaService } from '../service/iva.service';
   styleUrls: ['./iva.component.scss']
 })
 export class IvaComponent implements OnInit {
+  insertIvaForm: FormGroup;
 
 
   createIva: FormGroup;
@@ -94,7 +95,9 @@ export class IvaComponent implements OnInit {
 
   create(){
     console.log("add function ")
-    this.ivaService.createIva(this.createIva.value.percentuale,this.createIva.value.percent)
+    console.log("percentuale iva:",this.createIva.value.percentualeIva)
+    console.log("percentuale iva:",this.createIva.value.info)
+    this.ivaService.createIva(this.createIva.value.percentualeIva,this.createIva.value.info)
   }
 
   deleteM(){

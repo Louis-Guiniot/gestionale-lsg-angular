@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { retrieveAllInvoices } from 'src/app/redux/invoice/invoice.actions';
 import { createIva, deleteIva, retrieveAllIva } from 'src/app/redux/iva/iva.actions';
 
 @Injectable({
@@ -15,6 +14,9 @@ export class IvaService {
   }
 
   createIva(percentualeIva: string, info:string){
+    console.log("service iva")
+    console.log("percentuale iva service ",percentualeIva)
+    console.log("info iva service ",info)
     this.store.dispatch(createIva({percentualeIva, info}))
   }
 
