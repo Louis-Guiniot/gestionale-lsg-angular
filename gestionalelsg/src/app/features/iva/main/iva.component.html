@@ -1,1 +1,6 @@
-<p>iva works!</p>
+<form [formGroup]="insertIvaForm" (ngSubmit)="insertIva()">
+    percentuale: <input type="text" formControlName="percentualeIva">
+    <!-- non so come spiegare il concetto ma ci sono diversi tipi di iva -->
+    info: <input type="text" formControlName="info">
+    <button type="submit">invio</button>
+</form>
