@@ -5,22 +5,23 @@ import { Action } from "@ngrx/store";
 import { Observable } from "rxjs";
 import { map, switchMap } from "rxjs/operators";
 import { HttpCommunicationsService } from "src/app/core/HttpCommunications/http-communications.service";
-import { initPayCondition, retreiveAllPayConditions } from "./payCondition.actions";
+import { initPayConditions, retreiveAllPayConditions } from "./payCondition.actions";
+import { Response } from '../../core/model/Response.interface';
 
 @Injectable()
 export class PayConditionEffects {
 
     constructor(private actions$: Actions, private http: HttpCommunicationsService, private router: Router) { }
 
-    retrieveAllPayConditions(): Observable<Response> {
-        return this.http.retrieveGetCall<Response>("payCondition/findAll");
+    retreiveAllPaymentConditions(): Observable<Response> {
+        return this.http.retrieveGetCall<Response>("paycondition/findAll");
     }
 
-    // getAllPayConditions$: Observable<Action> = createEffect(() => this.actions$.pipe(
-    //     ofType(retreiveAllPayConditions),
-    //     switchMap(() => this.retrieveAllPayConditions().pipe(
-    //         map((response) => initPayCondition({ response }))
-    //     ))
-    // ));
+    getAllPayConditions$: Observable<Action> = createEffect(() => this.actions$.pipe(
+        ofType(retreiveAllPayConditions),
+        switchMap(() => this.retreiveAllPaymentConditions().pipe(
+            map((response) => initPayConditions({ response }))
+        ))
+    ));
 
 }

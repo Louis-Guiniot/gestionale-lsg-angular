@@ -1,7 +1,7 @@
 import {Action, ActionReducer, createReducer, on } from "@ngrx/store";
 import { Customer } from "src/app/core/model/Customer.interface";
 import { PayCondition } from "src/app/core/model/PayCondition.interface";
-import { initPayCondition } from "./payCondition.actions";
+import { initPayConditions } from "./payCondition.actions";
 
 
 export interface PayConditionState {
@@ -15,7 +15,7 @@ export const initialState: PayConditionState = {
 
 export const payConditionReducer = createReducer(
     initialState,
-    on(initPayCondition, (state, { response }) => ({ ...state, payConditions: response.result })),
+    on(initPayConditions, (state, { response }) => ({ ...state, payConditions: response.result })),
   
     
 );

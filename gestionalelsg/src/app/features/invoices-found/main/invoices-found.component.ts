@@ -107,7 +107,7 @@ export class InvoicesFoundComponent implements OnInit {
       iva: ['', Validators.required],
       ivaPrice: ['', Validators.required],
       totMerce: ['', Validators.required],
-      totServices: ['', Validators.required]
+      totServices: ['', Validators.required],
     })
 
     this.aRouter.queryParams.subscribe(params => {
@@ -132,7 +132,8 @@ export class InvoicesFoundComponent implements OnInit {
       this.invoiceUpdateForm.value.articles,
       this.invoiceUpdateForm.value.taxable,
       this.invoiceUpdateForm.value.quantity,
-      this.invoiceUpdateForm.value.saleImport)
+      this.invoiceUpdateForm.value.saleImport,
+      this.invoiceUpdateForm.value.iva)
   }
 
   get invoices(): Observable<Invoice[]> {

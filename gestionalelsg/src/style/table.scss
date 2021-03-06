@@ -1,0 +1,26 @@
+table {
+    font-size: 1.2vw;
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th,
+td {
+    text-align: left;
+}
+
+tr {
+    border-bottom: 1px rgb(217, 222, 226) solid;
+}
+
+#th-btn {
+    width: 7vw;
+}
+
+thead {
+    background-color: #012051;
+    border-radius: 25px;
+    border: 1px #012051 solid;
+    color: white;
+    text-transform: uppercase;
+}

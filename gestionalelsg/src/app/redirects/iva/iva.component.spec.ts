@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { InvoicesFoundComponent } from './invoices-found.component';
+import { IvaComponent } from './iva.component';
 
-describe('InvoicesFoundComponent', () => {
-  let component: InvoicesFoundComponent;
-  let fixture: ComponentFixture<InvoicesFoundComponent>;
+describe('IvaComponent', () => {
+  let component: IvaComponent;
+  let fixture: ComponentFixture<IvaComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ InvoicesFoundComponent ]
+      declarations: [ IvaComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(InvoicesFoundComponent);
+    fixture = TestBed.createComponent(IvaComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

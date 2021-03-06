@@ -72,6 +72,7 @@ export class CustomerEffects {
             action.residenza,
             action.name).pipe(
             map((response) => initCustomers({ response }))
+            // prova senza redirect
             ,tap(()=>this.router.navigateByUrl('/redirectcustomer'))
         ))
     ));

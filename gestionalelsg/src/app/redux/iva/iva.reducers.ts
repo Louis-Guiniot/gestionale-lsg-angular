@@ -16,7 +16,7 @@ export const initialState: IvaState = {
 export const ivaReducer = createReducer(
     initialState,
     on(initIva, (state, { response }) => ({ ...state, ivas: response.result })),
-    on(initIvaFounds, (state, { response }) => ({ ...state, ivas: response.result })),
+    //on(initIvaFounds, (state, { response }) => ({ ...state, ivas: response.result })),
     
 );
 //----//

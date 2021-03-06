@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { InvoicesFoundService } from './invoices-found.service';
+import { IvaService } from './iva.service';
 
-describe('InvoicesFoundService', () => {
-  let service: InvoicesFoundService;
+describe('IvaService', () => {
+  let service: IvaService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(InvoicesFoundService);
+    service = TestBed.inject(IvaService);
   });
 
   it('should be created', () => {

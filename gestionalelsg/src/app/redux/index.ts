@@ -17,6 +17,7 @@ export interface AppState{
     customerState: CustomerState;
     measureState: MeasureState;
     payConditionState: PayConditionState
+    
 }
 
 export const reducers: ActionReducerMap<AppState> = {
@@ -27,5 +28,5 @@ export const reducers: ActionReducerMap<AppState> = {
     tipoDocumentoState: tipoDocumentoReducer,
     customerState: customersReducer,
     measureState: measureReducer,
-    payConditionState: payConditionReducer,
+    payConditionState: payConditionReducer
 }
