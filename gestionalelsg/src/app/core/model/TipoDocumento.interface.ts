@@ -1,4 +1,4 @@
-export interface Iva{
+export interface tipoDocumento{
     id?: number;
-    tipo: string;
+    tipoDocumento: string;
 }

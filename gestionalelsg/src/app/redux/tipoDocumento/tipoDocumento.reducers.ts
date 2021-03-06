@@ -1,9 +1,9 @@
 import { Action, createReducer, on } from '@ngrx/store';
-import { Iva } from 'src/app/core/model/TipoDocumento.interface';
+import { tipoDocumento } from 'src/app/core/model/TipoDocumento.interface';
 import { initTipoDocumentoFounds, initTipoDocumento } from './tipoDocumento.actions';
 
 export interface TipoDocumentoState { 
-    tipoDocumento: TipoDocumento[]
+    tipoDocumento: DocumentType[]
 }
 
 

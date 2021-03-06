@@ -56,14 +56,14 @@ export class TipoDocumentoEffects {
         ))
     ));    
 
-    createTipoDocumento(tipo:string): Observable<Response>{
-        return this.http.retrievePostCall<Response>('tipoDocumento/create',{tipo});
+    createTipoDocumento(tipoDocumento:string): Observable<Response>{
+        return this.http.retrievePostCall<Response>('tipoDocumento/create',{tipoDocumento});
     }
     //idItemsString:string,qntItemsString: string
     createTipoDocumento$: Observable<Action> = createEffect(() => this.actions$.pipe(
         ofType(createTipoDocumento),
         switchMap((action) => this.createTipoDocumento(
-            action.tipo).pipe(
+            action.tipoDocumento).pipe(
             map((response) => initTipoDocumento({ response })),
            tap(()=>this.router.navigateByUrl('/redirecttipoDocumento'))
         ))

@@ -6,7 +6,7 @@ import { customersReducer, CustomerState } from './customer/customer.reducers';
 import { measureReducer, MeasureState } from './measure/measure.reducers';
 import { ivaReducer, IvaState } from './iva/iva.reducers';
 import { payConditionReducer, PayConditionState } from './paycondition/payCondition.reducers';
-import { TipoDocumentoState } from './tipoDocumento/tipoDocumento.reducers';
+import { tipoDocumentoReducer, TipoDocumentoState } from './tipoDocumento/tipoDocumento.reducers';
 
 export interface AppState{
     router: RouterReducerState<any>;

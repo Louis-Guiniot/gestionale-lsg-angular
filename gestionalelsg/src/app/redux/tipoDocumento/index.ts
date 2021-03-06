@@ -8,13 +8,13 @@ import { TipoDocumentoState } from './tipoDocumento.reducers';
 
 export const selectTipoDocumentoState = (state: AppState) => state.tipoDocumentoState;
 
-export const selecttipoDocumento = createSelector(
+export const selectTipoDocumento = createSelector(
     selectTipoDocumentoState,
     (state: TipoDocumentoState) => state.tipoDocumento
 );
 
 
-export const getCurrentCondizionePaga = createSelector(
+export const getTipoDocumento = createSelector(
     selectTipoDocumentoState,
     selectRouteParams,
     (state: TipoDocumentoState, params: Params) => state.tipoDocumento.find(item => item.id === Number(params['id']))
