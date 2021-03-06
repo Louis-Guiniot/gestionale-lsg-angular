@@ -48,4 +48,8 @@ export class AppComponent {
         this.sidebarInstance.hide();
     }
 
+    redirectToIva(){
+        this.router.navigateByUrl("/iva")
+      }
+
 }
