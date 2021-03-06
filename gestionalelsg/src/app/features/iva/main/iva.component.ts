@@ -24,8 +24,8 @@ export class IvaComponent implements OnInit {
   deleteIva: FormGroup;
   cercaForm: FormGroup;
 
-  idMnumber:number
-  idMstring:string;
+  idIvaNumber:number
+  idIvaString:string;
   typeM:string;
   closeResult = '';
 
@@ -36,19 +36,18 @@ export class IvaComponent implements OnInit {
   term = 'null'
 
 
-  open(content,idMeasure?:string,typeMeasure?:string) {
-    this.idMnumber=Number.parseInt(idMeasure)
-    this.idMstring=idMeasure;
-    this.typeM=typeMeasure;
+  open(content,idIvaPassed?:string) {
+    this.idIvaNumber=Number.parseInt(idIvaPassed)
+    this.idIvaString=idIvaPassed;
 
-
-    console.log("idN: "+this.idMnumber+"    nameD: "+this.typeM)
+    console.log("id iva: "+this.idIvaNumber)
     this.modalService.open(content, { size: 'l'}).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
     }, (reason) => {
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
       this.createIva.reset()
       this.deleteIva.reset()
+      this.updateIva.reset()
 
     });
   }
@@ -81,6 +80,11 @@ export class IvaComponent implements OnInit {
       percentualeIva: ['', Validators.required],
       info: ['', Validators.required]
     })
+
+    this.updateIva=this.fb.group({
+      percentualeIvaNuovo: ['', Validators.required],
+      infoNuovo: ['', Validators.required]
+    })
     
     this.deleteIva=this.fb.group({
       id: ['', Validators.required]
@@ -100,9 +104,15 @@ export class IvaComponent implements OnInit {
 
   deleteIvaById(){
     console.log("delete")
-    console.log(this.idMstring)
-    this.ivaService.deleteIva(this.idMstring.toString())
+    console.log(this.idIvaString)
+    this.ivaService.deleteIva(this.idIvaString.toString())
 
+  }
+
+  updateIvaById(){
+    console.log("update function")
+    console.log("nuovi campi: ",this.updateIva.value.percentualeIvaNuovo,"  -  ",this.updateIva.value.infoNuovo)
+    this.ivaService.updateIva(this.idIvaString.toString(), this.updateIva.value.percentualeIvaNuovo.toString(),this.updateIva.value.infoNuovo)
   }
 
   searchTerm(){
@@ -117,6 +127,7 @@ export class IvaComponent implements OnInit {
   resetSearchBar(){
     this.term = 'null';
     this.pageSize = 2
+    console.warn("reset")
   }
 
 }

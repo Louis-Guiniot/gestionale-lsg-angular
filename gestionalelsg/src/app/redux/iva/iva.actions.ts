@@ -11,4 +11,6 @@ export const initIva = createAction('[Iva] init iva', props<{response: Response}
 export const initIvaFounds = createAction('[Iva] init found iva', props<{response: Response}>());
 export const deleteIva=createAction('[Iva] delete iva', props<{idS:string}>());
 export const lookForIva=createAction('[Iva] look for iva', props<{termine: string}>())
-export const updateIva=createAction('[Iva] update iva', props<{percentualeIva: string}>())
+
+
+export const updateIva=createAction('[Iva] update iva', props<{id:string, percentualeIva: string, info:string}>())
