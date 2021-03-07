@@ -23,6 +23,7 @@ import { SharedModule } from './shared/shared.module';
 import { PayConditionEffects } from './redux/paycondition/payCondition.effects';
 import { IvaComponent } from './redirects/iva/iva.component';
 import { IvaEffects } from './redux/iva/iva.effects';
+import { DocEffects } from './redux/doctype/doctype.effects';
 
 @NgModule({
   declarations: [
@@ -48,8 +49,8 @@ import { IvaEffects } from './redux/iva/iva.effects';
       CustomerEffects,
       MeasureEffects,
       PayConditionEffects,
-      IvaEffects
-       
+      IvaEffects,
+      DocEffects, 
      ]
      ),
   ],
