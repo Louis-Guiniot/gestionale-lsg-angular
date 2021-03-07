@@ -21,6 +21,8 @@ import { selectPayCondition } from 'src/app/redux/paycondition';
 import { IvaService } from '../../iva/service/iva.service';
 import { Iva } from 'src/app/core/model/Iva.interface';
 import { selectIva } from 'src/app/redux/iva';
+import { DocumentType } from 'src/app/core/model/DocumentType.interface';
+import { selectDocument } from 'src/app/redux/doctype';
 
 
 export interface ExampleTab {
@@ -91,6 +93,7 @@ export class TabbedInvoicesComponent implements OnInit {
     this.productService.retrieveAllProducts()
     this.invoicesService.retreiveAllPayConditions()
     this.ivaService.retrieveAllIva()
+    this.invoicesService.retreiveAllDocumentsType()
   }
 
   openXL(content, idCust?: string, name?: string) {
@@ -205,6 +208,10 @@ export class TabbedInvoicesComponent implements OnInit {
     return this.store.pipe(select(selectIva))
   }
 
+  get documents(): Observable<DocumentType[]>{
+    return this.store.pipe(select(selectDocument))
+  }
+
   create() {
     this.invoicesService.create(this.invoiceInsertForm.value.custId,
       this.invoiceInsertForm.value.payCondition, this.invoiceInsertForm.value.docType,
@@ -225,9 +232,7 @@ export class TabbedInvoicesComponent implements OnInit {
                                        this.invoiceUpdateForm.value.docType, 
                                        this.invoiceUpdateForm.value.sale, 
                                        this.idItemsString, 
-                                       this.invoiceUpdateForm.value.taxable,
                                        this.qntItemsString, 
-                                       this.invoiceUpdateForm.value.saleImport,
                                        this.invoiceUpdateForm.value.iva
                                        
                                        )}

@@ -77,6 +77,7 @@
             </tbody>
         </table>
 
+
         <div class="d-flex justify-content-between p-2">
             <ngb-pagination [(page)]="page" [pageSize]="pageSize" [collectionSize]="collectionSize" class="pagination">
             </ngb-pagination>
@@ -89,7 +90,7 @@
                 <option [ngValue]="1000">1000 elementi per pagina</option>
             </select>
         </div>
-        <br><br><br>
+
         <ngb-alert #selfClosingAlert *ngIf="successMessage" type="custom" (closed)="successMessage = ''">{{ successMessage }}
         </ngb-alert>
     </div>
@@ -412,7 +413,7 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text" id="basic-addon1">prezzo + iva</span>
                                         </div>
-                                        <input type="text" class="form-control" placeholder="{{inv.ivaPrice}}" autocomplete="off" aria-describedby="basic-addon1" formControlName="ivaPrice">
+                                        <input type="text" class="form-control" placeholder="{{inv.ivaPrice}}" autocomplete="off" aria-describedby="basic-addon1" formControlName="ivaPrice" readonly>
                                     </div>
                                 </div>
                             </div>
@@ -422,7 +423,7 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text" id="basic-addon1">importo sconto</span>
                                         </div>
-                                        <input type="text" class="form-control" placeholder="{{inv.importoSconto}}" autocomplete="off" aria-describedby="basic-addon1" formControlName="saleImport">
+                                        <input type="text" class="form-control" placeholder="{{inv.importoSconto}}" autocomplete="off" aria-describedby="basic-addon1" formControlName="saleImport" readonly>
                                     </div>
                                 </div>
 
@@ -431,7 +432,7 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text" id="basic-addon1">imponibile</span>
                                         </div>
-                                        <input type="text" class="form-control" placeholder="{{inv.imponibile}}" autocomplete="off" aria-describedby="basic-addon1" formControlName="taxable">
+                                        <input type="text" class="form-control" placeholder="{{inv.imponibile}}" autocomplete="off" aria-describedby="basic-addon1" formControlName="taxable" readonly>
                                     </div>
                                 </div>
                             </div>
@@ -446,7 +447,7 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text" id="basic-addon1">tot merce</span>
                                         </div>
-                                        <input type="text" class="form-control" placeholder="{{inv.totaleMerci}}" autocomplete="off" aria-describedby="basic-addon1" formControlName="totMerce">
+                                        <input type="text" class="form-control" placeholder="{{inv.totaleMerci}}" autocomplete="off" aria-describedby="basic-addon1" formControlName="totMerce" readonly>
                                     </div>
                                 </div>
                                 <div class="col">
@@ -454,7 +455,7 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text" id="basic-addon1">tot servizi</span>
                                         </div>
-                                        <input type="text" class="form-control" placeholder="{{inv.totaleServizi}}" autocomplete="off" aria-describedby="basic-addon1" formControlName="totServices">
+                                        <input type="text" class="form-control" placeholder="{{inv.totaleServizi}}" autocomplete="off" aria-describedby="basic-addon1" formControlName="totServices" readonly>
                                     </div>
                                 </div>
                             </div>
@@ -586,8 +587,12 @@
             <div class="row ">
                 <div class="col ">
                     <span class="form-group has-float-label">
-                        <input type="text " class="form-control" formControlName="docType" placeholder="inserisci il tipo di documento"
-                            id="residenza " autocomplete="off" aria-describedby="basic-addon1 ">
+                        <select formControlName="docType" class="form-control">
+                            <option selected>seleziona la condizione di pagamento da usare</option>
+                            <option *ngFor="let doc of documents | async " value="{{doc.tipoDocumento}}">
+                                {{doc.tipoDocumento}}
+                            </option>
+                        </select>
                         <label for="description">Tipo doc.</label>
                     </span>
                 </div>
