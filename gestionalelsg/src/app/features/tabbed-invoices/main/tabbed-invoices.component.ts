@@ -1,10 +1,10 @@
-import { Component, OnInit, PipeTransform, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { ModalDismissReasons, NgbAlert, NgbDateStruct, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ModalDismissReasons, NgbDateStruct, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { select, Store } from '@ngrx/store';
-import { Observable, Observer, Subject } from 'rxjs';
-import { debounceTime } from 'rxjs/operators';
+import { Observable } from 'rxjs';
+
 import { Customer } from 'src/app/core/model/Customer.interface';
 import { Invoice } from 'src/app/core/model/Invoice.interface';
 import { Product } from 'src/app/core/model/Product.interface';
@@ -15,7 +15,6 @@ import { CustomerService } from '../../customer/services/customer.service';
 import { ProductsService } from '../../products/service/products.service';
 import { TabbedInvoicesService } from '../services/tabbed-invoices.service';
 
-import {Input} from '@syncfusion/ej2-inputs';
 import { PayCondition } from 'src/app/core/model/PayCondition.interface';
 import { selectPayCondition } from 'src/app/redux/paycondition';
 import { IvaService } from '../../iva/service/iva.service';
@@ -61,6 +60,7 @@ export class TabbedInvoicesComponent implements OnInit {
   //aggiunta prodotti
   idItems = []
   qntItems = []
+  productsArray = []
 
   idItemsString: string = ""
   qntItemsString: string = ""
@@ -78,14 +78,6 @@ export class TabbedInvoicesComponent implements OnInit {
 
   //ricerca
   term = 'null'
-
-  //alert
-  private _success = new Subject<string>();
-  staticAlertClosed = false;
-  successMessage = '';
-
-  @ViewChild('staticAlert', { static: false }) staticAlert: NgbAlert;
-  @ViewChild('selfClosingAlert', { static: false }) selfClosingAlert: NgbAlert;
 
   constructor(private store: Store, private router: Router, private productService: ProductsService, private route: Router, private invoicesService: TabbedInvoicesService, private ivaService: IvaService, private customerService: CustomerService, private fb: FormBuilder, private modalService: NgbModal) {
     this.invoicesService.retrieveAllInvoices()
@@ -106,6 +98,7 @@ export class TabbedInvoicesComponent implements OnInit {
       this.invoiceInsertForm.reset();
       this.invoiceUpdateForm.reset();
       this.invoiceInsertProd.reset();
+      this.productsArray.pop();
 
     });
 
@@ -114,15 +107,21 @@ export class TabbedInvoicesComponent implements OnInit {
     this.codeD = name;
 
     console.log("idN: " + this.idN + "codeD: " + this.codeD)
+    console.log("array di prodotti: " + this.productsArray)
   }
 
-  openCart(content) {
-
+  openDeleteModal(content, idInvoice?:string){
     this.modalService.open(content, { size: 'l' }).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
     }, (reason) => {
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+
     });
+
+    this.idN = Number.parseInt(idInvoice)
+    this.idS = idInvoice;
+
+    console.log("idN: " + this.idN)
   }
 
   private getDismissReason(reason: any): string {
@@ -136,14 +135,6 @@ export class TabbedInvoicesComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
-    setTimeout(() => this.staticAlert.close(), 20000);
-    this._success.subscribe(message => this.successMessage = message);
-    this._success.pipe(debounceTime(5000)).subscribe(() => {
-      if (this.selfClosingAlert) {
-        this.selfClosingAlert.close();
-      }
-    });
 
     console.log(this.term)
 
@@ -185,9 +176,7 @@ export class TabbedInvoicesComponent implements OnInit {
       totServices:['', Validators.required],
     })
   }
-
-  public changeSuccessMessage() { this._success.next(`${new Date()} - PRODOTTO AGGIUNTO.`); }
-
+  
   get invoices(): Observable<Invoice[]> {
     return this.store.pipe(select(selectInvoices))
   }
@@ -216,6 +205,10 @@ export class TabbedInvoicesComponent implements OnInit {
     this.invoicesService.create(this.invoiceInsertForm.value.custId,
       this.invoiceInsertForm.value.payCondition, this.invoiceInsertForm.value.docType,
       this.invoiceInsertForm.value.sale, this.idItemsString, this.qntItemsString, this.invoiceInsertForm.value.iva)
+
+    // productsArray.forEach(prod => {
+    //   this.invoicesService.createPhi(prod.id, prod.qta)
+    // });
   }
 
   deleteInv() {
@@ -276,6 +269,22 @@ export class TabbedInvoicesComponent implements OnInit {
     this.prodCount += this.itemQnumber
     console.log(this.prodCount)
 
+    this.productsArray.push({ 
+      id:itemId,
+      qta:itemQuantity
+    })
+
+    console.log(this.productsArray)
+
+  }
+
+
+  removeFromCart(id:string, qta:string){
+    this.productsArray.forEach(product => {
+      if(product.id === id && product.qta === qta){
+        this.productsArray.pop()
+      }
+    });
   }
 
 
