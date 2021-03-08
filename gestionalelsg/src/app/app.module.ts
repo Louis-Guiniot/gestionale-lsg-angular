@@ -24,6 +24,7 @@ import { PayConditionEffects } from './redux/paycondition/payCondition.effects';
 import { IvaComponent } from './redirects/iva/iva.component';
 import { IvaEffects } from './redux/iva/iva.effects';
 import { DocEffects } from './redux/doctype/doctype.effects';
+import { PhiEffects } from './redux/product-has-invoice/phi.effects';
 
 @NgModule({
   declarations: [
@@ -51,6 +52,7 @@ import { DocEffects } from './redux/doctype/doctype.effects';
       PayConditionEffects,
       IvaEffects,
       DocEffects, 
+      PhiEffects
      ]
      ),
   ],
