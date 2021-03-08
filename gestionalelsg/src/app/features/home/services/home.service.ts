@@ -32,11 +32,4 @@ export class HomeService {
   retreiveAllIva(){
     this.store.dispatch(retrieveAllIva())
   }
-
-
-
-  // generateSubmit(prodottiLista:string, totalPrice:string, customerId:string, sconto: string){
-  //   this.store.dispatch(createInvoice({prodottiLista, totalPrice, customerId, sconto}))
-  // }
-
 }
