@@ -3,6 +3,7 @@ import { Store } from '@ngrx/store';
 import { retreiveAllDoc } from 'src/app/redux/doctype/doctype.actions';
 import { createInvoice, deleteInvoice, lookForInvoices, retrieveAllInvoices, updateInvoice } from 'src/app/redux/invoice/invoice.actions';
 import { retreiveAllPayConditions } from 'src/app/redux/paycondition/payCondition.actions';
+import { createPhi, retrieveAllPhi } from 'src/app/redux/product-has-invoice/phi.actions';
 
 @Injectable({
   providedIn: 'root'
@@ -13,6 +14,10 @@ export class TabbedInvoicesService {
 
   create(custId:string,payCondition:string, docType:string,sale:string,idItemsString:string,qntItemsString: string, iva: string){
     this.store.dispatch(createInvoice({custId,payCondition,docType,sale,idItemsString,qntItemsString, iva}))
+  }
+
+  createPhi(idInvoice:string,idProduct: string,qtaProduct:string){
+    this.store.dispatch(createPhi({idInvoice,idProduct,qtaProduct}))
   }
 
   retrieveAllInvoices(){
@@ -39,5 +44,9 @@ export class TabbedInvoicesService {
 
   retreiveAllDocumentsType(){
     this.store.dispatch(retreiveAllDoc())    
+  }
+
+  retriveAllProductFromInvoice(){
+    this.store.dispatch(retrieveAllPhi())
   }
 }
