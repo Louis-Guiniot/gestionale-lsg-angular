@@ -13,7 +13,7 @@ export const selectPhi = createSelector(
 );
 
 
-export const getCurrentIva = createSelector(
+export const getCurrentPhi = createSelector(
     selectPhiState,
     selectRouteParams,
     (state: PhiState, params: Params) => state.productsInInvoice.find(item => item.id === Number(params['id']))
