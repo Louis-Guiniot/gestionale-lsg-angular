@@ -14,22 +14,22 @@ export class PhiEffects {
     constructor(private actions$: Actions, private http: HttpCommunicationsService, private router: Router) { }
 
     retreiveAllPhi(): Observable<Response> {
-        return this.http.retrieveGetCall<Response>("product_has_invoice/findAll");
+        return this.http.retrieveGetCall<Response>("producthasinvoice/findAll");
     }
 
     
-    createPhi(idInvoice:string,idProduct: string,qtaProduct:string): Observable<Response>{
+    createPhi(idProduct: string,qtaProduct:string): Observable<Response>{
         console.log("creazione phi - effects")
-        return this.http.retrievePostCall<Response>('product_has_invoice/create',{idInvoice,idProduct,qtaProduct});
+        return this.http.retrievePostCall<Response>('producthasinvoice/create',{idProduct,qtaProduct});
     }
 
     findUpdatePhi(idInvoice:string,idProduct: string,qtaProduct:string){
-        return this.http.retrievePostCall<Response>('product_has_invoice/update',{idInvoice,idProduct,qtaProduct});
+        return this.http.retrievePostCall<Response>('producthasinvoice/update',{idInvoice,idProduct,qtaProduct});
     }
 
-    deletePhi(idInvoice:string,idProduct: string,qtaProduct:string): Observable<Response>{
-        console.log(this.http.retrievePostCall<Response>('product_has_invoice/delete',{idInvoice,idProduct,qtaProduct}));
-        return this.http.retrievePostCall<Response>('product_has_invoice/delete',{idInvoice,idProduct,qtaProduct});
+    deletePhi(idProduct: string,qtaProduct:string): Observable<Response>{
+        console.log(this.http.retrievePostCall<Response>('producthasinvoice/delete',{idProduct,qtaProduct}));
+        return this.http.retrievePostCall<Response>('producthasinvoice/delete',{idProduct,qtaProduct});
     }
 
     findUpdatePhi$: Observable<Action> = createEffect(() => this.actions$.pipe(
@@ -46,7 +46,6 @@ export class PhiEffects {
     deletePhi$: Observable<Action> = createEffect(() => this.actions$.pipe(
         ofType(deletePhi),
         switchMap((action) => this.deletePhi(
-            action.idInvoice,
             action.idProduct,
             action.qtaProduct).pipe(
             map((response) => initPhi({ response }))
@@ -64,7 +63,6 @@ export class PhiEffects {
     createPhi$: Observable<Action> = createEffect(() => this.actions$.pipe(
         ofType(createPhi),
         switchMap((action) => this.createPhi(
-            action.idInvoice,
             action.idProduct,
             action.qtaProduct).pipe(
             map((response) => initPhi({ response }))
