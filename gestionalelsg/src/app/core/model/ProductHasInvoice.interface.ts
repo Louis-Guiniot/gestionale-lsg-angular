@@ -1,5 +1,5 @@
 export interface ProductHasInvoice{
-    idInvoice:string;
+    id?:number;
     idProduct:string;
     qtaProduct:string;
 }
