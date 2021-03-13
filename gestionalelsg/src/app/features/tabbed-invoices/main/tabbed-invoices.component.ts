@@ -22,6 +22,8 @@ import { Iva } from 'src/app/core/model/Iva.interface';
 import { selectIva } from 'src/app/redux/iva';
 import { DocumentType } from 'src/app/core/model/DocumentType.interface';
 import { selectDocument } from 'src/app/redux/doctype';
+import { ProductHasInvoice } from 'src/app/core/model/ProductHasInvoice.interface';
+import { selectPhi } from 'src/app/redux/product-has-invoice';
 
 
 export interface ExampleTab {
@@ -86,6 +88,7 @@ export class TabbedInvoicesComponent implements OnInit {
     this.invoicesService.retreiveAllPayConditions()
     this.ivaService.retrieveAllIva()
     this.invoicesService.retreiveAllDocumentsType()
+    this.invoicesService.retriveAllProductFromInvoice()
   }
 
   openXL(content, idCust?: string, name?: string) {
@@ -201,6 +204,10 @@ export class TabbedInvoicesComponent implements OnInit {
     return this.store.pipe(select(selectDocument))
   }
 
+  get phis(): Observable<ProductHasInvoice[]>{
+    return this.store.pipe(select(selectPhi))
+  }
+
   create() {
     this.invoicesService.create(this.invoiceInsertForm.value.custId,
       this.invoiceInsertForm.value.payCondition, this.invoiceInsertForm.value.docType,
@@ -276,13 +283,18 @@ export class TabbedInvoicesComponent implements OnInit {
 
     console.log(this.productsArray)
 
+    console.log("chiamo redux phi")
+    this.invoicesService.createPhi(itemId,itemQuantity)
+
   }
 
 
   removeFromCart(id:string, qta:string){
     this.productsArray.forEach(product => {
       if(product.id === id && product.qta === qta){
+        this.prodCount -= product.qta
         this.productsArray.pop()
+        this.invoicesService.deletePhi(product.id,product.qta)
       }
     });
   }
