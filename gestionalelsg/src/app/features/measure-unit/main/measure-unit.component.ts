@@ -39,15 +39,13 @@ export class MeasureUnitComponent implements OnInit {
     this.typeM=typeMeasure;
 
 
-    console.log("idN: "+this.idMnumber+"    nameD: "+this.typeM)
-    this.modalService.open(content, { size: 'l'}).result.then((result) => {
+    console.log("idN: "+this.idMnumber+" tipo misura: "+this.typeM)
+    this.modalService.open(content, { size: 'xl'}).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
     }, (reason) => {
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
       this.createMeasureUnitForm.reset()
       this.updateMeasureUnitForm.reset()
-      this.deleteMeasureUnitForm.reset()
-
     });
   }
 
@@ -109,8 +107,7 @@ export class MeasureUnitComponent implements OnInit {
   deleteM(){
 
     console.log("delete")
-
-    this.measureUnitService.delete(this.deleteMeasureUnitForm.value.id)
+    this.measureUnitService.delete(this.idMstring.toString())
 
   }
 

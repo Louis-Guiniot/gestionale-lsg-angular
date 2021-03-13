@@ -76,15 +76,6 @@ export class CustomerComponent implements OnInit{
 
   ngOnInit(): void {
 
-    setTimeout(() => this.staticAlert.close(), 20000);
-
-    this._success.subscribe(message => this.successMessage = message);
-    this._success.pipe(debounceTime(5000)).subscribe(() => {
-      if (this.selfClosingAlert) {
-        this.selfClosingAlert.close();
-      }
-    });
-
     this.store.pipe(select(selectCustomers)).subscribe((customers) => {
       this.collectionSize=customers.length;
     })

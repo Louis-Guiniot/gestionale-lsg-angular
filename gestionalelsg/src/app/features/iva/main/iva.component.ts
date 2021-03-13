@@ -26,7 +26,7 @@ export class IvaComponent implements OnInit {
 
   idIvaNumber:number
   idIvaString:string;
-  typeM:string;
+  infoIvaString:string
   closeResult = '';
 
   page = 1;
@@ -36,12 +36,13 @@ export class IvaComponent implements OnInit {
   term = 'null'
 
 
-  open(content,idIvaPassed?:string) {
+  open(content,idIvaPassed?:string,infoIvaPassed?:string) {
     this.idIvaNumber=Number.parseInt(idIvaPassed)
     this.idIvaString=idIvaPassed;
+    this.infoIvaString=infoIvaPassed
 
-    console.log("id iva: "+this.idIvaNumber)
-    this.modalService.open(content, { size: 'l'}).result.then((result) => {
+    console.log("id iva: "+this.idIvaNumber+" info iva: "+this.infoIvaString)
+    this.modalService.open(content, { size: 'xl'}).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
     }, (reason) => {
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
