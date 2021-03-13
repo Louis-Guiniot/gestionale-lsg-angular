@@ -124,39 +124,39 @@
             <div class="row">
                 <div class="col">
                     <span class="form-group has-float-label">
-                        <input type="text " class="form-control " formControlName="name" placeholder="inserisci nome " id="sede " autocomplete="off" aria-describedby="basic-addon1 ">
+                        <input type="text " class="form-control " formControlName="name" placeholder="inserisci nome " autocomplete="off" >
                         <label for="description">Nome</label>
                     </span>
                 </div>
                 <div class="col">
                     <span class="form-group has-float-label">
-                        <input type="text " class="form-control " formControlName="partitaIva" placeholder="inserisci codice partita iva " id="sede " autocomplete="off" aria-describedby="basic-addon1 ">
+                        <input type="text " class="form-control " formControlName="partitaIva" placeholder="inserisci codice partita iva " autocomplete="off" >
                         <label for="description">Partita Iva</label>
                     </span>
                 </div>
             </div>
 
             <span class="form-group has-float-label">
-                <input type="text " class="form-control " formControlName="email" placeholder="inserisci email" id="sede " autocomplete="off" aria-describedby="basic-addon1 ">
+                <input type="text " class="form-control " formControlName="email" placeholder="inserisci email" autocomplete="off" >
                 <label for="description">Email</label>
             </span>
 
 
             <span class="form-group has-float-label">
-                <input type="text " class="form-control " formControlName="ragioneSociale" placeholder="inserisci ragione sociale" id="sede " autocomplete="off" aria-describedby="basic-addon1 ">
+                <input type="text " class="form-control " formControlName="ragioneSociale" placeholder="inserisci ragione sociale" autocomplete="off" >
                 <label for="description">Ragione sociale</label>
             </span>
 
             <div class="row">
                 <div class="col">
                     <span class="form-group has-float-label">
-                        <input type="text " class="form-control " formControlName="residenza" placeholder="inserisci residenza " id="sede " autocomplete="off" aria-describedby="basic-addon1 ">
+                        <input type="text " class="form-control " formControlName="residenza" placeholder="inserisci residenza " autocomplete="off" >
                         <label for="description">Residenza</label>
                     </span>
                 </div>
                 <div class="col">
                     <span class="form-group has-float-label">
-                        <input type="text " class="form-control " formControlName="sede" placeholder="inserisci sede " id="sede " autocomplete="off" aria-describedby="basic-addon1 ">
+                        <input type="text " class="form-control " formControlName="sede" placeholder="inserisci sede " autocomplete="off" >
                         <label for="description">Sede</label>
                     </span>
                 </div>
@@ -189,53 +189,42 @@
                 <div *ngIf="element.id == idN">
                     <div class="row">
                         <div class="col">
-                            <div class="input-group mb-3">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text" id="basic-addon1">nome</span>
-                                </div>
-                                <input type="text" class="form-control" formControlName="name" placeholder="{{ element.name }}" id="name" autocomplete="off" aria-label="Username" aria-describedby="basic-addon1" />
-                            </div>
+                            <span class="form-group has-float-label">
+                                <input type="text " class="form-control" formControlName="name" placeholder="{{element.name}}"  >
+                                <label for="description">Nome - {{element.name}}</label>
+                            </span>
                         </div>
                         <div class="col">
-                            <div class="input-group mb-3">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text" id="basic-addon1">p. iva</span>
-                                </div>
-                                <input type="text" class="form-control" formControlName="partitaIva" placeholder="{{ element.partitaIva }}" id="partitaIva" autocomplete="off" aria-label="Username" aria-describedby="basic-addon1" />
-                            </div>
+                            <span class="form-group has-float-label">
+                                <input type="text " class="form-control " formControlName="partitaIva" placeholder="{{element.partitaIva}}" autocomplete="off" >
+                                <label for="description">Partita Iva - {{element.partitaIva}}</label>
+                            </span>
                         </div>
                     </div>
 
-                    <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text" id="basic-addon1">@</span>
-                        </div>
-                        <input type="text" class="form-control" formControlName="email" placeholder="{{ element.email }}" id="email" autocomplete="off" aria-label="Username" aria-describedby="basic-addon1" />
-                    </div>
+                    <span class="form-group has-float-label">
+                        <input type="text " class="form-control " formControlName="email" placeholder="{{element.email}}" autocomplete="off" >
+                        <label for="description">Email - {{element.email}}</label>
+                    </span>
 
-                    <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text" id="basic-addon1">ragione sociale</span>
-                        </div>
-                        <input type="text" class="form-control" formControlName="ragioneSociale" placeholder="{{ element.ragioneSociale }}" id="ragioneSociale" autocomplete="off" aria-label="Username" aria-describedby="basic-addon1" />
-                    </div>
+
+                    <span class="form-group has-float-label">
+                        <input type="text " class="form-control " formControlName="ragioneSociale" placeholder="{{element.ragioneSociale}}" autocomplete="off" >
+                        <label for="description">Ragione sociale - {{element.ragioneSociale}}</label>
+                    </span>
 
                     <div class="row">
                         <div class="col">
-                            <div class="input-group mb-3">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text" id="basic-addon1">residenza</span>
-                                </div>
-                                <input type="text" class="form-control" formControlName="residenza" placeholder="{{ element.residenza }}" id="residenza" autocomplete="off" aria-label="Username" aria-describedby="basic-addon1" />
-                            </div>
+                            <span class="form-group has-float-label">
+                                <input type="text " class="form-control " formControlName="residenza" placeholder="{{element.residenza}}" autocomplete="off" >
+                                <label for="description">Residenza - {{element.residenza}}</label>
+                            </span>
                         </div>
                         <div class="col">
-                            <div class="input-group mb-3">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text" id="basic-addon1">sede</span>
-                                </div>
-                                <input type="text" class="form-control" formControlName="sede" placeholder="{{ element.sede }}" id="sede" autocomplete="off" aria-label="Username" aria-describedby="basic-addon1" />
-                            </div>
+                            <span class="form-group has-float-label">
+                                <input type="text " class="form-control " formControlName="sede" placeholder="{{element.sede}}" autocomplete="off" >
+                                <label for="description">Sede - {{element.sede}}</label>
+                            </span>
                         </div>
                     </div>
 

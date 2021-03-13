@@ -46,7 +46,7 @@
                             </button>
                         </td>
                         <td>
-                            <button class="btn btn-outline-danger btn-sm" id="btn" (click)="open(delete, iva.id)">
+                            <button class="btn btn-outline-danger btn-sm" id="btn" (click)="open(delete, iva.id, iva.info)">
                                 <i class="bi bi-trash-fill"></i>
                             </button>
                         </td>
@@ -152,22 +152,20 @@
                     <div *ngIf="iva.id == idIvaNumber">
                         <div class="row">
                             <div class="col">
-                                <div class="input-group mb-3">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text" id="basic-addon1">%</span>
-                                    </div>
-                                    <input type="text " class="form-control " formControlName="percentualeIvaNuovo" placeholder="{{iva.percentualeIva}}" autocomplete="off" aria-describedby="basic-addon1 ">
-
-                                </div>
+                                <span class="form-group has-float-label">
+                                    <input percentualeIva="text " class="form-control " formControlName="percentualeIva"
+                                        placeholder="{{iva.percentualeIva}}"  autocomplete="off"
+                                        aria-describedby="basic-addon1 ">
+                                    <label for="description">Percentuale iva - {{iva.percentualeIva}}</label>
+                                </span>
                             </div>
                             <div class="col">
-                                <div class="input-group mb-3">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text" id="basic-addon1">info</span>
-                                    </div>
-                                    <input type="text " class="form-control " formControlName="infoNuovo" placeholder="{{iva.info}}" autocomplete="off" aria-describedby="basic-addon1 ">
-
-                                </div>
+                                <span class="form-group has-float-label">
+                                    <input percentualeIva="text " class="form-control " formControlName="info"
+                                        placeholder="{{iva.info}}"  autocomplete="off"
+                                        aria-describedby="basic-addon1 ">
+                                    <label for="description">Info iva - {{iva.info}}</label>
+                                </span>
                             </div>
                         </div>
                     </div>
@@ -195,7 +193,7 @@
     </div>
     <div class="modal-body">
         <form [formGroup]="deleteIva" (ngSubmit)="deleteIvaById()">
-
+            <p>sei sicuro di volere eliminare <b>{{infoIvaString}}</b>?</p>
             <div class="modal-footer">
                 <button type="submit" class="btn" id="btn-modal-edit" (click)="modal.close('Save click')" ngbTooltip="Save">
                     <i class="bi bi-save"></i>

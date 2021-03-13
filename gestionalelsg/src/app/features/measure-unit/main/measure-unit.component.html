@@ -183,17 +183,11 @@
             <div *ngFor="let measure of measures | async">
                 <div *ngIf="measure.id == idMnumber">
 
-                    <span class="form-group has-float-label">
-                            <select class="form-control" aria-label="Default select example" formControlName="id">
-                                <option *ngIf="measure.id == idMnumber" value="{{ measure.id }}" selected>
-                                            {{ measure.type }}  
-                                </option>
-                            </select>
-                            <label for="description">Misura da eliminare</label>
-                        </span>
+                    <p>sei sicuro di volere eliminare <b>{{typeM}}</b>?</p>
+
 
                     <div class="modal-footer">
-                        <button type="submit" class="btn" id="btn-modal-edit" (click)="modal.close('Save click')" ngbTooltip="Save" [disabled]="deleteMeasureUnitForm.invalid">
+                        <button type="submit" class="btn" id="btn-modal-edit" (click)="modal.close('Save click')" ngbTooltip="Save">
                             <i class="bi bi-save"></i>
                         </button>
                         <button type="button" class="btn btn-outline-danger" (click)="modal.dismiss('Cross click')" ngbTooltip="Exit">
