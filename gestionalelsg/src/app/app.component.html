@@ -8,30 +8,29 @@
         <div class="col-lg-12 col-sm-12 col-md-12" id="sidebar-section">
             <div class="col-lg-12 col-sm-12 col-md-12">
                 <div id="head">
+
                     <span id="hamburger" class="e-icons menu" (click)="openClick()"></span>
-                    <div class="header">LSG GESTIONALE</div>
+
+
                 </div>
                 <!-- sidebar element declaration-->
                 <ejs-sidebar id="sidebar-menu" #sidebarInstance [type]='type' [width]='width'>
                     <!-- normal state element declaration -->
                     <div id="close" class="e-icons" (click)="closeClick()"></div>
+
                     <div class="content-area">
-                        <!--ListView element declaration-->
-                        <ul>
-                            <li (click)="redirectToHome();">
-                                <i class="bi bi-house" placement="right"></i></li>
-                            <li (click)="redirectToCust();">
-                                <i class="bi bi-people" placement="right"></i></li>
-                            <li (click)="redirectToProd();">
-                                <i class="bi bi-box-seam" placement="right"></i></li>
-                            <li (click)="redirectToInvo();">
-                                <i class="bi bi-cash " placement="right"></i></li>
-                            <li (click)="redirectToMeas();">
-                                <i class="bi bi-tools " placement="right"></i></li>
-                            <li (click)="redirectToIva();">
-                                <i class="bi bi-percent " placement="right"></i></li>
+
+                        <ul class="page">
+                            <li *ngFor="let page of pages">
+                                <i class="{{page.icon}}" [routerLink]="page.path" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
+                                </i>
+                            </li>
                         </ul>
+
+
+
                     </div>
+
                     <!-- end of normal state element declaration -->
                 </ejs-sidebar>
                 <!-- end of sidebar element -->

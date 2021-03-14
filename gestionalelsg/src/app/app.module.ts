@@ -23,7 +23,8 @@ import { SharedModule } from './shared/shared.module';
 import { PayConditionEffects } from './redux/paycondition/payCondition.effects';
 import { IvaComponent } from './redirects/iva/iva.component';
 import { IvaEffects } from './redux/iva/iva.effects';
-import { TipoDocumentoEffects } from './redux/tipoDocumento/tipoDocumento.effects';
+import { DocEffects } from './redux/doctype/doctype.effects';
+import { PhiEffects } from './redux/product-has-invoice/phi.effects';
 
 @NgModule({
   declarations: [
@@ -50,8 +51,8 @@ import { TipoDocumentoEffects } from './redux/tipoDocumento/tipoDocumento.effect
       MeasureEffects,
       PayConditionEffects,
       IvaEffects,
-      TipoDocumentoEffects
-       
+      DocEffects, 
+      PhiEffects
      ]
      ),
   ],

@@ -43,10 +43,9 @@
 
 #wrapper #head {
     border: none;
-    background: #012051;
     width: 100%;
     height: 50px;
-    color: #fff;
+    color: black;
     position: relative;
 }
 
@@ -104,6 +103,7 @@ body {
     background: #012051;
     padding: 20px;
     border: #012051 2px solid;
+    height: auto;
 }
 
 #wrapper #close:before {
@@ -111,7 +111,7 @@ body {
 }
 
 #wrapper #close {
-    float: right;
+    float: left;
     // color: #012051;
     color: #fff;
     cursor: pointer;
@@ -119,8 +119,26 @@ body {
     line-height: 14px;
 }
 
+.container {
+    margin: auto;
+    display: flex;
+    justify-content: space-around;
+}
+
 i {
-    font-size: 2.7vw;
+    font-size: 2.5vw;
+    &:hover {
+        cursor: pointer;
+    }
+}
+
+.active {
+    color: greenyellow;
+}
+
+#home-icon {
+    float: right;
+    color: #000;
 }
 
 
@@ -138,24 +156,23 @@ i {
 
 li {
     list-style-type: none;
-    padding: 1%;
-    font-size: 3vw;
+    display: inline;
+    padding-left: 3%;
+    padding-right: 3%;
+    width: auto;
+    height: max-content;
     // color: #012051;
-    color: #fff;
-    text-align: center;
-}
-
-i {
-    cursor: pointer;
 }
 
 ul {
     width: 100%;
     padding: 0;
+    margin: 0;
 }
 
 .content-area {
-    margin-top: 10vh;
+    text-align: center;
+    color: white;
 }
 
 #menulist.e-listview .e-list-item:hover {

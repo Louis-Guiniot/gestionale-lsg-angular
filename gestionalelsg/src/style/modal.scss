@@ -8,6 +8,10 @@
     font-family: "Oxygen";
 }
 
+.modal-body b {
+    text-transform: uppercase;
+}
+
 .modal-header {
     border-radius: 0;
     background-color: #012051;
@@ -24,4 +28,9 @@
 
 .close {
     color: white;
+}
+
+.modal-body label {
+    font-size: 1.3vw;
+    text-transform: lowercase;
 }

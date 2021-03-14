@@ -10,10 +10,9 @@
 
                 <input type="text" class="form-control" formControlName="termine" placeholder="parola da cercare" aria-label="Recipient's username" aria-describedby="button-addon1" id="bottom-search">
                 <div class="input-group-append">
-                    <button type="submit" class="btn" id="btn-edit" [disabled]="cercaForm.invalid"><i class="bi bi-search"
-                            id="searchIcon"></i></button>
-                    <button type="reset" class="btn btn-outline-danger" [disabled]="cercaForm.invalid" (click)="resetSearchBar()"><i class="bi bi-x-square-fill"
-                            id="searchIcon"></i></button>
+                    <button type="submit" class="btn" id="btn-edit" [disabled]="cercaForm.invalid"><i
+                            class="bi bi-search" id="searchIcon"></i></button>
+                    <button type="reset" class="btn btn-outline-danger" [disabled]="cercaForm.invalid" (click)="resetSearchBar()"><i class="bi bi-x-square-fill" id="searchIcon"></i></button>
                 </div>
             </div>
 
@@ -77,6 +76,7 @@
             </tbody>
         </table>
 
+
         <div class="d-flex justify-content-between p-2">
             <ngb-pagination [(page)]="page" [pageSize]="pageSize" [collectionSize]="collectionSize" class="pagination">
             </ngb-pagination>
@@ -89,9 +89,6 @@
                 <option [ngValue]="1000">1000 elementi per pagina</option>
             </select>
         </div>
-        <br><br><br>
-        <ngb-alert #selfClosingAlert *ngIf="successMessage" type="custom" (closed)="successMessage = ''">{{ successMessage }}
-        </ngb-alert>
     </div>
 
 </div>
@@ -288,6 +285,7 @@
         <form [formGroup]="invoiceUpdateForm" (ngSubmit)="update()">
             <div *ngFor="let inv of invoices | async">
                 <div *ngIf="inv.id==idN">
+
                     <div class="tabbed">
                         <input type="radio" id="tab1" name="css-tabs" checked>
                         <input type="radio" id="tab2" name="css-tabs">
@@ -299,84 +297,105 @@
                             <li class="tab"><label for="tab3">CODA FATTURA</label></li>
                         </ul>
 
+
                         <div class="tab-content">
 
                             <div class="row">
                                 <div class="col">
-                                    <div class="input-group mb-3">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text" id="basic-addon1">numero fattura</span>
-                                        </div>
-                                        <input type="text" class="form-control" placeholder="{{inv.codeInvoice}}" autocomplete="off" aria-describedby="basic-addon1" readonly>
-                                    </div>
+                                    <span class="form-group has-float-label">
+                                        <input type="text" class="form-control" readonly
+                                            value="{{inv.codeInvoice}}">
+                                        <label for="description">codice fattura</label>
+                                    </span>
+
                                 </div>
                                 <div class="col">
-                                    <div class="input-group mb-3">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text" id="basic-addon1">codice cliente</span>
-                                        </div>
-                                        <select class="form-control" aria-label="Default select example" aria-describedby="basic-addon1" formControlName="custId">
-                                            <option *ngFor="let cust of elements | async" value="{{cust.id}}">
-                                                {{cust.id}}
+                                    <span class="form-group has-float-label">
+                                        <select formControlName="custId" class="form-control">
+                                
+                                            <option *ngFor="let element of elements | async " value="{{element.id}}">
+                                                {{element.name}} - {{element.email}}
+                                            </option>
+
+                                        </select>
+                                        <label for="description">codice cliente</label>
+                                    </span>
+                                </div>
+                            </div>
+
+                            <span class="form-group has-float-label">
+                                <input type="text" class="form-control" formControlName="sale" placeholder="{{inv.sconto}}" autocomplete="off">
+                                <label for="description">Sconto - {{inv.sconto}}</label>
+                            </span>
+
+                            <div class="row ">
+                                <div class="col ">
+                                    <span class="form-group has-float-label">
+                                        <select formControlName="docType" class="form-control">
+                                            <option selected>seleziona la condizione di pagamento da usare</option>
+                                            <option *ngFor="let doc of documents | async " value="{{doc.tipoDocumento}}">
+                                                {{doc.tipoDocumento}}
                                             </option>
                                         </select>
-                                    </div>
+                                        <label for="description">Tipo doc.</label>
+                                    </span>
+                                </div>
+                                <div class="col ">
+                                    <span class="form-group has-float-label">
+                                        <select formControlName="payCondition" class="form-control">
+                                            <option selected>seleziona la condizione di pagamento da usare</option>
+                                            <option *ngFor="let cond of conditions | async " value="{{cond.condizione}}">
+                                                {{cond.condizione}}
+                                            </option>
+                                        </select>
+                                        <label for="description">Cond. pagamento</label>
+                                    </span>
                                 </div>
                             </div>
 
-                            <!-- <div class="input-group mb-3">
-                                <input class="form-control" placeholder="{{inv.dateTime ? inv.dateTimem : 'choose a date'}}" name="dp" [(ngModel)]="model" ngbDatepicker #d="ngbDatepicker" formControlName="date" [positionTarget]="buttonEl" [placement]="placement" readonly>
-                                <div class="input-group-append">
-                                    <button #buttonEl class="btn btn-outline-secondary" (click)="d.toggle()" type="button"><i
-                                            class="bi bi-calendar3"></i></button>
-
-                                </div>
-                            </div> -->
-
-                            <div class="row">
-                                <div class="col">
-                                    <div class="input-group mb-3">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text" id="basic-addon1">tipo documento</span>
-                                        </div>
-                                        <input type="text" class="form-control" placeholder="{{inv.tipoDocumento}}" autocomplete="off" aria-describedby="basic-addon1" formControlName="docType">
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <div class="input-group mb-3">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text" id="basic-addon1">sconto</span>
-                                        </div>
-                                        <input type="text" class="form-control" placeholder="{{inv.sconto}}" autocomplete="off" aria-describedby="basic-addon1" formControlName="sale">
-                                    </div>
-                                </div>
-                            </div>
-
-
-                            <div class="input-group mb-3">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text" id="basic-addon1">cond. pagamento</span>
-                                </div>
-                                <input type="text" class="form-control" placeholder="{{inv.condizionePagamento}}" autocomplete="off" aria-describedby="basic-addon1" formControlName="payCondition">
-                            </div>
 
                         </div>
 
-
                         <div class="tab-content">
 
-                            <form>
-                                <div class="input-group mb-3 ">
-                                    <div class="input-group-prepend ">
-                                        <span class="input-group-text " id="basic-addon1 ">articles</span>
+                            <form [formGroup]="invoiceInsertProd">
+                                <div class="row">
+                                    <div class="col">
+                                        <span class="form-group has-float-label">
+                                            <select #idArticle formControlName="idItem" class="form-control">
+                                                <option selected>seleziona il prodotto da inserire</option>
+                                                <option *ngFor="let prod of products | async " value="{{prod.id}}">
+                                                    {{prod.description}} - {{prod.price}}$ con {{prod.scontoProd}}% di sconto
+                                                </option>
+                                            </select>
+                                            <label for="description">Prodotto</label>
+                                        </span>
                                     </div>
-                                    <input type="text " #idArticle class="form-control" placeholder="idArticle" name="idArticle" id="idArticle" autocomplete="off" aria-describedby="basic-addon1 ">
-                                    <input type="text " #itemQuantity class="form-control" placeholder="itemQuantity" name="itemQuantity" id="itemQuantity" autocomplete="off" aria-describedby="basic-addon1 ">
-                                    <input type="button" (click)="addProdNQnt(idArticle.value, itemQuantity.value)" value="add">
+                                    <div class="col">
+                                        <span class="input-group has-float-label">
+                                            <input type="number" min="1" #itemQuantity formControlName="itemQuantity"
+                                                class="form-control" placeholder="inserisci la quantita' desiderata"
+                                                name="itemQuantity" id="itemQuantity" autocomplete="off"
+                                                aria-describedby="basic-addon1 ">
+                                            <label for="description">Quantita'</label>
+                                            <div class="input-group-append">
+                                                <button class="btn" id="btn-edit" [disabled]="invoiceInsertProd.invalid"
+                                                    (click)="addProdNQnt(idArticle.value, itemQuantity.value)"
+                                                    (click)="changeSuccessMessage()"><i
+                                                        class="bi bi-plus-square-fill"></i></button>
+                                                <button type="button" class="btn btn-outline-danger" (click)="resetCart()"><i
+                                                        class="bi bi-x-square-fill"></i></button>
+                                            </div>
+                                        </span>
+                                    </div>
+                                    <div class="col">
+                                        <span class="input-group has-float-label">
+                                            <input type="button" class="form-control" readonly value="{{prodCount}}">
+                                            <label for="description">Totale Prodotti aggiunti</label>
+                                        </span>
+                                    </div>
                                 </div>
-                            </form>
 
-                            <div class="input-group">
                                 <table class="table table-hover">
                                     <thead>
                                         <tr>
@@ -386,123 +405,112 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <th scope="col" *ngFor="let id of idItems">{{id}}</th>
-                                            <td *ngFor="let qta of qntItems">{{qta}}</td>
+                                        <tr *ngFor="let prod of productsArray">
+                                            <td>{{prod.id}}</td>
+                                            <td>{{prod.qta}}</td>
                                             <td>
-                                                <button class="btn" id="btn-edit">
+                                                <button class="btn btn-outline-danger" (click)="removeFromCart(prod.id, prod.qta)">
+                                                    <i class="bi bi-cloud-minus"></i>
                                                 </button>
                                             </td>
                                         </tr>
                                     </tbody>
                                 </table>
-                            </div>
 
-                            <div class="row">
-                                <div class="col">
-                                    <div class="input-group mb-3">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text" id="basic-addon1">iva</span>
-                                        </div>
-                                        <input type="text" class="form-control" placeholder="{{inv.iva}}" autocomplete="off" aria-describedby="basic-addon1" formControlName="iva">
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <div class="input-group mb-3">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text" id="basic-addon1">prezzo + iva</span>
-                                        </div>
-                                        <input type="text" class="form-control" placeholder="{{inv.ivaPrice}}" autocomplete="off" aria-describedby="basic-addon1" formControlName="ivaPrice">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col">
-                                    <div class="input-group mb-3">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text" id="basic-addon1">importo sconto</span>
-                                        </div>
-                                        <input type="text" class="form-control" placeholder="{{inv.importoSconto}}" autocomplete="off" aria-describedby="basic-addon1" formControlName="saleImport">
-                                    </div>
-                                </div>
 
-                                <div class="col">
-                                    <div class="input-group mb-3">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text" id="basic-addon1">imponibile</span>
-                                        </div>
-                                        <input type="text" class="form-control" placeholder="{{inv.imponibile}}" autocomplete="off" aria-describedby="basic-addon1" formControlName="taxable">
-                                    </div>
-                                </div>
-                            </div>
-
+                            </form>
 
                         </div>
 
                         <div class="tab-content">
                             <div class="row">
                                 <div class="col">
-                                    <div class="input-group mb-3">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text" id="basic-addon1">tot merce</span>
-                                        </div>
-                                        <input type="text" class="form-control" placeholder="{{inv.totaleMerci}}" autocomplete="off" aria-describedby="basic-addon1" formControlName="totMerce">
-                                    </div>
+                                    <span class="form-group has-float-label">
+                                        <select formControlName="iva" class="form-control">
+                                            <option selected>seleziona importo iva da inserire</option>
+                                            <option *ngFor="let iva of ivaList | async " value="{{iva.id}}">
+                                                {{iva.percentualeIva}} - {{iva.info}}
+                                            </option>
+                                        </select>
+                                        <label for="description">iva</label>
+                                    </span>
                                 </div>
                                 <div class="col">
-                                    <div class="input-group mb-3">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text" id="basic-addon1">tot servizi</span>
-                                        </div>
-                                        <input type="text" class="form-control" placeholder="{{inv.totaleServizi}}" autocomplete="off" aria-describedby="basic-addon1" formControlName="totServices">
-                                    </div>
+                                    <span class="form-group has-float-label">
+                                        <input type="text" class="form-control" readonly value="{{inv.ivaPrice}}">
+                                        <label for="description">prezzo + iva</label>
+                                    </span>
                                 </div>
                             </div>
-                        </div>
 
-                        <div class="modal-footer">
+                            <div class="row">
+                                <div class="col">
+                                    <span class="form-group has-float-label">
+                                        <input type="text" class="form-control" readonly value="{{inv.importoSconto}}">
+                                        <label for="description">importo sconto</label>
+                                    </span>
+                                </div>
+                                <div class="col">
+                                    <span class="form-group has-float-label">
+                                        <input type="text" class="form-control" readonly value="{{inv.imponibile}}">
+                                        <label for="description">imponibile</label>
+                                    </span>
+                                </div>
+                            </div>
 
-                            <button type="submit" class="btn" id="btn-modal-edit" (click)="modalEdit.close('Save click')" ngbTooltip="Save">
-                                <i class="bi bi-save"></i>
-                            </button>
-
-                            <button class="btn btn-outline-danger" (click)="collapse.toggle()" [attr.aria-expanded]="isCollapsed" ngbTooltip="Delete"><i
-                                    class="bi bi-trash-fill"></i></button>
-
-                            <button type="button" class="btn" id="btn-modal-edit" (click)="modalEdit.dismiss('Cross click')" ngbTooltip="Exit">
-                                <i class="bi bi-arrow-bar-right"></i>
-                            </button>
-
-                            <div #collapse="ngbCollapse" [(ngbCollapse)]="!isCollapsed">
-                                <form (ngSubmit)="deleteInv() ">
-                                    <div class="card">
-                                        <div class="card-body">
-                                            <div class="row">
-                                                <div class="col-md">
-                                                    <p>Are you sure to delete invoice : {{inv.codeInvoice}}</p>
-                                                </div>
-                                                <div class="col-md-2">
-                                                    <button class="btn btn-outline-danger" type="submit" (click)="modalEdit.close( 'Save click')"><i
-                                                            class="bi bi-hand-thumbs-up"></i>
-                                                    </button>
-                                                </div>
-                                                <div class="col-md-2">
-                                                    <button (click)="collapse.toggle() " [attr.aria-expanded]="!isCollapsed" id="btn-modal-edit" class="btn"><i class="bi bi-hand-thumbs-down"></i></button>
-                                                </div>
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                </form>
-
+                            <div class="row">
+                                <div class="col">
+                                    <span class="form-group has-float-label">
+                                        <input type="text" class="form-control" readonly value="{{inv.totaleMerci}}">
+                                        <label for="description">totale merce</label>
+                                    </span>
+                                </div>
+                                <div class="col">
+                                    <span class="form-group has-float-label">
+                                        <input type="text" class="form-control" readonly value="{{inv.totaleServizi}}">
+                                        <label for="description">totale servizi</label>
+                                    </span>
+                                </div>
                             </div>
 
                         </div>
+
                     </div>
+
                 </div>
             </div>
         </form>
     </div>
+    <div class="modal-footer ">
+        <button type="button " class="btn btn-outline-danger" (click)="modal.dismiss( 'Cross click')" ngbTooltip="Exit ">
+            <i class="bi bi-arrow-bar-right "></i>
+        </button>
+        <button type="submit " class="btn " id="btn-modal-edit" [disabled]="invoiceInsertForm.invalid" (click)="modal.close( 'Save click') " ngbTooltip="Insert ">
+            <i class="bi bi-save "></i>
+        </button>
+    </div>
+</ng-template>
+
+<ng-template #deleteInvoice let-modalDelete>
+    <form (ngSubmit)="deleteInv()">
+        <div class="modal-header">
+            <h4 class="modal-title" id="modal-basic-title">ELIMINAZIONE FATTURA</h4>
+            <button type="button" class="close" aria-label="Close" (click)="modalDelete.dismiss('Cross click')">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            are you sure
+        </div>
+        <div class="modal-footer">
+            <button type="submit" class="btn btn-outline-danger" (click)="modalDelete.close('Delete click')" ngbTooltip="Delete">
+                <i class="bi bi-trash-fill"></i>
+            </button>
+            <button type="button" class="btn" id="btn-modal-edit" (click)="modalDelete.close('Exit click')" (click)="openXL(edit,idN)" ngbTooltip="Undo">
+                <i class="bi bi-arrow-bar-right"></i>
+            </button>
+        </div>
+    </form>
 </ng-template>
 
 <!-- ANCHOR insert form -->
@@ -514,105 +522,205 @@
         </button>
     </div>
     <div class="modal-body ">
-        <form [formGroup]="invoiceInsertForm " (ngSubmit)="create() ">
+        <form [formGroup]="invoiceInsertForm" (ngSubmit)="create()">
+            <div class="tabbed">
+                <input type="radio" id="tab1" name="css-tabs" checked>
+                <input type="radio" id="tab2" name="css-tabs">
+                <input type="radio" id="tab3" name="css-tabs">
 
-            <span class="form-group has-float-label">
-                <select formControlName="custId" class="form-control">
-                    <option selected="selected">seleziona codice cliente</option>
-                    <option *ngFor="let element of elements | async " value="{{element.id}}">
-                        {{element.name}} - {{element.email}}
-                    </option>
-                </select>
-                <label for="description">codice cliente</label>
-            </span>
+                <ul class="tabs">
+                    <li class="tab"><label for="tab1">TESTA FATTURA</label></li>
+                    <li class="tab"><label for="tab2">CORPO FATTURA</label></li>
+                    <li class="tab"><label for="tab3">CODA FATTURA</label></li>
+                </ul>
 
-            <form [formGroup]="invoiceInsertProd">
-                <div class="row">
-                    <div class="col">
-                        <span class="form-group has-float-label">
-                        <select #idArticle formControlName="idItem" class="form-control" >
-                            <option selected>seleziona il prodotto da inserire</option>
-                            <option *ngFor="let prod of products | async " value="{{prod.id}}">
-                                {{prod.description}} - {{prod.price}}$ con {{prod.scontoProd}}% di sconto
-                            </option>
-                        </select>
-                        <label for="description">Prodotto</label>
-                    </span>
-                    </div>
-                    <div class="col">
-                        <span class="input-group has-float-label">
-                            <input type="number" min="1" #itemQuantity formControlName="itemQuantity" class="form-control" placeholder="inserisci la quantita' desiderata" name="itemQuantity" id="itemQuantity" autocomplete="off" aria-describedby="basic-addon1 ">
-                            <label for="description">Quantita'</label>
-                            <div class="input-group-append">
-                                <button class="btn" id="btn-edit" [disabled]="invoiceInsertProd.invalid" (click)="addProdNQnt(idArticle.value, itemQuantity.value)" (click)="changeSuccessMessage()"><i class="bi bi-plus-square-fill"></i></button>
-                                <button type="button" class="btn btn-outline-danger" (click)="resetCart()"><i class="bi bi-x-square-fill"></i></button>
-                            </div>
-                        </span>
-                    </div>
-                    <div class="col">
-                        <span class="input-group has-float-label">
-                            <input type="button" class="form-control" readonly value="{{prodCount}}">
-                            <label for="description">Totale Prodotti salvati</label>
-                        </span>
+                <div class="tab-content">
+
+                    <div class="row">
+                        <div class="col">
+                            <span class="form-group has-float-label">
+                                <input type="text" class="form-control" readonly
+                                    value="il codice verrà generato automaticamente">
+                                <label for="description">codice fattura</label>
+                            </span>
+
+                        </div>
+                        <div class="col">
+                            <span class="form-group has-float-label">
+                                <select formControlName="custId" class="form-control">
+                                    <option selected="selected">seleziona codice cliente</option>
+                                    <option *ngFor="let element of elements | async " value="{{element.id}}">
+                                        {{element.name}} - {{element.email}}
+                                    </option>
+                                </select>
+                                <label for="description">codice cliente</label>
+                            </span>
+                        </div>
                     </div>
 
-                </div>
-            </form>
-            <!-- (click)="addProdNQnt(idArticle.value, itemQuantity.value)" -->
-
-
-
-            <div class="row">
-                <div class="col">
                     <span class="form-group has-float-label">
-                        <input type="text " class="form-control" formControlName="sale" placeholder="inserisci sconto " id="sale "
-                            autocomplete="off" aria-describedby="basic-addon1 ">
+                        <input type="text " class="form-control" formControlName="sale" placeholder="inserisci sconto "
+                            id="sale " autocomplete="off" aria-describedby="basic-addon1 ">
                         <label for="description">Sconto</label>
                     </span>
+
+                    <div class="row ">
+                        <div class="col ">
+                            <span class="form-group has-float-label">
+                                <select formControlName="docType" class="form-control">
+                                    <option selected>seleziona la condizione di pagamento da usare</option>
+                                    <option *ngFor="let doc of documents | async " value="{{doc.tipoDocumento}}">
+                                        {{doc.tipoDocumento}}
+                                    </option>
+                                </select>
+                                <label for="description">Tipo doc.</label>
+                            </span>
+                        </div>
+                        <div class="col ">
+                            <span class="form-group has-float-label">
+                                <select formControlName="payCondition" class="form-control">
+                                    <option selected>seleziona la condizione di pagamento da usare</option>
+                                    <option *ngFor="let cond of conditions | async " value="{{cond.condizione}}">
+                                        {{cond.condizione}}
+                                    </option>
+                                </select>
+                                <label for="description">Cond. pagamento</label>
+                            </span>
+                        </div>
+                    </div>
+
+
                 </div>
-                <div class="col ">
-                    <span class="form-group has-float-label">
-                        <select class="form-control" aria-label="Default select example" aria-describedby="basic-addon1" formControlName="iva">
-                            <option *ngFor="let iva of ivaList | async " value="{{iva.id}}">
-                                {{iva.percentualeIva}} - {{iva.info}}
-                            </option>
-                        </select>
-                        <label>Iva</label>
-                    </span>
+
+                <div class="tab-content">
+
+                    <form [formGroup]="invoiceInsertProd">
+                        <div class="row">
+                            <div class="col">
+                                <span class="form-group has-float-label">
+                                    <select #idArticle formControlName="idItem" class="form-control">
+                                        <option selected>seleziona il prodotto da inserire</option>
+                                        <option *ngFor="let prod of products | async " value="{{prod.id}}">
+                                            {{prod.description}} - {{prod.price}}$ con {{prod.scontoProd}}% di sconto
+                                        </option>
+                                    </select>
+                                    <label for="description">Prodotto</label>
+                                </span>
+                            </div>
+                            <div class="col">
+                                <span class="input-group has-float-label">
+                                    <input type="number" min="1" #itemQuantity formControlName="itemQuantity"
+                                        class="form-control" placeholder="inserisci la quantita' desiderata"
+                                        name="itemQuantity" id="itemQuantity" autocomplete="off"
+                                        aria-describedby="basic-addon1 ">
+                                    <label for="description">Quantita'</label>
+                                    <div class="input-group-append">
+                                        <button class="btn" id="btn-edit" [disabled]="invoiceInsertProd.invalid"
+                                            (click)="addProdNQnt(idArticle.value, itemQuantity.value)"
+                                            (click)="changeSuccessMessage()"><i
+                                                class="bi bi-plus-square-fill"></i></button>
+                                        <button type="button" class="btn btn-outline-danger" (click)="resetCart()"><i
+                                                class="bi bi-x-square-fill"></i></button>
+                                    </div>
+                                </span>
+                            </div>
+                            <div class="col">
+                                <span class="input-group has-float-label">
+                                    <input type="button" class="form-control" readonly value="{{prodCount}}">
+                                    <label for="description">Totale Prodotti aggiunti</label>
+                                </span>
+                            </div>
+                        </div>
+
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Id</th>
+                                    <th scope="col">Qta</th>
+                                    <th scope="col" id="th-btn">&nbsp;</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let prod of productsArray">
+                                    <td>{{prod.id}}</td>
+                                    <td>{{prod.qta}}</td>
+                                    <td>
+                                        <button class="btn btn-outline-danger" (click)="removeFromCart(prod.id, prod.qta)">
+                                            <i class="bi bi-cloud-minus"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+
+                    </form>
+
                 </div>
+
+                <div class="tab-content">
+                    <div class="row">
+                        <div class="col">
+                            <span class="form-group has-float-label">
+                                <select formControlName="iva" class="form-control">
+                                    <option selected>seleziona importo iva da inserire</option>
+                                    <option *ngFor="let iva of ivaList | async " value="{{iva.id}}">
+                                        {{iva.percentualeIva}} - {{iva.info}}
+                                    </option>
+                                </select>
+                                <label for="description">iva</label>
+                            </span>
+                        </div>
+                        <div class="col">
+                            <span class="form-group has-float-label">
+                                <input type="text" class="form-control" readonly value="prezzo + iva calcoli front">
+                                <label for="description">prezzo + iva</label>
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col">
+                            <span class="form-group has-float-label">
+                                <input type="text" class="form-control" readonly value="importo sconto front">
+                                <label for="description">importo sconto</label>
+                            </span>
+                        </div>
+                        <div class="col">
+                            <span class="form-group has-float-label">
+                                <input type="text" class="form-control" readonly value="imponibile calcoli front">
+                                <label for="description">imponibile</label>
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col">
+                            <span class="form-group has-float-label">
+                                <input type="text" class="form-control" readonly value="importo sconto front">
+                                <label for="description">totale merce</label>
+                            </span>
+                        </div>
+                        <div class="col">
+                            <span class="form-group has-float-label">
+                                <input type="text" class="form-control" readonly value="imponibile calcoli front">
+                                <label for="description">totale servizi</label>
+                            </span>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="modal-footer ">
+                    <button type="button " class="btn btn-outline-danger" (click)="modal.dismiss( 'Cross click')" ngbTooltip="Exit ">
+                        <i class="bi bi-arrow-bar-right "></i>
+                    </button>
+                    <button type="submit " class="btn " id="btn-modal-edit" [disabled]="invoiceInsertForm.invalid" (click)="modal.close( 'Save click') " ngbTooltip="Insert ">
+                        <i class="bi bi-save "></i>
+                    </button>
+                </div>
+
             </div>
-
-
-            <div class="row ">
-                <div class="col ">
-                    <span class="form-group has-float-label">
-                        <input type="text " class="form-control" formControlName="docType" placeholder="inserisci il tipo di documento"
-                            id="residenza " autocomplete="off" aria-describedby="basic-addon1 ">
-                        <label for="description">Tipo doc.</label>
-                    </span>
-                </div>
-                <div class="col ">
-                    <span class="form-group has-float-label">
-                        <select formControlName="payCondition" class="form-control" >
-                            <option selected>seleziona la condizione di pagamento da usare</option>
-                            <option *ngFor="let cond of conditions | async " value="{{cond.id}}">
-                                {{cond.condizione}}
-                            </option>
-                        </select>
-                        <label for="description">Cond. pagamento</label>
-                    </span>
-                </div>
-            </div>
-
-            <div class="modal-footer ">
-                <button type="button " class="btn btn-outline-danger" (click)="modal.dismiss( 'Cross click') " ngbTooltip="Exit ">
-                    <i class="bi bi-arrow-bar-right "></i>
-                </button>
-                <button type="submit " class="btn " id="btn-modal-edit" [disabled]="invoiceInsertForm.invalid" (click)="modal.close( 'Save click') " ngbTooltip="Insert ">
-                    <i class="bi bi-save "></i>
-                </button>
-            </div>
-
         </form>
     </div>
 </ng-template>
