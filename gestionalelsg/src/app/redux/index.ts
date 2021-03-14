@@ -8,6 +8,7 @@ import { ivaReducer, IvaState } from './iva/iva.reducers';
 import { payConditionReducer, PayConditionState } from './paycondition/payCondition.reducers';
 import { docReducer, DocState } from './doctype/doctype.reducers';
 import { PhiState, phiReducer } from './product-has-invoice/phi.reducers';
+import { tipoDocumentoReducer, TipoDocumentoState } from './tipoDocumento/tipoDocumento.reducers';
 
 export interface AppState{
     router: RouterReducerState<any>;
