@@ -24,6 +24,9 @@ import { DocumentType } from 'src/app/core/model/DocumentType.interface';
 import { selectDocument } from 'src/app/redux/doctype';
 import { ProductHasInvoice } from 'src/app/core/model/ProductHasInvoice.interface';
 import { selectPhi } from 'src/app/redux/product-has-invoice';
+import { HttpCommunicationsService } from 'src/app/core/HttpCommunications/http-communications.service';
+import { HttpClient } from '@angular/common/http';
+import { tap, catchError } from 'rxjs/operators';
 
 
 export interface ExampleTab {
@@ -41,7 +44,8 @@ export interface ExampleTab {
 export class TabbedInvoicesComponent implements OnInit {
 
   asyncTabs: Observable<ExampleTab[]>;
-
+  prodFound : Product;
+  prodFoundResponse : Response;
   model: NgbDateStruct;
   placement = 'left';
 
@@ -81,7 +85,7 @@ export class TabbedInvoicesComponent implements OnInit {
   //ricerca
   term = 'null'
 
-  constructor(private store: Store, private router: Router, private productService: ProductsService, private route: Router, private invoicesService: TabbedInvoicesService, private ivaService: IvaService, private customerService: CustomerService, private fb: FormBuilder, private modalService: NgbModal) {
+  constructor(private store: Store, private router: Router, private productService: ProductsService, private route: Router, private invoicesService: TabbedInvoicesService, private ivaService: IvaService, private customerService: CustomerService, private fb: FormBuilder, private modalService: NgbModal, private http: HttpCommunicationsService) {
     this.invoicesService.retrieveAllInvoices()
     this.customerService.retreiveAllCustomers()
     this.productService.retrieveAllProducts()
@@ -254,6 +258,13 @@ export class TabbedInvoicesComponent implements OnInit {
     this.pageSize = 2
   }
 
+  url : string;
+  getProduct(prodottoId: string): Observable<Product> {
+    this.url = 'product/findById';
+    return this.http.retrievePostCall<Product>(this.url, prodottoId.toString().toString());
+  }
+
+  prodSubscribed : Observable<Product>
   addProdNQnt(itemId: string, itemQuantity: string) {
 
     console.log("id items: ", itemId)
@@ -261,7 +272,12 @@ export class TabbedInvoicesComponent implements OnInit {
 
     this.idItemsString = this.idItemsString + itemId + ";"
     this.qntItemsString = this.qntItemsString + itemQuantity + ";"
+    this.getProduct(itemId).subscribe(itemFound=>{
+      this.prodFound=itemFound;
+      console.log("item found: " + itemFound);
+    }) 
 
+    console.log("majkl senpai: " + this.prodFound)
     //array per prodotti
     this.idItems.push(itemId);
     this.qntItems.push(itemQuantity)

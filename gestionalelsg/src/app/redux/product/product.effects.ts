@@ -6,7 +6,7 @@ import { Action } from "@ngrx/store";
 import { Observable } from "rxjs";
 import { switchMap, map, tap } from 'rxjs/operators';
 import { HttpCommunicationsService } from "src/app/core/HttpCommunications/http-communications.service";
-import {createProduct, deleteProduct, initProducts, retrieveAllProducts, updateProduct } from "./product.actions";
+import {createProduct, deleteProduct, findProdById, initProducts, retrieveAllProducts, updateProduct } from "./product.actions";
 import { Response } from '../../core/model/Response.interface';
 import { Invoice } from "src/app/core/model/Invoice.interface";
 
@@ -99,5 +99,17 @@ export class ProductsEffects {
         ))
     ));
     
+
+    findProdById(ids:string){
+        return this.http.retrievePostCall<Response>('product/findbyid',{ids});
+    }
+    findProdById$: Observable<Action> = createEffect(() => this.actions$.pipe(
+        ofType(findProdById),
+        switchMap((action) => this.findProdById(
+            action.ids).pipe(
+            map((response) => initProducts({ response })),
+            tap(()=>this.router.navigateByUrl('/redirectproducts'))
+        ))
+    ));
     
 }

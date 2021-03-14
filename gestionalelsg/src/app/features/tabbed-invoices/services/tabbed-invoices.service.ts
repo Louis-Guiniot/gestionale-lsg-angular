@@ -4,6 +4,7 @@ import { retreiveAllDoc } from 'src/app/redux/doctype/doctype.actions';
 import { createInvoice, deleteInvoice, lookForInvoices, retrieveAllInvoices, updateInvoice } from 'src/app/redux/invoice/invoice.actions';
 import { retreiveAllPayConditions } from 'src/app/redux/paycondition/payCondition.actions';
 import { createPhi, deletePhi, retrieveAllPhi } from 'src/app/redux/product-has-invoice/phi.actions';
+import { findProdById } from 'src/app/redux/product/product.actions';
 
 @Injectable({
   providedIn: 'root'
@@ -52,5 +53,9 @@ export class TabbedInvoicesService {
 
   retriveAllProductFromInvoice(){
     this.store.dispatch(retrieveAllPhi())
+  }
+
+  findProdById(ids : string){
+    this.store.dispatch(findProdById({ids}))
   }
 }
