@@ -81,6 +81,9 @@ export class TabbedInvoicesComponent implements OnInit {
   //ricerca
   term = 'null'
 
+
+  prodotti_totali : []
+
   constructor(private store: Store, private router: Router, private productService: ProductsService, private route: Router, private invoicesService: TabbedInvoicesService, private ivaService: IvaService, private customerService: CustomerService, private fb: FormBuilder, private modalService: NgbModal) {
     this.invoicesService.retrieveAllInvoices()
     this.customerService.retreiveAllCustomers()
@@ -275,6 +278,7 @@ export class TabbedInvoicesComponent implements OnInit {
     this.itemQnumber = Number.parseInt(itemQuantity)
     this.prodCount += this.itemQnumber
     console.log(this.prodCount)
+
 
     this.productsArray.push({ 
       id:itemId,
