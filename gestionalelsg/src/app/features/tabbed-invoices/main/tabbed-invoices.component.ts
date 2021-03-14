@@ -44,7 +44,7 @@ export interface ExampleTab {
 export class TabbedInvoicesComponent implements OnInit {
 
   asyncTabs: Observable<ExampleTab[]>;
-  prodFound : Product;
+  prodFound : any;
   prodFoundResponse : Response;
   model: NgbDateStruct;
   placement = 'left';
@@ -261,19 +261,21 @@ export class TabbedInvoicesComponent implements OnInit {
   url : string;
   getProduct(prodottoId: string): Observable<Product> {
     this.url = 'product/findById';
-    return this.http.retrievePostCall<Product>(this.url, prodottoId.toString().toString());
+    return this.http.retrievePostCall<Product>(this.url, prodottoId.toString().toString()).pipe();
   }
 
-  prodSubscribed : Observable<Product>
   addProdNQnt(itemId: string, itemQuantity: string) {
 
     console.log("id items: ", itemId)
     console.log("qnt items:", itemQuantity)
 
     this.idItemsString = this.idItemsString + itemId + ";"
+    
     this.qntItemsString = this.qntItemsString + itemQuantity + ";"
+    
     this.getProduct(itemId).subscribe(itemFound=>{
       this.prodFound=itemFound;
+
       console.log("item found: " + itemFound);
     }) 
 

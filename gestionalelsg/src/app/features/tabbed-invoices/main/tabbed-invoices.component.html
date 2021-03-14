@@ -380,11 +380,8 @@
                                             <label for="description">Quantita'</label>
                                             <div class="input-group-append">
                                                 <button class="btn" id="btn-edit" [disabled]="invoiceInsertProd.invalid"
-                                                    (click)="addProdNQnt(idArticle.value, itemQuantity.value)"
-                                                    (click)="changeSuccessMessage()"><i
+                                                    (click)="addProdNQnt(idArticle.value, itemQuantity.value)"><i
                                                         class="bi bi-plus-square-fill"></i></button>
-                                                <button type="button" class="btn btn-outline-danger" (click)="resetCart()"><i
-                                                        class="bi bi-x-square-fill"></i></button>
                                             </div>
                                         </span>
                                     </div>
@@ -405,14 +402,16 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr *ngFor="let prod of productsArray">
-                                            <td>{{prod.id}}</td>
-                                            <td>{{prod.qta}}</td>
-                                            <td>
-                                                <button class="btn btn-outline-danger" (click)="removeFromCart(prod.id, prod.qta)">
-                                                    <i class="bi bi-cloud-minus"></i>
-                                                </button>
-                                            </td>
+                                        <tr *ngFor="let prod of phis | async">
+                                            <div *ngIf="idN == prod.id">
+                                                <td>{{prod.idProduct}}</td>
+                                                <td>{{prod.qtaProduct}}</td>
+                                                <td>
+                                                    <button class="btn btn-outline-danger" (click)="removeFromCart(prod.id, prod.qta)">
+                                                        <i class="bi bi-cloud-minus"></i>
+                                                    </button>
+                                                </td>
+                                            </div>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -618,8 +617,6 @@
                                         <button class="btn" id="btn-edit" [disabled]="invoiceInsertProd.invalid"
                                             (click)="addProdNQnt(idArticle.value, itemQuantity.value)"><i
                                                 class="bi bi-plus-square-fill"></i></button>
-                                        <button type="button" class="btn btn-outline-danger" (click)="resetCart()"><i
-                                                class="bi bi-x-square-fill"></i></button>
                                     </div>
                                 </span>
                             </div>
