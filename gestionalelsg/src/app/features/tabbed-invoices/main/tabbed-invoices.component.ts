@@ -271,9 +271,9 @@ export class TabbedInvoicesComponent implements OnInit {
     return this.http.retrievePostCall<Product>(this.url, prodottoId.toString().toString());
   }
 
-
+  //non toccare francese del cazzo
   arrayRecieved:Object =[]
-  stringReceived:string
+  
   prodSubscribed : Observable<Product>
 
   prodsArray:any=[]
@@ -287,13 +287,13 @@ export class TabbedInvoicesComponent implements OnInit {
     this.getProduct(itemId).subscribe(itemFound=>{
       this.prodFound=itemFound;
       this.arrayRecieved=this.prodFound
-      this.stringReceived=itemFound.toString()
+    
       console.log("item found: " + itemFound);
 
     }) 
     await this.delay(1000);
-    console.log("majkl senpai: " + this.prodFound)
-    console.log("stringReceived ",this.stringReceived)
+    
+    
     //array per prodotti
     this.idItems.push(itemId);
     this.qntItems.push(itemQuantity)
