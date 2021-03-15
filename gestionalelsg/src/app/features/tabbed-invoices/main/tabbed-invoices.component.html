@@ -332,23 +332,23 @@
                                 <div class="col ">
                                     <span class="form-group has-float-label">
                                         <select formControlName="docType" class="form-control">
-                                            <option selected>seleziona la condizione di pagamento da usare</option>
+                                            <option selected>seleziona il nuovo metodo di pagamento da usare</option>
                                             <option *ngFor="let doc of documents | async " value="{{doc.tipoDocumento}}">
                                                 {{doc.tipoDocumento}}
                                             </option>
                                         </select>
-                                        <label for="description">Tipo doc.</label>
+                                        <label for="description">Tipo documento {{inv.tipoDocumento}}</label>
                                     </span>
                                 </div>
                                 <div class="col ">
                                     <span class="form-group has-float-label">
                                         <select formControlName="payCondition" class="form-control">
-                                            <option selected>seleziona la condizione di pagamento da usare</option>
+                                            <option selected>seleziona la nuova condizione di pagamento da usare</option>
                                             <option *ngFor="let cond of conditions | async " value="{{cond.condizione}}">
                                                 {{cond.condizione}}
                                             </option>
                                         </select>
-                                        <label for="description">Cond. pagamento</label>
+                                        <label for="description">Cond. pagamento {{inv.condizionePagamento}}</label>
                                     </span>
                                 </div>
                             </div>
@@ -481,10 +481,10 @@
         </form>
     </div>
     <div class="modal-footer ">
-        <button type="button " class="btn btn-outline-danger" (click)="modal.dismiss( 'Cross click')" ngbTooltip="Exit ">
+        <button type="button " class="btn btn-outline-danger" (click)="modalEdit.dismiss( 'Cross click')" ngbTooltip="Exit ">
             <i class="bi bi-arrow-bar-right "></i>
         </button>
-        <button type="submit " class="btn " id="btn-modal-edit" [disabled]="invoiceInsertForm.invalid" (click)="modal.close( 'Save click') " ngbTooltip="Insert ">
+        <button type="submit " class="btn " id="btn-modal-edit" [disabled]="invoiceInsertForm.invalid" (click)="modalEdit.close( 'Save click') " ngbTooltip="Insert ">
             <i class="bi bi-save "></i>
         </button>
     </div>
