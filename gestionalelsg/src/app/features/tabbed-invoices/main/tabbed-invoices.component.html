@@ -724,3 +724,13 @@
         </form>
     </div>
 </ng-template>
+
+
+<div>
+    <select>
+        <option selected>louis ciuccia cazzi</option>
+        <option *ngFor="let prod of prodsArray" >
+            {{prod.result.description}} 
+        </option>
+    </select>
+</div>

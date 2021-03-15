@@ -258,14 +258,26 @@ export class TabbedInvoicesComponent implements OnInit {
     this.pageSize = 2
   }
 
+
+  delay(ms: number) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+  }
+
+
+
   url : string;
   getProduct(prodottoId: string): Observable<Product> {
     this.url = 'product/findById';
     return this.http.retrievePostCall<Product>(this.url, prodottoId.toString().toString());
   }
 
+
+  arrayRecieved:Object =[]
+  stringReceived:string
   prodSubscribed : Observable<Product>
-  addProdNQnt(itemId: string, itemQuantity: string) {
+
+  prodsArray:any=[]
+  async addProdNQnt(itemId: string, itemQuantity: string) {
 
     console.log("id items: ", itemId)
     console.log("qnt items:", itemQuantity)
@@ -274,13 +286,25 @@ export class TabbedInvoicesComponent implements OnInit {
     this.qntItemsString = this.qntItemsString + itemQuantity + ";"
     this.getProduct(itemId).subscribe(itemFound=>{
       this.prodFound=itemFound;
+      this.arrayRecieved=this.prodFound
+      this.stringReceived=itemFound.toString()
       console.log("item found: " + itemFound);
-    }) 
 
+    }) 
+    await this.delay(1000);
     console.log("majkl senpai: " + this.prodFound)
+    console.log("stringReceived ",this.stringReceived)
     //array per prodotti
     this.idItems.push(itemId);
     this.qntItems.push(itemQuantity)
+    
+    
+    //parte importanre
+    console.log("arrayRecieved: ", this.arrayRecieved)
+    this.prodsArray.push(this.arrayRecieved)
+    console.log("pushato: ", this.prodsArray)
+
+
 
     console.log("id items: ", this.idItems)
     console.log("qnt items:", this.qntItems)
