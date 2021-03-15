@@ -261,7 +261,7 @@ export class TabbedInvoicesComponent implements OnInit {
   url : string;
   getProduct(prodottoId: string): Observable<Product> {
     this.url = 'product/findById';
-    return this.http.retrievePostCall<Product>(this.url, prodottoId.toString().toString());
+    return this.http.retrievePostCall<Product>(this.url, prodottoId.toString().toString()).pipe();
   }
 
   prodSubscribed : Observable<Product>
