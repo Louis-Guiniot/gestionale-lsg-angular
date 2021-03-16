@@ -44,8 +44,7 @@ export interface ExampleTab {
 export class TabbedInvoicesComponent implements OnInit {
 
   asyncTabs: Observable<ExampleTab[]>;
-  prodFound : any;
-  prodFoundResponse : Response;
+  
   model: NgbDateStruct;
   placement = 'left';
 
@@ -58,15 +57,14 @@ export class TabbedInvoicesComponent implements OnInit {
 
   //dati per update e delete
   idN: number
-  idS: string
+  idS: string //mandato a ogni metodo redux
   codeD: string
+
+  codeInvoiceS: string //per cancellazione
 
   closeResult = ''
 
   //aggiunta prodotti
-  idItems = []
-  qntItems = []
-  productsArray = []
 
   idItemsString: string = ""
   qntItemsString: string = ""
@@ -74,16 +72,20 @@ export class TabbedInvoicesComponent implements OnInit {
   prodCount = 0
   itemQnumber: number
 
-  //accordion
-  public isCollapsed = false;
-
-  //paginazione
+  //paginazione invoice
   collectionSize: number
   page = 1
   pageSize = 2
 
   //ricerca
   term = 'null'
+
+  //invoice by id
+  invoiceFound : any
+  arrayInvoiceRecieved : Object = []
+  arrayInvoiceProducts = []
+  arrayInvoiceFinale = []
+
 
   constructor(private store: Store, private router: Router, private productService: ProductsService, private route: Router, private invoicesService: TabbedInvoicesService, private ivaService: IvaService, private customerService: CustomerService, private fb: FormBuilder, private modalService: NgbModal, private http: HttpCommunicationsService) {
     this.invoicesService.retrieveAllInvoices()
@@ -95,7 +97,7 @@ export class TabbedInvoicesComponent implements OnInit {
     this.invoicesService.retriveAllProductFromInvoice()
   }
 
-  openXL(content, idCust?: string, name?: string) {
+  async openXL(content, idInvoice?: string, codeInvoice?: string, isUpdate?:boolean) {
 
     this.modalService.open(content, { size: 'xl' }).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
@@ -105,20 +107,54 @@ export class TabbedInvoicesComponent implements OnInit {
       this.invoiceInsertForm.reset();
       this.invoiceUpdateForm.reset();
       this.invoiceInsertProd.reset();
-      this.productsArray.pop();
+
+      this.arrayFinale = [] //pulisco array finale quando esco da maschera
+      this.qntItemsString = "" //pulisco stringa items da mandare a create
+      this.idItemsString = "" //pulisco quantità items da mandare a create
 
     });
 
-    this.idN = Number.parseInt(idCust)
-    this.idS = idCust;
-    this.codeD = name;
+    if(isUpdate){
 
-    console.log("idN: " + this.idN + "codeD: " + this.codeD)
-    console.log("array di prodotti: " + this.productsArray)
+      this.idN = Number.parseInt(idInvoice)
+      this.idS = idInvoice;
+      this.codeD = codeInvoice;
+  
+      console.log("id invoice: " + this.idN + "code invoice: " + this.codeD)
+
+        this.getInvoice(idInvoice).subscribe(invoice => {
+
+          this.invoiceFound = invoice
+          this.arrayInvoiceRecieved = this.invoiceFound
+                
+        })
+
+        await this.delay(100);
+        console.log("item found: " , this.invoiceFound)
+
+        console.log("fields  ", this.invoiceFound.result.fields)
+
+        this.arrayInvoiceProducts.push(
+          (this.invoiceFound.result.fields).split(';')
+        )
+
+        console.log("array prodotti trovati:   ", this.arrayInvoiceProducts)
+
+      this.arrayInvoiceFinale.push({
+        invo:this.invoiceFound
+      })
+
+      console.log("array finale invoice: ", this.arrayInvoiceFinale)      
+
+
+    }else{
+      
+    }
+
   }
 
-  openDeleteModal(content, idInvoice?:string){
-    this.modalService.open(content, { size: 'l' }).result.then((result) => {
+  openDeleteModal(content, idInvoice?: string, codeInvoice?: string) {
+    this.modalService.open(content, { size: 'xl' }).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
     }, (reason) => {
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
@@ -127,8 +163,9 @@ export class TabbedInvoicesComponent implements OnInit {
 
     this.idN = Number.parseInt(idInvoice)
     this.idS = idInvoice;
+    this.codeInvoiceS = codeInvoice
 
-    console.log("idN: " + this.idN)
+    console.log("id invoice to delete: " + this.idN)
   }
 
   private getDismissReason(reason: any): string {
@@ -148,7 +185,6 @@ export class TabbedInvoicesComponent implements OnInit {
     this.store.pipe(select(selectInvoices)).subscribe((invoices) => {
       this.collectionSize = invoices.length;
     })
-
 
     this.cercaForm = this.fb.group({
       termine: ['', Validators.required],
@@ -170,20 +206,22 @@ export class TabbedInvoicesComponent implements OnInit {
     this.invoiceUpdateForm = this.fb.group({
       custId: ['', Validators.required],
       date: ['', Validators.required],
-      payCondition:['', Validators.required],
-      docType:['', Validators.required],
-      sale:['', Validators.required],
-      articles:['', Validators.required],
-      taxable:['', Validators.required],
-      quantity:['', Validators.required],
-      saleImport:['', Validators.required],
-      iva:['', Validators.required],
-      ivaPrice:['', Validators.required],
-      totMerce:['', Validators.required],
-      totServices:['', Validators.required],
+      payCondition: ['', Validators.required],
+      docType: ['', Validators.required],
+      sale: ['', Validators.required],
+      articles: ['', Validators.required],
+      taxable: ['', Validators.required],
+      quantity: ['', Validators.required],
+      saleImport: ['', Validators.required],
+      iva: ['', Validators.required],
+      ivaPrice: ['', Validators.required],
+      totMerce: ['', Validators.required],
+      totServices: ['', Validators.required],
     })
   }
-  
+
+  /********** GET CHE ARRIVANO DA REDUX PER AVERE LISTA ***********/
+
   get invoices(): Observable<Invoice[]> {
     return this.store.pipe(select(selectInvoices))
   }
@@ -200,51 +238,47 @@ export class TabbedInvoicesComponent implements OnInit {
     return this.store.pipe(select(selectPayCondition))
   }
 
-  get ivaList(): Observable<Iva[]>{
+  get ivaList(): Observable<Iva[]> {
     return this.store.pipe(select(selectIva))
   }
 
-  get documents(): Observable<DocumentType[]>{
+  get documents(): Observable<DocumentType[]> {
     return this.store.pipe(select(selectDocument))
   }
 
-  get phis(): Observable<ProductHasInvoice[]>{
+  get phis(): Observable<ProductHasInvoice[]> {
     return this.store.pipe(select(selectPhi))
   }
 
   create() {
+
+    this.arrayFinale = [] //pulisco il vettore finale così da poter aggiungere nuovi prodotti post creazione
+
     this.invoicesService.create(this.invoiceInsertForm.value.custId,
       this.invoiceInsertForm.value.payCondition, this.invoiceInsertForm.value.docType,
-      this.invoiceInsertForm.value.sale, this.idItemsString, this.qntItemsString, this.invoiceInsertForm.value.iva)
+      this.invoiceInsertForm.value.sale, this.idItemsString, this.qntItemsString, this.invoiceInsertForm.value.iva
+    )
 
-    // productsArray.forEach(prod => {
-    //   this.invoicesService.createPhi(prod.id, prod.qta)
-    // });
   }
 
   deleteInv() {
-    this.invoicesService.deleteInvoice(this.idS)
+    this.invoicesService.deleteInvoice(this.idS) //elimino invoice tramite id chiamando service
   }
 
   update() {
-
-    console.log("id customer che mi fa piangere: ", this.invoiceUpdateForm.value.custId)
     this.invoicesService.updateInvoice(this.idS.toString(),
 
-                                       this.invoiceUpdateForm.value.custId, 
-                                       this.invoiceUpdateForm.value.payCondition, 
-                                       this.invoiceUpdateForm.value.docType, 
-                                       this.invoiceUpdateForm.value.sale, 
-                                       this.idItemsString, 
-                                       this.qntItemsString, 
-                                       this.invoiceUpdateForm.value.iva
-                                       
-                                       )}
+      this.invoiceUpdateForm.value.custId,
+      this.invoiceUpdateForm.value.payCondition,
+      this.invoiceUpdateForm.value.docType,
+      this.invoiceUpdateForm.value.sale,
+      this.idItemsString,
+      this.qntItemsString,
+      this.invoiceUpdateForm.value.iva
 
-  // searchTerm(){
-  //   console.log("cerco")
-  //   this.router.navigate(["/tabbed/invoices/found"], { queryParams: { term: this.cercaForm.value.termine }})
-  // }
+    )
+  }
+
 
   searchTerm() {
     this.term = this.cercaForm.value.termine
@@ -258,78 +292,80 @@ export class TabbedInvoicesComponent implements OnInit {
     this.pageSize = 2
   }
 
-  url : string;
-  getProduct(prodottoId: string): Observable<Product> {
-    this.url = 'product/findById';
-    return this.http.retrievePostCall<Product>(this.url, prodottoId.toString().toString()).pipe();
+  delay(ms: number) {
+    return new Promise(resolve => setTimeout(resolve, ms));
   }
 
-  addProdNQnt(itemId: string, itemQuantity: string) {
+  url: string
+  urlInvoice: string
 
-    console.log("id items: ", itemId)
-    console.log("qnt items:", itemQuantity)
+  getProduct(prodottoId: string): Observable<Product> {
+    this.url = 'product/findById'
+    return this.http.retrievePostCall<Product>(this.url, prodottoId.toString().toString()).pipe()
+  }
 
+  getInvoice(invoiceId: string): Observable<Invoice> {
+    this.urlInvoice = 'invoice/findInvoiceById'
+    return this.http.retrievePostCall<Invoice>(this.urlInvoice, invoiceId.toString().toString()).pipe()
+  }
+
+
+  // array che ricevo dopo subscribe trovando il prodotto con tale id
+  arrayRecieved: Object = []
+  prodFound: any;
+
+  //array per le quantita' dei prodotti
+  qtaArray = []
+
+  //array finale che conterra
+  arrayFinale = []
+
+  //variabile per gestire id record finale
+  i = 0
+
+  //ANCHOR add prod to cart
+  async addProdNQnt(itemId: string, itemQuantity: string) {
+
+    //mostro a console i dati passati al metodo
+    console.log("id item: ", itemId) //id prodotto
+    console.log("qnt item:", itemQuantity) //quantita' prodotto
+
+    //campi che poi verranno mandati a backend per eseguire calcoli
     this.idItemsString = this.idItemsString + itemId + ";"
-    
     this.qntItemsString = this.qntItemsString + itemQuantity + ";"
-    
-    this.getProduct(itemId).subscribe(itemFound=>{
-      this.prodFound=itemFound;
 
-      console.log("item found: " + itemFound);
-    }) 
-
-    console.log("majkl senpai: " + this.prodFound)
-    //array per prodotti
-    this.idItems.push(itemId);
-    this.qntItems.push(itemQuantity)
-
-    console.log("id items: ", this.idItems)
-    console.log("qnt items:", this.qntItems)
-
-    this.invoiceInsertProd.reset()
-
-    //creo campo per sapere quanti prodotti sono contenuti
-    this.itemQnumber = Number.parseInt(itemQuantity)
-    this.prodCount += this.itemQnumber
-    console.log(this.prodCount)
-
-
-    this.productsArray.push({ 
-      id:itemId,
-      qta:itemQuantity
+    //faccio la subscribe per trovare il prodotto cercato tramite id
+    this.getProduct(itemId).subscribe(itemFound => {
+      this.prodFound = itemFound
+      this.arrayRecieved = this.prodFound
+      console.log("item found: " + itemFound)
     })
 
-    console.log(this.productsArray)
+    await this.delay(500); //creo ritardo per consentire l'aggiunta del prodotto alla tabella di recap
 
-    console.log("chiamo redux phi")
-    this.invoicesService.createPhi(itemId,itemQuantity)
+    //l'array finale deve contenere : ID record , PRODOTTO , QUANTITA'
+    this.arrayFinale.push({
+      idRecord: this.i, //aggiundo idRecord per mappare con value = i
+      prod: this.prodFound, //prod e' il record estratto con subsrcibe
+      qta: itemQuantity //aggiungo qta per sapere quantita' del prodotto inserito
+    })
 
-  }
+    //aggiungo 1 a id cosi' da mappare l'array finale
+    this.i++
 
+  
 
-  removeFromCart(id:string, qta:string){
-    this.productsArray.forEach(product => {
-      if(product.id === id && product.qta === qta){
-        this.prodCount -= product.qta
-        this.productsArray.pop()
-        this.invoicesService.deletePhi(product.id,product.qta)
-      }
-    });
-  }
+    console.log("arrayRecieved: ", this.arrayRecieved)
+    console.log("finale--> ", this.arrayFinale)
 
-
-  resetCart() {
-    while (this.idItems.length > 0 && this.qntItems.length > 0) {
-      this.idItems.pop()
-      this.qntItems.pop()
-
-      this.prodCount = 0
-
-    }
-
+    //appena inserisco un prodotto e schiacco su + la form si resetta cosi' da permettere altri inserimenti
     this.invoiceInsertProd.reset()
 
+  }
+
+  removeFromCart(i: number) {
+    //nell'array finale elimino il record con index = i , passato tramite metodo da html 
+    this.arrayFinale.splice(i, 1)
   }
 
 }
