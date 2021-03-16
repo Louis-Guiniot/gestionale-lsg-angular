@@ -734,7 +734,7 @@
     </div>
     <form (ngSubmit)="deleteInv()">
         <div class="modal-body">
-            <p>sei sicuro di volere eliminare la fattura {{codeInvoiceS}} ?</p>
+            <p>sei sicuro di volere eliminare la fattura <b>{{codeInvoiceS}}</b> ?</p>
         </div>
         <div class="modal-footer">
             <button type="submit" class="btn btn-outline-danger" (click)="modal.close('Save click')" ngbTooltip="Delete">
