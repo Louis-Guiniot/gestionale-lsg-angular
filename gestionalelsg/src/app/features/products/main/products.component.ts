@@ -109,11 +109,6 @@ export class ProductsComponent implements OnInit {
 
   updateProd(){
 
-    console.log("id "+this.idN)
-    console.log("name "+this.updateProductForm.value.name)
-    console.log("surname "+this.updateProductForm.value.surname)
-    console.log("email "+this.updateProductForm.value.email)
-
     this.productService.updateProduct(this.idS.toString(),this.updateProductForm.value.name, this.updateProductForm.value.description, this.updateProductForm.value.measureUnit, this.updateProductForm.value.price, this.updateProductForm.value.sconto)
   }
 
