@@ -127,13 +127,14 @@ body {
 
 i {
     font-size: 2.5vw;
+    color: #fff;
     &:hover {
         cursor: pointer;
     }
 }
 
 .active {
-    color: greenyellow;
+    color: #0261f9;
 }
 
 #home-icon {
@@ -149,7 +150,6 @@ i {
     height: 51px;
     line-height: 51px;
     text-align: center;
-    background: #f5f5f5;
     color: rgba(0, 0, 0, 0.87);
     border-bottom: none;
 }
@@ -172,7 +172,6 @@ ul {
 
 .content-area {
     text-align: center;
-    color: white;
 }
 
 #menulist.e-listview .e-list-item:hover {

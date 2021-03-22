@@ -114,11 +114,13 @@ export class TabbedInvoicesComponent implements OnInit {
 
     });
 
-    if(isUpdate){
-
-      this.idN = Number.parseInt(idInvoice)
+    this.idN = Number.parseInt(idInvoice)
       this.idS = idInvoice;
       this.codeD = codeInvoice;
+
+    if(isUpdate){
+
+      
   
       console.log("id invoice: " + this.idN + "code invoice: " + this.codeD)
 

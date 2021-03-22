@@ -136,6 +136,7 @@
                             <div class="form-group mb-3">
                                 <span class="form-group has-float-label">
                                     <select class="form-control" aria-label="Default select example" formControlName="vecchio">
+                                        <option selected>seleziona l'unita' di misura</option>  
                                         <option *ngIf="measure.id == idMnumber" value="{{ measure.id }}">
                                                     {{ measure.type }}  
                                         </option>
