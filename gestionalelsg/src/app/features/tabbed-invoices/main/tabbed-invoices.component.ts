@@ -261,6 +261,8 @@ export class TabbedInvoicesComponent implements OnInit {
       this.invoiceInsertForm.value.sale, this.idItemsString, this.qntItemsString, this.invoiceInsertForm.value.iva
     )
 
+    window.location.reload()
+
   }
 
   deleteInv() {
