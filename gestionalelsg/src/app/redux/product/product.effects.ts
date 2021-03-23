@@ -24,8 +24,8 @@ export class ProductsEffects {
         return this.http.retrieveGetCall<Response>("invoice/findAll");
     }
 
-    findUpdateProduct(id:string, description:string, measureUnit:string,name:string,price:string,sconto:string): Observable<Response>{
-        return this.http.retrievePostCall<Response>('product/update',{id,description,measureUnit,name,price,sconto});
+    findUpdateProduct(id:string, description:string, measureUnit:string,name:string,price:string,sconto:string,iva:string): Observable<Response>{
+        return this.http.retrievePostCall<Response>('product/update',{id,description,measureUnit,name,price,sconto,iva});
     }
 
     deleteProduct(id:string){
@@ -47,8 +47,8 @@ export class ProductsEffects {
         return this.http.retrieveGetCall<Response>("invoice/findLast");
     }
 
-    createProduct( description:string, measureUnit:string, name:string, price:string, scontoProd:string): Observable<Response>{
-        return this.http.retrievePostCall<Response>('product/create',{description, measureUnit,name, price,scontoProd});
+    createProduct( description:string, measureUnit:string, name:string, price:string, scontoProd:string,iva: string): Observable<Response>{
+        return this.http.retrievePostCall<Response>('product/create',{description, measureUnit,name, price,scontoProd,iva});
     }
 
     //sbagliato metterlo qua ma 2 much sbatti
@@ -73,7 +73,8 @@ export class ProductsEffects {
             action.measureUnit,
             action.name,
             action.price,
-            action.sconto).pipe(
+            action.sconto,
+            action.iva).pipe(
             map((response) => initProducts({ response })),
             tap(()=>this.router.navigateByUrl('/redirectproducts'))
         ))
@@ -93,7 +94,8 @@ export class ProductsEffects {
             action.measureUnit,
             action.name,
             action.price,
-            action.scontoProd).pipe(
+            action.sconto,
+            action.iva).pipe(
             map((response) => initProducts({ response }))
             ,tap(()=>this.router.navigateByUrl('/redirectproducts'))
         ))

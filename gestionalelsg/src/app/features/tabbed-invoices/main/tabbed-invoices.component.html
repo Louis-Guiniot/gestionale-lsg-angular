@@ -37,29 +37,25 @@
             </thead>
 
             <tbody *ngFor="let inv of invoices | async | slice: (page-1) * pageSize : page * pageSize; let i= index" id="highlight-row-invoice">
-
-                <div *ngIf="term==='null'; then elseBlock"></div>
-                <ng-template #elseBlock>
-                    <tr>
-                        <th scope="col">{{inv.idCustomer}}</th>
-                        <td> {{inv.codeInvoice}}</td>
-                        <td>{{inv.dateTime}}</td>
-                        <td>{{inv.condizionePagamento}}</td>
-                        <td>{{inv.tipoDocumento}} </td>
-                        <td>{{inv.sconto}}%</td>
-                        <td><button class="btn btn-sm" id="btn-edit" (click)="openXL(edit,inv.id,inv.codeInvoice,true)"><i
+                <tr>
+                    <th scope="col">{{inv.idCustomer}}</th>
+                    <td> {{inv.codeInvoice}}</td>
+                    <td>{{inv.dateTime}}</td>
+                    <td>{{inv.condizionePagamento}}</td>
+                    <td>{{inv.tipoDocumento}} </td>
+                    <td>{{inv.sconto}}%</td>
+                    <td><button class="btn btn-sm" id="btn-edit" (click)="openXL(edit,inv.id,inv.codeInvoice,true)"><i
                                     class="bi bi-wrench"></i></button>
-                        </td>
-                        <td><button class="btn btn-sm" id="btn-edit" (click)="openXL(tabbed,inv.id,inv.codeInvoice)"><i
+                    </td>
+                    <td><button class="btn btn-sm" id="btn-edit" (click)="openXL(tabbed,inv.id,inv.codeInvoice)"><i
                                     class="bi bi-eye-fill"></i></button>
-                        </td>
-                        <td><button class="btn btn-sm btn-outline-danger" id="btn" (click)="openDeleteModal(delete,inv.id, inv.codeInvoice)"><i
+                    </td>
+                    <td><button class="btn btn-sm btn-outline-danger" id="btn" (click)="openDeleteModal(delete,inv.id, inv.codeInvoice)"><i
                             class="bi bi-trash"></i></button>
-                        </td>
-                    </tr>
-                </ng-template>
+                    </td>
+                </tr>
 
-                <div *ngIf="(inv.idCustomer.toLowerCase().includes(term)||inv.codeInvoice.toLowerCase().includes(term)||inv.condizionePagamento.toLowerCase().includes(term)||inv.dateTime.toLowerCase().includes(term)||inv.fields.toLowerCase().includes(term)||inv.imponibile.toLowerCase().includes(term)||inv.importoSconto.toLowerCase().includes(term)||inv.iva.toLowerCase().includes(term)||inv.ivaPrice.toLowerCase().includes(term)||inv.quantita.toLowerCase().includes(term)||inv.sconto.toLowerCase().includes(term)||inv.tipoDocumento.toLowerCase().includes(term)||inv.totaleMerci.toLowerCase().includes(term)||inv.totaleServizi.toLowerCase().includes(term)); then thenBlock">
+                <!-- <div *ngIf="(inv.idCustomer.toLowerCase().includes(term)||inv.codeInvoice.toLowerCase().includes(term)||inv.condizionePagamento.toLowerCase().includes(term)||inv.dateTime.toLowerCase().includes(term)||inv.fields.toLowerCase().includes(term)||inv.imponibile.toLowerCase().includes(term)||inv.importoSconto.toLowerCase().includes(term)||inv.iva.toLowerCase().includes(term)||inv.ivaPrice.toLowerCase().includes(term)||inv.quantita.toLowerCase().includes(term)||inv.sconto.toLowerCase().includes(term)||inv.tipoDocumento.toLowerCase().includes(term)||inv.totaleMerci.toLowerCase().includes(term)||inv.totaleServizi.toLowerCase().includes(term)); then thenBlock">
                 </div>
                 <ng-template #thenBlock>
                     <tr>
@@ -79,7 +75,7 @@
                             class="bi bi-trash"></i></button>
                         </td>
                     </tr>
-                </ng-template>
+                </ng-template> -->
             </tbody>
         </table>
 

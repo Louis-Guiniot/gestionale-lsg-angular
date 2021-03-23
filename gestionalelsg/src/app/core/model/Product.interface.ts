@@ -5,7 +5,7 @@ export interface Product{
     description:string;
     price:string;
     measureUnit:string;
-    img:string;
-    measureUnit_id:string;
     scontoProd:string;
+    iva:string
+    measureUnit_id:string;
 }

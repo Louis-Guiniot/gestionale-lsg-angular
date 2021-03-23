@@ -70,9 +70,9 @@ export class ProductsComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.store.pipe(select(selectProducts)).subscribe((products) => {
-      this.collectionSize=products.length;
-    })
+    // this.store.pipe(select(selectProducts)).subscribe((products) => {
+    //   this.collectionSize=products.length;
+    // })
 
     this.cercaForm=this.fb.group({
       termine: ['', Validators.required]
@@ -85,7 +85,8 @@ export class ProductsComponent implements OnInit {
       description: ['', Validators.required],
       measureUnit:['', Validators.required],
       price:['', Validators.required],
-      sconto:['', Validators.required]
+      sconto:['', Validators.required],
+      iva:['', Validators.required]
     })
 
     this.updateProductForm=this.fb.group({
@@ -94,7 +95,8 @@ export class ProductsComponent implements OnInit {
       description: ['', Validators.required],
       measureUnit:['', Validators.required],
       price:['', Validators.required],
-      sconto:['', Validators.required]
+      sconto:['', Validators.required],
+      iva:['', Validators.required],
     })
     
   }
@@ -109,12 +111,12 @@ export class ProductsComponent implements OnInit {
 
   updateProd(){
 
-    this.productService.updateProduct(this.idS.toString(),this.updateProductForm.value.name, this.updateProductForm.value.description, this.updateProductForm.value.measureUnit, this.updateProductForm.value.price, this.updateProductForm.value.sconto)
+    this.productService.updateProduct(this.idS.toString(),this.updateProductForm.value.name, this.updateProductForm.value.description, this.updateProductForm.value.measureUnit, this.updateProductForm.value.price, this.updateProductForm.value.sconto,this.updateProductForm.value.iva)
   }
 
   create(){
     
-    this.productService.createProduct(this.createProductForm.value.description,this.createProductForm.value.measureUnit,this.createProductForm.value.name,this.createProductForm.value.price, this.createProductForm.value.sconto)
+    this.productService.createProduct(this.createProductForm.value.description,this.createProductForm.value.measureUnit,this.createProductForm.value.name,this.createProductForm.value.price, this.createProductForm.value.sconto,this.createProductForm.value.iva)
     
   }
   deleteProd(){
