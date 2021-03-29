@@ -8,4 +8,6 @@ export interface Product{
     img:string;
     measureUnit_id:string;
     scontoProd:string;
+    iva:string;
+    genere:string;
 }

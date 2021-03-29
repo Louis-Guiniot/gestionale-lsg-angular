@@ -10,6 +10,8 @@ import { selectMeasures, selectMeasureState } from 'src/app/redux/measure';
 import { selectProducts } from 'src/app/redux/product';
 import { ProductsService } from '../service/products.service';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import { selectIva } from 'src/app/redux/iva';
+import { Iva } from 'src/app/core/model/Iva.interface';
 
 @Component({
   selector: 'app-products',
@@ -40,6 +42,8 @@ export class ProductsComponent implements OnInit {
     
     this.productService.retrieveAllProducts();
     this.productService.retrieveAllMeasures();
+    this.productService.retrieveAllIvas()
+
   }
 
   open(content,idCust?:string,name?:string) {
@@ -85,7 +89,9 @@ export class ProductsComponent implements OnInit {
       description: ['', Validators.required],
       measureUnit:['', Validators.required],
       price:['', Validators.required],
-      sconto:['', Validators.required]
+      sconto:['', Validators.required],
+      iva: ['', Validators.required],
+      genere: ['', Validators.required]
     })
 
     this.updateProductForm=this.fb.group({
@@ -107,6 +113,10 @@ export class ProductsComponent implements OnInit {
      return this.store.pipe(select(selectMeasures));
    }
 
+   get ivaList(): Observable<Iva[]> {
+    return this.store.pipe(select(selectIva));
+   }
+
   updateProd(){
 
     this.productService.updateProduct(this.idS.toString(),this.updateProductForm.value.name, this.updateProductForm.value.description, this.updateProductForm.value.measureUnit, this.updateProductForm.value.price, this.updateProductForm.value.sconto)
@@ -114,7 +124,7 @@ export class ProductsComponent implements OnInit {
 
   create(){
     
-    this.productService.createProduct(this.createProductForm.value.description,this.createProductForm.value.measureUnit,this.createProductForm.value.name,this.createProductForm.value.price, this.createProductForm.value.sconto)
+    this.productService.createProduct(this.createProductForm.value.description,this.createProductForm.value.measureUnit,this.createProductForm.value.name,this.createProductForm.value.price, this.createProductForm.value.sconto, this.createProductForm.value.iva, this.createProductForm.value.genere)
     
   }
   deleteProd(){

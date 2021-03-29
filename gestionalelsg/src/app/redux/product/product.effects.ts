@@ -47,8 +47,8 @@ export class ProductsEffects {
         return this.http.retrieveGetCall<Response>("invoice/findLast");
     }
 
-    createProduct( description:string, measureUnit:string, name:string, price:string, scontoProd:string): Observable<Response>{
-        return this.http.retrievePostCall<Response>('product/create',{description, measureUnit,name, price,scontoProd});
+    createProduct( description:string, measureUnit:string, name:string, price:string, scontoProd:string, iva: string, genere: string): Observable<Response>{
+        return this.http.retrievePostCall<Response>('product/create',{description, measureUnit,name, price,scontoProd, iva, genere});
     }
 
     //sbagliato metterlo qua ma 2 much sbatti
@@ -73,7 +73,9 @@ export class ProductsEffects {
             action.measureUnit,
             action.name,
             action.price,
-            action.sconto).pipe(
+            action.sconto,
+            action.iva,
+            action.genere).pipe(
             map((response) => initProducts({ response })),
             tap(()=>this.router.navigateByUrl('/redirectproducts'))
         ))

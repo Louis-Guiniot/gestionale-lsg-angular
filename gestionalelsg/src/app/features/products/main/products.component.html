@@ -128,13 +128,35 @@
                 </div>
             </div>
 
-            <span class="form-group has-float-label">
-                <input type="text " class="form-control " formControlName="description"
-                    placeholder="inserisci descrizione" id="sede " autocomplete="off" aria-describedby="basic-addon1 ">
-                <label for="description">Descrizione</label>
-            </span>
 
-            <span class="form-group has-float-label">
+            <div class="row">
+                <div class="col">
+                    <span class="form-group has-float-label">
+                        <input type="text " class="form-control " formControlName="description"
+                            placeholder="inserisci descrizione" id="sede " autocomplete="off" aria-describedby="basic-addon1 ">
+                        <label for="description">Descrizione</label>
+                    </span>
+
+                </div>
+                <div class="col">
+                    <span class="form-group has-float-label">
+                <select formControlName="genere" class="form-control" aria-label="Default select example">
+                    <option [selected]="true">inserisci genere prodotto</option>
+                    <option value="merci">
+                        merci
+                    </option>
+                    <option value="servizi">
+                        servizi
+                    </option>
+                </select>
+                <label for="description">Genere</label>
+            </span>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col">
+                    <span class="form-group has-float-label">
                 <select formControlName="measureUnit" class="form-control" aria-label="Default select example">
                     <option [selected]="true">inserisci unita' di misura</option>
                     <option *ngFor="let measure of measures | async" value="{{measure.type}}">
@@ -143,6 +165,22 @@
                 </select>
                 <label for="description">Misura</label>
             </span>
+                </div>
+                <div class="col">
+                    <span class="form-group has-float-label">
+                        <select formControlName="iva" class="form-control" aria-label="Default select example">
+                            <option [selected]="true">inserisci tipo iva</option>
+                            <option *ngFor="let iva of ivaList | async" value="{{iva.percentualeIva}}">
+                                {{ iva.percentualeIva }} % {{iva.info}}
+                            </option>
+                        </select>
+                        <label for="description">Iva</label>
+                    </span>
+
+                </div>
+            </div>
+
+
 
             <span class="form-group has-float-label">
                 <textarea type="text " class="form-control " formControlName="name"
