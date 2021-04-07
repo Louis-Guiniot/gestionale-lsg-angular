@@ -19,7 +19,7 @@ export class TailInvoicesEffects {
     
     retreiveAllTailInvoice(): Observable<Response> {
         console.log("chiamata effettuata")
-        return this.http.retrieveGetCall<Response>("invoice/findAll");
+        return this.http.retrieveGetCall<Response>("invoice/findAllTail");
     }
 
     deleteTailInvoice(idS:string):Observable<Response>{
