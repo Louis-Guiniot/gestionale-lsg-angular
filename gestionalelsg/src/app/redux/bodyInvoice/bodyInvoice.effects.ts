@@ -19,7 +19,7 @@ export class BodyInvoicesEffects {
     
     retreiveAllBodyInvoice(): Observable<Response> {
         console.log("chiamata effettuata")
-        return this.http.retrieveGetCall<Response>("bodyInvoice/findAll");
+        return this.http.retrieveGetCall<Response>("invoice/findAllBody");
     }
 
     deleteBodyInvoice(idS:string):Observable<Response>{
