@@ -3,14 +3,14 @@ import { BodyInvoice } from 'src/app/core/model/BodyInvoice.interface';
 import { initBodyInvoiceFounds, initBodyInvoices } from './bodyInvoice.actions';
 
 export interface BodyInvoiceState { 
-    invoices: BodyInvoice[]
+    bodyInvoices: BodyInvoice[]
 }
 
 
 
 
 export const initialState: BodyInvoiceState = {
-    invoices: []
+    bodyInvoices: []
 };
 
 export const bodyInvoiceReducer = createReducer(

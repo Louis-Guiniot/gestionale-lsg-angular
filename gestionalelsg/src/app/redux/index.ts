@@ -10,11 +10,13 @@ import { docReducer, DocState } from './doctype/doctype.reducers';
 import { PhiState, phiReducer } from './product-has-invoice/phi.reducers';
 import { tipoDocumentoReducer, TipoDocumentoState } from './tipoDocumento/tipoDocumento.reducers';
 import { tailInvoiceReducer, TailInvoiceState } from './tailInvoice/tailInvoice.reducers';
+import { bodyInvoiceReducer, BodyInvoiceState } from './bodyInvoice/bodyInvoice.reducers';
 
 export interface AppState{
     router: RouterReducerState<any>;
     productsState: ProductState;
     invoiceState: InvoiceState;
+    bodyInvoiceState: BodyInvoiceState;
     ivaState: IvaState;
     tipoDocumentoState: TipoDocumentoState;
     customerState: CustomerState;
@@ -29,6 +31,7 @@ export const reducers: ActionReducerMap<AppState> = {
     router: routerReducer,
     productsState: productsReducer,
     invoiceState: invoiceReducer,
+    bodyInvoiceState: bodyInvoiceReducer,
     ivaState: ivaReducer,
     tipoDocumentoState: tipoDocumentoReducer,
     customerState: customersReducer,
