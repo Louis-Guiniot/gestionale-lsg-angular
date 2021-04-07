@@ -9,6 +9,7 @@ import { payConditionReducer, PayConditionState } from './paycondition/payCondit
 import { docReducer, DocState } from './doctype/doctype.reducers';
 import { PhiState, phiReducer } from './product-has-invoice/phi.reducers';
 import { tipoDocumentoReducer, TipoDocumentoState } from './tipoDocumento/tipoDocumento.reducers';
+import { tailInvoiceReducer, TailInvoiceState } from './tailInvoice/tailInvoice.reducers';
 
 export interface AppState{
     router: RouterReducerState<any>;
@@ -21,6 +22,7 @@ export interface AppState{
     payConditionState: PayConditionState,
     docState : DocState
     phiState: PhiState
+    tailInvoiceState: TailInvoiceState
 }
 
 export const reducers: ActionReducerMap<AppState> = {
@@ -33,5 +35,6 @@ export const reducers: ActionReducerMap<AppState> = {
     measureState: measureReducer,
     payConditionState: payConditionReducer,
     docState: docReducer,
-    phiState: phiReducer
+    phiState: phiReducer,
+    tailInvoiceState: tailInvoiceReducer
 }
