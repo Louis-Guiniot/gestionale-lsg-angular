@@ -25,6 +25,8 @@ import { IvaComponent } from './redirects/iva/iva.component';
 import { IvaEffects } from './redux/iva/iva.effects';
 import { DocEffects } from './redux/doctype/doctype.effects';
 import { PhiEffects } from './redux/product-has-invoice/phi.effects';
+import { TailInvoicesEffects } from './redux/tailInvoice/tailInvoice.effects';
+import { BodyInvoicesEffects } from './redux/bodyInvoice/bodyInvoice.effects';
 
 @NgModule({
   declarations: [
@@ -52,7 +54,9 @@ import { PhiEffects } from './redux/product-has-invoice/phi.effects';
       PayConditionEffects,
       IvaEffects,
       DocEffects, 
-      PhiEffects
+      PhiEffects,
+      TailInvoicesEffects,
+      BodyInvoicesEffects
      ]
      ),
   ],
